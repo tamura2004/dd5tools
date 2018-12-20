@@ -1,10 +1,15 @@
 import Floor from '@/models/Floor';
-import FloorChart from '@/charts/FloorChart';
 
 export default class State {
-    public floors: Floor[] = [
-        FloorChart.roll(Floor),
-        FloorChart.roll(Floor),
-        FloorChart.roll(Floor),
-    ];
+    public floors: Floor[][];
+
+    constructor() {
+        this.floors = [];
+        for (let i = 0; i < 5; i++) {
+            this.floors[i] = [];
+            for (let j = 0; j < 3; j++) {
+                this.floors[i][j] = new Floor();
+            }
+        }
+    }
 }

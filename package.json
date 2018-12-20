@@ -9,9 +9,11 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.119",
     "@types/md5": "^2.1.33",
     "@types/uuid": "^3.4.4",
     "axios": "^0.18.0",
+    "lodash": "^4.17.11",
     "md5": "^2.2.1",
     "register-service-worker": "^1.0.0",
     "uuid": "^3.3.2",

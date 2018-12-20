@@ -1,22 +1,23 @@
-export default class Chart<T> {
-  public dice: number;
-  public records: Array<{no: number, init: Partial<T>}>;
+type Table<T> = Array<[number, T]>;
 
-  constructor(records: Array<{no: number, init: Partial<T>}>, dice?: number) {
-    this.dice = dice || 20;
-    if (records.length === 0 || records[records.length - 1].no !== this.dice) {
-      throw new Error(`Bad new chart data, records = ${records}, dice = ${dice}`);
-    }
-    this.records = records;
+class Chart<T> {
+  private dice: number;
+  private table: Table<T>;
+
+  constructor(table: Table<T>) {
+    this.table = table;
+    this.dice = table[table.length - 1][0];
   }
 
-  public roll(ctor: {new(init: Partial<T>): T}): T {
+  public roll(): T {
     const n = Math.floor(Math.random() * this.dice + 1);
-    const record = this.records.find((r) => n <= r.no);
-    if (record === undefined) {
-      throw new Error('Bad chart');
-    } else {
-      return new ctor(record.init);
+    for (const row of this.table) {
+      if (n <= row[0]) {
+        return row[1];
+      }
     }
+    throw new Error('bad table' + JSON.stringify(this.table));
   }
 }
+
+export { Table, Chart };

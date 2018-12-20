@@ -1,7 +1,17 @@
 <template lang="pug">
   v-app
-    transition(name="router" mode="out-in")
-      router-view
+    v-toolbar(app)
+      v-icon home
+      v-toolbar-title.headline
+        span D&D5eツール
+      v-spacer
+    v-content
+      v-container(fluid fill-height)
+        v-layout(align-start justify-center)
+          v-flex(xs12 sm8 md6)
+            transition(name="router" mode="out-in")
+              router-view
+    v-footer
 </template>
 
 <script lang="ts">

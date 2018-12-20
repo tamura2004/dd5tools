@@ -16,16 +16,17 @@ import Floor from '@/models/Floor.vue';
 
 @Component
 export default class FloorCard extends Vue {
-  @Prop() private floor!: Floor;
+  @Prop() private row!: number;
+  private color: string = 'blue darken-2';
 
-  private color: string = "blue darken-2";
-
+  private get floor(): Floor {
+    return this.$store.state.floors[this.row][0];
+  }
   private go(): void {
     this.$store.commit('nextFloor', this.floor);
   }
-
   private inspect(): void {
-    this.color = this.color === "red" ? "blue darken-2" : "red";
+    this.color = this.color === 'red' ? 'blue darken-2' : 'red';
   }
 }
 </script>

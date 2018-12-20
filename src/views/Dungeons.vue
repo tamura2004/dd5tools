@@ -1,8 +1,12 @@
 <template lang="pug">
-  v-container(fluid fill-height)
-    v-layout(align-start justify-center)
-      v-flex(xs10 sm8 md6 lg4 xl4)
-        FloorCard(v-for="floor in floors" :key="floor.key" :floor="floor")
+  div#container
+    FloorCard(
+      v-for="(floor, i) in floors"
+      :row="i"
+      :key="floor.key"
+      :floor="floor"
+      :class="`card${i}`"
+    )
 
 </template>
 
@@ -18,10 +22,27 @@ import Floor from '@/models/Floor';
 })
 export default class Dungeons extends Vue {
   get floors(): Floor[] {
-    return this.$store.state.floors;
+    return this.$store.state.floors[0];
   }
 }
 </script>
 
 <style lang="stylus">
+  #container
+    display grid
+    grid-template-rows 1fr 1fr 1fr
+    grid-template-columns 1fr
+
+  .card1
+    grid-row 1
+    grid-column 1
+    
+  .card2
+    grid-row 2
+    grid-column 1
+
+  .card3
+    grid-row 3
+    grid-column 1
+
 </style>
