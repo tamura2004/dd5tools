@@ -9,11 +9,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class MonsterList extends Vue {
-  @Prop() row!: number;
+  @Prop() private row!: number;
 
   private get monsterName(): string {
     const MONSTERS = [
@@ -23,7 +23,7 @@ export default class MonsterList extends Vue {
       'オーガ',
       'トロール',
       'ジャイアント',
-    ]
+    ];
     return MONSTERS[this.row] || 'タイタン';
   }
 }
