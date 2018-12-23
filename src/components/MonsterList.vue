@@ -20,14 +20,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Monster from '@/models/Monster';
 
-const EXPS = [
-  200,
-  400,
-  400,
-  400,
-  600,
-  800,
-];
+const EXPS = [200, 400, 400, 400, 600, 800];
 
 @Component
 export default class MonsterList extends Vue {
@@ -37,25 +30,11 @@ export default class MonsterList extends Vue {
     return Monster.random(EXPS[this.row - 1] || 400);
   }
   private get color(): string {
-    const COLORS = [
-      'green',
-      'blue',
-      'blue',
-      'blue',
-      'red',
-      'black',
-    ];
+    const COLORS = ['green', 'blue', 'blue', 'blue', 'red', 'black'];
     return COLORS[this.row - 1] || 'error';
   }
   private get difficulty(): string {
-    const DIFFICULTY = [
-      '簡単',
-      '通常',
-      '通常',
-      '通常',
-      '困難',
-      '死地',
-    ];
+    const DIFFICULTY = ['簡単', '通常', '通常', '通常', '困難', '死地'];
     return DIFFICULTY[this.row - 1] || 'error';
   }
 }

@@ -1,8 +1,8 @@
 <template lang="pug">
   div
-    MenuButton(to="/dungeons" label="ダンジョン")
-    MenuButton(to="/monsters" label="ワンダリングモンスター")
+    MenuButton(to="/monsters" label="モンスター")
     MenuButton(to="/treasures" label="財宝")
+    MenuButton(to="/dungeons" label="ダンジョン")
 </template>
 
 <script lang="ts">
