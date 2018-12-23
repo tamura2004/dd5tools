@@ -1,7 +1,8 @@
 <template lang="pug">
   v-app
     v-toolbar(app)
-      v-icon home
+      v-btn(flat icon @click="home")
+        v-icon home
       v-toolbar-title.headline
         span D&D5eツール
       v-spacer
@@ -22,6 +23,9 @@ import Menu from '@/views/Menu.vue';
   components: { Menu },
 })
 export default class App extends Vue {
+  private home(): void {
+    this.$router.push('/');
+  }
 }
 </script>
 

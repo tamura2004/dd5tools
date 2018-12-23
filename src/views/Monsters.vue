@@ -1,9 +1,10 @@
 <template lang="pug">
   v-card
     v-toolbar
-      v-toolbar-title.text-xs-center monster
-        v-list
-          MonsterList(v-for="i in 6" :row="i")
+      v-toolbar-title.text-xs-center
+        | ワンダリングモンスター
+    v-list(two-line)
+      MonsterList(v-for="i in 6" :row="i" :key="i")
 
 </template>
 
