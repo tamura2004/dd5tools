@@ -19,15 +19,19 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Monster from '@/models/Monster';
+import Encounter from '@/models/Encounter';
+import Party from '@/models/Party';
 
 const EXPS = [200, 400, 400, 400, 600, 800];
+const CR = [1, 2, 2, 2, 3, 4];
 
 @Component
 export default class MonsterList extends Vue {
   @Prop() private row!: number;
 
   private get monster(): Monster {
-    return Monster.random(EXPS[this.row - 1] || 400);
+    const enc = new Encounter(new Party(), CR[this.row]);
+    return enc.monster();
   }
   private get color(): string {
     const COLORS = ['green', 'blue', 'blue', 'blue', 'red', 'black'];
