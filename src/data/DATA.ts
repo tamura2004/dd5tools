@@ -1,6 +1,6 @@
 
 export enum Difficulty {
-  Easy = 1,
+  Easy = 0,
   Normal,
   Hard,
   Deadly,
@@ -18,7 +18,13 @@ const BASE_EXP = [
   [600, 1200, 1900, 2800],
 ];
 export const baseExp = (level: number, diff: Difficulty) => {
-  return BASE_EXP[level - 1][diff - 1];
+  if (level < 1 || 10 < level) {
+    throw new Error(`index out of range lelvel=${level}`);
+  }
+  if (diff < 0 || 3 < diff) {
+    throw new Error(`index out of range diff=${diff}`);
+  }
+  return BASE_EXP[level - 1][diff];
 };
 export const CR: Array<[number, string]> = [
   [5900, '10'],

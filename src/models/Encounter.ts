@@ -20,7 +20,7 @@ export default class Encounter {
     return new Monster(name, data, num);
   }
   private maxNumber(): number {
-    return Math.floor(this.party.totalExp(this.diff) / 25);
+    return Math.floor(this.party.totalExp(this.diff) / 100);
   }
   private monsterNum(): number {
     return Math.floor(Math.random() * this.maxNumber() + 1);

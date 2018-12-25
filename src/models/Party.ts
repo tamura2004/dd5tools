@@ -10,7 +10,9 @@ export default class Party {
   public totalExp(diff: Difficulty): number {
     let sum: number = 0;
     for (const levelNum of this.levelNums) {
-      sum += baseExp(levelNum[0], diff) * levelNum[1];
+      const [level, num] = levelNum;
+      const exp = baseExp(level, diff)
+      sum += exp * num;
     }
     return sum;
   }
