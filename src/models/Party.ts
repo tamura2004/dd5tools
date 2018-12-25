@@ -11,7 +11,7 @@ export default class Party {
     let sum: number = 0;
     for (const levelNum of this.levelNums) {
       const [level, num] = levelNum;
-      const exp = baseExp(level, diff)
+      const exp = baseExp(level, diff);
       sum += exp * num;
     }
     return sum;
