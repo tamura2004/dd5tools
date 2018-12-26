@@ -3,6 +3,7 @@
     MenuButton(to="/monsters" label="モンスター")
     MenuButton(to="/treasures" label="財宝")
     MenuButton(to="/dungeons" label="ダンジョン")
+    MenuButton(to="/parties" label="パーティー")
 </template>
 
 <script lang="ts">

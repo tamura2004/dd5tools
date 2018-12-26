@@ -38,7 +38,7 @@ export default class MonsterList extends Vue {
   @Prop() private row!: number;
 
   private get monster(): Monster {
-    const enc = new Encounter(new Party(), CR[this.row - 1]);
+    const enc = new Encounter(this.$store.state.party, CR[this.row - 1]);
     return enc.monster();
   }
   private get color(): string {

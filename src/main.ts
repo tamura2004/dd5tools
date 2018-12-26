@@ -5,8 +5,17 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 // import { Route } from 'vue-router';
+import { Difficulty } from '@/data/DATA';
 
 Vue.config.productionTip = false;
+
+router.beforeEach((to, from, next) => {
+  if (to.path === '/monsters' && store.state.party.totalExp(Difficulty.Easy) < 25) {
+    next({ path: 'parties'});
+  } else {
+    next();
+  }
+});
 
 new Vue({
   router,

@@ -19,10 +19,10 @@ export default class Encounter {
     const [name, data]: [string, number[]] = randomMonster(exp);
     return new Monster(name, data, num);
   }
-  private maxNumber(): number {
-    return Math.floor(this.party.totalExp(this.diff) / 100);
-  }
   private monsterNum(): number {
     return Math.floor(Math.random() * this.maxNumber() + 1);
+  }
+  private maxNumber(): number {
+    return Math.floor(this.party.totalExp(this.diff) / 100);
   }
 }
