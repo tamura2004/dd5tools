@@ -58,14 +58,7 @@ export const NUM_MODIFY = [
   [16, 3],
   [99, 4],
 ];
-export function numModify(num: number) {
-  const modify = NUM_MODIFY.find((n) => num <= n[0]);
-  if (modify === undefined) {
-    throw new Error(`bad modify num: ${num}`);
-  } else {
-    return modify[1];
-  }
-}
+
 export function randomMonster(exp: number) {
   const monsters = MONSTER.filter((m) => m[1][9] === exp);
   return monsters[Math.floor(Math.random() * monsters.length)];

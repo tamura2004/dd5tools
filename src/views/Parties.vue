@@ -20,11 +20,15 @@
   export default class Parties extends Vue {
     public levels: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     public nums: number[] = [1, 2, 3, 4, 5, 6];
-    public party: Party = new Party([[0, 0], [0, 0], [0, 0], [0, 0]]);
+    public party!: Party;
 
     private setParty(): void {
       this.$store.commit('setParty', this.party);
       this.$router.push('/monsters');
+    }
+
+    private created(): void {
+      this.party = this.$store.state.party;
     }
   }
 </script>
