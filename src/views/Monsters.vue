@@ -3,8 +3,8 @@
     v-toolbar
       v-toolbar-title.text-xs-center ワンダリングモンスター
       v-spacer
-      v-btn(icon)
-        v-icon refresh
+      v-btn(flat @click="reload")
+        v-icon replay
     v-list(two-line)
       MonsterList(v-for="i in 6" :row="i" :key="i")
 
@@ -20,6 +20,15 @@
     },
   })
   export default class Monsters extends Vue {
+    private get party() {
+      return this.$store.state.party;
+    }
+    private go(): void {
+      this.$router.push('/parties');
+    }
+    private reload(): void {
+      this.$store.commit('setRandomMonsters');
+    }
   }
 </script>
 

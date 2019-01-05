@@ -1,9 +1,9 @@
 import Party from '@/models/Party';
-import Monster from '@/models/Monster';
+import { MONSTERS } from '@/data/MONSTERS';
+import { Monster } from '@/models/Monster';
 import Table from '@/models/Table';
-import { Difficulty, findExp, randomMonster } from '@/data/DATA';
-
-const NUM_MODIFY = new Table([[1, 1], [2, 1.5], [3, 2], [7, 2.5], [11, 3], [15, 4]]);
+import List from '@/models/List';
+import { Difficulty, NUM_MODIFY, CR, BASE_EXP } from '@/data/DATA';
 
 export default class Encounter {
 
@@ -18,13 +18,16 @@ export default class Encounter {
     const num = this.monsterNum();
     const modify = NUM_MODIFY.lookupOver(num) || 1;
     const unitExp = this.party.totalExp(this.diff) / modify / num;
-    const exp = findExp(unitExp);
-    const [name, data]: [string, number[]] = randomMonster(exp);
-    return new Monster(name, data, num);
+    const exp = CR.lookupUnder(unitExp) || 10;
+    const monsters = MONSTERS.filter((m) => m.exp === exp);
+    const init = monsters[Math.floor(Math.random() * monsters.length)];
+    return new Monster(init, num);
   }
+
   private monsterNum(): number {
     return Math.floor(Math.random() * this.maxNumber() + 1);
   }
+
   private maxNumber(): number {
     const total = this.party.totalExp(this.diff);
     let num = Math.floor(total / 100);

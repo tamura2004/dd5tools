@@ -1,4 +1,4 @@
-import { baseExp, Difficulty } from '@/data/DATA';
+import { BASE_EXP, Difficulty } from '@/data/DATA';
 
 export default class Party {
   public levelNums: Array<[number, number]>;
@@ -12,10 +12,20 @@ export default class Party {
     for (const levelNum of this.levelNums) {
       const [level, num] = levelNum;
       if (level !== 0) {
-        const exp = baseExp(level, diff);
+        const exp = BASE_EXP.get(level, diff) || 25;
         sum += exp * num;
       }
     }
     return sum;
+  }
+
+  public toString(): string {
+    let msg = '';
+    for (const [level, num] of this.levelNums) {
+      if (level !== 0) {
+        msg += `LV${level}(${num});`;
+      }
+    }
+    return msg;
   }
 }

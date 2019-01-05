@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div(@click="go")
     v-list-tile.my-1.elevation-4
       v-list-tile-avatar
         v-btn.font-weight-bold(fab dark small :color="color") {{ difficulty }}
@@ -12,34 +12,34 @@
             v-flex(xs3) {{ monster.num }} 体
             v-flex(xs3) AC: {{ monster.ac }}
             v-flex(xs3) hp: {{ monster.hp }}
-            v-flex(xs3) exp:{{ monster.exp }}
+            v-flex(xs3) exp:{{ monster.totalExp }}
 
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import Monster from '@/models/Monster';
-import Encounter from '@/models/Encounter';
-import Party from '@/models/Party';
-import { Difficulty } from '@/data/DATA';
+import { Monster } from '@/models/Monster';
+// import Encounter from '@/models/Encounter';
+// import Party from '@/models/Party';
+// import { Difficulty } from '@/data/DATA';
 
-const EXPS = [200, 400, 400, 400, 600, 800];
-const CR = [
-  Difficulty.Easy,
-  Difficulty.Normal,
-  Difficulty.Normal,
-  Difficulty.Normal,
-  Difficulty.Hard,
-  Difficulty.Deadly,
-];
+// const CR = [
+//   Difficulty.Easy,
+//   Difficulty.Normal,
+//   Difficulty.Normal,
+//   Difficulty.Normal,
+//   Difficulty.Hard,
+//   Difficulty.Deadly,
+// ];
 
 @Component
 export default class MonsterList extends Vue {
   @Prop() private row!: number;
 
   private get monster(): Monster {
-    const enc = new Encounter(this.$store.state.party, CR[this.row - 1]);
-    return enc.monster();
+    return this.$store.state.monsters[this.row - 1];
+    // const enc = new Encounter(this.$store.state.party, CR[this.row - 1]);
+    // return enc.monster();
   }
   private get color(): string {
     const COLORS = ['green', 'blue', 'blue', 'blue', 'red', 'black'];
@@ -48,6 +48,9 @@ export default class MonsterList extends Vue {
   private get difficulty(): string {
     const DIFFICULTY = ['簡単', '通常', '通常', '通常', '困難', '死地'];
     return DIFFICULTY[this.row - 1] || 'error';
+  }
+  private go(): void {
+    this.$router.push(`/monster/${this.row}`);
   }
 }
 </script>

@@ -24,6 +24,7 @@
 
     private setParty(): void {
       this.$store.commit('setParty', this.party);
+      this.$store.commit('setRandomMonsters');
       this.$router.push('/monsters');
     }
 
