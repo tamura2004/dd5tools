@@ -1789,7 +1789,7 @@ export const MONSTERS: IMonster[] = [
     ],
   },
   {
-    name: 'ジャイアント・コンストリクター・',
+    name: 'ジャイアント・コンストリクター・スネーク',
     size: '超大型',
     type: '野獣',
     alignment: '無属性',
