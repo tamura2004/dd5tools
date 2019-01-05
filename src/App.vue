@@ -9,7 +9,7 @@
     v-content
       v-container(fluid fill-height)
         v-layout(align-start justify-center)
-          v-flex(xs12 sm8 md6)
+          v-flex(xs12 sm12 md8)
             transition(name="router" mode="out-in")
               router-view
     v-footer

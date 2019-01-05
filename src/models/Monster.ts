@@ -1,3 +1,5 @@
+import { EXP } from '@/data/DATA';
+
 export interface IMonster {
   name: string;
   size: string;
@@ -50,6 +52,9 @@ export class Monster implements IMonster {
 
   public get totalExp(): number {
     return this.num * this.exp;
+  }
+  public get cr(): string | undefined {
+    return EXP.lookupUnder(this.exp);
   }
   public abilityString(i: number): string {
     const ability = this.ability[i];

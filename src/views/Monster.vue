@@ -1,10 +1,9 @@
 <template lang="pug">
   v-card
     v-toolbar(color="primary" dark)
-      v-icon(@click="back") arrow_back
       v-toolbar-title {{ monster.name }}
     v-card-title.pa-2
-      h5 {{ monster.size }}・{{ monster.type }}、{{ monster.alignment }}
+      h2 {{ monster.size }}・{{ monster.type }}、{{ monster.alignment }}
     v-divider
     v-list(three-line)
       v-list-tile
@@ -14,7 +13,7 @@
           v-list-tile-title AC: {{ monster.ac }}
           v-list-tile-title hp: {{ monster.hp }}
           v-list-tile-title 移動速度: {{ monster.mv }}
-          v-list-tile-title 脅威度: {{ monster.exp }}exp
+          v-list-tile-title 脅威度: {{ monster.cr }} ({{ monster.exp }}exp)
     v-divider
     v-list.my-1
       v-list-tile
@@ -32,27 +31,30 @@
           v-list-tile-title
             v-layout
               v-flex(xs2 v-for="i in 6" :key="i") {{ monster.abilityString(i - 1) }}
+
     v-divider
-    v-list(three-line)
+    v-list(three-line v-if="monster.attributes.length <= 4")
       v-list-tile
         v-list-tile-action
           v-icon router
         v-list-tile-content
-          v-list-tile-title(v-for="(attribute, i) in monster.attributes" :key="i") {{ attribute }}
+          v-list-tile-title(v-for="attribute in monster.attributes" :key="attribute") {{ attribute }}
+
+    div(v-else)
+      v-card-title.pa-2
+        h2 特徴
+      v-card-text.subheading.py-0(v-for="attribute in monster.attributes" :key="attribute") {{ attribute }}
+
     v-divider
-    h3.mx-3 アクション
-    v-list(three-line v-for="(action, i) in monster.actions" :key="i")
-      v-list-tile
-        v-list-tile-action
-          v-icon colorize
-        v-card-text {{ action }}
+    v-card-title.pa-2
+      h2 アクション
+    v-card-text.subheading(v-for="action in monster.actions" :key="action") {{ action }}
+
     v-divider
-    h3.mx-3 特殊能力
-    v-list(three-line v-for="(special, i) in monster.specials" :key="i")
-      v-list-tile
-        v-list-tile-action
-          v-icon gavel
-        v-card-text {{ special }}
+    v-card-title.pa-2
+      h2 特殊能力
+    v-card-text.subheading(v-for="special in monster.specials" :key="special") {{ special }}
+
     v-divider
     v-card-actions
       v-spacer
