@@ -18,7 +18,7 @@ export default class Encounter {
     const num = this.monsterNum();
     const modify = NUM_MODIFY.lookupOver(num) || 1;
     const unitExp = this.party.totalExp(this.diff) / modify / num;
-    const exp = CR.lookupUnder(unitExp) || 10;
+    const exp = CR.lookupOver(unitExp) || 10;
     const monsters = MONSTERS.filter((m) => m.exp === exp);
     const init = monsters[Math.floor(Math.random() * monsters.length)];
     return new Monster(init, num);

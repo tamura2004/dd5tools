@@ -12,7 +12,7 @@ export default class Party {
     for (const levelNum of this.levelNums) {
       const [level, num] = levelNum;
       if (level !== 0) {
-        const exp = BASE_EXP.get(level, diff) || 25;
+        const exp = BASE_EXP.get(level - 1, diff) || 25;
         sum += exp * num;
       }
     }
