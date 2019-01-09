@@ -8,9 +8,11 @@
           v-flex.pa-2(xs4)
             v-text-field(label="キャラクター名" v-model="player.characterName")
           v-flex.pa-2(xs4)
-            v-text-field(label="プレイヤー名" v-model="player.name")
-          v-flex.pa-2(xs4)
             v-select(label="クラス" :items="klass" v-model="player.klass")
+          v-flex.pa-2(xs2)
+            v-select(label="レベル" :items="[1,2,3,4,5,6,7,8,9,10]" v-model="player.level")
+          v-flex.pa-2(xs2)
+            v-text-field(label="プレイヤー名" v-model="player.name")
         v-layout
           v-flex.pa-2(xs4)
             v-select(label="種族" :items="races" v-model="player.race")
@@ -19,24 +21,34 @@
           v-flex.pa-2(xs4)
             v-select(label="背景" :items="background" v-model="player.background")
         v-layout
-          v-flex(xs2) 【筋】
-          v-flex(xs2) 【敏】
-          v-flex(xs2) 【耐】
-          v-flex(xs2) 【知】
-          v-flex(xs2) 【判】
-          v-flex(xs2) 【魅】
+          v-flex.pa-2(xs3)
+            v-text-field(label="hp" v-model="player.hp" mask="###")
+          v-flex.pa-2(xs3)
+            v-text-field(label="exp" v-model="player.exp" mask="#####")
         v-layout
-          v-flex.ma-2(xs2 v-for="i in 6")
-            v-select(:items="[3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18]"  v-model="player.baseAbility[i-1]")
+          v-flex.mx-2(xs2 v-for="i in 6")
+            v-select(:label="abilityLabel[i-1]" :items="abilityRange" v-model="player.baseAbility[i-1]")
         v-layout
-          v-flex.ma-2(xs2 v-for="a in ability"): h3 {{ a }}
+          v-flex.mx-2(xs2 v-for="a in ability"): h3 {{ a }}
+        v-layout
+          v-flex.pa-2(xs4)
+            v-select(label="武器" :items="weaponName" v-model="player.weapon")
 
 </template>
 
 <script lang="ts">
 import { Player } from '@/models/Player';
+import { Weapon } from '@/models/Weapon';
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import { RACES, ALIGNMENT, BACKGROUND, KLASS } from '@/data/DATA';
+import {
+  RACES,
+  ALIGNMENT,
+  BACKGROUND,
+  KLASS,
+  ABILITY_LABEL,
+  ABILITY_RANGE,
+  WEAPON_NAME,
+} from '@/data/DATA';
 
 @Component
 export default class PlayerForm extends Vue {
@@ -45,17 +57,22 @@ export default class PlayerForm extends Vue {
   public alignment: string[] = ALIGNMENT;
   public background: string[] = BACKGROUND;
   public klass: string[] = KLASS;
+  public abilityLabel: string[] = ABILITY_LABEL;
+  public abilityRange: number[] = ABILITY_RANGE;
+  public weaponName: string[] = WEAPON_NAME;
 
-  public get ability(): number[] {
+  public get ability(): string[] {
     const ret = this.player.ability;
     if (typeof ret !== 'undefined') {
       return ret;
     } else {
-      return [0, 0, 0, 0, 0, 0];
+      return ['-', '-', '-', '-', '-', '-'];
     }
   }
+
   private created(): void {
     this.player.rollAbility();
+    this.player.exp = 0;
   }
 }
 </script>
