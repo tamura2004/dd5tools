@@ -34,7 +34,11 @@ export class Player {
             if (typeof abilityBonus !== 'undefined') {
                 return abilityBonus.map((a, i) => {
                     const val = a + this.baseAbility[i];
-                    return `${val}(+${modify(val)})`;
+                    if (val >= 10) {
+                        return `${val}(+${modify(val)})`;
+                    } else {
+                        return `${val}(${modify(val)})`;
+                    }
                 });
             }
         }
