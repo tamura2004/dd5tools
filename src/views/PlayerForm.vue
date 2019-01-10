@@ -19,7 +19,7 @@
             v-select(label="属性" :items="alignment" v-model="player.alignment")
           v-flex.pa-2(xs6 sm4)
             v-select(label="背景" :items="background" v-model="player.background")
-          v-flex.pa-2(xs6 md4)
+          v-flex.pa-2(xs6 sm4)
             v-select(label="武器" :items="weaponName" v-model="player.weapon")
           v-flex.pa-2(xs6 sm4)
             v-text-field(label="hp" v-model="player.hp" mask="###")
