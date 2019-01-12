@@ -2,6 +2,7 @@ import Table from '@/models/Table';
 import List from '@/models/List';
 import Matrix from '@/models/Matrix';
 import { Weapon } from '@/models/Weapon';
+import { Armor } from '@/models/Armor';
 
 export enum Difficulty {
   Easy = 0,
@@ -184,4 +185,22 @@ export const WEAPON: Map<string, Weapon> = new Map([
   ['ロングボウ', new Weapon('軍用遠隔武器', '50gp', '1d8', '刺突', '2ポンド', '150', '重武器、両手用')],
 ]);
 
-export const WEAPON_NAME = Array.from(WEAPON.keys());
+export const WEAPON_NAME = [...WEAPON.keys()];
+
+export const ARMOR: Map<string, Armor> = new Map([
+  ['パデッド', new Armor('軽装鎧', '5gp', 11, 99, -99, 0, '不利', '8ポンド')],
+  ['レザー', new Armor('軽装鎧', '10gp', 11, 99, -99, 0, 'なし', '10ポンド')],
+  ['スタデッド・レザー', new Armor('軽装鎧', '45gp', 12, 99, -99, 0, 'なし', '13ポンド')],
+  ['ハイド', new Armor('中装鎧', '10gp', 12, 2, -99, 0, 'なし', '12ポンド')],
+  ['チェイン・シャツ', new Armor('中装鎧', '50gp', 13, 2, -99, 0, 'なし', '20ポンド')],
+  ['スケイル・メイル', new Armor('中装鎧', '50gp', 14, 2, -99, 0, '不利', '45ポンド')],
+  ['ブレストプレート', new Armor('中装鎧', '400gp', 14, 2, -99, 0, 'なし', '20ポンド')],
+  ['ハーフ・プレート', new Armor('中装鎧', '750gp', 15, 2, -99, 0, '不利', '40ポンド')],
+  ['リング・メイル', new Armor('重装鎧', '30gp', 14, 0, 0, 0, '不利', '40ポンド')],
+  ['チェイン・メイル', new Armor('重装鎧', '75gp', 16, 0, 0, 13, '不利', '55ポンド')],
+  ['スプリント', new Armor('重装鎧', '200gp', 17, 0, 0, 13, '不利', '60ポンド')],
+  ['プレート', new Armor('重装鎧', '1500gp', 18, 0, 0, 15, '不利', '65ポンド')],
+  ['シールド', new Armor('盾', '10gp', 2, 99, -99, 0, 'なし', '6ポンド')],
+]);
+
+export const ARMOR_NAME = [...ARMOR.keys()];
