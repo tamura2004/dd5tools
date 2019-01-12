@@ -119,6 +119,7 @@ import {
   ARMOR_NAME,
   ARMOR,
 } from '@/data/DATA';
+import Vuetify from 'vuetify/lib';
 
 type Validation = (v: string) => boolean | string;
 
@@ -206,7 +207,7 @@ export default class PlayerForm extends Vue {
   }
 
   private save(): void {
-    this.$refs.form.validate();
+    (this.$refs.form as Vue & {validate: () => boolean}).validate();
   }
 
   private created(): void {
