@@ -19,7 +19,7 @@ export class Armor {
             }
         }
         if (this.hide === '不利') {
-            msg += '、隠密：不利'
+            msg += '、隠密：不利';
         }
         return msg;
     }

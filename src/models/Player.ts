@@ -15,7 +15,7 @@ export class Player {
     public exp?: number = undefined;
     public baseAbility: number[] = [];
     public skills: string[] = [];
-    public weapon?: string = undefined;
+    public weapon: string[] = [];
     public armor?: string = undefined;
 
     constructor(init: Partial<Player>) {
