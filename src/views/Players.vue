@@ -4,6 +4,7 @@
       v-toolbar-title.text-xs-center ＰＣ一覧
     v-list(two-line)
       PlayerList(v-for="player in players" :key="player._id.$oid" :player="player")
+    p.mt-5 designed by Freepik from Flaticon
 
 </template>
 
