@@ -5,6 +5,7 @@ function modify(ability: number): number {
 }
 
 export class Player {
+    public _id: {$oid: string} = {$oid: ''};
     public name?: string = undefined;
     public characterName?: string = undefined;
     public klass?: string = undefined;
@@ -17,6 +18,7 @@ export class Player {
     public skills: string[] = [];
     public weapon: string[] = [];
     public armor?: string = undefined;
+    public memo?: string;
 
     constructor(init: Partial<Player>) {
         Object.assign(this, init);

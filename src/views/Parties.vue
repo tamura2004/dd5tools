@@ -10,6 +10,8 @@
     v-card-actions
       v-spacer
       v-btn(color="primary" @click="setParty") 設定
+    p.mt-5 designed by Fleepik from Flaticon
+
 </template>
 
 <script lang="ts">

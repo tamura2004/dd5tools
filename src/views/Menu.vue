@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     MenuButton(to="/monsters" label="モンスター")
-    MenuButton(to="/player" label="キャラシー")
+    MenuButton(to="/players" label="キャラシー")
     MenuButton(to="/treasures" label="財宝")
     MenuButton(to="/dungeons" label="ダンジョン")
     MenuButton(to="/parties" label="パーティー")

@@ -18,6 +18,11 @@
     "max-line-length": [
       true,
       1024
+    ],
+    "variable-name": [
+      true,
+      "allow-leading-underscore",
+      "allow-pascal-case"
     ]
   }
 }

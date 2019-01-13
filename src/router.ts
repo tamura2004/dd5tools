@@ -4,7 +4,7 @@ import Menu from './views/Menu.vue';
 import Dungeons from './views/Dungeons.vue';
 import Monsters from './views/Monsters.vue';
 import Monster from './views/Monster.vue';
-import PlayerForm from './views/PlayerForm.vue';
+import Players from './views/Players.vue';
 import Parties from './views/Parties.vue';
 
 Vue.use(Router);
@@ -40,9 +40,9 @@ const router = new Router({
       props: true,
     },
     {
-      path: '/player',
-      name: 'player',
-      component: PlayerForm,
+      path: '/players',
+      name: 'players',
+      component: Players,
       props: true,
     },
   ],

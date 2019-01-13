@@ -120,6 +120,7 @@ import {
   ARMOR,
 } from '@/data/DATA';
 import Vuetify from 'vuetify/lib';
+import API from '@/api';
 
 type Validation = (v: string) => boolean | string;
 
@@ -157,7 +158,7 @@ export default class PlayerForm extends Vue {
     (v) => !!v || '背景を選択してください',
   ];
   public hpRules: Validation[] = [
-    (v) => !!v || 'hp背景を入力してください',
+    (v) => !!v || 'hpを入力してください',
   ];
   public abilityRules: Validation[] = [
     (v) => !!v || '能力値を入力してください',
@@ -207,6 +208,11 @@ export default class PlayerForm extends Vue {
   }
 
   private save(): void {
+    if (this.valid) {
+      API.post('/', this.player)
+        .then((res) => this.$router.push('/'))
+        .catch((e) => alert(e));
+    }
     (this.$refs.form as Vue & {validate: () => boolean}).validate();
   }
 
