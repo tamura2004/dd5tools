@@ -12,6 +12,8 @@
                 v-layout
                     v-flex(xs8) {{ player.race }}/{{ player.background }}
                     v-flex(xs4) PL:{{ player.name }}
+    p.mt-5 designed by Freepik from Flaticon
+                    
 
 </template>
 
