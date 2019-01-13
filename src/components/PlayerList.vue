@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     v-list-tile.my-1.elevation-4
-        v-list-tile-avatar
+        v-list-tile-avatar(tile)
             img(:src="avater")
         v-list-tile-content
             v-list-tile-title
