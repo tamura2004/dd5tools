@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div(@click="go")
     v-list-tile.my-1.elevation-4
       v-list-tile-avatar
         v-btn.font-weight-bold(fab dark small :color="color") {{ difficulty }}
