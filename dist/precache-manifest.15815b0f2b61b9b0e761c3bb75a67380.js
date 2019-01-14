@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "6a4dd5d6620fbfc5cc89",
-    "url": "/css/app.f13ebf93.css"
+    "revision": "76d270552a63ca1cc505",
+    "url": "/css/app.67b3d48f.css"
   },
   {
-    "revision": "6a4dd5d6620fbfc5cc89",
-    "url": "/js/app.54693b35.js"
+    "revision": "76d270552a63ca1cc505",
+    "url": "/js/app.b6a453b3.js"
   },
   {
     "revision": "6bdf3455cbf4308e327e",
@@ -224,7 +224,7 @@ self.__precacheManifest = [
     "url": "/img/008-mushroom.ca36132c.png"
   },
   {
-    "revision": "70487419234af7aaff385ba9a9c887fc",
+    "revision": "04bf9ce7fa63a88efbacc8a12db52103",
     "url": "/index.html"
   },
   {

@@ -34,13 +34,24 @@
         v-list-tile-content
           v-list-tile-title
             v-layout.center
-              v-flex(xs2) AC
-              v-flex(xs2) hp
-              v-flex(xs8) {{ player.armor }}
+              v-flex(xs5) 最大hp
           v-list-tile-sub-title
             v-layout.center
-              v-flex(xs2) {{ player.ac }}
-              v-flex(xs2) {{ player.hp }}
+              v-flex(xs5) {{ player.hp }}
+        v-layout.center(align-center justify-center)
+          v-flex(xs4): v-btn(fab small dark color="grey" @click="decHp"): v-icon exposure_neg_1
+          v-flex(xs4): h2 {{ hp }}
+          v-flex(xs4): v-btn(fab small dark color="grey" @click="incHp"): v-icon exposure_plus_1
+      v-divider
+      v-list-tile
+        v-list-tile-content
+          v-list-tile-title
+            v-layout
+              v-flex.center(xs2) AC
+              v-flex(xs8) {{ player.armor }}
+          v-list-tile-sub-title
+            v-layout
+              v-flex.center(xs2) {{ player.ac }}
       template(v-for="(w, i) in weapons")
         v-divider
         v-list-tile
@@ -71,10 +82,27 @@ export default class PlayerCard extends Vue {
   private avater = require('@/assets/' + AVATER.sample());
   private abilityLabel = ABILITY_LABEL;
   private weapons: Array<Weapon | undefined> = [];
+  private hp: number = 0;
   @Prop() private id!: string;
 
   private edit(): void {
     this.$router.push(`/playerForm/${this.player._id.$oid}`);
+  }
+
+  private incHp(): void {
+    if (this.hp < (this.player.hp || 0)) {
+      this.hp++;
+    } else {
+      alert('既に最大hpです');
+    }
+  }
+
+  private decHp(): void {
+    if (this.hp > 0) {
+      this.hp--;
+    } else {
+      alert('hpはゼロ以下になりません');
+    }
   }
 
   private created(): void {
@@ -82,6 +110,7 @@ export default class PlayerCard extends Vue {
       API.get(this.id)
         .then((res) => {
           this.player = new Player(res.data);
+          this.hp = this.player.hp || 0;
           this.weapons = this.player.weapon.map((w) => {
             return WEAPON.get(w);
           });
