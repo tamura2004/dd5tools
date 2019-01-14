@@ -5,6 +5,8 @@ import Dungeons from './views/Dungeons.vue';
 import Monsters from './views/Monsters.vue';
 import Monster from './views/Monster.vue';
 import Players from './views/Players.vue';
+import PlayerCard from './views/PlayerCard.vue';
+import PlayerForm from './views/PlayerForm.vue';
 import Parties from './views/Parties.vue';
 
 Vue.use(Router);
@@ -43,6 +45,17 @@ const router = new Router({
       path: '/players',
       name: 'players',
       component: Players,
+    },
+    {
+      path: '/playerForm/:id',
+      name: 'playerForm',
+      component: PlayerForm,
+      props: true,
+    },
+    {
+      path: '/player/:id',
+      name: 'player',
+      component: PlayerCard,
       props: true,
     },
   ],

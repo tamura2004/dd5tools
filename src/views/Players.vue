@@ -2,8 +2,11 @@
   v-card
     v-toolbar
       v-toolbar-title.text-xs-center ＰＣ一覧
+      v-btn(absolute dark fab bottom right color="red" @click="newPlayer")
+        v-icon add
     v-list(two-line)
       PlayerList(v-for="player in players" :key="player._id.$oid" :player="player")
+    v-card-text#footer
     p.mt-5 designed by Freepik from Flaticon
 
 </template>
@@ -21,11 +24,14 @@
     private get players() {
       return this.$store.state.players;
     }
+    private newPlayer(): void {
+      this.$router.push('/playerForm/new');
+    }
     private created(): void {
       this.$store.dispatch('getPlayers');
     }
   }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 </style>

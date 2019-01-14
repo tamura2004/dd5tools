@@ -1,17 +1,17 @@
 <template lang="pug">
   div
-    v-list-tile.my-1.elevation-4
-        v-list-tile-avatar(tile)
-            img(:src="avater")
-        v-list-tile-content
-            v-list-tile-title
-                v-layout
-                    v-flex(xs6) {{ player.characterName }}
-                    v-flex(xs6) {{ player.klass }}{{ player.level }}
-            v-list-tile-sub-title
-                v-layout
-                    v-flex(xs8) {{ player.race }}/{{ player.background }}
-                    v-flex(xs4) PL:{{ player.name }}
+    v-list-tile.my-1.elevation-4(@click="show")
+      v-list-tile-avatar(tile)
+        img(:src="avater")
+      v-list-tile-content
+        v-list-tile-title
+          v-layout
+            v-flex(xs6) {{ player.characterName }}
+            v-flex(xs6) {{ player.klass }}{{ player.level }}
+        v-list-tile-sub-title
+          v-layout
+            v-flex(xs8) {{ player.race }}/{{ player.background }}
+            v-flex(xs4) PL:{{ player.name }}
 
 </template>
 
@@ -24,6 +24,10 @@ import { AVATER } from '@/data/DATA';
 export default class PlayerList extends Vue {
   private avater = require('@/assets/' + AVATER.sample());
   @Prop() private player!: Player;
+
+  private show(): void {
+    this.$router.push(`/player/${this.player._id.$oid}`);
+  }
 }
 </script>
 

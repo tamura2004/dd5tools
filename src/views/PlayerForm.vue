@@ -1,7 +1,9 @@
 <template lang="pug">
   v-card
-    v-toolbar(color="primary" dark)
+    v-toolbar
       v-toolbar-title キャラクターシート
+      v-btn(absolute dark fab bottom right color="blue" @click="save")
+        v-icon save
     v-card-title.pa-2
       v-form(v-model="valid" ref="form")
         v-layout(row wrap)
@@ -65,14 +67,14 @@
               v-model="player.exp"
               mask="#####"
             )
-          v-flex.pa-2(xs4 sm2 v-for="i in 6")
+          v-flex.pa-2(xs4 sm2 v-for="i in 6" :key="'ability' + i")
             v-select(
               :label="abilityLabel[i-1]"
               :items="abilityRange"
               v-model="player.baseAbility[i-1]"
               :rules="abilityRules"
             )
-            h3 {{ ability[i-1] }}
+            h4 {{ ability[i-1] }}
           // weapon
           template(v-for="key in [0,1]")
             v-flex.pa-2(xs12 sm4 lg2)
@@ -97,7 +99,7 @@
           v-flex.pa-2(xs8 sm6)
             p.text {{ armorDescription }}
           v-flex.pa-2(xs12)
-            v-textarea(label="メモ")
+            v-textarea(label="メモ" v-model="player.memo")
     v-card-actions
       v-spacer
       v-btn(color="primary" @click="save") 保存
@@ -169,9 +171,10 @@ export default class PlayerForm extends Vue {
   public armorRules: Validation[] = [
     (v) => !!v || '防具を選択してください',
   ];
+  @Prop() private id!: string;
 
   public get ability(): string[] {
-    const ret = this.player.ability;
+    const ret = this.player.abilityWithMod;
     if (typeof ret !== 'undefined') {
       return ret;
     } else {
@@ -209,16 +212,31 @@ export default class PlayerForm extends Vue {
 
   private save(): void {
     if (this.valid) {
-      API.post('/', this.player)
-        .then((res) => this.$router.push('/'))
+      if (typeof this.player._id !== 'undefined') {
+        API.put(this.player._id.$oid, this.player)
+        .then((res) => this.$router.push('/players'))
         .catch((e) => alert(e));
+      } else {
+        API.post('/', this.player)
+        .then((res) => this.$router.push('/players'))
+        .catch((e) => alert(e));
+      }
+    } else {
+      (this.$refs.form as Vue & {validate: () => boolean}).validate();
+      alert('エラー：未入力項目があります');
     }
-    (this.$refs.form as Vue & {validate: () => boolean}).validate();
   }
 
   private created(): void {
-    this.player.rollAbility();
-    this.player.exp = 0;
+    if (this.id === 'new') {
+      delete this.player._id;
+      this.player.rollAbility();
+      this.player.exp = 0;
+    } else {
+      API.get(this.id)
+        .then((res) => this.player = new Player(res.data))
+        .catch((e) => alert(e));
+    }
   }
 }
 </script>
