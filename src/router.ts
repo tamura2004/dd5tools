@@ -7,6 +7,9 @@ import Monster from './views/Monster.vue';
 import Players from './views/Players.vue';
 import PlayerCard from './views/PlayerCard.vue';
 import PlayerForm from './views/PlayerForm.vue';
+import Games from './views/Games.vue';
+import GameCard from './views/GameCard.vue';
+import GameForm from './views/GameForm.vue';
 import Parties from './views/Parties.vue';
 
 Vue.use(Router);
@@ -56,6 +59,23 @@ const router = new Router({
       path: '/player/:id',
       name: 'player',
       component: PlayerCard,
+      props: true,
+    },
+    {
+      path: '/games',
+      name: 'games',
+      component: Games,
+    },
+    {
+      path: '/gameForm/:id',
+      name: 'gameForm',
+      component: GameForm,
+      props: true,
+    },
+    {
+      path: '/game/:id',
+      name: 'game',
+      component: GameCard,
       props: true,
     },
   ],

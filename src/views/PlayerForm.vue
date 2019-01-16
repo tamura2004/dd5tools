@@ -213,11 +213,11 @@ export default class PlayerForm extends Vue {
   private save(): void {
     if (this.valid) {
       if (typeof this.player._id !== 'undefined') {
-        API.put(this.player._id.$oid, this.player)
+        API.put('/players/' + this.player._id.$oid, this.player)
         .then((res) => this.$router.push('/players'))
         .catch((e) => alert(e));
       } else {
-        API.post('/', this.player)
+        API.post('/players', this.player)
         .then((res) => this.$router.push('/players'))
         .catch((e) => alert(e));
       }
@@ -233,7 +233,7 @@ export default class PlayerForm extends Vue {
       this.player.rollAbility();
       this.player.exp = 0;
     } else {
-      API.get(this.id)
+      API.get('/players/' + this.id)
         .then((res) => this.player = new Player(res.data))
         .catch((e) => alert(e));
     }

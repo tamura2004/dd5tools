@@ -29,11 +29,9 @@ export class Player {
     Object.assign(this, init);
   }
 
-  // public get level(): number | undefined {
-  //     if (typeof this.exp !== 'undefined') {
-  //         return ADVANCEMENT.lookupOver(this.exp);
-  //     }
-  // }
+  public get summary(): string {
+    return `${this.characterName}/${this.klass}${this.level}/${this.race}/${this.background}/${this.alignment}`;
+  }
 
   public get ability(): number[] | undefined {
     if (typeof this.race !== 'undefined') {

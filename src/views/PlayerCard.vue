@@ -107,7 +107,7 @@ export default class PlayerCard extends Vue {
 
   private created(): void {
     if (typeof this.$store.state.player === 'undefined') {
-      API.get(this.id)
+      API.get('/players/' + this.id)
         .then((res) => {
           this.player = new Player(res.data);
           this.hp = this.player.hp || 0;
