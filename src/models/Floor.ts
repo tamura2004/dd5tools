@@ -1,4 +1,4 @@
-import uuidv4 from 'uuid/v4';
+// import uuidv4 from 'uuid/v4';
 import { Table, Chart } from '@/models/Chart';
 
 const Names: Chart<string> = new Chart<string>([
@@ -18,11 +18,11 @@ const Names: Chart<string> = new Chart<string>([
 
 export default class Floor {
   public key: string;
-  public name: string;
+  public name?: string;
   public actions: string[] = ['調べる', '進む'];
 
   constructor() {
-    this.name = Names.roll();
-    this.key = uuidv4();
+    // this.name = Names.roll();
+    this.key = Math.random().toString();
   }
 }

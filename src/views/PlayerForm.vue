@@ -123,6 +123,7 @@ import {
 } from '@/data/DATA';
 import Vuetify from 'vuetify/lib';
 import API from '@/api';
+import { db } from '@/plugins/firebase';
 
 type Validation = (v: string) => boolean | string;
 
@@ -217,9 +218,12 @@ export default class PlayerForm extends Vue {
         .then((res) => this.$router.push('/players'))
         .catch((e) => alert(e));
       } else {
-        API.post('/players', this.player)
-        .then((res) => this.$router.push('/players'))
-        .catch((e) => alert(e));
+        db.collection('players').add({...this.player})
+          // .then((docRef) => alert(docRef.id))
+          .catch((error) => alert(error));
+        // API.post('/players', this.player)
+        // .then((res) => this.$router.push('/players'))
+        // .catch((e) => alert(e));
       }
     } else {
       (this.$refs.form as Vue & {validate: () => boolean}).validate();

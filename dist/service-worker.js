@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.68c89014cd61e102d7978c517bda8459.js"
+  "/precache-manifest.8404a25a0b2402eb28deb845af07b8f1.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "moneta"});
+workbox.core.setCacheNameDetails({prefix: "dd5tools"});
 
 /**
  * The workboxSW.precacheAndRoute() method efficiently caches and responds to
