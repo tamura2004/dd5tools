@@ -26,7 +26,7 @@ export default class PlayerList extends Vue {
   @Prop() private player!: Player;
 
   private show(): void {
-    this.$router.push(`/player/${this.player._id.$oid}`);
+    this.$router.push(`/player/${this.player.id}`);
   }
 }
 </script>

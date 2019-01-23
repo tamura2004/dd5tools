@@ -10,6 +10,8 @@ import { Difficulty } from '@/data/DATA';
 import { Player } from '@/models/Player';
 import { Game } from '@/models/Game';
 import API from '@/api';
+import { db } from '@/plugins/firebase';
+// import createEasyFirestore from 'vuex-easy-firestore';
 
 const CR = [
   Difficulty.Easy,
@@ -37,8 +39,8 @@ export default new Vuex.Store({
     clearPlayers(state: State) {
       state.players = [];
     },
-    setPlayers(state: State, data: Array<Partial<Player>>) {
-      data.reverse().forEach((init) => state.players.push(new Player(init)));
+    setPlayer(state: State, init: Partial<Player>) {
+      state.players.push(new Player(init));
     },
     clearGames(state: State) {
       state.games = [];
@@ -50,9 +52,18 @@ export default new Vuex.Store({
   actions: {
     getPlayers({commit}) {
       commit('clearPlayers');
-      API.get('/players')
-        .then((res) => commit('setPlayers', res.data))
-        .catch((e) => alert(e));
+      db.collection('players').get()
+        .then((query) => {
+          query.forEach((doc) => {
+            commit('setPlayer', {
+              id: doc.id,
+              ...doc.data(),
+            });
+          });
+        })
+        .catch((err) => {
+          alert(err);
+        });
     },
     getGames({commit}) {
       commit('clearGames');

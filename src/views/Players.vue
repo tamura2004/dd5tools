@@ -5,7 +5,7 @@
       v-btn(absolute dark fab bottom right color="red" @click="newPlayer")
         v-icon add
     v-list(two-line)
-      PlayerList(v-for="player in players" :key="player._id.$oid" :player="player")
+      PlayerList(v-for="player in players" :player="player")
     v-card-text#footer
     p.mt-5 designed by Freepik from Flaticon
 
@@ -14,6 +14,7 @@
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
   import PlayerList from '@/components/PlayerList.vue';
+  import { db } from '@/plugins/firebase';
 
   @Component({
     components: {
@@ -22,7 +23,7 @@
   })
   export default class Players extends Vue {
     private get players() {
-      return this.$store.state.players;
+        return this.$store.state.players;
     }
     private newPlayer(): void {
       this.$router.push('/playerForm/new');

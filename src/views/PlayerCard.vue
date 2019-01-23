@@ -72,9 +72,9 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { Player } from '@/models/Player';
 import { ABILITY_LABEL } from '@/data/DATA';
-import API from '@/api';
 import { AVATER, WEAPON } from '@/data/DATA';
 import { Weapon } from '@/models/Weapon';
+import { db } from '@/plugins/firebase';
 
 @Component
 export default class PlayerCard extends Vue {
@@ -86,7 +86,7 @@ export default class PlayerCard extends Vue {
   @Prop() private id!: string;
 
   private edit(): void {
-    this.$router.push(`/playerForm/${this.player._id.$oid}`);
+    this.$router.push(`/playerForm/${this.player.id}`);
   }
 
   private incHp(): void {
@@ -107,9 +107,12 @@ export default class PlayerCard extends Vue {
 
   private created(): void {
     if (typeof this.$store.state.player === 'undefined') {
-      API.get('/players/' + this.id)
-        .then((res) => {
-          this.player = new Player(res.data);
+      db.collection('players').doc(this.id).get()
+        .then((doc) => {
+          this.player = new Player({
+            id: doc.id,
+            ...doc.data(),
+          });
           this.hp = this.player.hp || 0;
           this.weapons = this.player.weapon.map((w) => {
             return WEAPON.get(w);
@@ -117,7 +120,7 @@ export default class PlayerCard extends Vue {
         })
         .catch((e) => alert(e));
     } else {
-      this.player = this.$store.state.player.find((p: Player) => p._id.$oid === this.id);
+      this.player = this.$store.state.player.find((p: Player) => p.id === this.id);
     }
   }
 }

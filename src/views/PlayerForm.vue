@@ -213,17 +213,14 @@ export default class PlayerForm extends Vue {
 
   private save(): void {
     if (this.valid) {
-      if (typeof this.player._id !== 'undefined') {
-        API.put('/players/' + this.player._id.$oid, this.player)
-        .then((res) => this.$router.push('/players'))
-        .catch((e) => alert(e));
+      if (typeof this.player.id !== 'undefined') {
+        db.collection('players').doc(this.id).set({...this.player})
+          .then((doc) => this.$router.push('/players'))
+          .catch((error) => alert(error));
       } else {
         db.collection('players').add({...this.player})
-          // .then((docRef) => alert(docRef.id))
+          .then((doc) => this.$router.push('/players'))
           .catch((error) => alert(error));
-        // API.post('/players', this.player)
-        // .then((res) => this.$router.push('/players'))
-        // .catch((e) => alert(e));
       }
     } else {
       (this.$refs.form as Vue & {validate: () => boolean}).validate();
@@ -233,12 +230,17 @@ export default class PlayerForm extends Vue {
 
   private created(): void {
     if (this.id === 'new') {
-      delete this.player._id;
+      delete this.player.id;
       this.player.rollAbility();
       this.player.exp = 0;
     } else {
-      API.get('/players/' + this.id)
-        .then((res) => this.player = new Player(res.data))
+      db.collection('players').doc(this.id).get()
+        .then((doc) => {
+          this.player = new Player({
+            id: doc.id,
+            ...doc.data(),
+          });
+        })
         .catch((e) => alert(e));
     }
   }

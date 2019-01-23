@@ -21,7 +21,7 @@
             )
         h3 参加するプレイヤーを選択してください
         template(v-for="player in players")
-            v-checkbox(:label="player.summary" v-model="game.players" :value="player" :key="player._id.$oid")
+            v-checkbox(:label="player.summary" v-model="game.players" :value="player" :key="player.id")
 </template>
 
 <script lang="ts">
