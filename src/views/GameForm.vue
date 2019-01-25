@@ -28,7 +28,6 @@
 import { Game } from '@/models/Game';
 import { Player } from '@/models/Player';
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import API from '@/api';
 
 type Validation = (v: string) => boolean | string;
 

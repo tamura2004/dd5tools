@@ -122,7 +122,6 @@ import {
   ARMOR,
 } from '@/data/DATA';
 import Vuetify from 'vuetify/lib';
-import API from '@/api';
 import { db } from '@/plugins/firebase';
 
 type Validation = (v: string) => boolean | string;

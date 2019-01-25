@@ -9,7 +9,6 @@ import Encounter from '@/models/Encounter';
 import { Difficulty } from '@/data/DATA';
 import { Player } from '@/models/Player';
 import { Game } from '@/models/Game';
-import API from '@/api';
 import { db } from '@/plugins/firebase';
 // import createEasyFirestore from 'vuex-easy-firestore';
 

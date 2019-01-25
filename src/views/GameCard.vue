@@ -21,7 +21,6 @@
   import { Component, Vue, Prop } from 'vue-property-decorator';
   import { Game } from '@/models/Game';
   import PlayerList from '@/components/PlayerList.vue';
-  import API from '@/api';
 
   @Component({
     components: {
