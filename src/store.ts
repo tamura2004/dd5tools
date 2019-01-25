@@ -39,37 +39,58 @@ export default new Vuex.Store({
     clearPlayers(state: State) {
       state.players = [];
     },
-    setPlayer(state: State, init: Partial<Player>) {
-      state.players.push(new Player(init));
+    setPlayers(state: State, players: Player[]) {
+      state.players = players;
     },
     clearGames(state: State) {
       state.games = [];
     },
-    setGames(state: State, data: Array<Partial<Game>>) {
-      data.reverse().forEach((init) => state.games.push(new Game(init)));
+    setGames(state: State, games: Game[]) {
+      state.games = games;
     },
+    // setGames(state: State, data: Array<Partial<Game>>) {
+    //   data.reverse().forEach((init) => state.games.push(new Game(init)));
+    // },
   },
   actions: {
-    getPlayers({commit}) {
-      commit('clearPlayers');
-      db.collection('players').get()
-        .then((query) => {
-          query.forEach((doc) => {
-            commit('setPlayer', {
-              id: doc.id,
-              ...doc.data(),
-            });
-          });
-        })
-        .catch((err) => {
-          alert(err);
+    listenPlayers({commit}) {
+      db.collection('players').onSnapshot((query) => {
+        const players: Player[] = [];
+        query.forEach((doc) => {
+          players.push(new Player({
+            id: doc.id,
+            ...doc.data(),
+          }));
         });
+        commit('setPlayers', players);
+      });
     },
-    getGames({commit}) {
-      commit('clearGames');
-      API.get('/games')
-        .then((res) => commit('setGames', res.data))
-        .catch((e) => alert(e));
+    listenGames({commit}) {
+      db.collection('games').onSnapshot((query) => {
+        const games: Game[] = [];
+        query.forEach((doc) => {
+          games.push(new Game({
+            id: doc.id,
+            ...doc.data(),
+          }));
+        });
+        commit('setGames', games);
+      });
+    },
+    createGame(context, game: Game) {
+      const form = {
+        gm: game.gm,
+        title: game.title,
+        players: game.players.map((player: Player) => ({...player})),
+      };
+      db.collection('games').add(form)
+        .then((doc) => alert('セッションを登録しました'))
+        .catch((err) => alert(err));
+      },
+      updateGame(context, game: Game) {
+        db.collection('games').doc(game.id).set({...game})
+        .then((doc) => alert('セッションを更新しました'))
+        .catch((err) => alert(err));
     },
   },
 });

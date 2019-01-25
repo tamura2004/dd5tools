@@ -5,7 +5,7 @@
       v-btn(absolute dark fab bottom right color="red" @click="newGame")
         v-icon add
     v-list(two-line)
-      GameList(v-for="game in games" :key="game._id.$oid" :game="game")
+      GameList(v-for="game in games" :key="game.id" :game="game")
     v-card-text#footer
     p.mt-5 designed by Freepik from Flaticon
 
@@ -26,9 +26,6 @@
     }
     private newGame(): void {
       this.$router.push('/gameForm/new');
-    }
-    private created(): void {
-      this.$store.dispatch('getGames');
     }
   }
 </script>

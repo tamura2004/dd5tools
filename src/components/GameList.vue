@@ -22,7 +22,7 @@ export default class GameList extends Vue {
   @Prop() private game!: Game;
 
   private show(): void {
-    this.$router.push(`/game/${this.game._id.$oid}`);
+    this.$router.push(`/game/${this.game.id}`);
   }
 }
 </script>

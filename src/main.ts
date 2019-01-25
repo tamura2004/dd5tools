@@ -17,6 +17,9 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+store.dispatch('listenPlayers');
+store.dispatch('listenGames');
+
 new Vue({
   router,
   store,

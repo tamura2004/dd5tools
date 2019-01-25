@@ -2,7 +2,7 @@ import { Player } from '@/models/Player';
 import { Monster } from '@/models/Monster';
 
 export class Game {
-    public _id: { $oid: string } = { $oid: '' };
+    public id?: string = undefined;
     public gm?: string = undefined;
     public title?: string = undefined;
     public players: Player[] = [];

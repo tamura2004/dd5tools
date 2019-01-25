@@ -10,7 +10,7 @@
       v-divider
       h3.ma-2 参加ＰＣ
       v-list(two-line)
-        PlayerList(v-for="player in game.players" :key="player._id.$oid" :player="player")
+        PlayerList(v-for="player in game.players" :key="player.id" :player="player")
 
       v-btn(absolute dark fab bottom right color="green" @click="edit")
         v-icon edit
@@ -29,25 +29,20 @@
     },
   })
   export default class GameCard extends Vue {
-  public game: Game = new Game({});
-  @Prop() private id!: string;
+    @Prop() private id!: string;
 
-  private edit(): void {
-    this.$router.push(`/gameForm/${this.game._id.$oid}`);
-  }
+    private get game(): Game | undefined {
+      return this.$store.state.games.find((game: Game) => game.id === this.id);
+    }
 
-  private created(): void {
-    if (typeof this.$store.state.game === 'undefined') {
-      API.get('/games/' + this.id)
-        .then((res) => {
-          this.game = new Game(res.data);
-        })
-        .catch((e) => alert(e));
-    } else {
-      this.game = this.$store.state.game.find((g: Game) => g._id.$oid === this.id);
+    private edit(): void {
+      if (this.game !== undefined) {
+        this.$router.push(`/gameForm/${this.game.id}`);
+      } else {
+        this.$router.push(`/gameForm/new`);
+      }
     }
   }
-}
 </script>
 
 <style lang="stylus" scoped>
