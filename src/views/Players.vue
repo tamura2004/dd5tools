@@ -5,7 +5,7 @@
       v-btn(absolute dark fab bottom right color="red" @click="newPlayer")
         v-icon add
     v-list(two-line)
-      PlayerList(v-for="player in players" :player="player")
+      PlayerList(v-for="player in players" :player="player" :key="player.id")
     v-card-text#footer
     p.mt-5 designed by Freepik from Flaticon
 

@@ -59,12 +59,24 @@
     v-card-actions
       v-spacer
       v-btn(color="primary" @click="back") 戻る
+    v-divider
+    v-list(v-for="i in monster.num" :key="i")
+      v-list-tile
+        v-list-tile-content
+          v-list-tile-title
+            v-layout.center No.{{i}}
+        LifeCounter(:hp="monster.hp" :maxHp="monster.hp")
 </template>
 
 <script lang="ts">
   import { Component, Vue, Prop } from 'vue-property-decorator';
+  import LifeCounter from '@/components/LifeCounter.vue';
 
-  @Component
+  @Component({
+    components: {
+      LifeCounter,
+    },
+  })
   export default class Monster extends Vue {
     @Prop() private num!: number;
     private back(): void {
