@@ -327,4 +327,4 @@ export const FEATS: Deck<string> = new Deck<string> (
   '魔法のたしなみ',
   '守りの決闘術',
   '役者',
-)
+);
