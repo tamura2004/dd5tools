@@ -1,5 +1,6 @@
 export class Weapon {
     constructor(
+        public name: string,
         public category: string,
         public price: string,
         public damage: string,

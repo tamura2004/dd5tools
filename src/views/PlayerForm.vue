@@ -78,12 +78,7 @@
           // weapon
           template(v-for="key in [0,1]")
             v-flex.pa-2(xs12 sm4 lg2)
-              v-select(
-                label="武器"
-                :items="weaponName"
-                v-model="player.weapon[key]"
-                :rules="weaponRules"
-              )
+              WeaponList(v-model="player.weapon[key]")
             v-flex.pa-2(xs12 sm8 lg4)
               p.text {{ weaponDescription(key) }}
           // armor
@@ -116,17 +111,21 @@ import {
   KLASS,
   ABILITY_LABEL,
   ABILITY_RANGE,
-  WEAPON_NAME,
   WEAPON,
   ARMOR_NAME,
   ARMOR,
 } from '@/data/DATA';
+import WeaponList from '@/components/WeaponList.vue';
 import Vuetify from 'vuetify/lib';
 import { db } from '@/plugins/firebase';
 
 type Validation = (v: string) => boolean | string;
 
-@Component
+@Component({
+  components: {
+    WeaponList,
+  },
+})
 export default class PlayerForm extends Vue {
   public player: Player = new Player({});
   public races: string[] = RACES;
@@ -135,7 +134,6 @@ export default class PlayerForm extends Vue {
   public klass: string[] = KLASS;
   public abilityLabel: string[] = ABILITY_LABEL;
   public abilityRange: number[] = ABILITY_RANGE;
-  public weaponName: string[] = WEAPON_NAME;
   public armorName: string[] = ARMOR_NAME;
   public valid: boolean = false;
   public characterNameRules: Validation[] = [
@@ -165,9 +163,6 @@ export default class PlayerForm extends Vue {
   public abilityRules: Validation[] = [
     (v) => !!v || '能力値を入力してください',
   ];
-  public weaponRules: Validation[] = [
-    (v) => !!v || '武器を選択してください',
-  ];
   public armorRules: Validation[] = [
     (v) => !!v || '防具を選択してください',
   ];
@@ -182,7 +177,7 @@ export default class PlayerForm extends Vue {
     }
   }
 
-  public weaponDescription(i: number): string {
+ public weaponDescription(i: number): string {
     const selected = this.player.weapon[i];
     if (typeof selected === 'undefined') {
       return '武器が選択されていません';
