@@ -11,6 +11,7 @@ import Games from './views/Games.vue';
 import GameCard from './views/GameCard.vue';
 import GameForm from './views/GameForm.vue';
 import Parties from './views/Parties.vue';
+import Floor from './views/Floor.vue';
 
 Vue.use(Router);
 
@@ -27,6 +28,11 @@ const router = new Router({
       path: '/dungeons',
       name: 'dungeons',
       component: Dungeons,
+    },
+    {
+      path: '/floor',
+      name: 'floor',
+      component: Floor,
     },
     {
       path: '/monsters',

@@ -3,7 +3,7 @@
     MenuButton(to="/players" label="キャラシー")
     MenuButton(to="/games" label="セッション")
     MenuButton(to="/monsters" label="モンスター")
-    MenuButton(to="/treasures" label="財宝")
+    MenuButton(to="/floor" label="フロア")
     MenuButton(to="/dungeons" label="ダンジョン")
     MenuButton(to="/parties" label="パーティー")
 </template>
