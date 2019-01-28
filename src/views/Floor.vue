@@ -8,6 +8,10 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
+function d(n: number): number {
+  return Math.floor(Math.random() * n);
+}
+
 @Component
 export default class Floor extends Vue {
   private tiles: boolean[] = [];
@@ -17,11 +21,26 @@ export default class Floor extends Vue {
   }
 
   private created(): void {
-    for (let i = 0; i < 24; i++) {
-      this.tiles.push(false);
+    const WIDTH = 4;
+    const HEIGHT = 6;
+    const LENGTH = WIDTH * HEIGHT;
+    const TIMES = 3;
+
+    for (let i = 0; i < LENGTH; i++) {
+      this.tiles.push(true);
     }
-    this.tiles[10] = true;
-    this.tiles[11] = true;
+
+    const DIR = [-WIDTH, -1, 1, WIDTH];
+    let count = 0;
+    while (count < TIMES) {
+      const p = d(LENGTH);
+      const q = p + DIR[d(4)];
+      if (0 <= q && q < LENGTH && this.tiles[p] && this.tiles[q]) {
+        this.tiles[p] = false;
+        this.tiles[q] = false;
+        count++;
+      }
+    }
   }
 }
 </script>
