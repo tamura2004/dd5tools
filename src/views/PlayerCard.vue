@@ -31,14 +31,13 @@
               v-flex(xs2 v-for="(m, i) in player.abilityMod" :key="'mod' + i") ({{ m }})
       v-divider
       v-list-tile
-        v-list-tile-content
-          v-list-tile-title
-            v-layout.center
-              v-flex(xs5) 最大hp
-          v-list-tile-sub-title
-            v-layout.center
-              v-flex(xs5) {{ player.hp }}
-        LifeCounter(:hp="hp" :maxHp="player.hp")
+        v-layout.center
+          v-flex(xs2)
+            v-list-tile-title.center 最大hp
+            v-list-tile-sub-title {{ player.hp }}
+          v-flex(xs10)
+            v-list-tile-sub-title.caption.center 数字をタップで値を変更
+            LifeCounter(v-model="hp" :maxHp="player.hp")
 
       v-divider
       v-list-tile

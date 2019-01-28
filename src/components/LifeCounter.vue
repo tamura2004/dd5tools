@@ -1,10 +1,12 @@
 <template lang="pug">
-  v-layout.center(align-center justify-center)
-    v-flex(xs2): v-btn(fab small dark color="grey" @click="decHp10"): v-icon exposure_neg_1
-    v-flex(xs2): v-btn(fab small dark color="grey" @click="decHp"): v-icon exposure_neg_1
-    v-flex(xs4): h2 {{ hp }}
-    v-flex(xs2): v-btn(fab small dark color="grey" @click="incHp"): v-icon exposure_plus_1
-    v-flex(xs2): v-btn(fab small dark color="grey" @click="incHp10"): v-icon exposure_plus_1
+  v-dialog(v-model="dialog")
+    v-layout.center(align-center justify-center slot="activator")
+      h1 {{ value }}
+    v-card
+      v-card-title 変更後のhpを選択してください
+      v-container(grid-list-md fluid)
+        v-layout(row wrap)
+          v-btn(v-for="n in Number(maxHp) + 1" :key="n" fab small @click="setHp(maxHp - n + 1)") {{ maxHp - n + 1 }}
 </template>
 
 <script lang="ts">
@@ -14,35 +16,13 @@ import UserInfo from '@/components/UserInfo.vue';
 @Component
 export default class LifeCounter extends Vue {
   @Prop() private maxHp!: number;
-  @Prop() private hp!: number;
+  @Prop() private value!: number;
 
-  private incHp(): void {
-    if (this.hp < (this.maxHp || 0)) {
-      this.hp++;
-    } else {
-      alert('既に最大hpです');
-    }
-  }
-  private incHp10(): void {
-    if (this.hp < (this.maxHp || 0)) {
-      this.hp += 10;
-    } else {
-      alert('既に最大hpです');
-    }
-  }
-  private decHp(): void {
-    if (this.hp > 0) {
-      this.hp--;
-    } else {
-      alert('hpはゼロ以下になりません');
-    }
-  }
-  private decHp10(): void {
-    if (this.hp > 0) {
-      this.hp -= 10;
-    } else {
-      alert('hpはゼロ以下になりません');
-    }
+  private dialog: boolean = false;
+
+  private setHp(hp: number): void {
+    this.$emit('input', hp);
+    this.dialog = false;
   }
   private back(): void {
     this.$router.push('/');
