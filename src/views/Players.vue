@@ -28,9 +28,6 @@
     private newPlayer(): void {
       this.$router.push('/playerForm/new');
     }
-    private created(): void {
-      this.$store.dispatch('getPlayers');
-    }
   }
 </script>
 

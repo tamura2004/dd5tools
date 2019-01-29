@@ -33,6 +33,7 @@ export class Monster implements IMonster {
   public actions: string[];
   public specials: string[];
   public num: number;
+  public currentHp: number[] = [];
 
   constructor(init: IMonster, num: number) {
     this.name = init.name;
@@ -48,6 +49,9 @@ export class Monster implements IMonster {
     this.actions = init.actions;
     this.specials = init.specials;
     this.num = num;
+    for (let i = 0; i < this.num; i++) {
+      this.currentHp.push(this.hp);
+    }
   }
 
   public get totalExp(): number {

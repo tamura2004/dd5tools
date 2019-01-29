@@ -19,18 +19,6 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { Monster } from '@/models/Monster';
-// import Encounter from '@/models/Encounter';
-// import Party from '@/models/Party';
-// import { Difficulty } from '@/data/DATA';
-
-// const CR = [
-//   Difficulty.Easy,
-//   Difficulty.Normal,
-//   Difficulty.Normal,
-//   Difficulty.Normal,
-//   Difficulty.Hard,
-//   Difficulty.Deadly,
-// ];
 
 @Component
 export default class MonsterList extends Vue {
@@ -38,8 +26,6 @@ export default class MonsterList extends Vue {
 
   private get monster(): Monster {
     return this.$store.state.monsters[this.row - 1];
-    // const enc = new Encounter(this.$store.state.party, CR[this.row - 1]);
-    // return enc.monster();
   }
   private get color(): string {
     const COLORS = ['green', 'blue', 'blue', 'blue', 'red', 'black'];

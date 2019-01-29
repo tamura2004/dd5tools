@@ -5,6 +5,16 @@
     v-card-title.pa-2
       h2 {{ monster.size }}・{{ monster.type }}、{{ monster.alignment }}
     v-divider
+    v-list(v-for="i in monster.num" :key="i")
+      v-list-tile
+        v-layout(row wrap)
+          v-flex(xs4)
+            v-list-tile-content
+              v-list-tile-title
+                v-layout.center No.{{i}}
+          v-flex(xs8)
+            LifeCounter(v-model="monster.currentHp[i-1]" :maxHp="monster.hp")
+    v-divider
     v-list(three-line)
       v-list-tile
         v-list-tile-action
@@ -60,12 +70,6 @@
       v-spacer
       v-btn(color="primary" @click="back") 戻る
     v-divider
-    v-list(v-for="i in monster.num" :key="i")
-      v-list-tile
-        v-list-tile-content
-          v-list-tile-title
-            v-layout.center No.{{i}}
-        LifeCounter(:hp="monster.hp" :maxHp="monster.hp")
 </template>
 
 <script lang="ts">
@@ -89,4 +93,6 @@
 </script>
 
 <style lang="stylus">
+  .center
+    text-align center
 </style>

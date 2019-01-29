@@ -2,18 +2,23 @@
   v-dialog(v-model="dialog")
     v-layout.center(align-center justify-center slot="activator")
       h1 {{ value }}
-    v-card
-      v-card-title 変更後のhpを選択してください
-      v-container(grid-list-md fluid)
-        v-layout(row wrap)
-          v-btn(v-for="n in Number(maxHp) + 1" :key="n" fab small @click="setHp(maxHp - n + 1)") {{ maxHp - n + 1 }}
+    Tenkey(
+      :value="value"
+      :max="maxHp"
+      @input="done($event)"
+      title="hpを変更して「＝」キーを押してください"
+    )
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import UserInfo from '@/components/UserInfo.vue';
+import Tenkey from '@/components/Tenkey.vue';
 
-@Component
+@Component({
+  components: {
+    Tenkey,
+  },
+})
 export default class LifeCounter extends Vue {
   @Prop() private maxHp!: number;
   @Prop() private value!: number;
@@ -26,6 +31,12 @@ export default class LifeCounter extends Vue {
   }
   private back(): void {
     this.$router.push('/');
+  }
+  private done(value: number): void {
+    let hp = value < 0 ? 0 : value;
+    hp = this.maxHp < hp ? this.maxHp : hp;
+    this.dialog = false;
+    this.$emit('input', hp);
   }
 }
 </script>
