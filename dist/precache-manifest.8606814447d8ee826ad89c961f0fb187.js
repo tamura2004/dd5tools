@@ -1,18 +1,18 @@
 self.__precacheManifest = [
   {
-    "revision": "5dee6e75683d4811e68b",
-    "url": "/css/app.a603205e.css"
+    "revision": "00f11c4df38f3389b910",
+    "url": "/css/app.74bcd059.css"
   },
   {
-    "revision": "5dee6e75683d4811e68b",
-    "url": "/js/app.4c0f7292.js"
+    "revision": "00f11c4df38f3389b910",
+    "url": "/js/app.ce935c57.js"
   },
   {
-    "revision": "7ad3f4ebfe2b1a0a84c1",
-    "url": "/css/chunk-vendors.07e091c0.css"
+    "revision": "647b3c13c94f1a33f012",
+    "url": "/css/chunk-vendors.bd4e7e2e.css"
   },
   {
-    "revision": "7ad3f4ebfe2b1a0a84c1",
+    "revision": "647b3c13c94f1a33f012",
     "url": "/js/chunk-vendors.c700c957.js"
   },
   {
@@ -224,7 +224,7 @@ self.__precacheManifest = [
     "url": "/img/008-mushroom.ca36132c.png"
   },
   {
-    "revision": "ee866bb30dae0e00f8462121136138e9",
+    "revision": "689bcb0cf59949f23d45f6d538e05b85",
     "url": "/index.html"
   },
   {
