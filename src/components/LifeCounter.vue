@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-dialog(v-model="dialog")
+  v-dialog(v-model="dialog" width="320")
     v-layout.center(align-center justify-center slot="activator")
       h1 {{ value }}
     Tenkey(
