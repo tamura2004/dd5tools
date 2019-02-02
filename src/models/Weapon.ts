@@ -21,4 +21,11 @@ export class Weapon {
         return msg;
     }
 
+    public get rangeString(): string {
+        if (this.range !== '') {
+            return `射程：${this.range}フィート`;
+        } else {
+            return '';
+        }
+    }
 }
