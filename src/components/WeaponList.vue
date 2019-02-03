@@ -14,9 +14,33 @@
         :rules="weaponRules"
       )
       v-card
+        v-toolbar(color="green darken-3" dark)
+          v-btn(icon @click="dialog=false"): v-icon chevron_left
+          v-toolbar-title.white--text カードをタップして選択
+          v-spacer
+          v-btn(icon): v-icon search
+          v-btn-toggle.transparent(v-model="type")
+            v-btn(
+              color="green darken-3"
+              v-for="type in types"
+              :key="type"
+              :value="type"
+            ) {{ type }}
+          v-btn-toggle.transparent(v-model="range")
+            v-btn(
+              color="green darken-3"
+              v-for="range in ranges"
+              :key="range"
+              :value="range"
+            ) {{ range }}
+          v-btn-toggle.transparent(v-model="damage")
+            v-btn(
+              color="green darken-3"
+              v-for="damage in damages"
+              :key="damage"
+              :value="damage"
+            ) {{ damage }}
         v-container(grid-list-lg fluid)
-          v-card-title 
-            h3 カードをクリックして武器を選択
           v-layout(row wrap fill-height align-space-around)
             v-flex(xs6 sm3 md2 lg2 v-for="weapon in weapons")
               v-card.white--text(hover color="green darken-3" @click="select(weapon)")
@@ -55,6 +79,23 @@ type Validation = (v: string) => boolean | string;
 @Component
 export default class WeaponList extends Vue {
   @Prop() private value!: string;
+  private type: string = '';
+  private range: string = '';
+  private damage: string = '';
+
+  private types: string[] = [
+    '軍用',
+    '単純',
+  ];
+  private ranges: string[] = [
+    '近接',
+    '遠隔',
+  ];
+  private damages: string[] = [
+    '殴打',
+    '斬撃',
+    '刺突',
+  ];
 
   private weaponRules: Validation[] = [
     (v) => !!v || '武器を選択してください',
@@ -63,7 +104,11 @@ export default class WeaponList extends Vue {
   private weaponName: string[] = WEAPON_NAME;
 
   private get weapons(): Weapon[] {
-    return [...WEAPON.values()];
+    return [...WEAPON.values()].filter((weapon) =>
+      (this.type === '' || this.type === undefined || this.type === weapon.category.slice(0, 2)) &&
+      (this.range === '' || this.range === undefined || this.range === weapon.category.slice(2, 4)) &&
+      (this.damage === '' || this.damage === undefined || this.damage === weapon.type),
+    );
   }
 
   private select(weapon: Weapon): void {
