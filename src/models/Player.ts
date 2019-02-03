@@ -24,7 +24,7 @@ export class Player {
   public weapon: string[] = [];
   public armor?: string = undefined;
   public memo?: string;
-  public avatar?: string = '019-pirate.png'; // avatar icon filename
+  public avatar?: string = undefined; // avatar icon filename
 
   constructor(init: Partial<Player>) {
     Object.assign(this, init);
