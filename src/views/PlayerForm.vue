@@ -7,67 +7,69 @@
     v-card-title.pa-2
       v-form(v-model="valid" ref="form")
         v-layout(row wrap)
-          v-flex.pa-2(xs8 sm4)
+          v-flex.pa-2(xs2 md1)
+            IconSelect(v-model="player.avatar")
+          v-flex.pa-2(xs6 md3)
             v-text-field(
               label="キャラクター名"
               v-model="player.characterName"
               :rules="characterNameRules"
             )
-          v-flex.pa-2(xs4 sm2)
+          v-flex.pa-2(xs4 md2)
             v-text-field(
               label="プレイヤー名"
               v-model="player.name"
               :rules="nameRules"
             )
-          v-flex.pa-2(xs8 sm4)
+          v-flex.pa-2(xs8 md4)
             v-select(
               label="クラス"
               :items="klass"
               v-model="player.klass"
               :rules="klassRules"
             )
-          v-flex.pa-2(xs4 sm2)
+          v-flex.pa-2(xs4 md2)
             v-select(
               label="レベル"
               :items="[1,2,3,4,5,6,7,8,9,10]"
               v-model="player.level"
               :rules="levelRules"
             )
-          v-flex.pa-2(xs6 sm3)
+          v-flex.pa-2(xs6 md3)
             v-select(
               label="種族"
               :items="races"
               v-model="player.race"
               :rules="raceRules"
             )
-          v-flex.pa-2(xs6 sm3)
+          v-flex.pa-2(xs6 md3)
             v-select(
               label="属性"
               :items="alignment"
               v-model="player.alignment"
               :rules="alignmentRules"
             )
-          v-flex.pa-2(xs6 sm2)
+          v-flex.pa-2(xs6 md2)
             v-select(
               label="背景"
               :items="background"
               v-model="player.background"
               :rules="backgroundRules"
             )
-          v-flex.pa-2(xs3 sm2)
+          v-flex.pa-2(xs3 md2)
             v-text-field(
               label="hp"
               v-model="player.hp"
               mask="###"
               :rules="hpRules"
             )
-          v-flex.pa-2(xs3 sm2)
+          v-flex.pa-2(xs3 md2)
             v-text-field(
               label="exp"
               v-model="player.exp"
               mask="#####"
             )
-          v-flex.pa-2(xs4 sm2 v-for="i in 6" :key="'ability' + i")
+          v-flex.pa-2(xs4 md2 v-for="i in 6" :key="'ability' + i")
             v-select(
               :label="abilityLabel[i-1]"
               :items="abilityRange"
@@ -77,21 +79,21 @@
             h4 {{ ability[i-1] }}
           // weapon
           template(v-for="key in [0,1]")
-            v-flex.pa-2(xs12 sm4 lg2)
+            v-flex.pa-2(xs12 md4 lg2)
               WeaponList(v-model="player.weapon[key]")
-            v-flex.pa-2(xs12 sm8 lg4)
+            v-flex.pa-2(xs12 md8 lg4)
               p.text {{ weaponDescription(key) }}
           // armor
-          v-flex.pa-2(xs12 sm4)
+          v-flex.pa-2(xs12 md4)
             v-select(
               label="防具"
               :items="armorName"
               v-model="player.armor"
               :rules="armorRules"
             )
-          v-flex.pa-2(xs4 sm2)
+          v-flex.pa-2(xs4 md2)
             v-switch(label="盾" color="primary")
-          v-flex.pa-2(xs8 sm6)
+          v-flex.pa-2(xs8 md6)
             p.text {{ armorDescription }}
           v-flex.pa-2(xs12)
             v-textarea(label="メモ" v-model="player.memo")
@@ -116,6 +118,7 @@ import {
   ARMOR,
 } from '@/data/DATA';
 import WeaponList from '@/components/WeaponList.vue';
+import IconSelect from '@/components/IconSelect.vue';
 import Vuetify from 'vuetify/lib';
 import { db } from '@/plugins/firebase';
 
@@ -124,6 +127,7 @@ type Validation = (v: string) => boolean | string;
 @Component({
   components: {
     WeaponList,
+    IconSelect,
   },
 })
 export default class PlayerForm extends Vue {

@@ -231,7 +231,7 @@ export const ARMOR: Map<string, Armor> = new Map([
 
 export const ARMOR_NAME = [...ARMOR.keys()];
 
-export const AVATER: Deck<string> = new Deck<string>(
+export const AVATAR: Deck<string> = new Deck<string>(
   '001-centaur.png',
   '002-kraken.png',
   '003-dinosaur.png',

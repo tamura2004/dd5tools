@@ -2,8 +2,10 @@
   v-card
     v-list(three-line)
       v-list-tile
+        v-btn(absolute dark fab top right color="green" @click="edit")
+          v-icon edit
         v-list-tile-avatar(tile)
-          img(:src="avater")
+          v-img(:src="require('@/assets/' + player.avatar)")
         v-list-tile-content
           v-list-tile-title
             v-layout
@@ -60,28 +62,27 @@
         v-list-tile-content
           v-list-tile-title メモ
           v-list-tile-sub-title {{ player.memo }}
-      v-btn(absolute dark fab bottom right color="green" @click="edit")
-        v-icon edit
 
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import LifeCounter from '@/components/LifeCounter.vue';
+import IconSelect from '@/components/IconSelect.vue';
 import { Player } from '@/models/Player';
 import { ABILITY_LABEL } from '@/data/DATA';
-import { AVATER, WEAPON } from '@/data/DATA';
+import { WEAPON } from '@/data/DATA';
 import { Weapon } from '@/models/Weapon';
 import { db } from '@/plugins/firebase';
 
 @Component({
   components: {
     LifeCounter,
+    IconSelect,
   },
 })
 export default class PlayerCard extends Vue {
   public player: Player = new Player({});
-  private avater = require('@/assets/' + AVATER.sample());
   private abilityLabel = ABILITY_LABEL;
   private weapons: Array<Weapon | undefined> = [];
   private hp: number = 0;
