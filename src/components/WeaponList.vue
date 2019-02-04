@@ -44,19 +44,20 @@
           v-layout(row wrap fill-height align-space-around)
             v-flex(xs6 sm3 md2 lg2 v-for="weapon in weapons")
               v-card.white--text(hover color="green darken-3" @click="select(weapon)")
-                v-card-title.pa-2
-                  .body-1.text-truncate {{ weapon.name }}
-                v-divider
-                v-card-text.pa-2
-                  .caption {{ weapon.category }}
-                  .caption {{ weapon.special }}
-                  .caption {{ weapon.damage }} [{{ weapon.type }}]ダメージ
-                  .caption {{ weapon.rangeString }}
-                  .caption 価格：{{ weapon.price }}
-                  .caption 重量：{{ weapon.weight }}
-                  v-layout
-                    v-flex(xs6)
-                    v-flex(xs6)
+                v-responsive(:aspect-ratio="1/1")
+                  v-card-title.pa-2
+                    .body-1.text-truncate {{ weapon.name }}
+                  v-divider
+                  v-card-text.pa-2
+                    .caption {{ weapon.category }}
+                    .caption {{ weapon.special }}
+                    .caption {{ weapon.damage }} [{{ weapon.type }}]ダメージ
+                    .caption {{ weapon.rangeString }}
+                    .caption 価格：{{ weapon.price }}
+                    .caption 重量：{{ weapon.weight }}
+                    v-layout
+                      v-flex(xs6)
+                      v-flex(xs6)
 
         //- v-toolbar
         //-   v-toolbar-title 武器を選択してください
