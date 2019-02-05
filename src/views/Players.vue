@@ -1,6 +1,7 @@
 <template lang="pug">
-  v-card
+  v-app
     v-toolbar
+      v-btn(icon to="/"): v-icon clear
       v-toolbar-title.text-xs-center ＰＣ一覧
       v-btn(absolute dark fab bottom right color="red" @click="newPlayer")
         v-icon add

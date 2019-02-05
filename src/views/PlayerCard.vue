@@ -1,67 +1,73 @@
 <template lang="pug">
-  v-card
-    v-list(three-line)
-      v-list-tile
-        v-btn(absolute dark fab top right color="green" @click="edit")
-          v-icon edit
-        v-list-tile-avatar(tile)
-          v-img(:src="require('@/assets/' + player.avatar)")
-        v-list-tile-content
-          v-list-tile-title
-            v-layout
-              v-flex(xs7) {{ player.characterName }}
-              v-flex(xs5) {{ player.klass }}{{ player.level}}
-          v-list-tile-sub-title
-            v-layout
-              v-flex(xs7) {{ player.race }}/{{ player.background }}
-              v-flex(xs5) PL:{{ player.name }}
-          v-list-tile-sub-title
-            v-layout
-              v-flex(xs7) {{ player.alignment }}
-              v-flex(xs5) EXP:{{ player.exp }}
-      v-divider
-      v-list-tile
-        v-list-tile-content
-          v-list-tile-sub-title
-            v-layout.center
-              v-flex(xs2 v-for="(label, i) in abilityLabel" :key="'label' + i") {{ label }}
-          v-list-tile-title
-            v-layout.center
-              v-flex(xs2 v-for="(a, i) in player.ability" :key="'ability' + i") {{ a }}
-          v-list-tile-sub-title
-            v-layout.center
-              v-flex(xs2 v-for="(m, i) in player.abilityMod" :key="'mod' + i") ({{ m }})
-      v-divider
-      v-list-tile
-        v-layout.center
-          v-flex(xs2)
-            v-list-tile-title.center 最大hp
-            v-list-tile-sub-title {{ player.hp }}
-          v-flex(xs10)
-            v-list-tile-sub-title.caption.center 数字をタップで値を変更
-            LifeCounter(v-model="hp" :maxHp="player.hp")
-
-      v-divider
-      v-list-tile
-        v-list-tile-content
-          v-list-tile-title
-            v-layout
-              v-flex.center(xs2) AC
-              v-flex(xs8) {{ player.armor }}
-          v-list-tile-sub-title
-            v-layout
-              v-flex.center(xs2) {{ player.ac }}
-      template(v-for="(w, i) in weapons")
+  v-app
+    v-toolbar(app)
+      v-btn(icon to="/"): v-icon clear
+      v-toolbar-title キャラクターシート
+    v-content
+      v-list(three-line)
+        v-list-tile
+          v-btn(fixed dark fab top right color="green" @click="edit")
+            v-icon edit
+          v-list-tile-avatar(tile)
+            v-img(:src="require('@/assets/' + player.avatar)")
+          v-list-tile-content
+            v-list-tile-title
+              v-layout
+                v-flex(xs7) {{ player.characterName }}
+                v-flex(xs5) {{ player.klass }}{{ player.level}}
+            v-list-tile-sub-title
+              v-layout
+                v-flex(xs7) {{ player.race }}/{{ player.background }}
+                v-flex(xs5) PL:{{ player.name }}
+            v-list-tile-sub-title
+              v-layout
+                v-flex(xs7) {{ player.alignment }}
+                v-flex(xs5) EXP:{{ player.exp }}
         v-divider
         v-list-tile
           v-list-tile-content
-            v-list-tile-title {{ player.weapon[i] }}：{{ w.category }}
-            v-list-tile-sub-title 攻撃+{{ player.toHit(w) }}、間合い{{ w.range }}、ヒット：{{ w.damage }}+{{ player.toHit(w) }}[{{ w.type }}]ダメージ
-      v-divider
-      v-list-tile
-        v-list-tile-content
-          v-list-tile-title メモ
-          v-list-tile-sub-title {{ player.memo }}
+            v-list-tile-sub-title
+              v-layout.center
+                v-flex(xs2 v-for="(label, i) in abilityLabel" :key="'label' + i") {{ label }}
+            v-list-tile-title
+              v-layout.center
+                v-flex(xs2 v-for="(a, i) in player.ability" :key="'ability' + i") {{ a }}
+            v-list-tile-sub-title
+              v-layout.center
+                v-flex(xs2 v-for="(m, i) in player.abilityMod" :key="'mod' + i") ({{ m }})
+        v-divider
+        v-list-tile
+          v-layout.center
+            v-flex(xs2)
+              v-list-tile-title.center 最大hp
+              v-list-tile-sub-title {{ player.hp }}
+            v-flex(xs10)
+              v-list-tile-sub-title.caption.center 数字をタップで値を変更
+              LifeCounter(v-model="hp" :maxHp="player.hp")
+
+        v-divider
+        v-list-tile
+          v-list-tile-content
+            v-list-tile-title
+              v-layout
+                v-flex.center(xs2) AC
+                v-flex(xs8) {{ player.armor }}
+            v-list-tile-sub-title
+              v-layout
+                v-flex.center(xs2) {{ player.ac }}
+        template(v-for="(w, i) in weapons")
+          v-divider
+          v-list-tile
+            v-list-tile-content
+              v-list-tile-title {{ player.weapon[i] }}：{{ w.category }}
+              v-list-tile-sub-title 攻撃+{{ player.toHit(w) }}、間合い{{ w.range }}、ヒット：{{ w.damage }}+{{ player.toHit(w) }}[{{ w.type }}]ダメージ
+        v-divider
+        v-list-tile
+          v-btn(absolute dark fab top left small color="red" @click="edit")
+            v-icon add
+          v-list-tile-content
+            v-list-tile-title メモ
+            v-list-tile-sub-title {{ player.memo }}
 
 </template>
 

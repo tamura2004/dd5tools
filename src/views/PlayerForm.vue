@@ -1,10 +1,11 @@
 <template lang="pug">
-  v-card
-    v-toolbar
-      v-toolbar-title キャラクターシート
+  v-app
+    v-toolbar(app)
+      v-btn(icon to="/"): v-icon clear
+      v-toolbar-title キャラクター作成
       v-btn(absolute dark fab bottom right color="blue" @click="save")
         v-icon save
-    v-card-title.pa-2
+    v-container.pa-2
       v-form(v-model="valid" ref="form")
         v-layout(row wrap)
           v-flex.pa-2(xs2 md1)
@@ -77,24 +78,24 @@
               :rules="abilityRules"
             )
             h4 {{ ability[i-1] }}
-          // weapon
-          template(v-for="key in [0,1]")
-            v-flex.pa-2(xs12 md4 lg2)
-              WeaponList(v-model="player.weapon[key]")
-            v-flex.pa-2(xs12 md8 lg4)
-              p.text {{ weaponDescription(key) }}
-          // armor
-          v-flex.pa-2(xs12 md4)
-            v-select(
-              label="防具"
-              :items="armorName"
-              v-model="player.armor"
-              :rules="armorRules"
-            )
-          v-flex.pa-2(xs4 md2)
-            v-switch(label="盾" color="primary")
-          v-flex.pa-2(xs8 md6)
-            p.text {{ armorDescription }}
+          //- // weapon
+          //- template(v-for="key in [0,1]")
+          //-   v-flex.pa-2(xs12 md4 lg2)
+          //-     WeaponList(v-model="player.weapon[key]")
+          //-   v-flex.pa-2(xs12 md8 lg4)
+          //-     p.text {{ weaponDescription(key) }}
+          //- // armor
+          //- v-flex.pa-2(xs12 md4)
+          //-   v-select(
+          //-     label="防具"
+          //-     :items="armorName"
+          //-     v-model="player.armor"
+          //-     :rules="armorRules"
+          //-   )
+          //- v-flex.pa-2(xs4 md2)
+          //-   v-switch(label="盾" color="primary")
+          //- v-flex.pa-2(xs8 md6)
+          //-   p.text {{ armorDescription }}
           v-flex.pa-2(xs12)
             v-textarea(label="メモ" v-model="player.memo")
     v-card-actions

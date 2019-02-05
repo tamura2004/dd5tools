@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     v-toolbar(color="green darken-3" dark app)
-      v-btn(icon @click="dialog=false"): v-icon clear
+      v-btn(icon to="/"): v-icon clear
       v-toolbar-title.white--text 武器一覧
       v-spacer
       v-btn(icon): v-icon search
@@ -12,20 +12,12 @@
           :key="label"
           :value="label"
         ) {{ label }}
-    v-container(grid-list-lg fluid)
-      v-layout(row wrap align-space-around)
-        v-flex(xs6 sm3 md2 v-for="weapon in weapons" :key="weapon.name")
-          WeaponCard(:weapon="weapon" @input="select($event)")
+    v-content
+      v-container(grid-list-lg fluid)
+        v-layout(row wrap align-space-around)
+          v-flex(xs6 sm3 md2 v-for="weapon in weapons" :key="weapon.name")
+            WeaponCard(:weapon="weapon" @input="select($event)")
 
-  //- v-toolbar
-  //-   v-toolbar-title 武器を選択してください
-  //- template(v-for="weapon in weapons")
-  //-   v-list(two-line)
-  //-     v-list-tile(@click="select(weapon)")
-  //-       v-list-tile-content
-  //-         v-list-tile-title {{ weapon.name }}
-  //-         v-list-tile-sub-title {{ weapon.description }}
-  //-   v-divider
 </template>
 
 <script lang="ts">
