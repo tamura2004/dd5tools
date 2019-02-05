@@ -1,8 +1,18 @@
 <template lang="pug">
   v-app
+    v-navigation-drawer(v-model="drawer" fixed app)
+      v-card.white--text(flat color="green lighten-3")
+        v-responsive(:aspect-ratio="16/3")
+          v-card-title.pa-2 you
+
+      v-list(dense)
+        v-list-tile(v-for="menu in drawerMenues" :to="menu.path")
+          v-list-tile-action
+            v-icon home
+          v-list-tile-content
+            v-list-tile-title {{ menu.name }}
     v-toolbar(app)
-      v-btn(flat icon @click="home")
-        v-icon home
+      v-toolbar-side-icon(@click.stop="drawer = !drawer")
       v-toolbar-title.headline
         span D&D5eツール
       v-spacer
@@ -23,6 +33,15 @@ import Menu from '@/views/Menu.vue';
   components: { Menu },
 })
 export default class App extends Vue {
+  private drawer = null;
+  private drawerMenues = [
+    { name: 'dungeons', path: '/dungeons' },
+    { name: 'monsters', path: '/monsters' },
+    { name: 'players', path: '/players' },
+    { name: 'weapons', path: '/weapons' },
+    { name: 'armors', path: '/armors' },
+  ];
+
   private home(): void {
     this.$router.push('/');
   }

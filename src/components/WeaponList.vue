@@ -42,7 +42,7 @@
             ) {{ damage }}
         v-container(grid-list-lg fluid)
           v-layout(row wrap fill-height align-space-around)
-            v-flex(xs6 sm3 md2 lg2 v-for="weapon in weapons")
+            v-flex(xs6 sm3 md2 lg2 v-for="weapon in weapons" :key="weapon.name")
               WeaponCard(:weapon="weapon" @input="select($event)")
 
         //- v-toolbar

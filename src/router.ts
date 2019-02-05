@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Menu from './views/Menu.vue';
 import Dungeons from './views/Dungeons.vue';
+import Weapons from './views/Weapons.vue';
 import Monsters from './views/Monsters.vue';
 import Monster from './views/Monster.vue';
 import Players from './views/Players.vue';
@@ -28,6 +29,11 @@ const router = new Router({
       path: '/dungeons',
       name: 'dungeons',
       component: Dungeons,
+    },
+    {
+      path: '/weapons',
+      name: 'weapons',
+      component: Weapons,
     },
     {
       path: '/floor',
