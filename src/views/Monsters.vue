@@ -1,36 +1,30 @@
 <template lang="pug">
-  v-card
+  v-app
     v-toolbar
-      v-toolbar-title.text-xs-center ワンダリングモンスター
-      v-spacer
-      v-btn(flat @click="reload")
-        v-icon replay
+      v-btn(icon to="/"): v-icon clear
+      v-toolbar-title.text-xs-center モンスター
+      v-btn(absolute dark fab bottom right color="red")
+        v-icon add
     v-list(two-line)
-      MonsterList(v-for="i in 6" :row="i" :key="i")
-
+      div(v-for="monster in monsters")
+        MonsterCard(:monster="monster")
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import MonsterList from '@/components/MonsterList.vue';
+  import { MONSTERS } from '@/data/MONSTERS';
+  import { Monster } from '@/models/Monster';
+  import MonsterCard from '@/components/MonsterCard.vue';
 
   @Component({
     components: {
-      MonsterList,
+      MonsterCard,
     },
   })
   export default class Monsters extends Vue {
-    private get party() {
-      return this.$store.state.party;
-    }
-    private go(): void {
-      this.$router.push('/parties');
-    }
-    private reload(): void {
-      this.$store.commit('setRandomMonsters');
-    }
+    private monsters = MONSTERS.map((init) => new Monster(init, 1));
   }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 </style>

@@ -1,48 +1,46 @@
 <template lang="pug">
-  div#container
-    FloorCard(
-      v-for="(floor, i) in floors"
-      :row="i"
-      :key="floor.key"
-      :floor="floor"
-      :class="`card${i}`"
-    )
-
+  v-app
+    v-toolbar
+      v-btn(icon to="/"): v-icon clear
+      v-toolbar-title.text-xs-center ダンジョン
+      v-btn(absolute dark fab bottom right color="red" @click="newDungeon")
+        v-icon add
+    v-list(two-line)
+      div(v-for="(dungeon, n) in dungeons")
+        v-list-tile.my-1.elevation-4
+          v-list-tile-avater(tile)
+            v-btn(fab dark small color="grey") {{ n }}
+          v-list-tile-content.ml-2
+            v-list-tile-title {{ dungeon.name }}
+            v-list-tile-sub-title {{ dungeon.memo }}
+          v-list-actions
+            v-icon keyboard_arrow_right
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import FloorCard from '@/components/FloorCard.vue';
-import Floor from '@/models/Floor';
+  import { Component, Vue } from 'vue-property-decorator';
 
-@Component({
-  components: {
-    FloorCard,
-  },
-})
-export default class Dungeons extends Vue {
-  get floors(): Floor[] {
-    return this.$store.state.floors[0];
+  @Component
+  export default class Dungeons extends Vue {
+    private dungeons = [
+      {
+        name: '峠のダンジョン',
+        memo: '鉱山村に行く抜け道。恐竜が出没する',
+      },
+      {
+        name: '遺跡のダンジョン',
+        memo: '魔人象のある部屋。オーガが住み着いていた。',
+      },
+      {
+        name: '樹上のダンジョン',
+        memo: 'ゴルゴン熱の特効薬の材料、銀蛇イチゴが採れる。',
+      },
+    ];
+    private newDungeon(): void {
+      this.$router.push('/dungeonForm/newDungeon');
+    }
   }
-}
 </script>
 
-<style lang="stylus">
-  #container
-    display grid
-    grid-template-rows 1fr 1fr 1fr
-    grid-template-columns 1fr
-
-  .card1
-    grid-row 1
-    grid-column 1
-    
-  .card2
-    grid-row 2
-    grid-column 1
-
-  .card3
-    grid-row 3
-    grid-column 1
-
+<style lang="stylus" scoped>
 </style>

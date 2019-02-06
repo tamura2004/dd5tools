@@ -2,10 +2,15 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Menu from './views/Menu.vue';
 import Dungeons from './views/Dungeons.vue';
-import Weapons from './views/Weapons.vue';
 import Monsters from './views/Monsters.vue';
-import Monster from './views/Monster.vue';
 import Players from './views/Players.vue';
+import Npcs from './views/Npcs.vue';
+import Weapons from './views/Weapons.vue';
+import Armors from './views/Armors.vue';
+import Spells from './views/Spells.vue';
+import Places from './views/Places.vue';
+import Items from './views/Items.vue';
+import MonsterShow from './views/MonsterShow.vue';
 import PlayerCard from './views/PlayerCard.vue';
 import PlayerForm from './views/PlayerForm.vue';
 import Games from './views/Games.vue';
@@ -31,9 +36,44 @@ const router = new Router({
       component: Dungeons,
     },
     {
+      path: '/monsters',
+      name: 'monsters',
+      component: Monsters,
+    },
+    {
+      path: '/players',
+      name: 'players',
+      component: Players,
+    },
+    {
+      path: '/npcs',
+      name: 'npcs',
+      component: Npcs,
+    },
+    {
       path: '/weapons',
       name: 'weapons',
       component: Weapons,
+    },
+    {
+      path: '/armors',
+      name: 'armors',
+      component: Armors,
+    },
+    {
+      path: '/spells',
+      name: 'spells',
+      component: Spells,
+    },
+    {
+      path: '/places',
+      name: 'places',
+      component: Places,
+    },
+    {
+      path: '/items',
+      name: 'items',
+      component: Items,
     },
     {
       path: '/floor',
@@ -41,25 +81,15 @@ const router = new Router({
       component: Floor,
     },
     {
-      path: '/monsters',
-      name: 'monsters',
-      component: Monsters,
-    },
-    {
       path: '/parties',
       name: 'parties',
       component: Parties,
     },
     {
-      path: '/monster/:num',
+      path: '/monster/:name',
       name: 'monster',
-      component: Monster,
+      component: MonsterShow,
       props: true,
-    },
-    {
-      path: '/players',
-      name: 'players',
-      component: Players,
     },
     {
       path: '/playerForm/:id',

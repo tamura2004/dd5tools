@@ -1,6 +1,8 @@
 <template lang="pug">
+v-app
   v-card
     v-toolbar(color="primary" dark)
+      v-btn(icon to="/monsters"): v-icon clear
       v-toolbar-title {{ monster.name }}
     v-card-title.pa-2
       h2 {{ monster.size }}・{{ monster.type }}、{{ monster.alignment }}
@@ -64,16 +66,12 @@
     v-card-title.pa-2
       h2 特殊能力
     v-card-text.subheading(v-for="special in monster.specials" :key="special") {{ special }}
-
-    v-divider
-    v-card-actions
-      v-spacer
-      v-btn(color="primary" @click="back") 戻る
-    v-divider
 </template>
 
 <script lang="ts">
   import { Component, Vue, Prop } from 'vue-property-decorator';
+  import { MONSTERS } from '@/data/MONSTERS';
+  import { Monster } from '@/models/Monster';
   import LifeCounter from '@/components/LifeCounter.vue';
 
   @Component({
@@ -81,13 +79,13 @@
       LifeCounter,
     },
   })
-  export default class Monster extends Vue {
-    @Prop() private num!: number;
-    private back(): void {
-      this.$router.push('/monsters');
-    }
-    private get monster(): Monster {
-      return this.$store.state.monsters[this.num - 1];
+  export default class MonsterShow extends Vue {
+    @Prop() private name!: string;
+    private get monster(): Monster | undefined {
+      const init = MONSTERS.find((m) => m.name === this.name);
+      if (init !== undefined) {
+        return new Monster(init, 1);
+      }
     }
   }
 </script>
