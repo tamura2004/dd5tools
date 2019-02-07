@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.8782fb295469474f932770bb459940ec.js"
+  "/precache-manifest.c6f96fa962085c8c6fdcffb8352b1edb.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "dd5tools"});

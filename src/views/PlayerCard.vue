@@ -3,11 +3,11 @@
     v-toolbar(app)
       v-btn(icon to="/"): v-icon clear
       v-toolbar-title キャラクターシート
+      v-spacer
+      v-btn(icon @click="edit"): v-icon edit
     v-content
-      v-list(three-line)
+      v-list(two-line)
         v-list-tile
-          v-btn(fixed dark fab top right color="green" @click="edit")
-            v-icon edit
           v-list-tile-avatar(tile)
             v-img(:src="require('@/assets/' + player.avatar)")
           v-list-tile-content
@@ -24,6 +24,14 @@
                 v-flex(xs7) {{ player.alignment }}
                 v-flex(xs5) EXP:{{ player.exp }}
         v-divider
+      
+      v-layout
+        v-flex(xs2)
+          v-card.ma-1.border(flat v-for="n in 6")
+            v-card-text.py-0.caption {{ abilityLabel[n-1] }}
+            v-card-text.py-0.title.center {{ player.ability[n-1] }} 
+            v-card-title.py-0 (+4)
+      v-list
         v-list-tile
           v-list-tile-content
             v-list-tile-sub-title
@@ -120,6 +128,8 @@ export default class PlayerCard extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-  .center
-    text-align center
+.center
+  text-align center
+.border
+  border 1px black solid
 </style>

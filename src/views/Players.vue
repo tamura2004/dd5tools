@@ -1,10 +1,10 @@
 <template lang="pug">
   v-app
     v-toolbar
-      v-btn(icon to="/"): v-icon clear
+      v-btn(icon @click="$router.go(-1)"): v-icon keyboard_arrow_left
       v-toolbar-title.text-xs-center ＰＣ一覧
-      v-btn(absolute dark fab bottom right color="red" @click="newPlayer")
-        v-icon add
+      v-spacer
+      v-btn(icon @click="$router.push('/playerForm/new')"): v-icon add
     v-list(two-line)
       PlayerList(v-for="player in players" :player="player" :key="player.id")
     v-card-text#footer
@@ -25,9 +25,6 @@
   export default class Players extends Vue {
     private get players() {
         return this.$store.state.players;
-    }
-    private newPlayer(): void {
-      this.$router.push('/playerForm/new');
     }
   }
 </script>
