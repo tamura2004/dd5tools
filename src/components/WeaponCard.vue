@@ -25,7 +25,8 @@ export default class WeaponList extends Vue {
   @Prop() private weapon!: Weapon;
 
   private select(weapon: Weapon): void {
-    this.$emit('input', weapon.name);
+    this.$emit('input', weapon);
+    // this.$store.dispatch('addWeapon', weapon);
   }
 }
 </script>

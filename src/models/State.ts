@@ -8,4 +8,7 @@ export default class State {
     public monsters: Monster[] = [];
     public players: { [key: string]: Player} = {};
     public games: Game[] = [];
+    public current: { playerId: string } = {
+        playerId: '',
+    };
 }

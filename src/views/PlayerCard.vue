@@ -1,11 +1,11 @@
 <template lang="pug">
   v-app
     v-toolbar(app flat dark dense)
-      v-btn(icon @click="$router.go(-1)"): v-icon clear
-      v-toolbar-title {{ player.characterName }}
+      v-btn(icon @click="$router.go(-1)"): v-icon arrow_back_ios
+      v-toolbar-title {{ player && player.characterName }}
       v-spacer
       v-btn(icon @click="edit"): v-icon edit
-    v-content
+    v-content(v-if="player")
       v-list(dense)
         v-list-tile
           v-list-tile-avatar(tile)
@@ -33,44 +33,36 @@
         table
           tr(v-for="n in 6")
             td.label {{ abilityLabel[n-1] }}
-            td.number {{ player.ability[n] }}
-    p {{ player.ability | json }}
-    //- p {{ player.ability | json }}
-            //- td.number {{ player.abilityMod[n-1] }}
-            //- td.number 〇
-            //- td.skill {{ skills[n-1].join('、') }}
+            td.number {{ player.ability[n-1] }}
+            td.number {{ player.abilityMod[n-1] }}
+            td.number 〇
+            td.skill {{ skills[n-1].join('、') }}
 
-        //- v-list-group
-        //-   v-list-tile(slot="activator")
-        //-     v-list-tile-content
-        //-       v-list-tile-title 武器
-        //-   template(v-for="(w, i) in weapons")
-        //-     v-list-tile
-        //-       v-list-tile-content
-        //-         v-list-tile-title {{ player.weapon[i] }}：{{ w.category }}
-        //-         v-list-tile-sub-title 攻撃+{{ player.toHit(w) }}、間合い{{ w.range }}、ヒット：{{ w.damage }}+{{ player.toHit(w) }}[{{ w.type }}]ダメージ
-        //-       v-list-tile-action: v-icon keyboard_arrow_right
-        //-     v-divider
-        //- v-divider
-        //- v-list-group
-        //-   v-list-tile(slot="activator")
-        //-     v-list-tile-content
-        //-       v-list-tile-title 呪文
-        //-   v-list-tile
-        //-     v-list-tile-content
-        //-       v-list-tile-title キュア・ウーンズ
-        //-       v-list-tile-sub-title 1レベル
-        //-     v-list-tile-action: v-icon keyboard_arrow_right
-        //- v-divider
-        //- v-list-group
-        //-   v-list-tile(slot="activator")
-        //-     v-list-tile-content
-        //-       v-list-tile-title 特技・クラス能力
-        //-   v-list-tile
-        //-     v-list-tile-content
-        //-       v-list-tile-title {{ player.memo }}
-        //-     v-list-tile-action: v-icon keyboard_arrow_right
-        //- v-divider
+        ListHeader(title="武器" add="/weapons")
+        template(v-for="(w, i) in weapons")
+          v-list-tile
+            v-list-tile-action(@click="$store.dispatch('deleteWeapon', i)"): v-icon clear
+            v-list-tile-content
+              v-list-tile-title {{ player.weapon[i] }}：{{ w.category }}
+              v-list-tile-sub-title 攻撃+{{ player.toHit(w) }}、間合い{{ w.range }}、ヒット：{{ w.damage }}+{{ player.toHit(w) }}[{{ w.type }}]ダメージ
+            v-list-tile-action: v-icon keyboard_arrow_right
+          v-divider
+
+        ListHeader(title="呪文")
+        v-list-tile
+          v-list-tile-content
+            v-list-tile-title キュア・ウーンズ
+            v-list-tile-sub-title 1レベル
+          v-list-tile-action: v-icon keyboard_arrow_right
+        v-divider
+
+
+        ListHeader(title="特技・クラス能力")
+        v-list-tile
+          v-list-tile-content
+            v-list-tile-title {{ player.memo }}
+          v-list-tile-action: v-icon keyboard_arrow_right
+        v-divider
 
 </template>
 
@@ -78,6 +70,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import LifeCounter from '@/components/LifeCounter.vue';
 import IconSelect from '@/components/IconSelect.vue';
+import ListHeader from '@/components/ListHeader.vue';
 import { Player } from '@/models/Player';
 import { ABILITY_LABEL, WEAPON, SKILLS } from '@/data/DATA';
 import { Weapon } from '@/models/Weapon';
@@ -87,38 +80,50 @@ import { db } from '@/plugins/firebase';
   components: {
     LifeCounter,
     IconSelect,
+    ListHeader,
   },
 })
 export default class PlayerCard extends Vue {
-  public player: Player = new Player({});
   private abilityLabel = ABILITY_LABEL;
   private skills = SKILLS;
-  private weapons: Array<Weapon | undefined> = [];
   private hp: number = 0;
   @Prop() private id!: string;
 
-private edit(): void {
-    this.$router.push(`/playerForm/${this.player.id}`);
+  private get alert(): boolean {
+    return this.$store.state.alert;
   }
 
-  private created(): void {
-    if (typeof this.$store.state.player === 'undefined') {
-      db.collection('players').doc(this.id).get()
-        .then((doc) => {
-          this.player = new Player({
-            id: doc.id,
-            ...doc.data(),
-          });
-          this.hp = this.player.hp || 0;
-          this.weapons = this.player.weapon.map((w) => {
-            return WEAPON.get(w);
-          });
-        })
-        .catch((e) => alert(e));
-    } else {
-      this.player = this.$store.state.player.find((p: Player) => p.id === this.id);
-    }
+  private get alertMsg(): string {
+    return this.$store.state.alertMsg;
   }
+
+  private get player(): Player | undefined {
+    return this.$store.state.players[this.id];
+  }
+
+  private get weapons(): Weapon[] {
+    if (this.player === undefined) {
+      return [];
+    }
+
+    const result: Weapon[] = [];
+    for (const name of this.player.weapon) {
+      const weapon = WEAPON.get(name);
+      if (weapon !== undefined) {
+        result.push(weapon);
+      }
+    }
+    return result;
+  }
+
+  private edit(): void {
+    this.$router.push(`/playerForm/${this.id}`);
+  }
+
+  private mounted(): void {
+    this.$store.commit('setCurrentPlayerId', this.id);
+  }
+
 }
 </script>
 

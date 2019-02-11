@@ -6,7 +6,7 @@
       v-spacer
       v-btn(icon @click="$router.push('/playerForm/new')"): v-icon add
     v-list(two-line)
-      PlayerList(v-for="player in players" :player="player" :key="player.id")
+      PlayerList(v-for="(player, key) in players" :id="key")
     v-card-text#footer
     p.mt-5 designed by Freepik from Flaticon
 

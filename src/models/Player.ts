@@ -9,7 +9,6 @@ function modify(ability: number): number {
 }
 
 export class Player {
-  public id?: string = undefined;
   public name?: string = undefined;
   public characterName?: string = undefined;
   public klass?: string = undefined;

@@ -210,7 +210,7 @@ export default class PlayerForm extends Vue {
 
   private save(): void {
     if (this.valid) {
-      if (typeof this.player.id !== 'undefined') {
+      if (this.id !== 'new') {
         db.collection('players').doc(this.id).set({...this.player})
           .then((doc) => this.$router.push('/players'))
           .catch((error) => alert(error));
@@ -227,14 +227,12 @@ export default class PlayerForm extends Vue {
 
   private created(): void {
     if (this.id === 'new') {
-      delete this.player.id;
       this.player.rollAbility();
       this.player.exp = 0;
     } else {
       db.collection('players').doc(this.id).get()
         .then((doc) => {
           this.player = new Player({
-            id: doc.id,
             ...doc.data(),
           });
         })

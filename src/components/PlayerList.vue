@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-list-tile.my-1.elevation-4(@click="show")
+    v-list-tile.my-1.elevation-4(:to="`/player/${this.id}`")
       v-list-tile-avatar(tile)
         v-img(:src="player.avatarAsset")
       v-list-tile-content
@@ -12,6 +12,8 @@
           v-layout
             v-flex(xs8) {{ player.race }}/{{ player.background }}
             v-flex(xs4) PL:{{ player.name }}
+      v-list-tile-action
+        v-icon keyboard_arrow_right
 
 </template>
 
@@ -22,11 +24,10 @@ import { Player } from '@/models/Player';
 
 @Component
 export default class PlayerList extends Vue {
-  // private avater = require('@/assets/' + AVATER.sample());
-  @Prop() private player!: Player;
+  @Prop() private id!: string;
 
-  private show(): void {
-    this.$router.push(`/player/${this.player.id}`);
+  private get player(): Player | undefined {
+    return this.$store.state.players[this.id];
   }
 }
 </script>

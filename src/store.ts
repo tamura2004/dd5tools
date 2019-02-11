@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 import State from '@/models/State';
 import Party from '@/models/Party';
+import { Weapon } from '@/models/Weapon';
 import Encounter from '@/models/Encounter';
 import { Difficulty } from '@/data/DATA';
 import { Player } from '@/models/Player';
@@ -36,10 +37,13 @@ export default new Vuex.Store({
       }
     },
     clearPlayers(state: State) {
-      state.players = [];
+      state.players = {};
     },
-    setPlayers(state: State, players: Player[]) {
+    setPlayers(state: State, players: { [key: string]: Player} ) {
       state.players = players;
+    },
+    setCurrentPlayerId(state: State, id: string) {
+      state.current.playerId = id;
     },
     clearGames(state: State) {
       state.games = [];
@@ -54,12 +58,11 @@ export default new Vuex.Store({
   actions: {
     listenPlayers({commit}) {
       db.collection('players').onSnapshot((query) => {
-        const players: Player[] = [];
+        const players: { [key: string]: Player } = {};
         query.forEach((doc) => {
-          players.push(new Player({
-            id: doc.id,
+          players[doc.id] = new Player({
             ...doc.data(),
-          }));
+          });
         });
         commit('setPlayers', players);
       });
@@ -91,5 +94,21 @@ export default new Vuex.Store({
         .then((doc) => alert('セッションを更新しました'))
         .catch((err) => alert(err));
     },
+    addWeapon({commit, state}, weapon: Weapon) {
+      const id = state.current.playerId;
+      const player = state.players[id];
+      player.weapon.push(weapon.name);
+      db.collection('players').doc(id).set({...player})
+      .then()
+      .catch((err) => alert(err));
+    },
+    deleteWeapon({commit, state}, i: number) {
+      const id = state.current.playerId;
+      const player = state.players[id];
+      player.weapon.splice(i, 1);
+      db.collection('players').doc(id).set({...player})
+      .then()
+      .catch((err) => alert(err));
+    }
   },
 });
