@@ -109,6 +109,6 @@ export default new Vuex.Store({
       db.collection('players').doc(id).set({...player})
       .then()
       .catch((err) => alert(err));
-    }
+    },
   },
 });
