@@ -6,6 +6,6 @@ import { Game } from '@/models/Game';
 export default class State {
     public party: Party = new Party([[0, 0], [0, 0], [0, 0], [0, 0]]);
     public monsters: Monster[] = [];
-    public players: Player[] = [];
+    public players: { [key: string]: Player} = {};
     public games: Game[] = [];
 }

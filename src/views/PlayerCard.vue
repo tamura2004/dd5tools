@@ -1,81 +1,76 @@
 <template lang="pug">
   v-app
-    v-toolbar(app)
-      v-btn(icon to="/"): v-icon clear
-      v-toolbar-title キャラクターシート
+    v-toolbar(app flat dark dense)
+      v-btn(icon @click="$router.go(-1)"): v-icon clear
+      v-toolbar-title {{ player.characterName }}
       v-spacer
       v-btn(icon @click="edit"): v-icon edit
     v-content
-      v-list(two-line)
+      v-list(dense)
         v-list-tile
           v-list-tile-avatar(tile)
-            v-img(:src="require('@/assets/' + player.avatar)")
+            v-img(:src="`/img/${player.avatar}`")
           v-list-tile-content
             v-list-tile-title
               v-layout
-                v-flex(xs7) {{ player.characterName }}
-                v-flex(xs5) {{ player.klass }}{{ player.level}}
+                v-flex(xs6) {{ player.klass }} {{ player.level}}レベル
+                v-flex(xs6) {{ player.race }}/{{ player.background }}
             v-list-tile-sub-title
               v-layout
-                v-flex(xs7) {{ player.race }}/{{ player.background }}
-                v-flex(xs5) PL:{{ player.name }}
-            v-list-tile-sub-title
-              v-layout
-                v-flex(xs7) {{ player.alignment }}
-                v-flex(xs5) EXP:{{ player.exp }}
-        v-divider
-      
-      v-layout
-        v-flex(xs2)
-          v-card.ma-1.border(flat v-for="n in 6")
-            v-card-text.py-0.caption {{ abilityLabel[n-1] }}
-            v-card-text.py-0.title.center {{ player.ability[n-1] }} 
-            v-card-title.py-0 (+4)
-      v-list
-        v-list-tile
-          v-list-tile-content
-            v-list-tile-sub-title
-              v-layout.center
-                v-flex(xs2 v-for="(label, i) in abilityLabel" :key="'label' + i") {{ label }}
-            v-list-tile-title
-              v-layout.center
-                v-flex(xs2 v-for="(a, i) in player.ability" :key="'ability' + i") {{ a }}
-            v-list-tile-sub-title
-              v-layout.center
-                v-flex(xs2 v-for="(m, i) in player.abilityMod" :key="'mod' + i") ({{ m }})
-        v-divider
-        v-list-tile
-          v-layout.center
-            v-flex(xs2)
-              v-list-tile-title.center 最大hp
-              v-list-tile-sub-title {{ player.hp }}
-            v-flex(xs10)
-              v-list-tile-sub-title.caption.center 数字をタップで値を変更
-              LifeCounter(v-model="hp" :maxHp="player.hp")
+                v-flex(xs6) {{ player.alignment }}
+                v-flex(xs3) PL:{{ player.name }}
+                v-flex(xs3) EXP:{{ player.exp }}
+        table.mb-1
+          tr
+            td.label AC
+            td.number {{ player.ac }}
+            td.label MV
+            td.number 30'
+            td.label hp
+            td.number {{ player.hp }}
+            td.label PB
+            td.number +2
+        table
+          tr(v-for="n in 6")
+            td.label {{ abilityLabel[n-1] }}
+            td.number {{ player.ability[n] }}
+    p {{ player.ability | json }}
+    //- p {{ player.ability | json }}
+            //- td.number {{ player.abilityMod[n-1] }}
+            //- td.number 〇
+            //- td.skill {{ skills[n-1].join('、') }}
 
-        v-divider
-        v-list-tile
-          v-list-tile-content
-            v-list-tile-title
-              v-layout
-                v-flex.center(xs2) AC
-                v-flex(xs8) {{ player.armor }}
-            v-list-tile-sub-title
-              v-layout
-                v-flex.center(xs2) {{ player.ac }}
-        template(v-for="(w, i) in weapons")
-          v-divider
-          v-list-tile
-            v-list-tile-content
-              v-list-tile-title {{ player.weapon[i] }}：{{ w.category }}
-              v-list-tile-sub-title 攻撃+{{ player.toHit(w) }}、間合い{{ w.range }}、ヒット：{{ w.damage }}+{{ player.toHit(w) }}[{{ w.type }}]ダメージ
-        v-divider
-        v-list-tile
-          v-btn(absolute dark fab top left small color="red" @click="edit")
-            v-icon add
-          v-list-tile-content
-            v-list-tile-title メモ
-            v-list-tile-sub-title {{ player.memo }}
+        //- v-list-group
+        //-   v-list-tile(slot="activator")
+        //-     v-list-tile-content
+        //-       v-list-tile-title 武器
+        //-   template(v-for="(w, i) in weapons")
+        //-     v-list-tile
+        //-       v-list-tile-content
+        //-         v-list-tile-title {{ player.weapon[i] }}：{{ w.category }}
+        //-         v-list-tile-sub-title 攻撃+{{ player.toHit(w) }}、間合い{{ w.range }}、ヒット：{{ w.damage }}+{{ player.toHit(w) }}[{{ w.type }}]ダメージ
+        //-       v-list-tile-action: v-icon keyboard_arrow_right
+        //-     v-divider
+        //- v-divider
+        //- v-list-group
+        //-   v-list-tile(slot="activator")
+        //-     v-list-tile-content
+        //-       v-list-tile-title 呪文
+        //-   v-list-tile
+        //-     v-list-tile-content
+        //-       v-list-tile-title キュア・ウーンズ
+        //-       v-list-tile-sub-title 1レベル
+        //-     v-list-tile-action: v-icon keyboard_arrow_right
+        //- v-divider
+        //- v-list-group
+        //-   v-list-tile(slot="activator")
+        //-     v-list-tile-content
+        //-       v-list-tile-title 特技・クラス能力
+        //-   v-list-tile
+        //-     v-list-tile-content
+        //-       v-list-tile-title {{ player.memo }}
+        //-     v-list-tile-action: v-icon keyboard_arrow_right
+        //- v-divider
 
 </template>
 
@@ -84,8 +79,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import LifeCounter from '@/components/LifeCounter.vue';
 import IconSelect from '@/components/IconSelect.vue';
 import { Player } from '@/models/Player';
-import { ABILITY_LABEL } from '@/data/DATA';
-import { WEAPON } from '@/data/DATA';
+import { ABILITY_LABEL, WEAPON, SKILLS } from '@/data/DATA';
 import { Weapon } from '@/models/Weapon';
 import { db } from '@/plugins/firebase';
 
@@ -98,11 +92,12 @@ import { db } from '@/plugins/firebase';
 export default class PlayerCard extends Vue {
   public player: Player = new Player({});
   private abilityLabel = ABILITY_LABEL;
+  private skills = SKILLS;
   private weapons: Array<Weapon | undefined> = [];
   private hp: number = 0;
   @Prop() private id!: string;
 
-  private edit(): void {
+private edit(): void {
     this.$router.push(`/playerForm/${this.player.id}`);
   }
 
@@ -132,4 +127,30 @@ export default class PlayerCard extends Vue {
   text-align center
 .border
   border 1px black solid
+
+table
+  width 100%
+  border solid 1px grey
+  border-collapse collapse
+
+tr
+  height 32px
+
+td
+  border solid 1px grey
+  padding 0 2px
+
+td.label
+  text-align center
+  width 48px
+  background-color #212121 
+  color white
+
+td.number
+  text-align center
+  width 32px
+
+.v-toolbar__content
+  font-size 9px
+  height 12px
 </style>

@@ -8,7 +8,7 @@
     v-content
       v-container(fluid grid-list-lg)
         v-layout(align-start row wrap)
-          v-flex(xs12 sm6 md4 lg3 v-for="menu in menues" :key="menu.name")
+          v-flex(xs6 sm4 md3 v-for="menu in menues" :key="menu.name")
             v-card(hover :to="'/' + menu.name + 's'")
               v-responsive(:aspect-ratio="16/9")
                 v-img.white--text(:src="'http://moneta.sofia3dd.net/img/' + menu.name + 's.png'")

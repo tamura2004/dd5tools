@@ -284,6 +284,15 @@ export const AVATAR: Deck<string> = new Deck<string>(
   '050-unicorn.png',
 );
 
+export const SKILLS: string[][] = [
+  ['運動'],
+  ['隠密', '軽業', '手先の早業'],
+  [],
+  ['自然', '宗教', '捜査', '魔法学', '歴史'],
+  ['医術', '看破', '生存', '知覚', '動物使い'],
+  ['説得', '芸能', '威圧', 'ペテン'],
+];
+
 export const FEATS: Deck<string> = new Deck<string> (
   '癒し手',
   '運動選手',
