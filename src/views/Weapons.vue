@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     v-toolbar(color="green darken-3" dark app)
-      v-btn(icon @click="$router.go(-1)"): v-icon clear
+      v-btn(icon @click="$router.go(-1)"): v-icon arrow_back_ios
       v-toolbar-title.white--text 武器一覧
       v-spacer
       v-btn(icon): v-icon search

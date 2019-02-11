@@ -48,13 +48,16 @@
             v-list-tile-action: v-icon keyboard_arrow_right
           v-divider
 
-        ListHeader(title="呪文")
-        v-list-tile
-          v-list-tile-content
-            v-list-tile-title キュア・ウーンズ
-            v-list-tile-sub-title 1レベル
-          v-list-tile-action: v-icon keyboard_arrow_right
-        v-divider
+        ListHeader(title="呪文" add="/spells")
+        template(v-for="(spell, key) of spells")
+          v-list-tile
+            v-list-tile-action(@click="$store.dispatch('deleteSpell', key)"): v-icon clear
+            v-list-tile-content
+              v-list-tile-title {{ spell && spell.name }}
+              v-list-tile-sub-title {{ spell && spell.klass }}/{{ spell && spell.level }}lv
+            v-list-tile-action(@click="$router.push(`/spellForm/${key}`)")
+              v-icon keyboard_arrow_right
+          v-divider
 
 
         ListHeader(title="特技・クラス能力")
@@ -72,6 +75,7 @@ import LifeCounter from '@/components/LifeCounter.vue';
 import IconSelect from '@/components/IconSelect.vue';
 import ListHeader from '@/components/ListHeader.vue';
 import { Player } from '@/models/Player';
+import Spell from '@/models/Spell';
 import { ABILITY_LABEL, WEAPON, SKILLS } from '@/data/DATA';
 import { Weapon } from '@/models/Weapon';
 import { db } from '@/plugins/firebase';
@@ -112,6 +116,16 @@ export default class PlayerCard extends Vue {
       if (weapon !== undefined) {
         result.push(weapon);
       }
+    }
+    return result;
+  }
+
+  private get spells(): { [key: string]: Spell } {
+    const result: { [key: string]: Spell } = {};
+    if (this.player !== undefined) {
+      this.player.spells.forEach((spellId) => {
+        result[spellId] = this.$store.state.spells[spellId];
+      });
     }
     return result;
   }

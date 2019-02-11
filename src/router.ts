@@ -8,6 +8,7 @@ import Npcs from './views/Npcs.vue';
 import Weapons from './views/Weapons.vue';
 import Armors from './views/Armors.vue';
 import Spells from './views/Spells.vue';
+import SpellForm from './views/SpellForm.vue';
 import Places from './views/Places.vue';
 import Items from './views/Items.vue';
 import MonsterShow from './views/MonsterShow.vue';
@@ -59,11 +60,6 @@ const router = new Router({
       path: '/armors',
       name: 'armors',
       component: Armors,
-    },
-    {
-      path: '/spells',
-      name: 'spells',
-      component: Spells,
     },
     {
       path: '/places',
@@ -118,6 +114,17 @@ const router = new Router({
       path: '/game/:id',
       name: 'game',
       component: GameCard,
+      props: true,
+    },
+    {
+      path: '/spells',
+      name: 'spells',
+      component: Spells,
+    },
+    {
+      path: '/spellForm/:id',
+      name: 'spellForm',
+      component: SpellForm,
       props: true,
     },
   ],

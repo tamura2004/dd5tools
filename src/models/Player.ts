@@ -20,6 +20,7 @@ export class Player {
   public exp?: number = 0;
   public baseAbility: number[] = [];
   public skills: string[] = [];
+  public spells: string[] = [];
   public weapon: string[] = [];
   public armor?: string = undefined;
   public memo?: string;

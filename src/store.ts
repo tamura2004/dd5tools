@@ -10,6 +10,7 @@ import Encounter from '@/models/Encounter';
 import { Difficulty } from '@/data/DATA';
 import { Player } from '@/models/Player';
 import { Game } from '@/models/Game';
+import Spell from '@/models/Spell';
 import { db } from '@/plugins/firebase';
 // import createEasyFirestore from 'vuex-easy-firestore';
 
@@ -41,6 +42,9 @@ export default new Vuex.Store({
     },
     setPlayers(state: State, players: { [key: string]: Player} ) {
       state.players = players;
+    },
+    setSpells(state: State, spells: { [key: string]: Spell} ) {
+      state.spells = spells;
     },
     setCurrentPlayerId(state: State, id: string) {
       state.current.playerId = id;
@@ -79,6 +83,17 @@ export default new Vuex.Store({
         commit('setGames', games);
       });
     },
+    listenSpells({commit}) {
+      db.collection('spells').onSnapshot((query) => {
+        const spells: { [key: string]: Spell } = {};
+        query.forEach((doc) => {
+          spells[doc.id] = new Spell({
+            ...doc.data(),
+          });
+        });
+        commit('setSpells', spells);
+      });
+    },
     createGame(context, game: Game) {
       const form = {
         gm: game.gm,
@@ -94,7 +109,7 @@ export default new Vuex.Store({
         .then((doc) => alert('セッションを更新しました'))
         .catch((err) => alert(err));
     },
-    addWeapon({commit, state}, weapon: Weapon) {
+    addWeapon({state}, weapon: Weapon) {
       const id = state.current.playerId;
       const player = state.players[id];
       player.weapon.push(weapon.name);
@@ -102,13 +117,32 @@ export default new Vuex.Store({
       .then()
       .catch((err) => alert(err));
     },
-    deleteWeapon({commit, state}, i: number) {
+    deleteWeapon({state}, index: number) {
       const id = state.current.playerId;
       const player = state.players[id];
-      player.weapon.splice(i, 1);
+      player.weapon.splice(index, 1);
       db.collection('players').doc(id).set({...player})
       .then()
       .catch((err) => alert(err));
+    },
+    addSpell({state}, spellId: string) {
+      const id = state.current.playerId;
+      const player = state.players[id];
+      if (!player.spells.includes(spellId)) {
+        player.spells.push(spellId);
+        db.collection('players').doc(id).set({...player})
+        .then()
+        .catch((err) => alert(err));
+      }
+    },
+    deleteSpell({state}, spellId: string) {
+      console.log(spellId);
+      const id = state.current.playerId;
+      const player = state.players[id];
+      player.spells = player.spells.filter((i) => i !== spellId);
+      db.collection('players').doc(id).set({...player})
+        .then()
+        .catch((err) => alert(err));
     },
   },
 });
