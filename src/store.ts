@@ -136,7 +136,6 @@ export default new Vuex.Store({
       }
     },
     deleteSpell({state}, spellId: string) {
-      console.log(spellId);
       const id = state.current.playerId;
       const player = state.players[id];
       player.spells = player.spells.filter((i) => i !== spellId);
