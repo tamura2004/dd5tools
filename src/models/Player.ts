@@ -23,9 +23,9 @@ export class Player {
   public skills: string[] = [];
   public spells: string[] = [];
   public weapon: string[] = [];
-  public armor?: string = undefined;
+  public armor?: string;
   public memo?: string;
-  public avatar?: string = undefined;
+  public avatar?: string;
 
   constructor(init: Partial<Player>) {
     Object.assign(this, init);
@@ -67,7 +67,7 @@ export class Player {
   }
 
   public get ac(): number {
-    let baseAc = 0;
+    let baseAc = 10;
     let mod = 0;
     if (typeof this.armor !== 'undefined') {
       const armor = ARMOR.get(this.armor);

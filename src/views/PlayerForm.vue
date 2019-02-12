@@ -1,6 +1,6 @@
 <template lang="pug">
   v-app
-    v-toolbar(app)
+    v-toolbar(app flat dark dense)
       v-btn(icon @click="$router.go(-1)"): v-icon clear
       v-toolbar-title キャラクター作成
       v-spacer
