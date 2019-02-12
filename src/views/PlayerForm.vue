@@ -6,72 +6,72 @@
       v-spacer
       v-btn(icon @click="save"): v-icon done
     v-content(app)
-      v-container.pa-2
+      v-container
         v-form(v-model="valid" ref="form")
           v-layout(row wrap)
-            v-flex.pa-2(xs2 md1)
+            v-flex.px-2(xs2 md1)
               IconSelect(v-model="player.avatar")
-            v-flex.pa-2(xs6 md3)
+            v-flex.px-2(xs6 md3)
               v-text-field(
                 label="キャラクター名"
                 v-model="player.characterName"
                 :rules="characterNameRules"
               )
-            v-flex.pa-2(xs4 md2)
+            v-flex.px-2(xs4 md2)
               v-text-field(
                 label="プレイヤー名"
                 v-model="player.name"
                 :rules="nameRules"
               )
-            v-flex.pa-2(xs4 md4)
+            v-flex.px-2(xs4 md4)
               v-select(
                 label="クラス"
                 :items="klass"
                 v-model="player.klass"
                 :rules="klassRules"
               )
-            v-flex.pa-2(xs2 md2)
+            v-flex.px-2(xs2 md2)
               v-select(
                 label="レベル"
                 :items="[1,2,3,4,5,6,7,8,9,10]"
                 v-model="player.level"
                 :rules="levelRules"
               )
-            v-flex.pa-2(xs6 md3)
+            v-flex.px-2(xs6 md3)
               v-select(
                 label="種族"
                 :items="races"
                 v-model="player.race"
                 :rules="raceRules"
               )
-            v-flex.pa-2(xs4 md3)
+            v-flex.px-2(xs4 md3)
               v-select(
                 label="属性"
                 :items="alignment"
                 v-model="player.alignment"
                 :rules="alignmentRules"
               )
-            v-flex.pa-2(xs4 md2)
+            v-flex.px-2(xs4 md2)
               v-select(
                 label="背景"
                 :items="background"
                 v-model="player.background"
                 :rules="backgroundRules"
               )
-            v-flex.pa-2(xs2 md2)
+            v-flex.px-2(xs2 md2)
               v-text-field(
                 label="hp"
                 v-model="player.hp"
                 mask="###"
                 :rules="hpRules"
               )
-            v-flex.pa-2(xs2 md2)
+            v-flex.px-2(xs2 md2)
               v-text-field(
                 label="exp"
                 v-model="player.exp"
                 mask="#####"
               )
-            v-flex.pa-2(xs2 md2 v-for="i in 6" :key="'ability' + i")
+            v-flex.px-2(xs2 md2 v-for="i in 6" :key="'ability' + i")
               v-select(
                 :label="abilityLabel[i-1]"
                 :items="abilityRange"
@@ -81,23 +81,31 @@
               h4 {{ ability[i-1] }}
             //- // weapon
             //- template(v-for="key in [0,1]")
-            //-   v-flex.pa-2(xs12 md4 lg2)
+            //-   v-flex.px-2(xs12 md4 lg2)
             //-     WeaponList(v-model="player.weapon[key]")
-            //-   v-flex.pa-2(xs12 md8 lg4)
+            //-   v-flex.px-2(xs12 md8 lg4)
             //-     p.text {{ weaponDescription(key) }}
             //- // armor
-            //- v-flex.pa-2(xs12 md4)
+            //- v-flex.px-2(xs12 md4)
             //-   v-select(
             //-     label="防具"
             //-     :items="armorName"
             //-     v-model="player.armor"
             //-     :rules="armorRules"
             //-   )
-            //- v-flex.pa-2(xs4 md2)
+            //- v-flex.px-2(xs4 md2)
             //-   v-switch(label="盾" color="primary")
-            //- v-flex.pa-2(xs8 md6)
+            //- v-flex.px-2(xs8 md6)
             //-   p.text {{ armorDescription }}
-            v-flex.pa-2(xs12)
+            v-flex.px-2(xs12)
+              v-select(
+                v-model="player.skills"
+                :items="skillLabels"
+                chips
+                multiple
+                label="スキル"
+              )
+            v-flex.px-2(xs12)
               v-textarea(label="メモ" v-model="player.memo")
 </template>
 
@@ -115,6 +123,7 @@ import {
   WEAPON,
   ARMOR_NAME,
   ARMOR,
+  SKILL_LABELS,
 } from '@/data/DATA';
 import WeaponList from '@/components/WeaponList.vue';
 import IconSelect from '@/components/IconSelect.vue';
@@ -138,6 +147,7 @@ export default class PlayerForm extends Vue {
   public abilityLabel: string[] = ABILITY_LABEL;
   public abilityRange: number[] = ABILITY_RANGE;
   public armorName: string[] = ARMOR_NAME;
+  public skillLabels: string[] = SKILL_LABELS;
   public valid: boolean = false;
   public characterNameRules: Validation[] = [
     (v) => !!v || 'キャラクター名を入力してください',

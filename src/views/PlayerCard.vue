@@ -36,7 +36,7 @@
             td.number {{ player.ability[n-1] }}
             td.number {{ player.abilityMod[n-1] }}
             td.number 〇
-            td.skill {{ skills[n-1].join('、') }}
+            td.skill {{ skillDisplay[n-1].join('、') }}
 
         ListHeader(title="武器" add="/weapons")
         template(v-for="(w, i) in weapons")
@@ -128,6 +128,14 @@ export default class PlayerCard extends Vue {
       });
     }
     return result;
+  }
+
+  private get skillDisplay(): string[][] {
+    return this.skills.map((list) =>
+      list.map((skill) =>
+        (!!this.player && this.player.skills.includes(skill)) ? `●${skill}` : skill
+      )
+    )
   }
 
   private edit(): void {
