@@ -11,7 +11,11 @@
           v-flex(xs6 sm4 md3 v-for="menu in menues" :key="menu.name")
             v-card(hover :to="'/' + menu.name + 's'")
               v-responsive(:aspect-ratio="16/9")
-                v-card-title {{ menu.label }}
+                v-img.white--text(:src="'http://moneta.sofia3dd.net/img/' + menu.name + 's.png'")
+                  v-container(fill-height fluid)
+                    v-layout(align-end justify-start row fill-height)
+                      v-flex(xs12)
+                        span.display-1.font-weight-bold {{ menu.label }}
 </template>
 
 <script lang="ts">
