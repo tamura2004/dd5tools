@@ -3,8 +3,7 @@
     v-toolbar
       v-btn(icon to="/"): v-icon clear
       v-toolbar-title.text-xs-center 道具
-      v-btn(absolute dark fab bottom small right color="red")
-        v-icon add
+      v-btn(icon): v-icon add
     v-list(two-line)
       div(v-for="(item, n) in items")
         v-list-tile.my-1.elevation-4

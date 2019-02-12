@@ -3,17 +3,17 @@
     v-toolbar
       v-btn(icon to="/"): v-icon clear
       v-toolbar-title.text-xs-center ダンジョン
-      v-btn(absolute dark fab bottom right color="red" @click="newDungeon")
-        v-icon add
+      v-spacer
+      v-btn(icon): v-icon add
     v-list(two-line)
       div(v-for="(dungeon, n) in dungeons")
         v-list-tile.my-1.elevation-4
-          v-list-tile-avater(tile)
+          v-list-tile-avatar(tile)
             v-btn(fab dark small color="grey") {{ n }}
           v-list-tile-content.ml-2
             v-list-tile-title {{ dungeon.name }}
             v-list-tile-sub-title {{ dungeon.memo }}
-          v-list-actions
+          v-list-tile-action
             v-icon keyboard_arrow_right
 </template>
 
