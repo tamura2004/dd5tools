@@ -99,6 +99,14 @@
             //-   p.text {{ armorDescription }}
             v-flex.px-2(xs12)
               v-select(
+                v-model="player.saves"
+                :items="['筋力','敏捷','耐久','知力','判断','魅力']"
+                chips
+                multiple
+                label="セーヴ"
+              )
+            v-flex.px-2(xs12)
+              v-select(
                 v-model="player.skills"
                 :items="skillLabels"
                 chips

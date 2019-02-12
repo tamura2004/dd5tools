@@ -35,7 +35,7 @@
             td.label {{ abilityLabel[n-1] }}
             td.number {{ player.ability[n-1] }}
             td.number {{ player.abilityMod[n-1] }}
-            td.number 〇
+            td.number {{ player.saves.includes(abilityLabel[n-1]) ? '●' : '' }}
             td.skill {{ skillDisplay[n-1].join('、') }}
 
         ListHeader(title="武器" add="/weapons")
@@ -133,9 +133,9 @@ export default class PlayerCard extends Vue {
   private get skillDisplay(): string[][] {
     return this.skills.map((list) =>
       list.map((skill) =>
-        (!!this.player && this.player.skills.includes(skill)) ? `●${skill}` : skill
-      )
-    )
+        (!!this.player && this.player.skills.includes(skill)) ? `●${skill}` : skill,
+      ),
+    );
   }
 
   private edit(): void {
@@ -149,7 +149,7 @@ export default class PlayerCard extends Vue {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .center
   text-align center
 .border
@@ -177,7 +177,4 @@ td.number
   text-align center
   width 32px
 
-.v-toolbar__content
-  font-size 9px
-  height 12px
 </style>

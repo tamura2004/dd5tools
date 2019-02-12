@@ -19,6 +19,7 @@ export class Player {
   public hp?: number = 1;
   public exp?: number = 0;
   public baseAbility: number[] = [];
+  public saves: string[] = [];
   public skills: string[] = [];
   public spells: string[] = [];
   public weapon: string[] = [];
@@ -28,10 +29,6 @@ export class Player {
 
   constructor(init: Partial<Player>) {
     Object.assign(this, init);
-  }
-
-  public get avatarAsset(): string {
-    return require('@/assets/' + this.avatar);
   }
 
   public get summary(): string {

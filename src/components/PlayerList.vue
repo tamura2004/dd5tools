@@ -2,7 +2,7 @@
   div
     v-list-tile.my-1.elevation-4(:to="`/player/${this.id}`")
       v-list-tile-avatar(tile)
-        v-img(:src="player.avatarAsset")
+        v-img(:src="`/img/${player.avatar}`")
       v-list-tile-content
         v-list-tile-title
           v-layout
