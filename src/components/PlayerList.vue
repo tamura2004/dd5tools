@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-list-tile.my-1.elevation-4(:to="`/player/${this.id}`")
+    v-list-tile(:to="`/player/${this.id}`")
       v-list-tile-avatar(tile)
         v-img(:src="`/img/${player.avatar}`")
       v-list-tile-content
@@ -13,7 +13,8 @@
             v-flex(xs8) {{ player.race }}/{{ player.background }}
             v-flex(xs4) PL:{{ player.name }}
       v-list-tile-action
-        v-icon keyboard_arrow_right
+        v-icon arrow_forward_ios
+    v-divider
 
 </template>
 

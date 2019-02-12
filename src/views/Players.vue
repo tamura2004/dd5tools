@@ -1,14 +1,14 @@
 <template lang="pug">
   v-app
-    v-toolbar
-      v-btn(icon @click="$router.go(-1)"): v-icon keyboard_arrow_left
+    v-toolbar(app flat dark dense)
+      v-btn(icon @click="$router.go(-1)"): v-icon arrow_back_ios
       v-toolbar-title.text-xs-center ＰＣ一覧
       v-spacer
       v-btn(icon @click="$router.push('/playerForm/new')"): v-icon add
-    v-list(two-line)
-      PlayerList(v-for="(player, key) in players" :id="key" :key="key")
-    v-card-text#footer
-    p.mt-5 designed by Freepik from Flaticon
+    v-content(app)
+      v-list(two-line)
+        PlayerList(v-for="(player, key) in players" :id="key" :key="key")
+      p.ma-1 icon image is designed by Freepik from Flaticon
 
 </template>
 

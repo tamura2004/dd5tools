@@ -1,13 +1,12 @@
 <template lang="pug">
   v-app
-    v-toolbar
-      v-btn(icon to="/"): v-icon clear
+    v-toolbar(app dark flat)
+      v-btn(icon to="/"): v-icon arrow_back_ios
       v-toolbar-title.text-xs-center モンスター
-      v-btn(absolute dark fab bottom right color="red")
-        v-icon add
-    v-list(two-line)
-      div(v-for="monster in monsters")
-        MonsterCard(:monster="monster")
+    v-content(app)
+      v-list
+        div(v-for="monster in monsters")
+          MonsterCard(:monster="monster")
 </template>
 
 <script lang="ts">

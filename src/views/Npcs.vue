@@ -1,20 +1,22 @@
 <template lang="pug">
   v-app
-    v-toolbar
-      v-btn(icon to="/"): v-icon clear
+    v-toolbar(app flat dark dense)
+      v-btn(icon to="/"): v-icon arrow_back_ios
       v-toolbar-title.text-xs-center ＮＰＣ
-      v-btn(absolute dark fab bottom small right color="red")
-        v-icon add
-    v-list(two-line)
-      div(v-for="(npc, n) in npcs")
-        v-list-tile.my-1.elevation-4
-          v-list-tile-avatar(tile)
-            v-btn(fab dark small color="grey") {{ n + 1 }}
-          v-list-tile-content.ml-2
-            v-list-tile-title {{ npc.name }}
-            v-list-tile-sub-title {{ npc.memo }}
-          v-list-tile-action
-            v-icon keyboard_arrow_right
+      v-spacer
+      v-btn(icon): v-icon add
+    v-content
+      v-list(two-line)
+        div(v-for="(npc, n) in npcs")
+          v-list-tile
+            v-list-tile-avatar(tile)
+              v-btn(fab dark small color="grey") {{ n + 1 }}
+            v-list-tile-content.ml-2
+              v-list-tile-title {{ npc.name }}
+              v-list-tile-sub-title {{ npc.memo }}
+            v-list-tile-action
+              v-icon keyboard_arrow_right
+          v-divider
 </template>
 
 <script lang="ts">

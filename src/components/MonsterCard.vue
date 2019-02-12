@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-list-tile.my-1.elevation-4(@click="go")
+    v-list-tile(@click="go")
       v-list-tile-content
         v-list-tile-title
           v-layout

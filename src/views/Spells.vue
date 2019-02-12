@@ -1,6 +1,6 @@
 <template lang="pug">
   v-app
-    v-toolbar(dark app)
+    v-toolbar(flat dark app dense)
       v-btn(icon @click="$router.go(-1)"): v-icon arrow_back_ios
       v-toolbar-title.text-xs-center 呪文
       v-spacer
