@@ -1,6 +1,6 @@
 <template lang="pug">
   v-app
-    v-toolbar(app)
+    v-toolbar(app flat dark dense)
       v-btn(icon @click="$router.go(-1)"): v-icon arrow_back_ios
       v-toolbar-title 呪文登録
       v-spacer
@@ -54,10 +54,13 @@
                 :rules="required"
               )
             v-flex.pa-2(xs6)
-              v-text-field(
-                label="構成要素"
-                v-model="form.components"
-              )
+              v-select(
+                  v-model="form.components"
+                  :items="['音声','動作','物質']"
+                  chips
+                  multiple
+                  label="構成要素"
+                )
             v-flex.pa-2(xs6)
               v-text-field(
                 label="持続時間"

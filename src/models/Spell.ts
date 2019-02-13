@@ -17,17 +17,17 @@
 // }
 
 export default class Spell {
-  public name?: string = undefined;
-  public englishName?: string = undefined;
-  public japaneseName?: string = undefined;
-  public klass?: string = undefined;
-  public level: number = 0;
-  public type?: string = undefined;
-  public castingTime?: string = undefined;
-  public range?: string = undefined;
-  public components?: string = undefined;
-  public duration?: string = undefined;
-  public description?: string = undefined;
+  public name?: string;
+  public englishName?: string;
+  public japaneseName?: string;
+  public klass?: string;
+  public level?: number;
+  public type?: string;
+  public castingTime?: string;
+  public range?: string;
+  public components: string[] = [];
+  public duration?: string;
+  public description?: string;
 
   constructor(init: Partial<Spell>) {
     Object.assign(this, init);

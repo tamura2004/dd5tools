@@ -11,6 +11,10 @@ import { Difficulty } from '@/data/DATA';
 import { Player } from '@/models/Player';
 import { Game } from '@/models/Game';
 import Spell from '@/models/Spell';
+import Npc from '@/models/Npc';
+import Place from '@/models/Place';
+import Item from '@/models/Item';
+import Dungeon from '@/models/Dungeon';
 import { db } from '@/plugins/firebase';
 // import createEasyFirestore from 'vuex-easy-firestore';
 
@@ -45,6 +49,18 @@ export default new Vuex.Store({
     },
     setSpells(state: State, spells: { [key: string]: Spell} ) {
       state.spells = spells;
+    },
+    setItems(state: State, items: { [key: string]: Item} ) {
+      state.items = items;
+    },
+    setNpcs(state: State, npcs: { [key: string]: Npc} ) {
+      state.npcs = npcs;
+    },
+    setPlaces(state: State, places: { [key: string]: Place} ) {
+      state.places = places;
+    },
+    setDungeons(state: State, dungeons: { [key: string]: Dungeon} ) {
+      state.dungeons = dungeons;
     },
     setCurrentPlayerId(state: State, id: string) {
       state.current.playerId = id;
@@ -92,6 +108,50 @@ export default new Vuex.Store({
           });
         });
         commit('setSpells', spells);
+      });
+    },
+    listenNpcs({commit}) {
+      db.collection('npcs').onSnapshot((query) => {
+        const collection: { [key: string]: Npc } = {};
+        query.forEach((doc) => {
+          collection[doc.id] = new Npc({
+            ...doc.data(),
+          });
+        });
+        commit('setNpcs', collection);
+      });
+    },
+    listenItems({commit}) {
+      db.collection('items').onSnapshot((query) => {
+        const collection: { [key: string]: Item } = {};
+        query.forEach((doc) => {
+          collection[doc.id] = new Item({
+            ...doc.data(),
+          });
+        });
+        commit('setItems', collection);
+      });
+    },
+    listenPlaces({commit}) {
+      db.collection('places').onSnapshot((query) => {
+        const collection: { [key: string]: Place } = {};
+        query.forEach((doc) => {
+          collection[doc.id] = new Place({
+            ...doc.data(),
+          });
+        });
+        commit('setPlaces', collection);
+      });
+    },
+    listenDungeons({commit}) {
+      db.collection('dungeons').onSnapshot((query) => {
+        const collection: { [key: string]: Dungeon } = {};
+        query.forEach((doc) => {
+          collection[doc.id] = new Dungeon({
+            ...doc.data(),
+          });
+        });
+        commit('setDungeons', collection);
       });
     },
     createGame(context, game: Game) {

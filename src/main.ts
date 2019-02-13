@@ -9,6 +9,10 @@ Vue.config.productionTip = false;
 
 store.dispatch('listenPlayers');
 store.dispatch('listenSpells');
+store.dispatch('listenItems');
+store.dispatch('listenNpcs');
+store.dispatch('listenPlaces');
+store.dispatch('listenDungeons');
 store.dispatch('listenGames');
 
 new Vue({

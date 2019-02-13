@@ -1,16 +1,20 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Menu from './views/Menu.vue';
-import Dungeons from './views/Dungeons.vue';
 import Monsters from './views/Monsters.vue';
 import Players from './views/Players.vue';
-import Npcs from './views/Npcs.vue';
 import Weapons from './views/Weapons.vue';
 import Armors from './views/Armors.vue';
 import Spells from './views/Spells.vue';
 import SpellForm from './views/SpellForm.vue';
 import Places from './views/Places.vue';
 import Items from './views/Items.vue';
+import Dungeons from './views/Dungeons.vue';
+import Npcs from './views/Npcs.vue';
+import PlaceForm from './views/PlaceForm.vue';
+import ItemForm from './views/ItemForm.vue';
+import DungeonForm from './views/DungeonForm.vue';
+import NpcForm from './views/NpcForm.vue';
 import MonsterShow from './views/MonsterShow.vue';
 import PlayerCard from './views/PlayerCard.vue';
 import PlayerForm from './views/PlayerForm.vue';
@@ -125,6 +129,30 @@ const router = new Router({
       path: '/spellForm/:id',
       name: 'spellForm',
       component: SpellForm,
+      props: true,
+    },
+    {
+      path: '/itemForm/:id',
+      name: 'itemForm',
+      component: ItemForm,
+      props: true,
+    },
+    {
+      path: '/dungeonForm/:id',
+      name: 'dungeonForm',
+      component: DungeonForm,
+      props: true,
+    },
+    {
+      path: '/npcForm/:id',
+      name: 'npcForm',
+      component: NpcForm,
+      props: true,
+    },
+    {
+      path: '/placeForm/:id',
+      name: 'placeForm',
+      component: PlaceForm,
       props: true,
     },
   ],
