@@ -1,11 +1,14 @@
 <template lang="pug">
-  v-content
+  v-content(v-if="!!floor")
     h3 {{ floor.level }}.{{ floor.name}}
     p {{ floor.description }}
     v-container(grid-list-md fluid)
       v-layout(row wrap)
         v-flex(v-for="(sq, i) in floor.map" :key="i" xs2)
-          v-card(flat tile :dark="sq")
+          v-card(flat tile :class="sq ? 'grey lighten-1' : 'black lighten-1'")
+            v-responsive(:aspect-ratio="1/1")
+              v-card-title
+
 
 </template>
 

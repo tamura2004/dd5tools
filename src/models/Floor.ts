@@ -17,15 +17,15 @@ export default class Floor {
 
   constructor(init: Partial<Floor>) {
     Object.assign(this, init);
-    this.initializeMap();
   }
 
-  private initializeMap(): void {
+  public initializeMap(): void {
     const WIDTH = 6;
     const HEIGHT = 8;
     const LENGTH = WIDTH * HEIGHT;
     const TIMES = 4;
 
+    this.map = [];
     for (let i = 0; i < LENGTH; i++) {
       this.map.push(true);
     }

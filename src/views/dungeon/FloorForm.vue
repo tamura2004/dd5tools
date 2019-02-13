@@ -75,6 +75,10 @@
       if (this.id !== 'new') {
         Object.assign(this.form, this.$store.state.floors[this.id]);
       }
+
+      if (this.form.map === undefined || JSON.stringify(this.form.map) === '[]') {
+        this.form.initializeMap();
+      }
     }
   }
 </script>
