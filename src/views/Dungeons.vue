@@ -13,7 +13,7 @@
             v-list-tile-content
               v-list-tile-title {{ dungeon.name }}
               v-list-tile-sub-title {{ dungeon.description }}
-            v-list-tile-action(@click="`/dungeon/${key}/floors`"): v-icon keyboard_arrow_right
+            v-list-tile-action(@click="$router.push(`/dungeon/${key}/floors`)"): v-icon arrow_forward_ios
           v-divider
 </template>
 

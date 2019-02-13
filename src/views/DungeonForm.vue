@@ -31,7 +31,7 @@ import Dungeon from '@/models/Dungeon';
 type Validation = (v: string) => boolean | string;
 
 @Component
-export default class SpellForm extends Vue {
+export default class DungeonForm extends Vue {
   @Prop() private id!: string;
 
   private valid: boolean = false;
@@ -59,7 +59,7 @@ export default class SpellForm extends Vue {
 
   private created(): void {
     if (this.id !== 'new') {
-      const form = this.$store.state.items[this.id];
+      const form = this.$store.state.dungeons[this.id];
       if (form !== undefined) {
         Object.assign(this.form, form);
       }
