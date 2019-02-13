@@ -9,10 +9,11 @@
       v-list
         template(v-for="(dungeon, key) in dungeons")
           v-list-tile
+            v-list-tile-action(@click="$router.push(`/dungeonForm/${key}`)"): v-icon edit
             v-list-tile-content
               v-list-tile-title {{ dungeon.name }}
               v-list-tile-sub-title {{ dungeon.description }}
-            v-list-tile-action(@click="$router.push(`/dungeonForm/${key}`)"): v-icon edit
+            v-list-tile-action(@click="`/dungeon/${key}/floors`"): v-icon keyboard_arrow_right
           v-divider
 </template>
 

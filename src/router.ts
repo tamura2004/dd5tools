@@ -24,6 +24,10 @@ import GameForm from './views/GameForm.vue';
 import Parties from './views/Parties.vue';
 import Floor from './views/Floor.vue';
 
+import Dungeon from './views/Dungeon.vue';
+import DungeonFloors from './views/dungeon/Floors.vue';
+import DungeonFloorForm from './views/dungeon/FloorForm.vue';
+
 Vue.use(Router);
 
 const router = new Router({
@@ -39,6 +43,24 @@ const router = new Router({
       path: '/dungeons',
       name: 'dungeons',
       component: Dungeons,
+    },
+    {
+      path: '/dungeon/:dungeonId',
+      name: 'dungeon',
+      component: Dungeon,
+      props: true,
+      children: [
+        {
+          path: 'floors',
+          component: DungeonFloors,
+          props: true,
+        },
+        {
+          path: 'floorForm/:id',
+          component: DungeonFloorForm,
+          props: true,
+        },
+      ],
     },
     {
       path: '/monsters',

@@ -79,24 +79,7 @@
                 :rules="abilityRules"
               )
               h4 {{ ability[i-1] }}
-            //- // weapon
-            //- template(v-for="key in [0,1]")
-            //-   v-flex.px-2(xs12 md4 lg2)
-            //-     WeaponList(v-model="player.weapon[key]")
-            //-   v-flex.px-2(xs12 md8 lg4)
-            //-     p.text {{ weaponDescription(key) }}
-            //- // armor
-            //- v-flex.px-2(xs12 md4)
-            //-   v-select(
-            //-     label="防具"
-            //-     :items="armorName"
-            //-     v-model="player.armor"
-            //-     :rules="armorRules"
-            //-   )
-            //- v-flex.px-2(xs4 md2)
-            //-   v-switch(label="盾" color="primary")
-            //- v-flex.px-2(xs8 md6)
-            //-   p.text {{ armorDescription }}
+
             v-flex.px-2(xs12)
               v-select(
                 v-model="player.saves"

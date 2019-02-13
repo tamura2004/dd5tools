@@ -13,6 +13,7 @@ store.dispatch('listenItems');
 store.dispatch('listenNpcs');
 store.dispatch('listenPlaces');
 store.dispatch('listenDungeons');
+store.dispatch('listenFloors');
 store.dispatch('listenGames');
 
 new Vue({

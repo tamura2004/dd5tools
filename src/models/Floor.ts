@@ -1,28 +1,49 @@
-// import uuidv4 from 'uuid/v4';
-import { Table, Chart } from '@/models/Chart';
+import { Player } from '@/models/Player';
+import { Monster } from '@/models/Monster';
 
-const Names: Chart<string> = new Chart<string>([
-  [7, '通路'],
-  [9, '木の扉'],
-  [10, '石の扉'],
-  [11, '鉄の扉'],
-  [12, '裂け目'],
-  [13, '井戸'],
-  [14, '壁画'],
-  [15, 'レリーフ'],
-  [16, '彫像'],
-  [17, '落とし穴'],
-  [18, '梯子'],
-  [20, '階段'],
-]);
+function d(n: number): number {
+  return Math.floor(Math.random() * n);
+}
 
 export default class Floor {
-  public key: string;
+  public dungeonId?: string;
+  public level?: number;
   public name?: string;
-  public actions: string[] = ['調べる', '進む'];
+  public dm?: string;
+  public description?: string;
+  public players: Player[] = [];
+  public monsters: Monster[] = [];
+  public map: boolean[] = [];
 
-  constructor() {
-    // this.name = Names.roll();
-    this.key = Math.random().toString();
+  constructor(init: Partial<Floor>) {
+    Object.assign(this, init);
+    this.initializeMap();
+  }
+
+  private initializeMap(): void {
+    const WIDTH = 6;
+    const HEIGHT = 8;
+    const LENGTH = WIDTH * HEIGHT;
+    const TIMES = 4;
+
+    for (let i = 0; i < LENGTH; i++) {
+      this.map.push(true);
+    }
+
+    const DIR = [-WIDTH, -1, 1, WIDTH];
+    let count = 0;
+    while (count < TIMES) {
+      const p = d(LENGTH);
+      const q = p + DIR[d(4)];
+      if (
+        0 <= q && q < LENGTH &&
+        this.map[p] && this.map[q] &&
+        Math.abs((p % WIDTH) - (q % WIDTH)) <= 1
+      ) {
+        this.map[p] = false;
+        this.map[q] = false;
+        count++;
+      }
+    }
   }
 }

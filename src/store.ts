@@ -15,6 +15,7 @@ import Npc from '@/models/Npc';
 import Place from '@/models/Place';
 import Item from '@/models/Item';
 import Dungeon from '@/models/Dungeon';
+import Floor from '@/models/Floor';
 import { db } from '@/plugins/firebase';
 // import createEasyFirestore from 'vuex-easy-firestore';
 
@@ -61,6 +62,9 @@ export default new Vuex.Store({
     },
     setDungeons(state: State, dungeons: { [key: string]: Dungeon} ) {
       state.dungeons = dungeons;
+    },
+    setFloors(state: State, floors: { [key: string]: Floor} ) {
+      state.floors = floors;
     },
     setCurrentPlayerId(state: State, id: string) {
       state.current.playerId = id;
@@ -152,6 +156,17 @@ export default new Vuex.Store({
           });
         });
         commit('setDungeons', collection);
+      });
+    },
+    listenFloors({commit}) {
+      db.collection('floors').orderBy('level').onSnapshot((query) => {
+        const collection: { [key: string]: Floor } = {};
+        query.forEach((doc) => {
+          collection[doc.id] = new Floor({
+            ...doc.data(),
+          });
+        });
+        commit('setFloors', collection);
       });
     },
     createGame(context, game: Game) {
