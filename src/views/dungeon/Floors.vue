@@ -10,7 +10,7 @@
             v-list-tile-content
               v-list-tile-title {{ floor.level }}.{{ floor.name }}
               v-list-tile-sub-title {{ floor.description }}
-            v-list-tile-action: v-icon arrow_forward_ios
+            v-list-tile-action(@click="$router.push(`floor/${key}`)"): v-icon arrow_forward_ios
           v-divider(:key="key")
 </template>
 

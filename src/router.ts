@@ -25,6 +25,7 @@ import Parties from './views/Parties.vue';
 import Floor from './views/Floor.vue';
 
 import Dungeon from './views/Dungeon.vue';
+import DungeonFloor from './views/dungeon/Floor.vue';
 import DungeonFloors from './views/dungeon/Floors.vue';
 import DungeonFloorForm from './views/dungeon/FloorForm.vue';
 
@@ -53,6 +54,11 @@ const router = new Router({
         {
           path: 'floors',
           component: DungeonFloors,
+          props: true,
+        },
+        {
+          path: 'floor/:id',
+          component: DungeonFloor,
           props: true,
         },
         {
