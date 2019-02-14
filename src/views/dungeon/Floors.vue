@@ -6,11 +6,14 @@
         template(v-if="floor.dungeonId === dungeonId")
           v-list-tile(:key="key")
             v-list-tile-action(@click="$router.push(`floorForm/${key}`)")
-              v-icon edit
+              v-btn(flat fab small icon)
+                v-icon edit
             v-list-tile-content
               v-list-tile-title {{ floor.level }}.{{ floor.name }}
               v-list-tile-sub-title {{ floor.description }}
-            v-list-tile-action(@click="$router.push(`floor/${key}`)"): v-icon arrow_forward_ios
+            v-list-tile-action(@click="$router.push(`floor/${key}`)")
+              v-btn(flat fab small icon)
+                v-icon arrow_forward_ios
           v-divider
 </template>
 

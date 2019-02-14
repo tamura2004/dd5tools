@@ -2,7 +2,7 @@
     div
       ListHeader(title="pc" :icon="close ? 'add' : 'check'" @click="close = !close")
       v-list(v-if="players")
-        v-list-tile(v-if="close && select.length === 1")
+        v-list-tile(v-if="close && select.length === 0")
           v-list-tile-title プレイヤーがいません（＋ボタンで選択）
         v-divider
         template(v-for="(player, key) in players" v-if="!close || select.includes(key)")
