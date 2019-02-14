@@ -26,6 +26,9 @@ import Floor from './views/Floor.vue';
 
 import Dungeon from './views/Dungeon.vue';
 import DungeonFloor from './views/dungeon/Floor.vue';
+import DungeonFloorMap from './views/dungeon/floor/Map.vue';
+import DungeonFloorPlayers from './views/dungeon/floor/Players.vue';
+import DungeonFloorMonsters from './views/dungeon/floor/Monsters.vue';
 import DungeonFloors from './views/dungeon/Floors.vue';
 import DungeonFloorForm from './views/dungeon/FloorForm.vue';
 
@@ -60,6 +63,17 @@ const router = new Router({
           path: 'floor/:id',
           component: DungeonFloor,
           props: true,
+          children: [
+            {
+              path: 'home',
+              props: true,
+              components: {
+                map: DungeonFloorMap,
+                monsters: DungeonFloorMonsters,
+                players: DungeonFloorPlayers,
+              },
+            },
+          ],
         },
         {
           path: 'floorForm/:id',

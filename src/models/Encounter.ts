@@ -1,12 +1,9 @@
 import Party from '@/models/Party';
 import { MONSTERS } from '@/data/MONSTERS';
 import { Monster } from '@/models/Monster';
-import Table from '@/models/Table';
-import List from '@/models/List';
 import { Difficulty, NUM_MODIFY, CR, BASE_EXP } from '@/data/DATA';
 
 export default class Encounter {
-
   public party: Party;
   public diff: Difficulty;
 
@@ -14,6 +11,7 @@ export default class Encounter {
     this.party = party;
     this.diff = diff;
   }
+
   public monster(): Monster {
     const num = this.monsterNum();
     const modify = NUM_MODIFY.lookupOver(num) || 1;

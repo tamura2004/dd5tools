@@ -12,8 +12,8 @@
           v-layout
             v-flex(xs8) {{ player.race }}/{{ player.background }}
             v-flex(xs4) PL:{{ player.name }}
-      v-list-tile-action
-        v-icon arrow_forward_ios
+      v-list-tile-action(@click="$emit('done', id)")
+        v-icon done
     v-divider
 
 </template>
