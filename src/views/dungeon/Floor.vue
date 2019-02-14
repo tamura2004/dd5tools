@@ -7,7 +7,7 @@
         v-flex(v-for="(sq, i) in floor.map" :key="i" xs2)
           v-card.pa-1(flat tile :class="sq ? 'grey lighten-1' : 'black lighten-1'")
             v-responsive(:aspect-ratio="1/1")
-              v-img(src="/img/012-devil.png" v-show="Math.random() < 0.1")
+              v-img(src="/img/012-devil.png" v-show="Math.random() < 0.1 && sq")
 </template>
 
 <script lang="ts">
