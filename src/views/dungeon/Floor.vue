@@ -5,11 +5,9 @@
     v-container(grid-list-md fluid)
       v-layout(row wrap)
         v-flex(v-for="(sq, i) in floor.map" :key="i" xs2)
-          v-card(flat tile :class="sq ? 'grey lighten-1' : 'black lighten-1'")
+          v-card.pa-1(flat tile :class="sq ? 'grey lighten-1' : 'black lighten-1'")
             v-responsive(:aspect-ratio="1/1")
-              v-card-title
-
-
+              v-img(src="/img/012-devil.png" v-show="Math.random() < 0.1")
 </template>
 
 <script lang="ts">
