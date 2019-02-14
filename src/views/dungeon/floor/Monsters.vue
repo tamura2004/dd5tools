@@ -1,5 +1,9 @@
 <template lang="pug">
+  div
     ListHeader(title="モンスター" add="#")
+    v-list
+      v-list-tile
+        v-list-tile-title モンスターがいません
 </template>
 
 <script lang="ts">

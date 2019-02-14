@@ -3,17 +3,12 @@
     v-container(fluid)
       h3 {{ floor.level }}.{{ floor.name}}
       p.mb-0 {{ floor.description }}
-    router-view(:id="id" name="players")
-    router-view(:id="id" name="monsters")
-    router-view(:id="id" name="map")
-    //- ListHeader(title="PC" add="save")
-    //- ListHeader(title="モンスター" done @done="save")
-    //- v-container(grid-list-md fluid)
-    //-   v-layout(row wrap)
-    //-     v-flex(v-for="(sq, i) in floor.map" :key="i" xs2)
-    //-       v-card.pa-1(flat tile :class="sq ? 'grey lighten-1' : 'black lighten-1'")
-    //-         v-responsive(:aspect-ratio="1/1")
-    //-           v-img(src="/img/012-devil.png" v-show="Math.random() < 0.1 && sq")
+    v-layout(row wrap)
+      v-flex(xs12 sm6)
+        router-view(:id="id" name="players")
+        router-view(:id="id" name="monsters")
+      v-flex(xs12 sm6)
+        router-view(:id="id" name="map")
 </template>
 
 <script lang="ts">

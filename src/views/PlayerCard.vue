@@ -38,7 +38,7 @@
             td.number {{ player.saves.includes(abilityLabel[n-1]) ? '●' : '' }}
             td.skill {{ skillDisplay[n-1].join('、') }}
 
-        ListHeader(title="武器" add="/weapons")
+        ListHeader(title="武器" icon="add" @click="$router.push('/weapons')")
         template(v-for="(w, i) in weapons")
           v-list-tile
             v-list-tile-action(@click="$store.dispatch('deleteWeapon', i)"): v-icon clear
@@ -48,7 +48,7 @@
             v-list-tile-action: v-icon keyboard_arrow_right
           v-divider
 
-        ListHeader(title="呪文" add="/spells")
+        ListHeader(title="呪文" icon="add" @click="$router.push('/spells')")
         template(v-for="(spell, key) of spells")
           v-list-tile
             v-list-tile-action(@click="$store.dispatch('deleteSpell', key)"): v-icon clear
@@ -60,7 +60,7 @@
           v-divider
 
 
-        ListHeader(title="特技・クラス能力")
+        ListHeader(title="特技・クラス能力" icon="add")
         v-list-tile
           v-list-tile-content
             v-list-tile-title {{ player.memo }}

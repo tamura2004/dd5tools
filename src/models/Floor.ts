@@ -1,6 +1,3 @@
-import { Player } from '@/models/Player';
-import { Monster } from '@/models/Monster';
-
 function d(n: number): number {
   return Math.floor(Math.random() * n);
 }
@@ -11,8 +8,8 @@ export default class Floor {
   public name?: string;
   public dm?: string;
   public description?: string;
-  public players: Player[] = [];
-  public monsters: Monster[] = [];
+  public playerIds: string[] = [];
+  public monsterIds: string[] = [];
   public map: boolean[] = [];
 
   constructor(init: Partial<Floor>) {

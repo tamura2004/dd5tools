@@ -1,6 +1,6 @@
 <template lang="pug">
   v-content(app)
-    ListHeader(title="階層" done @done="save")
+    ListHeader(title="階層" icon="done" @click="save")
     v-container.pa-2
       v-form(v-model="valid" ref="form")
         v-layout(row wrap)
