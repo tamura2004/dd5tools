@@ -6,6 +6,8 @@
         v-flex(xs1 v-else): v-icon(dark @click="close = !close") check
 
       v-list(v-if="players")
+        v-list-tile(v-if="close && select.length === 1")
+          v-list-tile-title プレイヤーがいません（＋ボタンで選択）
         template(v-for="(player, key) in players")
           v-list-tile(v-if="!close || select.includes(key)")
             v-list-tile-avatar(tile)

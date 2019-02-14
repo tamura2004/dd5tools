@@ -65,7 +65,7 @@ const router = new Router({
           props: true,
           children: [
             {
-              path: 'home',
+              path: '',
               props: true,
               components: {
                 map: DungeonFloorMap,
