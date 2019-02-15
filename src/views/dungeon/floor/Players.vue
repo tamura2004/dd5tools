@@ -5,7 +5,7 @@
         v-list-tile(v-if="close && select.length === 0")
           v-list-tile-title プレイヤーがいません（＋ボタンで選択）
         v-divider
-        PlayerList(v-for="(player, key) in players" v-if="!close || select.includes(key)")
+        PlayerList(v-for="(player, key) in players" :id="key" v-if="!close || select.includes(key)")
           v-list-tile-action(v-if="!close")
             v-switch(v-model="select" :value="key" color="primary")
 </template>
