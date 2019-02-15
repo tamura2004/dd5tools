@@ -7,8 +7,14 @@
       v-btn(icon @click="$router.push('/playerForm/new')"): v-icon add
     v-content(app)
       v-list(two-line)
-        PlayerList(v-for="(player, key) in players" :id="key" :key="key")
-      p.ma-1 icon image is designed by Freepik from Flaticon
+        PlayerList(
+          v-for="(player, key) in players"
+          :id="key"
+          :key="key"
+          @click="$router.push(`/player/${key}`)"
+        )
+          v-icon arrow_forward_ios
+      p.ma-1 designed by Freepik from Flaticon
 
 </template>
 

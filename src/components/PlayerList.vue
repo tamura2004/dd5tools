@@ -1,9 +1,9 @@
 <template lang="pug">
   div
-    v-list-tile(:to="`/player/${this.id}`")
-      v-list-tile-avatar(tile)
+    v-list-tile
+      v-list-tile-avatar(tile @click="$emit('avatarClick')")
         v-img(:src="`/img/${player.avatar}`")
-      v-list-tile-content
+      v-list-tile-content(@click="$emit('click')")
         v-list-tile-title
           v-layout
             v-flex.text-truncate(xs6) {{ player.characterName }}
@@ -12,8 +12,7 @@
           v-layout
             v-flex(xs8) {{ player.race }}/{{ player.background }}
             v-flex(xs4) PL:{{ player.name }}
-      v-list-tile-action(@click="$emit('done', id)")
-        v-icon done
+      slot
     v-divider
 
 </template>
