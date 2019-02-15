@@ -7,6 +7,7 @@
           v-list-tile-title モンスターがいません
           v-list-tile-sub-title +ボタンで選択
       MonsterTile(v-if="close && monster" :monster="monster")
+        v-img(slot="avatar" src="/img/012-devil.png")
       template(v-for="(monster, i) in monsters" v-if="!close")
         MonsterTile(:key="i" :monster="monster")
           v-btn.font-weight-bold(slot="avatar" fab dark small :color="color(i)") {{ difficulty(i) }}
@@ -34,10 +35,13 @@
   export default class DungeonFloorMonsters extends Vue {
     @Prop() private id!: string;
     private close: boolean = true;
-    private monster: Monster | null = null;
 
     private get floor(): Floor {
       return this.$store.state.floors[this.id];
+    }
+
+    private get monster(): any {
+      return this.floor.monster;
     }
 
     private get players(): { [key: string]: Player } {
@@ -68,10 +72,10 @@
       this.floor.setMonster(monster);
       db.collection('floors').doc(this.id).update({
         map: this.floor.map,
+        monster: {...monster},
       })
         .then()
         .catch((err) => alert(err));
-      this.monster = monster;
     }
 
     private color(row: number): string {

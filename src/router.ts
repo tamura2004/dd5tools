@@ -71,6 +71,7 @@ const router = new Router({
                 map: DungeonFloorMap,
                 monsters: DungeonFloorMonsters,
                 players: DungeonFloorPlayers,
+                sheet: MonsterShow,
               },
             },
           ],

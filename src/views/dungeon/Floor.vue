@@ -4,9 +4,11 @@
       h3 {{ floor.level }}.{{ floor.name}}
       p.mb-0 {{ floor.description }}
     v-layout(row wrap)
-      v-flex(xs12 sm8)
+      v-flex(xs12 sm4)
         router-view(:id="id" name="players")
         router-view(:id="id" name="monsters")
+      v-flex(xs12 sm4)
+        router-view(:id="id" name="sheet")
       v-flex(xs12 sm4)
         router-view(:id="id" name="map")
 </template>
