@@ -1,7 +1,7 @@
 <template lang="pug">
 v-app
   v-card
-    v-toolbar(color="primary" dark)
+    v-toolbar(app flat dark dense)
       v-btn(icon to="/monsters"): v-icon clear
       v-toolbar-title {{ monster.name }}
     v-card-title.pa-2

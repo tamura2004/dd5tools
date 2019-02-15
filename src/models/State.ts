@@ -10,7 +10,7 @@ import Dungeon from '@/models/Dungeon';
 import Floor from '@/models/Floor';
 
 export default class State {
-    public party: Party = new Party([[0, 0], [0, 0], [0, 0], [0, 0]]);
+    public party: Party = new Party();
     public monsters: Monster[] = [];
     public players: { [key: string]: Player } = {};
     public spells: { [key: string]: Spell } = {};

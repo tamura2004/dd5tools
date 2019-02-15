@@ -1,7 +1,8 @@
 <template lang="pug">
-  v-layout
-    v-img(:src="`/img/${value}`" @click="dialog=true" v-if="value")
-    v-btn(outline fab small @click="dialog=true" v-else).mr-4: v-icon people
+  div
+    v-list-tile-avatar
+      v-img(:src="`/img/${value}`" @click="dialog=true" v-if="value")
+      v-btn(outline fab small @click="dialog=true" v-else).mr-4: v-icon people
     v-dialog(v-model="dialog")
       v-card
         v-card-title.pb-0 クリックしてアイコンを選択してください

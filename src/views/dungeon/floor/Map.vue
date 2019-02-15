@@ -2,9 +2,9 @@
   v-container(grid-list-md fluid v-if="floor")
     v-layout(row wrap)
       v-flex(v-for="(sq, i) in floor.map" :key="i" xs2)
-        v-card.pa-1(flat tile :class="sq ? 'grey lighten-1' : 'black lighten-1'")
+        v-card.pa-1(flat tile :class="sq === 1 ? 'black lighten-1' : 'grey lighten-1'")
           v-responsive(:aspect-ratio="1/1")
-            v-img(src="/img/012-devil.png" v-show="Math.random() < 0.1 && sq")
+            v-img(src="/img/012-devil.png" v-show="sq === 2")
 </template>
 
 <script lang="ts">
