@@ -1,6 +1,12 @@
 <template lang="pug">
-  transition(name="router" mode="out-in")
-    router-view
+  div
+    transition(name="router" mode="out-in")
+      router-view
+    v-card(height="200px" flat)
+      v-bottom-nav(absolute)
+        v-btn(color="teal" flat to="/")
+          span Home
+          v-icon home
 </template>
 
 <script lang="ts">

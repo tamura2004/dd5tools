@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-list(dense)
+  v-list(dense v-if="monster")
     v-list-tile
       v-list-tile-title {{ monster.name }}
     v-divider
@@ -75,7 +75,8 @@
         }
       } else {
         const init: any = this.$store.state.floors[this.id].monster;
-        return new Monster(init, init.num);
+        const num = init ? init.num : 1;
+        return new Monster(init, num);
       }
     }
   }

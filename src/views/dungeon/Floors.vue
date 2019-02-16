@@ -1,6 +1,6 @@
 <template lang="pug">
   v-content
-    ListHeader(title="階層" add="floorForm/new")
+    ListHeader(title="階層" icon="add" @click="$router.push('floorForm/new')")
     v-list(two-line)
       template(v-for="(floor, key) in floors")
         template(v-if="floor.dungeonId === dungeonId")
