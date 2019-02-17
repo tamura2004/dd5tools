@@ -34,7 +34,7 @@
               v-select(
                 label="レベル"
                 :items="[1,2,3,4,5,6,7,8,9,10]"
-                v-model="player.level"
+                v-model.number="player.level"
                 :rules="levelRules"
               )
             v-flex.px-2(xs6 md3)
@@ -45,12 +45,7 @@
                 :rules="raceRules"
               )
             v-flex.px-2(xs4 md3)
-              v-select(
-                label="属性"
-                :items="alignment"
-                v-model="player.alignment"
-                :rules="alignmentRules"
-              )
+              SelectAlignment(v-model="player.alignment")
             v-flex.px-2(xs4 md2)
               v-select(
                 label="背景"
@@ -61,7 +56,7 @@
             v-flex.px-2(xs2 md2)
               v-text-field(
                 label="hp"
-                v-model="player.hp"
+                v-model.number="player.maxHp"
                 mask="###"
                 :rules="hpRules"
               )
@@ -118,6 +113,7 @@ import {
 } from '@/data/DATA';
 import WeaponList from '@/components/WeaponList.vue';
 import IconSelect from '@/components/IconSelect.vue';
+import SelectAlignment from '@/components/select/Alignment.vue';
 import Vuetify from 'vuetify/lib';
 import { db } from '@/plugins/firebase';
 
@@ -127,6 +123,7 @@ type Validation = (v: string) => boolean | string;
   components: {
     WeaponList,
     IconSelect,
+    SelectAlignment,
   },
 })
 export default class PlayerForm extends Vue {
@@ -211,6 +208,7 @@ export default class PlayerForm extends Vue {
 
   private save(): void {
     if (this.valid) {
+      this.player.hp = this.player.maxHp;
       if (this.id !== 'new') {
         db.collection('players').doc(this.id).set({...this.player})
           .then((doc) => this.$router.push('/players'))
@@ -231,13 +229,10 @@ export default class PlayerForm extends Vue {
       this.player.rollAbility();
       this.player.exp = 0;
     } else {
-      db.collection('players').doc(this.id).get()
-        .then((doc) => {
-          this.player = new Player({
-            ...doc.data(),
-          });
-        })
-        .catch((e) => alert(e));
+      const player = this.$store.state.players[this.id];
+      if (player !== undefined) {
+        Object.assign(this.player, player);
+      }
     }
   }
 }

@@ -23,6 +23,10 @@
       true,
       "allow-leading-underscore",
       "allow-pascal-case"
+    ],
+    "no-empty": [
+      true,
+      "allor-empty-functions"
     ]
   }
 }

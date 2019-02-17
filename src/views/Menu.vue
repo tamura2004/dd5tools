@@ -1,6 +1,6 @@
 <template lang="pug">
   v-app
-    v-toolbar(app dark flat)
+    v-toolbar(app dark flat dense)
       v-toolbar-side-icon(@click.stop="drawer = !drawer")
       v-toolbar-title.headline
         span D&D5eツール

@@ -1,19 +1,33 @@
 <template lang="pug">
   div
     v-list-tile
-      //- v-list-tile-avatar(tile @click="$emit('avatarClick')")
-      //-   v-img(:src="`/img/${player.avatar}`")
+      v-list-tile-action
+        v-container.ma-0.pa-0
+          v-layout(justify-center)
+            .caption INIT
+          v-layout(justify-center)
+            .display-1.red--text {{ hp }}
       Avatar(v-model="avatar")
       v-list-tile-content(@click="$emit('click')")
         v-list-tile-title
           v-layout
-            v-flex.text-truncate(xs6) {{ player.characterName }}
-            v-flex(xs6) {{ player.klass }}{{ player.level }}
+            v-flex.text-truncate(xs9) {{ player.characterName }}
+            v-flex.caption(xs3) PL:{{ player.name }}
         v-list-tile-sub-title
           v-layout
-            v-flex(xs8) {{ player.race }}/{{ player.background }}
-            v-flex(xs4) PL:{{ player.name }}
-      slot
+            v-flex.text-truncate(xs6) {{ player.klass }}{{ player.level }}
+            v-flex.text-truncate(xs6) {{ player.race }}/{{ player.background }}
+        v-list-tile-sub-title
+          v-layout
+            v-flex(xs3) {{ player.ac }}
+            v-flex(xs3) AC:{{ player.ac }}
+            v-flex(xs3) hp:{{ player.maxHp }}
+      v-list-tile-action
+        v-container.ma-0.pa-0
+          v-layout(justify-center)
+            .caption 残hp
+          v-layout(justify-center)
+            .display-1.red--text {{ hp }}
     v-divider
 
 </template>
@@ -32,6 +46,12 @@ import Avatar from '@/components/Avatar.vue';
 })
 export default class PlayerList extends Vue {
   @Prop() private id!: string;
+
+  private get hp(): number | undefined {
+    if (this.player !== undefined) {
+      return this.player.hp;
+    }
+  }
 
   private get avatar(): string | undefined {
     if (this.player !== undefined) {

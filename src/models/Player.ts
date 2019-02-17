@@ -16,6 +16,7 @@ export class Player {
   public background?: string = undefined;
   public race?: string = undefined;
   public alignment?: string = undefined;
+  public maxHp?: number = 1;
   public hp?: number = 1;
   public exp?: number = 0;
   public baseAbility: number[] = [];

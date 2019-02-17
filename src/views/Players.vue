@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app
+  v-app(style="border: 1px solid black")
     v-toolbar(app flat dark dense)
       v-btn(icon @click="$router.go(-1)"): v-icon arrow_back_ios
       v-toolbar-title.text-xs-center ＰＣ一覧
