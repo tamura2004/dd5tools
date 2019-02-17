@@ -23,7 +23,6 @@
     ];
     @Emit()
     private input(value: string) {
-      this.$emit('input', value)
     }
   }
 </script>
