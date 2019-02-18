@@ -27,7 +27,7 @@
           v-layout(justify-center)
             .caption 残hp
           v-layout(justify-center)
-            .display-1.red--text {{ hp }}
+            LifeCounter(v-model="hp")
     v-divider
 
 </template>
@@ -37,11 +37,12 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import { Player } from '@/models/Player';
 import { db } from '@/plugins/firebase';
 import Avatar from '@/components/Avatar.vue';
-// import { AVATER } from '@/data/DATA';
+import LifeCounter from '@/components/LifeCounter.vue';
 
 @Component({
   components: {
     Avatar,
+    LifeCounter,
   },
 })
 export default class PlayerList extends Vue {
@@ -50,6 +51,15 @@ export default class PlayerList extends Vue {
   private get hp(): number | undefined {
     if (this.player !== undefined) {
       return this.player.hp;
+    }
+  }
+
+  private set hp(value: number | undefined) {
+    if (this.player !== undefined) {
+      db.collection('players').doc(this.id).update({
+        hp: value,
+      })
+        .catch((err) => alert(err));
     }
   }
 
