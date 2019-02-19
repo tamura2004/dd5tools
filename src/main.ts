@@ -1,20 +1,29 @@
 import Vue from 'vue';
 import './plugins/vuetify';
-import App from './App.vue';
+import './registerServiceWorker';
 import router from './router';
 import store from './store';
-import './registerServiceWorker';
+import App from './App.vue';
+
+import { Player } from '@/models/Player';
+import Spell from '@/models/Spell';
+import Item from '@/models/Item';
+import Npc from '@/models/Npc';
+import Place from '@/models/Place';
+import Dungeon from '@/models/Dungeon';
+import Floor from '@/models/Floor';
+
+import { listen } from '@/plugins/firebase';
 
 Vue.config.productionTip = false;
 
-store.dispatch('listenPlayers');
-store.dispatch('listenSpells');
-store.dispatch('listenItems');
-store.dispatch('listenNpcs');
-store.dispatch('listenPlaces');
-store.dispatch('listenDungeons');
-store.dispatch('listenFloors');
-store.dispatch('listenGames');
+listen(store, Player);
+listen(store, Spell);
+listen(store, Item);
+listen(store, Npc);
+listen(store, Place);
+listen(store, Dungeon);
+listen(store, Floor);
 
 new Vue({
   router,
