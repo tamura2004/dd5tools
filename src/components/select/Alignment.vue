@@ -21,8 +21,10 @@
     private alignmentRules: Validation[] = [
       (v) => !!v || '属性を選択してください',
     ];
+  
     @Emit()
     private input(value: string) {
+      const x = 0;
     }
   }
 </script>
