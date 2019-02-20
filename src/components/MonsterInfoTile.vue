@@ -1,7 +1,7 @@
 <template lang="pug">
   v-list-tile
     v-list-tile-avatar(tile)
-      v-img(:src="`/img/${info.avatar}`")
+      slot(name="avatar")
     v-list-tile-content(@click="$emit('click', id)")
       v-list-tile-title
         v-layout

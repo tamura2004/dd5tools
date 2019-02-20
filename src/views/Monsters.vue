@@ -7,6 +7,7 @@
       v-list(three-line)
         template(v-for="(monsterInfo, id) in monsterInfos")
           MonsterInfoTile(:id="id" :key="id" @click="go(id)")
+            v-img(slot="avatar" :src="`/img/${monsterInfo.avatar}`")
             v-btn(slot="action" flat small fab @click="go(id)")
               v-icon arrow_forward_ios
           v-divider
