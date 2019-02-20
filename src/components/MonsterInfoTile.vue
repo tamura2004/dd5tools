@@ -29,7 +29,7 @@ export default class MonsterInfoTile extends Vue {
   @Prop() private id!: number;
   private get info(): MonsterInfo {
     return MONSTER_INFOS[this.id];
-  } 
+  }
 }
 </script>
 

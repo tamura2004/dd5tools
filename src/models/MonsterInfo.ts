@@ -37,7 +37,7 @@ export default class MonsterInfo {
   }
   public get avatar(): string {
     let avatar = '';
-    switch(this.type) {
+    switch (this.type) {
       case '植物':
         avatar = '004-tree-1.png';
         break;
