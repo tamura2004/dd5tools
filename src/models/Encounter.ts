@@ -1,6 +1,6 @@
 import Party from '@/models/Party';
-import { MONSTERS } from '@/data/MONSTERS';
-import { Monster } from '@/models/Monster';
+import MONSTER_INFOS from '@/data/MONSTERS';
+import MonsterInfo from '@/models/MonsterInfo';
 import { Difficulty, NUM_MODIFY, CR, BASE_EXP } from '@/data/DATA';
 
 export default class Encounter {
@@ -12,15 +12,15 @@ export default class Encounter {
     this.diff = diff;
   }
 
-  public monster(): Monster {
-    const num = this.monsterNum();
-    const modify = NUM_MODIFY.lookupOver(num) || 1;
-    const unitExp = this.party.totalExp(this.diff) / modify / num;
-    const exp = CR.lookupOver(unitExp) || 10;
-    const monsters = MONSTERS.filter((m) => m.exp === exp);
-    const init = monsters[Math.floor(Math.random() * monsters.length)];
-    return new Monster(init, num);
-  }
+  // public monster(): MonsterInfo {
+  //   const num = this.monsterNum();
+  //   const modify = NUM_MODIFY.lookupOver(num) || 1;
+  //   const unitExp = this.party.totalExp(this.diff) / modify / num;
+  //   const exp = CR.lookupOver(unitExp) || 10;
+  //   const monsters = MONSTERS.filter((m) => m.exp === exp);
+  //   const init = monsters[Math.floor(Math.random() * monsters.length)];
+  //   return new Monster(init, num);
+  // }
 
   private monsterNum(): number {
     return Math.floor(Math.random() * this.maxNumber() + 1);

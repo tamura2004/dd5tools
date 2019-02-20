@@ -45,7 +45,7 @@ import LifeCounter from '@/components/LifeCounter.vue';
     LifeCounter,
   },
 })
-export default class PlayerList extends Vue {
+export default class PlayerTile extends Vue {
   @Prop() private id!: string;
 
   private get hp(): number | undefined {
@@ -55,6 +55,22 @@ export default class PlayerList extends Vue {
   }
 
   private set hp(value: number | undefined) {
+    if (
+      value === undefined ||
+      this.player === undefined ||
+      this.player.maxHp === undefined
+    ) {
+      return;
+    }
+
+    if (value < 0) {
+      value = 0;
+    }
+
+    if (value > this.player.maxHp) {
+      value = this.player.maxHp;
+    }
+
     if (this.player !== undefined) {
       db.collection('players').doc(this.id).update({
         hp: value,
@@ -74,7 +90,6 @@ export default class PlayerList extends Vue {
       db.collection('players').doc(this.id).update({
         avatar: value,
       })
-        .then()
         .catch((err) => alert(err));
     }
   }

@@ -4,30 +4,30 @@
       v-btn(icon to="/"): v-icon arrow_back_ios
       v-toolbar-title.text-xs-center モンスター
     v-content(app)
-      v-list
-        template(v-for="monster in monsters")
-          MonsterTile(:name="monster.name" num="1" :key="monster.name" @click="go(monster)")
-            v-btn(slot="action" flat small fab @click="go(monster)")
+      v-list(three-line)
+        template(v-for="(monsterInfo, id) in monsterInfos")
+          MonsterInfoTile(:id="id" :key="id" @click="go(id)")
+            v-btn(slot="action" flat small fab @click="go(id)")
               v-icon arrow_forward_ios
           v-divider
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import { MONSTERS } from '@/data/MONSTERS';
-  import { Monster } from '@/models/Monster';
-  import MonsterTile from '@/components/MonsterTile.vue';
+  import MONSTER_INFOS from '@/data/MONSTERS';
+  import MonsterInfo from '@/models/MonsterInfo';
+  import MonsterInfoTile from '@/components/MonsterInfoTile.vue';
 
   @Component({
     components: {
-      MonsterTile,
+      MonsterInfoTile,
     },
   })
   export default class Monsters extends Vue {
-    private monsters = MONSTERS.map((init) => new Monster(init, 1));
+    private monsterInfos: MonsterInfo[] = MONSTER_INFOS;
 
-    private go(monster: Monster): void {
-      this.$router.push(`/monster/${monster.name}`);
+    private go(index: number): void {
+      this.$router.push(`/monster/${index}`);
     }
   }
 </script>

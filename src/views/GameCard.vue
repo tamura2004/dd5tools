@@ -10,7 +10,7 @@
       v-divider
       h3.ma-2 参加ＰＣ
       v-list(two-line)
-        PlayerList(v-for="player in game.players" :key="player.id" :player="player")
+        PlayerTile(v-for="player in game.players" :key="player.id" :player="player")
 
       v-btn(absolute dark fab bottom right color="green" @click="edit")
         v-icon edit
@@ -20,11 +20,11 @@
 <script lang="ts">
   import { Component, Vue, Prop } from 'vue-property-decorator';
   import { Game } from '@/models/Game';
-  import PlayerList from '@/components/PlayerList.vue';
+  import PlayerTile from '@/components/PlayerTile.vue';
 
   @Component({
     components: {
-      PlayerList,
+      PlayerTile,
     },
   })
   export default class GameCard extends Vue {

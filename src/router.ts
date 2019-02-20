@@ -15,7 +15,7 @@ import PlaceForm from './views/PlaceForm.vue';
 import ItemForm from './views/ItemForm.vue';
 import DungeonForm from './views/DungeonForm.vue';
 import NpcForm from './views/NpcForm.vue';
-import MonsterShow from './views/MonsterShow.vue';
+import MonsterInfoSheet from './views/MonsterInfoSheet.vue';
 import PlayerCard from './views/PlayerCard.vue';
 import PlayerForm from './views/PlayerForm.vue';
 import Games from './views/Games.vue';
@@ -71,7 +71,7 @@ const router = new Router({
                 map: DungeonFloorMap,
                 monsters: DungeonFloorMonsters,
                 players: DungeonFloorPlayers,
-                sheet: MonsterShow,
+                sheet: MonsterInfoSheet,
               },
             },
           ],
@@ -129,9 +129,9 @@ const router = new Router({
       component: Parties,
     },
     {
-      path: '/monster/:name',
+      path: '/monster/:id',
       name: 'monster',
-      component: MonsterShow,
+      component: MonsterInfoSheet,
       props: true,
     },
     {

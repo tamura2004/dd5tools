@@ -1,7 +1,7 @@
 <template lang="pug">
   v-select(
-    label="属性"
-    :items="alignments"
+    label="背景"
+    :items="background"
     :value="value"
     @input="input"
     :rules="required"
@@ -11,13 +11,13 @@
 <script lang="ts">
   import { Component } from 'vue-property-decorator';
   import SelectBase from '@/components/select/Base.vue';
-  import { ALIGNMENT } from '@/data/DATA';
+  import { BACKGROUND } from '@/data/DATA';
 
   type Validation = (v: string) => boolean | string;
 
   @Component
-  export default class SelectAlignment extends SelectBase {
-    private alignments: string[] = ALIGNMENT;
+  export default class SelectBackground extends SelectBase {
+    private background: string[] = BACKGROUND;
   }
 </script>
 

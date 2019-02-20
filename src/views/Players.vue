@@ -7,7 +7,7 @@
       v-btn(icon @click="$router.push('/playerForm/new')"): v-icon add
     v-content(app)
       v-list(two-line)
-        PlayerList(
+        PlayerTile(
           v-for="(player, key) in players"
           :id="key"
           :key="key"
@@ -20,12 +20,12 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import PlayerList from '@/components/PlayerList.vue';
+  import PlayerTile from '@/components/PlayerTile.vue';
   import { db } from '@/plugins/firebase';
 
   @Component({
     components: {
-      PlayerList,
+      PlayerTile,
     },
   })
   export default class Players extends Vue {

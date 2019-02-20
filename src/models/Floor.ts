@@ -1,4 +1,4 @@
-import { Monster } from '@/models/Monster';
+import MonsterInfo from '@/models/MonsterInfo';
 
 function d(n: number): number {
   return Math.floor(Math.random() * n);
@@ -17,30 +17,30 @@ export default class Floor {
   public dm?: string;
   public description?: string;
   public playerIds: string[] = [];
-  public monster?: Partial<Monster>;
+  // public monster?: Partial<Monster>;
   public map: M[] = [];
 
   constructor(init: Partial<Floor>) {
     Object.assign(this, init);
   }
 
-  public setMonster(monster: Monster): void {
-    for (let i = 0; i < 48; i++) {
-      if (this.map[i] === M.MONSTER) {
-        this.map[i] = M.EMPTY;
-      }
-    }
-    let count = 0;
-    const num = monster.num;
-    while (count < num) {
-      const pos = d(this.map.length);
-      if (this.map[pos] === M.EMPTY) {
-        this.map[pos] = M.MONSTER;
-        count++;
-      }
-    }
-    this.monster = monster;
-  }
+  // public setMonster(monster: Monster): void {
+  //   for (let i = 0; i < 48; i++) {
+  //     if (this.map[i] === M.MONSTER) {
+  //       this.map[i] = M.EMPTY;
+  //     }
+  //   }
+  //   let count = 0;
+  //   const num = monster.num;
+  //   while (count < num) {
+  //     const pos = d(this.map.length);
+  //     if (this.map[pos] === M.EMPTY) {
+  //       this.map[pos] = M.MONSTER;
+  //       count++;
+  //     }
+  //   }
+  //   this.monster = monster;
+  // }
 
   public initializeMap(): void {
     const WIDTH = 6;

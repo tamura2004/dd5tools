@@ -1,13 +1,13 @@
-import { IMonster } from '@/models/Monster';
+import MonsterInfo from '@/models/MonsterInfo';
 
-export const MONSTERS: IMonster[] = [
+const MONSTER_DATA: Array<Partial<MonsterInfo>> = [
   {
     name: 'アウェイクンド・シュラブ',
     size: '小型',
     type: '植物',
     alignment: '無属性',
     ac: 9,
-    hp: 10,
+    maxHp: 10,
     mv: '20フィート',
     ability: [
       3,
@@ -38,7 +38,7 @@ export const MONSTERS: IMonster[] = [
     type: '植物',
     alignment: '無属性',
     ac: 13,
-    hp: 59,
+    maxHp: 59,
     mv: '20フィート',
     ability: [
       19,
@@ -69,7 +69,7 @@ export const MONSTERS: IMonster[] = [
     type: 'エレメンタル',
     alignment: '真なる中立',
     ac: 17,
-    hp: 126,
+    maxHp: 126,
     mv: '30フィート、穴掘り30フィート',
     ability: [
       20,
@@ -104,7 +104,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '無属性',
     ac: 13,
-    hp: 59,
+    maxHp: 59,
     mv: '40フィート',
     ability: [
       20,
@@ -136,7 +136,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 1,
+    maxHp: 1,
     mv: '5フィート、飛行60フィート',
     ability: [
       3,
@@ -177,7 +177,7 @@ export const MONSTERS: IMonster[] = [
     type: 'ドラゴン',
     alignment: '混沌にして悪',
     ac: 19,
-    hp: 256,
+    maxHp: 256,
     mv: '40フィート、登攀40フィート、飛行80フィート',
     ability: [
       27,
@@ -216,7 +216,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 51,
+    maxHp: 51,
     mv: '60フィート',
     ability: [
       19,
@@ -247,7 +247,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 15,
-    hp: 68,
+    maxHp: 68,
     mv: '30フィート',
     ability: [
       19,
@@ -275,7 +275,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 19,
+    maxHp: 19,
     mv: '50フィート',
     ability: [
       14,
@@ -303,7 +303,7 @@ export const MONSTERS: IMonster[] = [
     type: '人造',
     alignment: '無属性',
     ac: 18,
-    hp: 33,
+    maxHp: 33,
     mv: '25フィート',
     ability: [
       14,
@@ -339,7 +339,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 10,
-    hp: 5,
+    maxHp: 5,
     mv: '10フィート、飛行50フィート',
     ability: [
       7,
@@ -369,7 +369,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 1,
+    maxHp: 1,
     mv: '30フィート',
     ability: [
       3,
@@ -398,7 +398,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 3,
+    maxHp: 3,
     mv: '10フィート、飛行60フィート',
     ability: [
       6,
@@ -427,7 +427,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '混沌にして悪',
     ac: 12,
-    hp: 51,
+    maxHp: 51,
     mv: '40フィート、登攀40フィート',
     ability: [
       18,
@@ -461,7 +461,7 @@ export const MONSTERS: IMonster[] = [
     type: 'エレメンタル',
     alignment: '真なる中立',
     ac: 14,
-    hp: 114,
+    maxHp: 114,
     mv: '30フィート、水泳90フィート',
     ability: [
       18,
@@ -497,7 +497,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '中立にして悪',
     ac: 13,
-    hp: 75,
+    maxHp: 75,
     mv: '50フィート',
     ability: [
       18,
@@ -531,7 +531,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '中立にして悪',
     ac: 13,
-    hp: 26,
+    maxHp: 26,
     mv: '50フィート',
     ability: [
       16,
@@ -561,7 +561,7 @@ export const MONSTERS: IMonster[] = [
     type: 'エレメンタル',
     alignment: '真なる中立',
     ac: 15,
-    hp: 90,
+    maxHp: 90,
     mv: '0フィート、飛行90フィート（ホバリング）',
     ability: [
       14,
@@ -597,7 +597,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 19,
+    maxHp: 19,
     mv: '60フィート',
     ability: [
       18,
@@ -625,7 +625,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 11,
+    maxHp: 11,
     mv: '40フィート',
     ability: [
       12,
@@ -655,7 +655,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 76,
+    maxHp: 76,
     mv: '40フィート',
     ability: [
       22,
@@ -684,7 +684,7 @@ export const MONSTERS: IMonster[] = [
     type: '巨人',
     alignment: '混沌にして悪',
     ac: 11,
-    hp: 59,
+    maxHp: 59,
     mv: '40フィート',
     ability: [
       19,
@@ -713,7 +713,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 19,
+    maxHp: 19,
     mv: '30フィート、登攀30フィート',
     ability: [
       16,
@@ -743,7 +743,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 10,
-    hp: 13,
+    maxHp: 13,
     mv: '50フィート',
     ability: [
       16,
@@ -772,7 +772,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 3,
+    maxHp: 3,
     mv: '5フィート、水泳30フィート',
     ability: [
       4,
@@ -804,7 +804,7 @@ export const MONSTERS: IMonster[] = [
     type: '粘体',
     alignment: '無属性',
     ac: 8,
-    hp: 45,
+    maxHp: 45,
     mv: '10フィート、登攀10フィート',
     ability: [
       15,
@@ -839,7 +839,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '混沌にして悪',
     ac: 13,
-    hp: 15,
+    maxHp: 15,
     mv: '30フィート',
     ability: [
       16,
@@ -870,7 +870,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '混沌にして悪',
     ac: 14,
-    hp: 114,
+    maxHp: 114,
     mv: '30フィート、飛行60フィート',
     ability: [
       19,
@@ -903,7 +903,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 2,
+    maxHp: 2,
     mv: '40フィート、登攀30フィート',
     ability: [
       3,
@@ -932,7 +932,7 @@ export const MONSTERS: IMonster[] = [
     type: 'エレメンタル',
     alignment: '混沌にして悪',
     ac: 15,
-    hp: 52,
+    maxHp: 52,
     mv: '30フィート、飛行60フィート',
     ability: [
       15,
@@ -967,7 +967,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 90,
+    maxHp: 90,
     mv: '0フィート、水泳60フィート',
     ability: [
       19,
@@ -998,7 +998,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 1,
+    maxHp: 1,
     mv: '0フィート、水泳40フィート',
     ability: [
       2,
@@ -1028,7 +1028,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 9,
-    hp: 15,
+    maxHp: 15,
     mv: '50フィート',
     ability: [
       16,
@@ -1054,7 +1054,7 @@ export const MONSTERS: IMonster[] = [
     type: '巨人',
     alignment: '混沌にして中立',
     ac: 14,
-    hp: 138,
+    maxHp: 138,
     mv: '30フィート',
     ability: [
       22,
@@ -1085,7 +1085,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '真なる中立',
     ac: 14,
-    hp: 27,
+    maxHp: 27,
     mv: '30フィート、登攀30フィート',
     ability: [
       14,
@@ -1117,7 +1117,7 @@ export const MONSTERS: IMonster[] = [
     type: 'アンデッド',
     alignment: '混沌にして悪',
     ac: 12,
-    hp: 22,
+    maxHp: 22,
     mv: '30フィート',
     ability: [
       13,
@@ -1148,7 +1148,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 2,
+    maxHp: 2,
     mv: '20フィート、水泳20フィート',
     ability: [
       2,
@@ -1177,7 +1177,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '中立にして善',
     ac: 12,
-    hp: 45,
+    maxHp: 45,
     mv: '50フィート',
     ability: [
       18,
@@ -1210,7 +1210,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '無属性',
     ac: 12,
-    hp: 59,
+    maxHp: 59,
     mv: '30フィート、飛行80フィート',
     ability: [
       18,
@@ -1242,7 +1242,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 19,
+    maxHp: 19,
     mv: '20フィート、水泳30フィート',
     ability: [
       15,
@@ -1273,7 +1273,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 10,
-    hp: 4,
+    maxHp: 4,
     mv: '40フィート',
     ability: [
       12,
@@ -1302,7 +1302,7 @@ export const MONSTERS: IMonster[] = [
     type: 'アンデッド',
     alignment: '任意の属性',
     ac: 11,
-    hp: 45,
+    maxHp: 45,
     mv: '0フィート、飛行40フィート',
     ability: [
       7,
@@ -1338,7 +1338,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '秩序にして悪',
     ac: 12,
-    hp: 5,
+    maxHp: 5,
     mv: '30フィート',
     ability: [
       7,
@@ -1369,7 +1369,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 13,
+    maxHp: 13,
     mv: '30フィート、水泳30フィート',
     ability: [
       15,
@@ -1396,7 +1396,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '無属性',
     ac: 11,
-    hp: 27,
+    maxHp: 27,
     mv: '20フィート、飛行40フィート',
     ability: [
       6,
@@ -1424,7 +1424,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '中立にして悪',
     ac: 15,
-    hp: 7,
+    maxHp: 7,
     mv: '30フィート',
     ability: [
       8,
@@ -1455,7 +1455,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '真なる中立',
     ac: 12,
-    hp: 19,
+    maxHp: 19,
     mv: '5フィート、飛行60フィート',
     ability: [
       13,
@@ -1487,7 +1487,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '中立にして善',
     ac: 13,
-    hp: 26,
+    maxHp: 26,
     mv: '10フィート、飛行80フィート',
     ability: [
       16,
@@ -1520,7 +1520,7 @@ export const MONSTERS: IMonster[] = [
     type: 'フェイ',
     alignment: '混沌にして中立',
     ac: 14,
-    hp: 31,
+    maxHp: 31,
     mv: '40フィート',
     ability: [
       12,
@@ -1552,7 +1552,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 1,
+    maxHp: 1,
     mv: '0フィート、水泳20フィート',
     ability: [
       1,
@@ -1578,7 +1578,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 11,
+    maxHp: 11,
     mv: '40フィート、登攀40フィート',
     ability: [
       12,
@@ -1610,7 +1610,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '中立にして悪',
     ac: 10,
-    hp: 22,
+    maxHp: 22,
     mv: '10フィート、飛行60フィート',
     ability: [
       15,
@@ -1643,7 +1643,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 9,
+    maxHp: 9,
     mv: '40フィート',
     ability: [
       11,
@@ -1672,7 +1672,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 52,
+    maxHp: 52,
     mv: '10フィート、水泳60フィート',
     ability: [
       17,
@@ -1704,7 +1704,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 15,
-    hp: 13,
+    maxHp: 13,
     mv: '30フィート、水泳30フィート',
     ability: [
       13,
@@ -1733,7 +1733,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 157,
+    maxHp: 157,
     mv: '40フィート、登攀40フィート',
     ability: [
       23,
@@ -1763,7 +1763,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 14,
-    hp: 42,
+    maxHp: 42,
     mv: '60フィート',
     ability: [
       19,
@@ -1794,7 +1794,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 60,
+    maxHp: 60,
     mv: '30フィート、水泳30フィート',
     ability: [
       19,
@@ -1822,7 +1822,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 16,
+    maxHp: 16,
     mv: '0フィート、水泳40フィート',
     ability: [
       12,
@@ -1852,7 +1852,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 14,
-    hp: 85,
+    maxHp: 85,
     mv: '30フィート、水泳50フィート',
     ability: [
       21,
@@ -1883,7 +1883,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 19,
+    maxHp: 19,
     mv: '40フィート',
     ability: [
       17,
@@ -1912,7 +1912,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 14,
-    hp: 26,
+    maxHp: 26,
     mv: '30フィート、登攀30フィート',
     ability: [
       14,
@@ -1944,7 +1944,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 126,
+    maxHp: 126,
     mv: '0フィート、水泳50フィート',
     ability: [
       23,
@@ -1975,7 +1975,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 15,
-    hp: 52,
+    maxHp: 52,
     mv: '40フィート',
     ability: [
       15,
@@ -2004,7 +2004,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 45,
+    maxHp: 45,
     mv: '50フィート',
     ability: [
       16,
@@ -2033,7 +2033,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 4,
+    maxHp: 4,
     mv: '30フィート、登攀30フィート',
     ability: [
       5,
@@ -2059,7 +2059,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 39,
+    maxHp: 39,
     mv: '20フィート、水泳40フィート',
     ability: [
       15,
@@ -2089,7 +2089,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 4,
+    maxHp: 4,
     mv: '30フィート',
     ability: [
       8,
@@ -2118,7 +2118,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 10,
-    hp: 13,
+    maxHp: 13,
     mv: '30フィート、穴掘り10フィート',
     ability: [
       13,
@@ -2148,7 +2148,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 22,
+    maxHp: 22,
     mv: '10フィート、飛行60フィート',
     ability: [
       15,
@@ -2177,7 +2177,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 42,
+    maxHp: 42,
     mv: '40フィート',
     ability: [
       17,
@@ -2206,7 +2206,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 14,
-    hp: 11,
+    maxHp: 11,
     mv: '30フィート、水泳30フィート',
     ability: [
       10,
@@ -2233,7 +2233,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 18,
+    maxHp: 18,
     mv: '30フィート、水泳30フィート',
     ability: [
       12,
@@ -2264,7 +2264,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 13,
+    maxHp: 13,
     mv: '10フィート、飛行50フィート',
     ability: [
       10,
@@ -2290,7 +2290,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 3,
+    maxHp: 3,
     mv: '40フィート',
     ability: [
       8,
@@ -2320,7 +2320,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 7,
+    maxHp: 7,
     mv: '30フィート',
     ability: [
       7,
@@ -2349,7 +2349,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 19,
+    maxHp: 19,
     mv: '30フィート、登攀30フィート',
     ability: [
       15,
@@ -2377,7 +2377,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 22,
+    maxHp: 22,
     mv: '0フィート、飛行30フィート',
     ability: [
       5,
@@ -2410,7 +2410,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 22,
+    maxHp: 22,
     mv: '20フィート、登攀20フィート',
     ability: [
       3,
@@ -2441,7 +2441,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 28,
+    maxHp: 28,
     mv: '0フィート、水泳40フィート',
     ability: [
       13,
@@ -2474,7 +2474,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 24,
+    maxHp: 24,
     mv: '10フィート、飛行50フィート',
     ability: [
       6,
@@ -2506,7 +2506,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 14,
-    hp: 36,
+    maxHp: 36,
     mv: '30フィート、水泳30フィート',
     ability: [
       8,
@@ -2537,7 +2537,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 10,
-    hp: 24,
+    maxHp: 24,
     mv: '30フィート',
     ability: [
       9,
@@ -2569,7 +2569,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 14,
-    hp: 2,
+    maxHp: 2,
     mv: '10フィート、飛行40フィート',
     ability: [
       4,
@@ -2599,7 +2599,7 @@ export const MONSTERS: IMonster[] = [
     type: 'アンデッド',
     alignment: '秩序にして悪',
     ac: 13,
-    hp: 13,
+    maxHp: 13,
     mv: '30フィート',
     ability: [
       10,
@@ -2629,7 +2629,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 1,
+    maxHp: 1,
     mv: '10フィート',
     ability: [
       2,
@@ -2655,7 +2655,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 1,
+    maxHp: 1,
     mv: '20フィート、登攀20フィート',
     ability: [
       2,
@@ -2686,7 +2686,7 @@ export const MONSTERS: IMonster[] = [
     type: '人造',
     alignment: '無属性',
     ac: 17,
-    hp: 178,
+    maxHp: 178,
     mv: '30フィート',
     ability: [
       22,
@@ -2725,7 +2725,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 52,
+    maxHp: 52,
     mv: '40フィート',
     ability: [
       18,
@@ -2756,7 +2756,7 @@ export const MONSTERS: IMonster[] = [
     type: '異形',
     alignment: '秩序にして中立',
     ac: 14,
-    hp: 39,
+    maxHp: 39,
     mv: '0フィート、飛行30フィート（ホバリング）',
     ability: [
       8,
@@ -2791,7 +2791,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 37,
+    maxHp: 37,
     mv: '40フィート',
     ability: [
       17,
@@ -2822,7 +2822,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 4,
+    maxHp: 4,
     mv: '50フィート',
     ability: [
       11,
@@ -2848,7 +2848,7 @@ export const MONSTERS: IMonster[] = [
     type: 'アンデッド',
     alignment: '中立にして悪',
     ac: 8,
-    hp: 22,
+    maxHp: 22,
     mv: '20フィート',
     ability: [
       13,
@@ -2880,7 +2880,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 14,
-    hp: 37,
+    maxHp: 37,
     mv: '50フィート',
     ability: [
       17,
@@ -2911,7 +2911,7 @@ export const MONSTERS: IMonster[] = [
     type: '植物',
     alignment: '中立にして悪',
     ac: 13,
-    hp: 4,
+    maxHp: 4,
     mv: '20フィート',
     ability: [
       6,
@@ -2943,7 +2943,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 136,
+    maxHp: 136,
     mv: '50フィート',
     ability: [
       25,
@@ -2974,7 +2974,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '中立にして悪',
     ac: 12,
-    hp: 39,
+    maxHp: 39,
     mv: '40フィート',
     ability: [
       15,
@@ -3004,7 +3004,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 10,
-    hp: 19,
+    maxHp: 19,
     mv: '40フィート',
     ability: [
       18,
@@ -3030,7 +3030,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 95,
+    maxHp: 95,
     mv: '50フィート',
     ability: [
       22,
@@ -3060,7 +3060,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '真なる中立',
     ac: 14,
-    hp: 52,
+    maxHp: 52,
     mv: '30フィート',
     ability: [
       11,
@@ -3095,7 +3095,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '混沌にして悪',
     ac: 15,
-    hp: 22,
+    maxHp: 22,
     mv: '30フィート',
     ability: [
       14,
@@ -3126,7 +3126,7 @@ export const MONSTERS: IMonster[] = [
     type: '巨人',
     alignment: '混沌にして悪',
     ac: 15,
-    hp: 84,
+    maxHp: 84,
     mv: '30フィート',
     ability: [
       18,
@@ -3159,7 +3159,7 @@ export const MONSTERS: IMonster[] = [
     type: '異形',
     alignment: '中立にして悪',
     ac: 15,
-    hp: 45,
+    maxHp: 45,
     mv: '30フィート',
     ability: [
       14,
@@ -3193,7 +3193,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 5,
+    maxHp: 5,
     mv: '50フィート',
     ability: [
       11,
@@ -3222,7 +3222,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '混沌にして悪',
     ac: 16,
-    hp: 27,
+    maxHp: 27,
     mv: '30フィート',
     ability: [
       15,
@@ -3254,7 +3254,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '混沌にして悪',
     ac: 11,
-    hp: 38,
+    maxHp: 38,
     mv: '20フィート、飛行40フィート',
     ability: [
       12,
@@ -3285,7 +3285,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 1,
+    maxHp: 1,
     mv: '5フィート、飛行30フィート',
     ability: [
       2,
@@ -3314,7 +3314,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 3,
+    maxHp: 3,
     mv: '30フィート、登攀30フィート',
     ability: [
       8,
@@ -3342,7 +3342,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 10,
-    hp: 3,
+    maxHp: 3,
     mv: '20フィート、穴掘り5フィート',
     ability: [
       4,
@@ -3370,7 +3370,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '無属性',
     ac: 15,
-    hp: 52,
+    maxHp: 52,
     mv: '20フィート',
     ability: [
       16,
@@ -3399,7 +3399,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 45,
+    maxHp: 45,
     mv: '0フィート、水泳40フィート',
     ability: [
       18,
@@ -3430,7 +3430,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 13,
+    maxHp: 13,
     mv: '50フィート、登攀40フィート',
     ability: [
       14,
@@ -3461,7 +3461,7 @@ export const MONSTERS: IMonster[] = [
     type: 'アンデッド',
     alignment: '混沌にして悪',
     ac: 12,
-    hp: 58,
+    maxHp: 58,
     mv: '0フィート、飛行40フィート（ホバリング）',
     ability: [
       1,
@@ -3499,7 +3499,7 @@ export const MONSTERS: IMonster[] = [
     type: '巨人',
     alignment: '混沌にして悪',
     ac: 13,
-    hp: 105,
+    maxHp: 105,
     mv: '40フィート',
     ability: [
       21,
@@ -3530,7 +3530,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '無属性',
     ac: 11,
-    hp: 19,
+    maxHp: 19,
     mv: '40フィート、飛行60フィート',
     ability: [
       17,
@@ -3562,7 +3562,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '無属性',
     ac: 15,
-    hp: 172,
+    maxHp: 172,
     mv: '30フィート、水泳30フィート',
     ability: [
       20,
@@ -3596,7 +3596,7 @@ export const MONSTERS: IMonster[] = [
     type: '巨人',
     alignment: '秩序にして悪',
     ac: 18,
-    hp: 162,
+    maxHp: 162,
     mv: '30フィート',
     ability: [
       25,
@@ -3629,7 +3629,7 @@ export const MONSTERS: IMonster[] = [
     type: 'エレメンタル',
     alignment: '真なる中立',
     ac: 13,
-    hp: 102,
+    maxHp: 102,
     mv: '50フィート',
     ability: [
       10,
@@ -3665,7 +3665,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 13,
+    maxHp: 13,
     mv: '10フィート、飛行60フィート',
     ability: [
       12,
@@ -3695,7 +3695,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 14,
-    hp: 5,
+    maxHp: 5,
     mv: '30フィート、飛行60フィート、水泳30フィート',
     ability: [
       4,
@@ -3724,7 +3724,7 @@ export const MONSTERS: IMonster[] = [
     type: 'フェイ',
     alignment: '無属性',
     ac: 13,
-    hp: 32,
+    maxHp: 32,
     mv: '30フィート、登攀30フィート',
     ability: [
       15,
@@ -3756,7 +3756,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 19,
+    maxHp: 19,
     mv: '40フィート、登攀30フィート',
     ability: [
       15,
@@ -3787,7 +3787,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 7,
+    maxHp: 7,
     mv: '10フィート、飛行60フィート',
     ability: [
       6,
@@ -3818,7 +3818,7 @@ export const MONSTERS: IMonster[] = [
     type: '人造',
     alignment: '無属性',
     ac: 17,
-    hp: 17,
+    maxHp: 17,
     mv: '0フィート、飛行50フィート',
     ability: [
       12,
@@ -3852,7 +3852,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 34,
+    maxHp: 34,
     mv: '40フィート、登攀30フィート',
     ability: [
       19,
@@ -3883,7 +3883,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 68,
+    maxHp: 68,
     mv: '20フィート、水泳40フィート',
     ability: [
       18,
@@ -3913,7 +3913,7 @@ export const MONSTERS: IMonster[] = [
     type: 'フェイ',
     alignment: '秩序にして善',
     ac: 13,
-    hp: 22,
+    maxHp: 22,
     mv: '40フィート',
     ability: [
       12,
@@ -3944,7 +3944,7 @@ export const MONSTERS: IMonster[] = [
     type: 'アンデッド',
     alignment: '中立にして悪',
     ac: 13,
-    hp: 40,
+    maxHp: 40,
     mv: '0フィート、飛行40フィート',
     ability: [
       1,
@@ -3982,7 +3982,7 @@ export const MONSTERS: IMonster[] = [
     type: '巨人',
     alignment: '中立にして悪',
     ac: 15,
-    hp: 138,
+    maxHp: 138,
     mv: '40フィート',
     ability: [
       23,
@@ -4015,7 +4015,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 1,
+    maxHp: 1,
     mv: '20フィート、水泳20フィート',
     ability: [
       1,
@@ -4044,7 +4044,7 @@ export const MONSTERS: IMonster[] = [
     type: '人造',
     alignment: '真なる中立',
     ac: 9,
-    hp: 93,
+    maxHp: 93,
     mv: '30フィート',
     ability: [
       19,
@@ -4083,7 +4083,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 11,
+    maxHp: 11,
     mv: '40フィート',
     ability: [
       13,
@@ -4112,7 +4112,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 42,
+    maxHp: 42,
     mv: '40フィート、水泳30フィート',
     ability: [
       20,
@@ -4143,7 +4143,7 @@ export const MONSTERS: IMonster[] = [
     type: 'セレスチャル',
     alignment: '混沌にして善',
     ac: 12,
-    hp: 59,
+    maxHp: 59,
     mv: '60フィート、飛行90フィート',
     ability: [
       18,
@@ -4172,7 +4172,7 @@ export const MONSTERS: IMonster[] = [
     type: 'フィーンド',
     alignment: '秩序にして悪',
     ac: 15,
-    hp: 45,
+    maxHp: 45,
     mv: '50フィート',
     ability: [
       17,
@@ -4205,7 +4205,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 10,
-    hp: 11,
+    maxHp: 11,
     mv: '40フィート',
     ability: [
       15,
@@ -4231,7 +4231,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '秩序にして悪',
     ac: 18,
-    hp: 11,
+    maxHp: 11,
     mv: '30フィート',
     ability: [
       13,
@@ -4261,7 +4261,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 2,
+    maxHp: 2,
     mv: '30フィート、水泳30フィート',
     ability: [
       2,
@@ -4287,7 +4287,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 1,
+    maxHp: 1,
     mv: '10フィート、飛行60フィート',
     ability: [
       5,
@@ -4316,7 +4316,7 @@ export const MONSTERS: IMonster[] = [
     type: 'アンデッド',
     alignment: '秩序にして悪',
     ac: 11,
-    hp: 58,
+    maxHp: 58,
     mv: '20フィート',
     ability: [
       16,
@@ -4351,7 +4351,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '真なる中立',
     ac: 11,
-    hp: 11,
+    maxHp: 11,
     mv: '10フィート、水泳40フィート',
     ability: [
       10,
@@ -4381,7 +4381,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 5,
+    maxHp: 5,
     mv: '40フィート',
     ability: [
       13,
@@ -4412,7 +4412,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '混沌にして悪',
     ac: 14,
-    hp: 76,
+    maxHp: 76,
     mv: '40フィート',
     ability: [
       18,
@@ -4445,7 +4445,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '秩序にして悪',
     ac: 14,
-    hp: 68,
+    maxHp: 68,
     mv: '30フィート、飛行50フィート',
     ability: [
       17,
@@ -4477,7 +4477,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 13,
-    hp: 126,
+    maxHp: 126,
     mv: '40フィート',
     ability: [
       24,
@@ -4506,7 +4506,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '秩序にして悪',
     ac: 15,
-    hp: 127,
+    maxHp: 127,
     mv: '30フィート',
     ability: [
       10,
@@ -4539,7 +4539,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 10,
-    hp: 11,
+    maxHp: 11,
     mv: '40フィート',
     ability: [
       14,
@@ -4568,7 +4568,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 26,
+    maxHp: 26,
     mv: '50フィート',
     ability: [
       17,
@@ -4601,7 +4601,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 10,
-    hp: 13,
+    maxHp: 13,
     mv: '60フィート',
     ability: [
       16,
@@ -4627,7 +4627,7 @@ export const MONSTERS: IMonster[] = [
     type: 'ドラゴン',
     alignment: '秩序にして悪',
     ac: 18,
-    hp: 136,
+    maxHp: 136,
     mv: '40フィート、飛行80フィート、水泳40フィート',
     ability: [
       19,
@@ -4663,7 +4663,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 22,
+    maxHp: 22,
     mv: '0フィート、水泳40フィート',
     ability: [
       14,
@@ -4694,7 +4694,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 10,
-    hp: 2,
+    maxHp: 2,
     mv: '20フィート、登攀20フィート',
     ability: [
       2,
@@ -4720,7 +4720,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 11,
-    hp: 45,
+    maxHp: 45,
     mv: '40フィート',
     ability: [
       21,
@@ -4748,7 +4748,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 10,
-    hp: 1,
+    maxHp: 1,
     mv: '20フィート',
     ability: [
       2,
@@ -4776,7 +4776,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '混沌にして悪',
     ac: 11,
-    hp: 58,
+    maxHp: 58,
     mv: '30フィート（ウルフ形態では40フィート）',
     ability: [
       15,
@@ -4812,7 +4812,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '真なる中立',
     ac: 15,
-    hp: 22,
+    maxHp: 22,
     mv: '30フィート、水泳30フィート',
     ability: [
       15,
@@ -4846,7 +4846,7 @@ export const MONSTERS: IMonster[] = [
     type: '野獣',
     alignment: '無属性',
     ac: 12,
-    hp: 1,
+    maxHp: 1,
     mv: '10フィート、飛行50フィート',
     ability: [
       2,
@@ -4875,7 +4875,7 @@ export const MONSTERS: IMonster[] = [
     type: 'アンデッド',
     alignment: '中立にして悪',
     ac: 14,
-    hp: 45,
+    maxHp: 45,
     mv: '30フィート',
     ability: [
       15,
@@ -4912,7 +4912,7 @@ export const MONSTERS: IMonster[] = [
     type: 'ドラゴン',
     alignment: '無属性',
     ac: 13,
-    hp: 110,
+    maxHp: 110,
     mv: '20フィート、飛行80フィート',
     ability: [
       19,
@@ -4944,7 +4944,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '任意の属性',
     ac: 16,
-    hp: 11,
+    maxHp: 11,
     mv: '30フィート',
     ability: [
       13,
@@ -4973,7 +4973,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '善でない任意の属性',
     ac: 12,
-    hp: 9,
+    maxHp: 9,
     mv: '30フィート',
     ability: [
       11,
@@ -5005,7 +5005,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '任意の属性',
     ac: 10,
-    hp: 4,
+    maxHp: 4,
     mv: '30フィート',
     ability: [
       10,
@@ -5034,7 +5034,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '任意の混沌属性',
     ac: 13,
-    hp: 67,
+    maxHp: 67,
     mv: '30フィート',
     ability: [
       16,
@@ -5063,7 +5063,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '秩序でない任意の属性',
     ac: 12,
-    hp: 11,
+    maxHp: 11,
     mv: '30フィート',
     ability: [
       11,
@@ -5092,7 +5092,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '任意の属性',
     ac: 18,
-    hp: 52,
+    maxHp: 52,
     mv: '30フィート',
     ability: [
       16,
@@ -5126,7 +5126,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '任意の属性',
     ac: 10,
-    hp: 9,
+    maxHp: 9,
     mv: '30フィート',
     ability: [
       10,
@@ -5158,7 +5158,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '任意の属性',
     ac: 13,
-    hp: 27,
+    maxHp: 27,
     mv: '25フィート',
     ability: [
       10,
@@ -5193,7 +5193,7 @@ export const MONSTERS: IMonster[] = [
     type: '人型生物',
     alignment: '任意の属性',
     ac: 12,
-    hp: 40,
+    maxHp: 40,
     mv: '30フィート',
     ability: [
       9,
@@ -5228,7 +5228,7 @@ export const MONSTERS: IMonster[] = [
     type: '怪物',
     alignment: '無属性',
     ac: 15,
-    hp: 248,
+    maxHp: 248,
     mv: '20フィート、飛行120フィート',
     ability: [
       28,
@@ -5251,3 +5251,9 @@ export const MONSTERS: IMonster[] = [
     ],
   },
 ];
+
+const MONSTER_INFOS = MONSTER_DATA.map((init) => {
+  return new MonsterInfo(init);
+});
+
+export default MONSTER_INFOS;

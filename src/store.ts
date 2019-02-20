@@ -28,12 +28,12 @@ export default new Vuex.Store({
     setParty(state: State, party: Party) {
       state.party = party;
     },
-    setRandomMonsters(state: State) {
-      for (let i = 0; i < 6; i++) {
-        const enc = new Encounter(state.party, CR[i]);
-        state.monsters.splice(i, 1, enc.monster());
-      }
-    },
+    // setRandomMonsters(state: State) {
+    //   for (let i = 0; i < 6; i++) {
+    //     const enc = new Encounter(state.party, CR[i]);
+    //     state.monsters.splice(i, 1, enc.monster());
+    //   }
+    // },
     setCurrentPlayerId(state: State, id: string) {
       state.current.playerId = id;
     },

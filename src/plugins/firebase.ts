@@ -18,7 +18,7 @@ const firebaseApp = firebase.initializeApp({
 
 export const db = firebaseApp.firestore();
 
-export function listen<T>(store: Store<State>, fn: new(init: any) => T) {
+export function listen<T>(store: Store<State>, fn: new(init: Partial<T>) => T) {
   const name =  fn.name.toLowerCase() + 's';
   if (name === undefined) { return; }
 

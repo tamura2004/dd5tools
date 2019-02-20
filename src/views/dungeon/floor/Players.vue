@@ -5,7 +5,7 @@
         v-list-tile(v-if="close && select.length === 0")
           v-list-tile-title プレイヤーがいません（＋ボタンで選択）
         v-divider
-        PlayerList(v-for="(player, key) in players" :id="key" v-if="!close || select.includes(key)")
+        PlayerTile(v-for="(player, key) in players" :id="key" :key= "key" v-if="!close || select.includes(key)")
           v-list-tile-action(v-if="!close")
             v-switch(v-model="select" :value="key" color="primary")
 </template>
@@ -14,14 +14,14 @@
   import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
   import { db } from '@/plugins/firebase';
   import ListHeader from '@/components/ListHeader.vue';
-  import PlayerList from '@/components/PlayerList.vue';
+  import PlayerTile from '@/components/PlayerTile.vue';
   import Floor from '@/models/Floor.vue';
   import Player from '@/models/Player.vue';
 
   @Component({
     components: {
       ListHeader,
-      PlayerList,
+      PlayerTile,
     },
   })
   export default class DungeonFloorPlayers extends Vue {
