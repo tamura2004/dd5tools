@@ -30,18 +30,10 @@ export default class Monster {
     this.name = template.name + '・' + this.name;
 
     // overwitten attributes by template
-    if (template.size !== undefined) {
-      this.size = template.size;
-    }
-    if (template.type !== undefined) {
-      this.type = template.type;
-    }
-    if (template.alignment !== undefined) {
-      this.alignment = template.alignment;
-    }
-    if (template.mv !== undefined) {
-      this.mv = template.mv;
-    }
+    this.size = template.size || this.size;
+    this.type = template.type || this.type;
+    this.alignment = template.alignment || this.alignment;
+    this.mv = template.mv || this.mv;
 
     // adjust attributes by template
     const { maxHp, ac } = template;
@@ -59,21 +51,8 @@ export default class Monster {
     }
 
     // add attributes by template
-    const {attributes, actions, specials } = template;
-    if (attributes !== undefined && attributes.length > 0) {
-      attributes.forEach((attribute) => {
-        this.attributes.push(attribute);
-      });
-    }
-    if (actions !== undefined && actions.length > 0) {
-      actions.forEach((action) => {
-        this.actions.push(action);
-      });
-    }
-    if (specials !== undefined && specials.length > 0) {
-      specials.forEach((special) => {
-        this.specials.push(special);
-      });
-    }
+    this.attributes = this.attributes.concat(template.attributes);
+    this.actions = this.actions.concat(template.actions);
+    this.specials = this.specials.concat(template.specials);
   }
 }

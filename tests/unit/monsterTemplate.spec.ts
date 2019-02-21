@@ -14,14 +14,18 @@ describe('Monster', () => {
     expect(monster.name).toBe('アウェイクンド・ツリー');
     expect(monster.maxHp).toBe(59);
     expect(monster.ac).toBe(13);
+    expect(monster.ability[1]).toBe(6); // dex
+    expect(monster.ability[2]).toBe(15); // con
   });
 
   it('can initialize with template', () => {
-    const template = MONSTER_TEMPLATES[0];
-    const monster = new Monster(info, template);
+    const zombie = MONSTER_TEMPLATES[0];
+    const monster = new Monster(info, zombie);
     expect(monster.name).toBe('ゾンビ・アウェイクンド・ツリー');
     expect(monster.maxHp).toBe(70);
     expect(monster.ac).toBe(9);
+    expect(monster.ability[1]).toBe(2); // dex -4
+    expect(monster.ability[2]).toBe(19); // con +4
     expect(monster.attributes).toContain('ダメージ脆弱性: [光輝][斬撃]');
   });
 });
