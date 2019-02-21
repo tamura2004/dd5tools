@@ -15,7 +15,7 @@ describe('Monster', () => {
     expect(monster.maxHp).toBe(59);
     expect(monster.ac).toBe(13);
   });
-  
+
   it('can initialize with template', () => {
     const template = MONSTER_TEMPLATES[0];
     const monster = new Monster(info, template);
