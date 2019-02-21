@@ -30,13 +30,23 @@ export default class Monster {
     this.name = template.name + '・' + this.name;
 
     // overwitten attributes by template
-    const { size, type, alignment, mv } = template;
-    Object.assign(this, { size, type, alignment, mv });
+    if (template.size !== undefined) {
+      this.size = template.size;
+    }
+    if (template.type !== undefined) {
+      this.type = template.type;
+    }
+    if (template.alignment !== undefined) {
+      this.alignment = template.alignment;
+    }
+    if (template.mv !== undefined) {
+      this.mv = template.mv;
+    }
 
     // adjust attributes by template
     const { maxHp, ac } = template;
     if (maxHp !== undefined && this.maxHp !== undefined) {
-      this.maxHp += maxHp;
+      this.maxHp = Math.floor(this.maxHp * maxHp);
     }
     if (ac !== undefined && this.ac !== undefined) {
       this.ac += ac;
