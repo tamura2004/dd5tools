@@ -1,15 +1,32 @@
-import Party from '@/models/Party';
-import MONSTER_INFOS from '@/data/MONSTERS';
-import MonsterInfo from '@/models/MonsterInfo';
-import { Difficulty, NUM_MODIFY, CR, BASE_EXP } from '@/data/DATA';
+import { Player } from '@/models/Player';
+import { Difficulty, BASE_EXP } from '@/data/DATA';
 
 export default class Encounter {
-  public party: Party;
-  public diff: Difficulty;
+  public map: Map<number, number> = new Map();
+  public diff: Difficulty = Difficulty.Normal;
 
-  constructor(party: Party, diff: Difficulty) {
-    this.party = party;
-    this.diff = diff;
+  public loadPlayers(players: Player[]) {
+    players.forEach((player) => {
+      const level = player.level;
+      if (level === undefined) {
+        return;
+      }
+      const num = this.map.get(level);
+      if (num === undefined) {
+        this.map.set(level, 1);
+      } else {
+        this.map.set(level, num + 1);
+      }
+    });
+  }
+
+  public totalMonsterExp(): number {
+    let sum: number = 0;
+    this.map.forEach((num, level) => {
+      const exp = BASE_EXP.get(level - 1, this.diff) || 25;
+      sum += exp * num;
+    });
+    return sum;
   }
 
   // public monster(): MonsterInfo {
@@ -22,14 +39,14 @@ export default class Encounter {
   //   return new Monster(init, num);
   // }
 
-  private monsterNum(): number {
-    return Math.floor(Math.random() * this.maxNumber() + 1);
-  }
+  // private monsterNum(): number {
+  //   return Math.floor(Math.random() * this.maxNumber() + 1);
+  // }
 
-  private maxNumber(): number {
-    const total = this.party.totalExp(this.diff);
-    let num = Math.floor(total / 100);
-    num = num > 8 ? 8 : num;
-    return num;
-  }
+  // private maxNumber(): number {
+  //   const total = this.party.totalExp(this.diff);
+  //   let num = Math.floor(total / 100);
+  //   num = num > 8 ? 8 : num;
+  //   return num;
+  // }
 }
