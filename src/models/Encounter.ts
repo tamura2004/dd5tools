@@ -1,9 +1,10 @@
 import { Player } from '@/models/Player';
-import { Difficulty, BASE_EXP } from '@/data/DATA';
+import { Difficulty, BASE_EXP, NUM_MODIFY, CR } from '@/data/DATA';
 
 export default class Encounter {
   public map: Map<number, number> = new Map();
   public diff: Difficulty = Difficulty.Normal;
+  public num: number = 1; // number of monster
 
   public loadPlayers(players: Player[]) {
     players.forEach((player) => {
@@ -27,6 +28,15 @@ export default class Encounter {
       sum += exp * num;
     });
     return sum;
+  }
+
+  public monsterExp(): number | undefined {
+    const modify = NUM_MODIFY.lookupOver(this.num);
+    if (modify === undefined) {
+      return;
+    }
+    const totalExp = this.totalMonsterExp();
+    return CR.lookupOver(totalExp / modify / this.num);
   }
 
   // public monster(): MonsterInfo {
