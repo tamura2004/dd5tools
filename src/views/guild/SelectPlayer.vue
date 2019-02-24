@@ -5,7 +5,7 @@
         v-icon home
       v-toolbar-title.headline
         span PCを選択してください
-    v-content(app)
+    v-content(app v-if="players")
       v-list(two-line)
         div(
           v-for="(player, key) in players"
