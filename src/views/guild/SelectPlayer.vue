@@ -36,7 +36,6 @@ export default class GuildSelectPlayer extends Vue {
     return this.$store.state.players;
   }
   private select(id: string): void {
-    this.$store.dispatch('setCUrrentPlayerId', id);
     this.$router.push(`/guild/${id}/rank`);
   }
 }
