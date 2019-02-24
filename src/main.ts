@@ -16,6 +16,7 @@ import Floor from '@/models/Floor';
 import { listen } from '@/plugins/firebase';
 
 Vue.config.productionTip = false;
+Vue.config.devtools = true;
 
 listen(store, Player);
 listen(store, Spell);
