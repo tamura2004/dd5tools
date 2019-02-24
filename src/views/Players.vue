@@ -13,7 +13,6 @@
           :key="key"
           @click="$router.push(`/player/${key}`)"
         )
-          v-icon arrow_forward_ios
       p.ma-1 designed by Freepik from Flaticon
 
 </template>
@@ -21,11 +20,13 @@
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
   import PlayerTile from '@/components/PlayerTile.vue';
+  import LifeCounter from '@/components/LifeCounter.vue';
   import { db } from '@/plugins/firebase';
 
   @Component({
     components: {
       PlayerTile,
+      LifeCounter,
     },
   })
   export default class Players extends Vue {

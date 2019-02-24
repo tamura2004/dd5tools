@@ -1,4 +1,3 @@
-import Party from '@/models/Party';
 import { Player } from '@/models/Player';
 import Spell from '@/models/Spell';
 import Npc from '@/models/Npc';
@@ -8,7 +7,6 @@ import Dungeon from '@/models/Dungeon';
 import Floor from '@/models/Floor';
 
 export default class State {
-    public party: Party = new Party();
     public players: { [key: string]: Player } = {};
     public spells: { [key: string]: Spell } = {};
     public npcs: { [key: string]: Npc } = {};

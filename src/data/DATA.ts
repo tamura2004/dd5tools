@@ -5,11 +5,11 @@ import Deck from '@/models/Deck';
 import { Weapon } from '@/models/Weapon';
 import { Armor } from '@/models/Armor';
 
-export enum Difficulty {
-  Easy = 0,
-  Normal,
-  Hard,
-  Deadly,
+export enum MODE {
+  EASY = 0,
+  NORMAL,
+  HARD,
+  HELL,
 }
 
 export const NUM_MODIFY = new Table([

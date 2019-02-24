@@ -137,4 +137,23 @@ export class Player {
       }
     }
   }
+
+  public get rank(): string | undefined {
+    const rankMap = new Map<number, string>([
+      [1, 'G'],
+      [2, 'F'],
+      [3, 'E'],
+      [4, 'D'],
+      [5, 'C'],
+      [6, 'B'],
+      [7, 'A'],
+      [8, 'S'],
+      [9, 'SS'],
+      [10, 'SSS'],
+    ]);
+
+    if (this.level !== undefined) {
+      return rankMap.get(this.level);
+    }
+  }
 }

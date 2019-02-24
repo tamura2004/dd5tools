@@ -8,20 +8,7 @@
           v-layout(justify-center)
             .display-1.red--text {{ hp }}
       Avatar(v-model="avatar")
-      v-list-tile-content(@click="$emit('click')")
-        v-list-tile-title
-          v-layout
-            v-flex.text-truncate(xs9) {{ player.characterName }}
-            v-flex.caption(xs3) PL:{{ player.name }}
-        v-list-tile-sub-title
-          v-layout
-            v-flex.text-truncate(xs6) {{ player.klass }}{{ player.level }}
-            v-flex.text-truncate(xs6) {{ player.race }}/{{ player.background }}
-        v-list-tile-sub-title
-          v-layout
-            v-flex(xs3) {{ player.ac }}
-            v-flex(xs3) AC:{{ player.ac }}
-            v-flex(xs3) hp:{{ player.maxHp }}
+      PlayerTileContent(:id="id")
       v-list-tile-action
         v-container.ma-0.pa-0
           v-layout(justify-center)
@@ -36,11 +23,13 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { Player } from '@/models/Player';
 import { db } from '@/plugins/firebase';
+import PlayerTileContent from '@/components/PlayerTileContent.vue';
 import Avatar from '@/components/Avatar.vue';
 import LifeCounter from '@/components/LifeCounter.vue';
 
 @Component({
   components: {
+    PlayerTileContent,
     Avatar,
     LifeCounter,
   },

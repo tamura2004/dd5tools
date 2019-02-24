@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Menu from './views/Menu.vue';
+import MenuTop from './views/menu/Top.vue';
 import Monsters from './views/Monsters.vue';
 import Players from './views/Players.vue';
 import Weapons from './views/Weapons.vue';
@@ -21,7 +21,6 @@ import PlayerForm from './views/PlayerForm.vue';
 import Games from './views/Games.vue';
 import GameCard from './views/GameCard.vue';
 import GameForm from './views/GameForm.vue';
-import Parties from './views/Parties.vue';
 import Floor from './views/Floor.vue';
 
 import Dungeon from './views/Dungeon.vue';
@@ -32,6 +31,11 @@ import DungeonFloorMonsters from './views/dungeon/floor/Monsters.vue';
 import DungeonFloors from './views/dungeon/Floors.vue';
 import DungeonFloorForm from './views/dungeon/FloorForm.vue';
 
+import GuildTop from '@/views/guild/Top.vue';
+import GuildSelectPlayer from '@/views/guild/SelectPlayer.vue';
+import GuildMain from '@/views/guild/Main.vue';
+import GuildRank from '@/views/guild/Rank.vue';
+
 Vue.use(Router);
 
 const router = new Router({
@@ -40,8 +44,31 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'menu',
-      component: Menu,
+      name: 'menuTop',
+      component: MenuTop,
+    },
+    {
+      path: '/guild/top',
+      name: 'guildTop',
+      component: GuildTop,
+    },
+    {
+      path: '/guild/selectPlayer',
+      name: 'guildSelectPlayer',
+      component: GuildSelectPlayer,
+    },
+    {
+      path: '/guild/:playerId',
+      name: 'guildMain',
+      component: GuildMain,
+      props: true,
+      children: [
+        {
+          path: 'rank',
+          component: GuildRank,
+          props: true,
+        },
+      ],
     },
     {
       path: '/dungeons',
@@ -122,11 +149,6 @@ const router = new Router({
       path: '/floor',
       name: 'floor',
       component: Floor,
-    },
-    {
-      path: '/parties',
-      name: 'parties',
-      component: Parties,
     },
     {
       path: '/monster/:id',

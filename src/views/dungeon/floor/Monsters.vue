@@ -21,7 +21,6 @@
 
   import Floor from '@/models/Floor';
   import { Player } from '@/models/Player';
-  import Party from '@/models/Party';
   import State from '@/models/State';
   import MonsterInfo from '@/models/MonsterInfo';
 
@@ -54,32 +53,6 @@
     private get monsters(): MonsterInfo[] {
       return this.$store.state.monsters;
     }
-
-    private click(): void {
-      this.close = !this.close;
-      if (!this.close) {
-        const party = new Party();
-        this.floor.playerIds.forEach((id) => {
-          const player = this.players[id];
-          if (player.level !== undefined) {
-            party.levelNums[player.level] += 1;
-          }
-        });
-        this.$store.commit('setParty', party);
-        this.$store.commit('setRandomMonsters');
-      }
-    }
-
-    // private select(monster: Monster) {
-    //   this.close = true;
-    //   this.floor.setMonster(monster);
-    //   db.collection('floors').doc(this.id).update({
-    //     map: this.floor.map,
-    //     monster: {...monster},
-    //   })
-    //     .then()
-    //     .catch((err) => alert(err));
-    // }
 
     private color(row: number): string {
       const COLORS = ['green', 'blue', 'blue', 'blue', 'red', 'black'];
