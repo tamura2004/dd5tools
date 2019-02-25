@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     NavigationDrawer(:drawer.sync="drawer")
-    ToolBar(@update:drawer="drawer = !drawer")
+    ToolBar(:drawer.sync="drawer")
 
     transition(name="router" mode="out-in")
       router-view

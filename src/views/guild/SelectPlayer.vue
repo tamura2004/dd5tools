@@ -1,25 +1,16 @@
 <template lang="pug">
-  v-app
-    v-toolbar(app dark flat dense color="primary")
-      v-btn(icon to="/")
-        v-icon home
-      v-toolbar-title.headline
-        span PCを選択してください
-    v-content(app v-if="players")
-      v-list(two-line)
-        div(
-          v-for="(player, key) in players"
-          :key="key"
-          @click="select(key)"
-        )
-          v-list-tile
-            v-list-tile-avatar
-              v-img(:src="`/img/${player.avatar}`")
-            PlayerTileContent(:id="key")
-            v-list-tile-action
-              v-btn(icon flat)
-                v-icon done
-          v-divider
+  v-content(app)
+    v-list(two-line)
+      div(
+        v-for="(player, key) in players"
+        :key="key"
+        @click="select(key)"
+      )
+        v-list-tile
+          v-list-tile-avatar
+            v-img(:src="`/img/${player.avatar}`")
+          PlayerTileContent(:id="key")
+        v-divider
 </template>
 
 <script lang="ts">

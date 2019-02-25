@@ -47,8 +47,8 @@ const router = new Router({
       name: 'menuTop',
       component: MenuTop,
       meta: {
-        color: 'blue darken-3',
-        title: 'hi',
+        color: 'primary',
+        title: 'ようこそ',
       },
     },
     {
@@ -60,6 +60,10 @@ const router = new Router({
       path: '/guild/selectPlayer',
       name: 'guildSelectPlayer',
       component: GuildSelectPlayer,
+      meta: {
+        color: 'primary',
+        title: 'PCを選択して下さい',
+      },
     },
     {
       path: '/guild/:playerId',
