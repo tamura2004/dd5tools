@@ -19,7 +19,7 @@
         v-list-tile(
           v-for="(child, i) in item.children"
           :key="i"
-          @click=""
+          :to="child.path"
         )
           v-list-tile-content
             v-list-tile-title {{ child.text }}
@@ -33,6 +33,7 @@ interface MenuItem {
   alt?: string;
   text: string;
   model?: boolean;
+  path?: string;
   children?: MenuItem[];
 }
 
@@ -57,7 +58,8 @@ export default class NavigationDrawer extends Vue {
       model: true,
       children: [
         {
-          text: 'guild',
+          text: 'home',
+          path: '/',
         },
         {
           text: 'THK',

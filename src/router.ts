@@ -55,6 +55,10 @@ const router = new Router({
       path: '/guild/top',
       name: 'guildTop',
       component: GuildTop,
+      meta: {
+        color: 'primary',
+        title: '冒険者ギルド',
+      },
     },
     {
       path: '/guild/selectPlayer',
@@ -70,11 +74,19 @@ const router = new Router({
       name: 'guildMain',
       component: GuildMain,
       props: true,
+      meta: {
+        color: 'primary',
+        title: '冒険者ギルド',
+      },
       children: [
         {
           path: 'rank',
           component: GuildRank,
           props: true,
+          meta: {
+            color: 'primary',
+            title: '冒険者ギルド',
+          },
         },
       ],
     },

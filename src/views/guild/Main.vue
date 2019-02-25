@@ -1,13 +1,7 @@
 <template lang="pug">
-  v-app
-    v-toolbar(app dark flat dense color="primary")
-      v-btn(icon to="/")
-        v-icon home
-      v-toolbar-title.headline
-        span {{ player.characterName }}さん
-    v-content
-      v-container(fluid)
-        router-view
+  v-content(app)
+    v-container(fluid)
+      router-view
 </template>
 
 <script lang="ts">
