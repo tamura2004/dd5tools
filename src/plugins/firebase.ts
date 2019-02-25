@@ -16,9 +16,9 @@ export const db = firebaseApp.firestore();
 
 export function listen<T>(
   store: Store<State>,
-  fn: new(init: Partial<T>) => T,
-  name: string,
+  fn: (new(init: Partial<T>) => T) & { collectionName: string },
 ) {
+  const name = fn.collectionName;
   db.collection(name).onSnapshot((query) => {
     const collection: { [key: string]: T } = {};
     query.forEach((doc: any) => {

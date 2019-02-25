@@ -46,6 +46,10 @@ const router = new Router({
       path: '/',
       name: 'menuTop',
       component: MenuTop,
+      meta: {
+        color: 'blue darken-3',
+        title: 'hi',
+      },
     },
     {
       path: '/guild/top',

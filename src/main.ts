@@ -16,13 +16,13 @@ import { listen } from '@/plugins/firebase';
 
 Vue.config.devtools = true;
 
-listen(store, Player, 'players');
-listen(store, Spell, 'spells');
-listen(store, Item, 'items');
-listen(store, Npc, 'npcs');
-listen(store, Place, 'places');
-listen(store, Dungeon, 'dungeons');
-listen(store, Floor, 'floors');
+listen(store, Player);
+listen(store, Spell);
+listen(store, Item);
+listen(store, Npc);
+listen(store, Place);
+listen(store, Dungeon);
+listen(store, Floor);
 
 new Vue({
   router,

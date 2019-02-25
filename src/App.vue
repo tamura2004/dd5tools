@@ -1,14 +1,29 @@
 <template lang="pug">
-  transition(name="router" mode="out-in")
-    router-view
+  v-app
+    NavigationDrawer(:drawer.sync="drawer")
+    ToolBar(@update:drawer="drawer = !drawer")
+
+    transition(name="router" mode="out-in")
+      router-view
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import NavigationDrawer from '@/components/layout/NavigationDrawer.vue';
+import ToolBar from '@/components/layout/ToolBar.vue';
 
-@Component
+@Component({
+  components: {
+    NavigationDrawer,
+    ToolBar,
+  },
+})
 export default class App extends Vue {
+  private title!: string;
+  private color!: string;
+  private drawer: boolean = false;
 }
+
 </script>
 
 <style lang="stylus">
@@ -17,9 +32,7 @@ export default class App extends Vue {
 
   .router-enter
     transform translateX(100%)
-    // opacity 0
 
   .router-leave-active
-    // opacity 0
     transform translateX(-100%)
 </style>

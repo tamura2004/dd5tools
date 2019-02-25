@@ -9,6 +9,8 @@ function modify(ability: number): number {
 }
 
 export class Player {
+  public static collectionName: string = 'players';
+
   public name?: string = undefined;
   public characterName?: string = undefined;
   public klass?: string = undefined;

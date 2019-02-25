@@ -11,6 +11,8 @@ const enum M {
 }
 
 export default class Floor {
+  public static collectionName: string = 'floors';
+
   public dungeonId?: string;
   public level?: number;
   public name?: string;
