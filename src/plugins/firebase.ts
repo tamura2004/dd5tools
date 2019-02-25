@@ -1,11 +1,7 @@
-import Vue from 'vue';
-import VueFire from 'vuefire';
-import firebase from 'firebase/app';
 import 'firebase/firestore';
+import firebase from 'firebase/app';
 import { Store } from 'vuex';
 import State from '@/models/State';
-
-Vue.use(VueFire);
 
 const firebaseApp = firebase.initializeApp({
     apiKey: 'AIzaSyANamGza96l_HKbG-hsw73WvCFxNv_I_YY',
@@ -18,12 +14,11 @@ const firebaseApp = firebase.initializeApp({
 
 export const db = firebaseApp.firestore();
 
-export function listen<T>(store: Store<State>, fn: new(init: Partial<T>) => T) {
-  const name =  fn.name.toLowerCase() + 's';
-  if (name === undefined) {
-    return;
-  }
-
+export function listen<T>(
+  store: Store<State>,
+  fn: new(init: Partial<T>) => T,
+  name: string,
+) {
   db.collection(name).onSnapshot((query) => {
     const collection: { [key: string]: T } = {};
     query.forEach((doc: any) => {
