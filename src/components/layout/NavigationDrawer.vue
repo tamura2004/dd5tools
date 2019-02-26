@@ -3,7 +3,7 @@
     fixed
     :clipped="$vuetify.breakpoint.mdAndUp"
     app
-    v-model="active"
+    v-model="drawer"
   )
     v-list(dense)
       v-list-group(
@@ -39,16 +39,14 @@ interface MenuItem {
 
 @Component
 export default class NavigationDrawer extends Vue {
-  @Prop() private drawer!: boolean;
   private title!: string;
   private color!: string;
 
-  private get active(): boolean {
-    return this.drawer;
+  private get drawer(): boolean {
+    return this.$store.state.layout.drawer;
   }
-
-  private set active(value: boolean) {
-    this.$emit('update:drawer', value);
+  private set drawer(active: boolean) {
+    this.$store.commit('layout/drawer', active);
   }
 
   private items: MenuItem[] = [

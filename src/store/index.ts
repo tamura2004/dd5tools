@@ -4,8 +4,12 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 import State from '@/models/State';
+import LayoutStore from '@/store/modules/layout';
 
 export default new Vuex.Store({
+  modules: {
+    layout: LayoutStore,
+  },
   state: new State(),
   getters: {
   },

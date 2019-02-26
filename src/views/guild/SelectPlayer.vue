@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-content(app)
+  v-layout
     v-list(two-line)
       div(
         v-for="(player, key) in players"

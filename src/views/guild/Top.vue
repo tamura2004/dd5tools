@@ -1,21 +1,16 @@
 <template lang="pug">
-  v-app
-    v-toolbar(app dark flat dense color="primary")
-      v-btn(icon to="/")
-        v-icon home
-      v-toolbar-title.headline
-        span 冒険者ギルド
-    v-content
-      v-container(fluid)
-        v-layout(jestify-center row wrap)
-          v-flex(xs12)
-            .headline.text-xs-center いらっしゃいませ
-          v-flex(xs12)
-            .headline.text-xs-center ギルドカードをご提示ください
-          v-flex(xs6 offset-xs3)
-            v-card(flat)
-              v-img(src="/img/kaisya_uketsuke_woman.png")
+  v-container(fluid)
+    v-layout(jestify-center row wrap)
+      v-flex(xs12)
+        .headline.text-xs-center いらっしゃいませ
+      v-flex(xs12)
+        .headline.text-xs-center ギルドカードをご提示ください
+      v-flex(xs6 offset-xs3)
+        v-card(flat)
+          v-img(src="/img/kaisya_uketsuke_woman.png")
+      v-flex(xs12)
         MenuButton(label="新規登録" color="success" to="/player/new")
+      v-flex(xs12)
         MenuButton(label="ギルドカード提示" color="primary" to="/guild/selectPlayer")
 </template>
 
@@ -29,5 +24,10 @@ import MenuButton from '@/components/MenuButton.vue';
   },
 })
 export default class GuildTop extends Vue {
+  private created(): void {
+    this.$store.commit('layout/visible', true);
+    this.$store.commit('layout/color', 'primary');
+    this.$store.commit('layout/title', '冒険者ギルド');
+  }
 }
 </script>

@@ -2,29 +2,35 @@
   v-toolbar(
     app
     dark
+    dense
     :color="color"
     :clipped-left="$vuetify.breakpoint.mdAndUp"
     fixed
+    v-if="visible"
   )
     v-toolbar-title
-      v-toolbar-side-icon(@click.stop="$emit('update:drawer', !drawer)")
+      v-toolbar-side-icon(@click="$store.commit('layout/drawer', !drawer)")
       span {{ title }}
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import { createNamespacedHelpers } from 'vuex';
+import LayoutState from '@/models/LayoutState';
 
-@Component
+const {mapState} = createNamespacedHelpers('layout');
+
+@Component({
+  computed: {
+    ...mapState({
+      color: (state: LayoutState) => state.color,
+      title: (state: LayoutState) => state.title,
+      visible: (state: LayoutState) => state.visible,
+      drawer: (state: LayoutState) => state.drawer,
+    }),
+  },
+})
 export default class ToolBar extends Vue {
-  @Prop() private drawer!: boolean;
-
-  private get color(): string {
-    return this.$router.currentRoute.meta.color;
-  }
-
-  private get title(): string {
-    return this.$router.currentRoute.meta.title;
-  }
 }
 
 </script>

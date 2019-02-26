@@ -1,7 +1,5 @@
 <template lang="pug">
-  v-content(app)
-    v-container(fluid)
-      router-view
+  router-view
 </template>
 
 <script lang="ts">
@@ -15,6 +13,11 @@ export default class GuildMain extends Vue {
 
   private get player(): Player {
     return this.$store.state.players[this.playerId];
+  }
+  private created(): void {
+    this.$store.commit('layout/visible', true);
+    this.$store.commit('layout/color', 'primary');
+    this.$store.commit('layout/title', '冒険者ギルド?');
   }
 }
 </script>

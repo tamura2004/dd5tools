@@ -1,10 +1,10 @@
 <template lang="pug">
   v-app
-    NavigationDrawer(:drawer.sync="drawer")
-    ToolBar(:drawer.sync="drawer")
-
-    transition(name="router" mode="out-in")
-      router-view
+    NavigationDrawer
+    ToolBar
+    v-content
+      transition(name="router" mode="out-in")
+        router-view
 </template>
 
 <script lang="ts">
@@ -19,9 +19,6 @@ import ToolBar from '@/components/layout/ToolBar.vue';
   },
 })
 export default class App extends Vue {
-  private title!: string;
-  private color!: string;
-  private drawer: boolean = false;
 }
 
 </script>
