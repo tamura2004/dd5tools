@@ -24,7 +24,7 @@
       PlayerTile,
     },
   })
-  export default class DungeonFloorPlayers extends Vue {
+  export default class FloorPlayerList extends Vue {
     @Prop() private id!: string;
     private close: boolean = true;
 

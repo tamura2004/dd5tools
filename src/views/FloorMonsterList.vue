@@ -26,7 +26,7 @@
 
   import ListHeader from '@/components/ListHeader.vue';
   import MonsterInfoTile from '@/components/MonsterInfoTile.vue';
-  
+
 
   @Component({
     components: {
@@ -34,7 +34,7 @@
       MonsterInfoTile,
     },
   })
-  export default class DungeonFloorMonsters extends Vue {
+  export default class FloorMonsterList extends Vue {
     @Prop() private id!: string;
     private close: boolean = true;
 

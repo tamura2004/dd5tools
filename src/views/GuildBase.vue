@@ -8,7 +8,7 @@ import { Player } from '@/models/Player';
 import MenuButton from '@/components/MenuButton.vue';
 
 @Component
-export default class GuildMain extends Vue {
+export default class GuildBase extends Vue {
   @Prop() private playerId!: string;
 
   private get player(): Player {

@@ -43,10 +43,10 @@
       ListHeader,
     },
   })
-  export default class DungeonForm extends Vue {
+  export default class FloorForm extends Vue {
     @Prop() private dungeonId!: string;
     @Prop() private id!: string;
-  
+
     private valid: boolean = false;
     private required: Validation[] = [
       (v) => !!v || '必須項目です',

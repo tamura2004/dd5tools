@@ -23,7 +23,7 @@ import MenuButton from '@/components/MenuButton.vue';
     MenuButton,
   },
 })
-export default class GuildTop extends Vue {
+export default class GuildReception extends Vue {
   private created(): void {
     this.$store.commit('layout/toolbar', true);
     this.$store.commit('layout/color', 'primary');

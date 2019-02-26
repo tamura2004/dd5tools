@@ -29,7 +29,7 @@ export default class GuildSelectPlayer extends Vue {
     this.$router.push(`/guild/${id}/rank`);
   }
   private created(): void {
-    this.$store.commit('layout/title', 'PCを選択して下さい')
+    this.$store.commit('layout/title', 'PCを選択して下さい');
   }
 }
 </script>

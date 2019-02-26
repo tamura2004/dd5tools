@@ -28,7 +28,7 @@
       ListHeader,
     },
   })
-  export default class DungeonFloors extends Vue {
+  export default class FloorList extends Vue {
     @Prop() private dungeonId!: string;
 
     private get dungeon(): Dungeon | undefined {

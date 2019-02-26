@@ -13,7 +13,7 @@
   import Floor from '@/models/Floor.vue';
 
   @Component
-  export default class DungeonFloorMap extends Vue {
+  export default class FloorMap extends Vue {
     @Prop() private id!: string;
 
     private get floor(): Floor | undefined {

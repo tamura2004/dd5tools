@@ -7,7 +7,7 @@ import GameForm from '@/views/GameForm.vue';
 import Games from '@/views/Games.vue';
 import ItemForm from '@/views/ItemForm.vue';
 import Items from '@/views/Items.vue';
-import MenuTop from '@/views/menu/Top.vue';
+import MenuTop from '@/views/MenuTop.vue';
 import MonsterInfoSheet from '@/views/MonsterInfoSheet.vue';
 import Monsters from '@/views/Monsters.vue';
 import NpcForm from '@/views/NpcForm.vue';
@@ -22,9 +22,8 @@ import SpellForm from '@/views/SpellForm.vue';
 import Spells from '@/views/Spells.vue';
 import Weapons from '@/views/Weapons.vue';
 
-
-import DungeonRoute from '@/router/modules/dungeon';
-import GuildRoute from '@/router/modules/guild';
+import DungeonRoute from '@/router/modules/DungeonRoute';
+import GuildRoute from '@/router/modules/GuildRoute';
 
 Vue.use(Router);
 
