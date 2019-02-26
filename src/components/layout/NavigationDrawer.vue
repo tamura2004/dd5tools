@@ -6,23 +6,24 @@
     v-model="drawer"
   )
     v-list(dense)
-      v-list-group(
-        v-for="item in items"
-        v-model="item.model"
-        :prepend-icon="item.icon"
-        :key="item.text"
-        no-action
-      )
-        v-list-tile(slot="activator")
-          v-list-tile-content
-            v-list-tile-title {{ item.text }}
-        v-list-tile(
-          v-for="(child, i) in item.children"
-          :key="i"
-          :to="child.path"
+      template(v-for="item in items")
+        v-list-group(
+          v-if="item.children"
+          v-model="item.model"
+          :prepend-icon="item.icon"
+          :key="item.text"
+          no-action
         )
-          v-list-tile-content
-            v-list-tile-title {{ child.text }}
+          v-list-tile(slot="activator")
+            v-list-tile-content
+              v-list-tile-title {{ item.text }}
+          v-list-tile(
+            v-for="(child, i) in item.children"
+            :key="i"
+            :to="child.path"
+          )
+            v-list-tile-content
+              v-list-tile-title {{ child.text }}
 </template>
 
 <script lang="ts">

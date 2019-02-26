@@ -25,7 +25,7 @@ import MenuButton from '@/components/MenuButton.vue';
 })
 export default class GuildTop extends Vue {
   private created(): void {
-    this.$store.commit('layout/visible', true);
+    this.$store.commit('layout/toolbar', true);
     this.$store.commit('layout/color', 'primary');
     this.$store.commit('layout/title', '冒険者ギルド');
   }

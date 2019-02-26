@@ -7,8 +7,8 @@ const LayoutStore = {
     color(state: LayoutState, color: string) {
       state.color = color;
     },
-    visible(state: LayoutState, visible: boolean) {
-      state.visible = visible;
+    toolbar(state: LayoutState, toolbar: boolean) {
+      state.toolbar = toolbar;
     },
     title(state: LayoutState, title: string) {
       state.title = title;

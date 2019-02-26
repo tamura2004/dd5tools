@@ -21,7 +21,7 @@ import MenuButton from '@/components/MenuButton.vue';
 })
 export default class MenuTop extends Vue {
   private created(): void {
-    this.$store.commit('layout/visible', false);
+    this.$store.commit('layout/toolbar', false);
   }
 }
 </script>

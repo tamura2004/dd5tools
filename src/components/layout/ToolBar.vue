@@ -3,10 +3,11 @@
     app
     dark
     dense
+    flat
     :color="color"
     :clipped-left="$vuetify.breakpoint.mdAndUp"
     fixed
-    v-if="visible"
+    v-if="toolbar"
   )
     v-toolbar-title
       v-toolbar-side-icon(@click="$store.commit('layout/drawer', !drawer)")
@@ -25,7 +26,7 @@ const {mapState} = createNamespacedHelpers('layout');
     ...mapState({
       color: (state: LayoutState) => state.color,
       title: (state: LayoutState) => state.title,
-      visible: (state: LayoutState) => state.visible,
+      toolbar: (state: LayoutState) => state.toolbar,
       drawer: (state: LayoutState) => state.drawer,
     }),
   },

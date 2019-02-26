@@ -15,7 +15,7 @@ export default class GuildMain extends Vue {
     return this.$store.state.players[this.playerId];
   }
   private created(): void {
-    this.$store.commit('layout/visible', true);
+    this.$store.commit('layout/toolbar', true);
     this.$store.commit('layout/color', 'primary');
     this.$store.commit('layout/title', '冒険者ギルド?');
   }
