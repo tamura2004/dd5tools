@@ -1,23 +1,42 @@
 <template lang="pug">
   v-app
-    v-toolbar
-      v-btn(icon to="/"): v-icon clear
+    v-toolbar(flat dark app dense)
+      v-btn(icon @click="$router.go(-1)"): v-icon arrow_back_ios
       v-toolbar-title.text-xs-center 呪文
-      v-btn(absolute dark fab bottom small right color="red")
-        v-icon add
+      v-spacer
+      v-btn(icon to="/spellForm/new"): v-icon add
     v-content
-      v-container(fluid grid-list-lg)
-        v-layout(row wrap)
-          v-flex(xs6 sm4 v-for="n in 2" :key="n")
-            v-card
-              v-img(:src="`http://moneta.sofia3dd.net/img/spell_00${n}.png`")
+      v-list
+        template(v-for="(spell, key) in spells")
+          v-list-tile
+            v-list-tile-action(
+              v-if="currentPlayerId"
+              @click="addSpell(key)"
+            )
+              v-icon add
+            v-list-tile-content
+              v-list-tile-title {{ spell.name }}
+              v-list-tile-sub-title {{ spell.klass }}/{{ spell.level }}lv
+            v-list-tile-action(@click="$router.push(`/spellForm/${key}`)"): v-icon edit
+          v-divider
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
+  import Spell from '@/models/Spell';
 
   @Component
   export default class Spells extends Vue {
+    private get spells(): { [key: string]: Spell } {
+      return this.$store.state.spells;
+    }
+    private get currentPlayerId(): string {
+      return this.$store.state.current.playerId;
+    }
+    private addSpell(key: string): void {
+      this.$store.dispatch('addSpell', key);
+      this.$router.go(-1);
+    }
   }
 </script>
 

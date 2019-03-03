@@ -1,10 +1,8 @@
 <template lang="pug">
   v-dialog(v-model="dialog" width="320")
-    v-layout.center(align-center justify-center slot="activator")
-      h1 {{ value }}
+    .display-1(slot="activator") {{ value }}
     Tenkey(
       :value="value"
-      :max="maxHp"
       @input="done($event)"
       title="hpを変更して「＝」キーを押してください"
     )

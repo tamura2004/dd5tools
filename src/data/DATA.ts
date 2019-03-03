@@ -5,11 +5,11 @@ import Deck from '@/models/Deck';
 import { Weapon } from '@/models/Weapon';
 import { Armor } from '@/models/Armor';
 
-export enum Difficulty {
-  Easy = 0,
-  Normal,
-  Hard,
-  Deadly,
+export enum MODE {
+  EASY = 0,
+  NORMAL,
+  HARD,
+  HELL,
 }
 
 export const NUM_MODIFY = new Table([
@@ -161,12 +161,12 @@ export const KLASS = [
 ];
 
 export const ABILITY_LABEL = [
-  '【筋】',
-  '【敏】',
-  '【耐】',
-  '【知】',
-  '【判】',
-  '【魅】',
+  '筋力',
+  '敏捷',
+  '耐久',
+  '知力',
+  '判断',
+  '魅力',
 ];
 
 export const ABILITY_RANGE = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
@@ -283,6 +283,36 @@ export const AVATAR: Deck<string> = new Deck<string>(
   '049-wizard.png',
   '050-unicorn.png',
 );
+
+export const SKILLS: string[][] = [
+  ['運動'],
+  ['隠密', '軽業', '手先の早業'],
+  [],
+  ['自然', '宗教', '捜査', '魔法学', '歴史'],
+  ['医術', '看破', '生存', '知覚', '動物使い'],
+  ['説得', '芸能', '威圧', 'ペテン'],
+];
+
+export const SKILL_LABELS: string[] = [
+  '運動',
+  '隠密',
+  '軽業',
+  '手先の早業',
+  '自然',
+  '宗教',
+  '捜査',
+  '魔法学',
+  '歴史',
+  '医術',
+  '看破',
+  '生存',
+  '知覚',
+  '動物使い',
+  '説得',
+  '芸能',
+  '威圧',
+  'ペテン',
+];
 
 export const FEATS: Deck<string> = new Deck<string> (
   '癒し手',

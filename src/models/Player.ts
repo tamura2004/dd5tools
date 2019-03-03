@@ -9,7 +9,8 @@ function modify(ability: number): number {
 }
 
 export class Player {
-  public id?: string = undefined;
+  public static collectionName: string = 'players';
+
   public name?: string = undefined;
   public characterName?: string = undefined;
   public klass?: string = undefined;
@@ -17,21 +18,20 @@ export class Player {
   public background?: string = undefined;
   public race?: string = undefined;
   public alignment?: string = undefined;
+  public maxHp?: number = 1;
   public hp?: number = 1;
   public exp?: number = 0;
   public baseAbility: number[] = [];
+  public saves: string[] = [];
   public skills: string[] = [];
+  public spells: string[] = [];
   public weapon: string[] = [];
-  public armor?: string = undefined;
+  public armor?: string;
   public memo?: string;
-  public avatar?: string = undefined; // avatar icon filename
+  public avatar?: string;
 
   constructor(init: Partial<Player>) {
     Object.assign(this, init);
-  }
-
-  public get avatarAsset(): string {
-    return require('@/assets/' + this.avatar);
   }
 
   public get summary(): string {
@@ -70,7 +70,7 @@ export class Player {
   }
 
   public get ac(): number {
-    let baseAc = 0;
+    let baseAc = 10;
     let mod = 0;
     if (typeof this.armor !== 'undefined') {
       const armor = ARMOR.get(this.armor);
@@ -137,6 +137,25 @@ export class Player {
         this.baseAbility[i]++;
         this.baseAbility[j]--;
       }
+    }
+  }
+
+  public get rank(): string | undefined {
+    const rankMap = new Map<number, string>([
+      [1, 'G'],
+      [2, 'F'],
+      [3, 'E'],
+      [4, 'D'],
+      [5, 'C'],
+      [6, 'B'],
+      [7, 'A'],
+      [8, 'S'],
+      [9, 'SS'],
+      [10, 'SSS'],
+    ]);
+
+    if (this.level !== undefined) {
+      return rankMap.get(this.level);
     }
   }
 }

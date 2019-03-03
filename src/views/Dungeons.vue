@@ -1,50 +1,34 @@
 <template lang="pug">
   v-app
-    v-toolbar(app)
-      v-btn(icon to="/"): v-icon clear
+    v-toolbar(flat dark app dense)
+      v-btn(icon hover @click="$router.go(-1)"): v-icon arrow_back_ios
       v-toolbar-title.text-xs-center ダンジョン
       v-spacer
-      v-btn(icon @click="extended = !extended"): v-icon search
-      v-btn(icon to="/"): v-icon add
-    v-toolbar(v-show="extended")
-      v-btn(icon): v-icon clear
-      v-toolbar-title two
+      v-btn(icon to="/dungeonForm/new"): v-icon add
     v-content
-      v-container(:fluid="!$vuetify.breakpoint.xsOnly")
-        v-list(two-line)
-          div(v-for="(dungeon, n) in dungeons")
-            v-list-tile.my-1.elevation-4
-              v-list-tile-avater(tile)
-                v-btn(fab dark small color="grey") {{ n }}
-              v-list-tile-content.ml-2
-                v-list-tile-title {{ dungeon.name }}
-                v-list-tile-sub-title {{ dungeon.memo }}
-              v-list-actions
-                v-icon keyboard_arrow_right
+      v-list
+        template(v-for="(dungeon, key) in dungeons")
+          v-list-tile
+            v-list-tile-action(@click="$router.push(`/dungeonForm/${key}`)")
+              v-btn(flat fab small)
+                v-icon edit
+            v-list-tile-content
+              v-list-tile-title {{ dungeon.name }}
+              v-list-tile-sub-title {{ dungeon.description }}
+            v-list-tile-action(@click="$router.push(`/dungeon/${key}/floors`)")
+              v-btn(flat fab small icon) 
+                v-icon arrow_forward_ios
+          v-divider
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
+  import Dungeon from '@/models/Dungeon';
 
   @Component
   export default class Dungeons extends Vue {
-    private extended: boolean = false;
-    private dungeons = [
-      {
-        name: '峠のダンジョン',
-        memo: '鉱山村に行く抜け道。恐竜が出没する',
-      },
-      {
-        name: '遺跡のダンジョン',
-        memo: '魔人象のある部屋。オーガが住み着いていた。',
-      },
-      {
-        name: '樹上のダンジョン',
-        memo: 'ゴルゴン熱の特効薬の材料、銀蛇イチゴが採れる。',
-      },
-    ];
-    private newDungeon(): void {
-      this.$router.push('/dungeonForm/newDungeon');
+    private get dungeons(): { [key: string]: Dungeon } {
+      return this.$store.state.dungeons;
     }
   }
 </script>

@@ -1,9 +1,7 @@
-import Vue from 'vue';
-import VueFire from 'vuefire';
-import firebase from 'firebase/app';
 import 'firebase/firestore';
-
-Vue.use(VueFire);
+import firebase from 'firebase/app';
+import { Store } from 'vuex';
+import State from '@/models/State';
 
 const firebaseApp = firebase.initializeApp({
     apiKey: 'AIzaSyANamGza96l_HKbG-hsw73WvCFxNv_I_YY',
@@ -15,3 +13,21 @@ const firebaseApp = firebase.initializeApp({
 });
 
 export const db = firebaseApp.firestore();
+
+export function listen<T>(
+  store: Store<State>,
+  fn: (new(init: Partial<T>) => T) & { collectionName: string },
+) {
+  const name = fn.collectionName;
+  db.collection(name).onSnapshot((query) => {
+    const collection: { [key: string]: T } = {};
+    query.forEach((doc: any) => {
+      collection[doc.id] = new fn({...doc.data()});
+    });
+    store.commit({
+      type: 'set',
+      name,
+      collection,
+    });
+  });
+}

@@ -1,37 +1,30 @@
 <template lang="pug">
   v-app
-    v-toolbar
-      v-btn(icon to="/"): v-icon clear
-      v-toolbar-title.text-xs-center ＮＰＣ
-      v-btn(absolute dark fab bottom small right color="red")
-        v-icon add
-    v-list(two-line)
-      div(v-for="(npc, n) in npcs")
-        v-list-tile.my-1.elevation-4
-          v-list-tile-avatar(tile)
-            v-btn(fab dark small color="grey") {{ n + 1 }}
-          v-list-tile-content.ml-2
-            v-list-tile-title {{ npc.name }}
-            v-list-tile-sub-title {{ npc.memo }}
-          v-list-tile-action
-            v-icon keyboard_arrow_right
+    v-toolbar(flat dark app dense)
+      v-btn(icon @click="$router.go(-1)"): v-icon arrow_back_ios
+      v-toolbar-title.text-xs-center NPC
+      v-spacer
+      v-btn(icon to="/npcForm/new"): v-icon add
+    v-content
+      v-list
+        template(v-for="(npc, key) in npcs")
+          v-list-tile
+            v-list-tile-content
+              v-list-tile-title {{ npc.name }}
+              v-list-tile-sub-title {{ npc.description }}
+            v-list-tile-action(@click="$router.push(`/npcForm/${key}`)"): v-icon edit
+          v-divider
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
+  import Npc from '@/models/Npc';
 
   @Component
   export default class Npcs extends Vue {
-    private npcs = [
-      {
-        name: '行商人 ジョン',
-        memo: '鉱山村から炎熱石を運ぶ商人',
-      },
-      {
-        name: 'ニポポ婆さん',
-        memo: '腕のより薬師。キートムズ・オイントメントを作れる',
-      },
-    ];
+    private get npcs(): { [key: string]: Npc } {
+      return this.$store.state.npcs;
+    }
   }
 </script>
 

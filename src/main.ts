@@ -1,24 +1,28 @@
 import Vue from 'vue';
 import './plugins/vuetify';
+import router from '@/router/index';
+import store from '@/store/index';
 import App from './App.vue';
-import router from './router';
-import store from './store';
-import './registerServiceWorker';
-// import { Route } from 'vue-router';
-import { Difficulty } from '@/data/DATA';
 
-Vue.config.productionTip = false;
+import { Player } from '@/models/Player';
+import Spell from '@/models/Spell';
+import Item from '@/models/Item';
+import Npc from '@/models/Npc';
+import Place from '@/models/Place';
+import Dungeon from '@/models/Dungeon';
+import Floor from '@/models/Floor';
 
-// router.beforeEach((to, from, next) => {
-//   if (to.path === '/monsters' && store.state.party.totalExp(Difficulty.Easy) < 25) {
-//     next({ path: 'parties'});
-//   } else {
-//     next();
-//   }
-// });
+import { listen } from '@/plugins/firebase';
 
-store.dispatch('listenPlayers');
-store.dispatch('listenGames');
+Vue.config.devtools = true;
+
+listen(store, Player);
+listen(store, Spell);
+listen(store, Item);
+listen(store, Npc);
+listen(store, Place);
+listen(store, Dungeon);
+listen(store, Floor);
 
 new Vue({
   router,
