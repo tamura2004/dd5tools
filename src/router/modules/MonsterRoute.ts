@@ -1,7 +1,8 @@
 import MonsterInfoEncounter from '@/views/MonsterInfoEncounter.vue';
 import MonsterInfoList from '@/views/MonsterInfoList.vue';
+import { RouteConfig } from 'vue-router';
 
-const MonsterRoute = [
+const MonsterRoute: RouteConfig[] = [
   {
     path: '/monster/info/list',
     component: MonsterInfoList,
@@ -11,3 +12,5 @@ const MonsterRoute = [
     component: MonsterInfoEncounter,
   },
 ];
+
+export default MonsterRoute;

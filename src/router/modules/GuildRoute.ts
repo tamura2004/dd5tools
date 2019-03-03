@@ -2,8 +2,9 @@ import GuildReception from '@/views/GuildReception.vue';
 import GuildSelectPlayer from '@/views/GuildSelectPlayer.vue';
 import GuildBase from '@/views/GuildBase.vue';
 import GuildRank from '@/views/GuildRank.vue';
+import { RouteConfig, Route } from 'vue-router';
 
-const GuildRoute = [
+const GuildRoute: RouteConfig[] = [
   {
     path: '/guild/reception',
     component: GuildReception,
