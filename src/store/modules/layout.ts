@@ -1,6 +1,8 @@
 import LayoutState from '@/models/LayoutState';
+import State from '@/models/State';
+import { Module } from 'vuex';
 
-const LayoutStore = {
+const LayoutStore: Module<LayoutState, State> = {
   namespaced: true,
   state: new LayoutState(),
   mutations: {
