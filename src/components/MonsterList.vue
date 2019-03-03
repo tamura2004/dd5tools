@@ -18,26 +18,25 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import MonsterInfo from '@/models/MonsterInfo';
-import MONSTER_INFOS from '@/data/MONSTERS';
+import { Monster } from '@/models/Monster';
 
 @Component
 export default class MonsterList extends Vue {
-  @Prop() private id!: number;
+  @Prop() private row!: number;
 
-  private get monster(): MonsterInfo {
-    return MONSTER_INFOS[this.id];
+  private get monster(): Monster {
+    return this.$store.state.monsters[this.row - 1];
   }
   private get color(): string {
     const COLORS = ['green', 'blue', 'blue', 'blue', 'red', 'black'];
-    return COLORS[this.id - 1] || 'error';
+    return COLORS[this.row - 1] || 'error';
   }
   private get difficulty(): string {
     const DIFFICULTY = ['簡単', '通常', '通常', '通常', '困難', '死地'];
-    return DIFFICULTY[this.id - 1] || 'error';
+    return DIFFICULTY[this.row - 1] || 'error';
   }
   private go(): void {
-    this.$router.push(`/monster/${this.id}`);
+    this.$router.push(`/monster/${this.row}`);
   }
 }
 </script>

@@ -1,15 +1,14 @@
 <template lang="pug">
   v-layout
-    v-img(:src="`/img/${value}`" @click="dialog=true" v-if="value")
-    v-btn(outline fab small @click="dialog=true" v-else).mr-4: v-icon people
+    v-img(:src="require('@/assets/' + value)" @click="dialog=true")
     v-dialog(v-model="dialog")
       v-card
         v-card-title.pb-0 クリックしてアイコンを選択してください
           v-container(grid-list-md fluid)
             v-layout(row wrap)
-              v-flex(v-for="avatar in avatars" xs2 sm1 :key="avatar")
+              v-flex(v-for="avatar in avatars" xs2 sm1)
                 v-card(hover @click="select(avatar)")
-                  v-img(:src="`/img/${avatar}`")
+                  v-img(:src="require('@/assets/' + avatar)")
 </template>
 
 <script lang="ts">

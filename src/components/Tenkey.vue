@@ -47,6 +47,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 @Component
 export default class Tenkey extends Vue {
   @Prop() private value!: number;
+  @Prop() private max!: number;
   @Prop() private title!: string;
 
   private operator: string = '-';

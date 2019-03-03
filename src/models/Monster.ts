@@ -1,58 +1,71 @@
-import MonsterInfo from '@/models/MonsterInfo';
-import { MountOptions } from '@vue/test-utils';
+import { EXP } from '@/data/DATA';
 
-export default class Monster {
-  public name?: string;
-  public size?: string;
-  public type?: string;
-  public alignment?: string;
-  public mv?: string;
-  public maxHp?: number;
-  public ac?: number;
-  public exp?: number;
-  public ability: number[] = [];
-  public attributes: string[] = [];
-  public actions: string[] = [];
-  public specials: string[] = [];
+export interface IMonster {
+  name: string;
+  size: string;
+  type: string;
+  alignment: string;
+  ac: number;
+  hp: number;
+  mv: string;
+  ability: number[];
+  exp: number;
+  attributes: string[];
+  actions: string[];
+  specials: string[];
+}
 
-  public hp?: number;
-  public initiative?: number;
-  public gold?: number;
+function modify(ability: number) {
+  return Math.floor((ability - 10) / 2);
+}
 
-  constructor(info: MonsterInfo, template?: MonsterInfo) {
-    Object.assign(this, info);
+export class Monster implements IMonster {
+  public name: string;
+  public size: string;
+  public type: string;
+  public alignment: string;
+  public ac: number;
+  public hp: number;
+  public mv: string;
+  public ability: number[];
+  public exp: number;
+  public attributes: string[];
+  public actions: string[];
+  public specials: string[];
+  public num: number;
+  public currentHp: number[] = [];
 
-    if (template === undefined) {
-      return;
+  constructor(init: IMonster, num: number) {
+    this.name = init.name;
+    this.size = init.size;
+    this.type = init.type;
+    this.alignment = init.alignment;
+    this.ac = init.ac;
+    this.hp = init.hp;
+    this.mv = init.mv;
+    this.ability = init.ability;
+    this.exp = init.exp;
+    this.attributes = init.attributes;
+    this.actions = init.actions;
+    this.specials = init.specials;
+    this.num = num;
+    for (let i = 0; i < this.num; i++) {
+      this.currentHp.push(this.hp);
     }
+  }
 
-    // change name
-    this.name = template.name + '・' + this.name;
-
-    // overwitten attributes by template
-    this.size = template.size || this.size;
-    this.type = template.type || this.type;
-    this.alignment = template.alignment || this.alignment;
-    this.mv = template.mv || this.mv;
-
-    // adjust attributes by template
-    const { maxHp, ac } = template;
-    if (maxHp !== undefined && this.maxHp !== undefined) {
-      this.maxHp = Math.floor(this.maxHp * maxHp);
+  public get totalExp(): number {
+    return this.num * this.exp;
+  }
+  public get cr(): string | undefined {
+    return EXP.lookupUnder(this.exp);
+  }
+  public abilityString(i: number): string {
+    const ability = this.ability[i];
+    if (ability >= 10) {
+      return `${ability}(+${modify(ability)})`;
+    } else {
+      return `${ability}(${modify(ability)})`;
     }
-    if (ac !== undefined && this.ac !== undefined) {
-      this.ac += ac;
-    }
-
-    // adujust abilities by template
-    const { ability } = template;
-    for (let i = 0; i < 6; i++) {
-      this.ability[i] += ability[i];
-    }
-
-    // add attributes by template
-    this.attributes = this.attributes.concat(template.attributes);
-    this.actions = this.actions.concat(template.actions);
-    this.specials = this.specials.concat(template.specials);
   }
 }

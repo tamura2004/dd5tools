@@ -1,5 +1,6 @@
 <template lang="pug">
-  v-btn.menu.my-4(round dark block large :color="color" :to="to") {{label}}
+  router-link(:to="to")
+    v-btn.menu.my-4(round dark block large color="primary") {{label}}
 </template>
 
 <script lang="ts">
@@ -9,7 +10,6 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 export default class MenuButton extends Vue {
   @Prop() private to!: string;
   @Prop() private label!: string;
-  @Prop() private color!: string;
 }
 </script>
 

@@ -1,71 +1,73 @@
 <template lang="pug">
   v-app
-    v-toolbar(app flat dark dense)
-      v-btn(icon @click="$router.go(-1)"): v-icon arrow_back_ios
-      v-toolbar-title {{ player && player.characterName }}
-      v-spacer
-      v-btn(icon @click="edit"): v-icon edit
-    v-content(v-if="player")
-      v-list(dense)
+    v-toolbar(app)
+      v-btn(icon to="/"): v-icon clear
+      v-toolbar-title キャラクターシート
+    v-content
+      v-list(three-line)
         v-list-tile
+          v-btn(fixed dark fab top right color="green" @click="edit")
+            v-icon edit
           v-list-tile-avatar(tile)
-            v-img(:src="`/img/${player.avatar}`")
+            v-img(:src="require('@/assets/' + player.avatar)")
           v-list-tile-content
             v-list-tile-title
               v-layout
-                v-flex(xs6) {{ player.klass }} {{ player.level}}レベル
-                v-flex(xs6) {{ player.race }}/{{ player.background }}
+                v-flex(xs7) {{ player.characterName }}
+                v-flex(xs5) {{ player.klass }}{{ player.level}}
             v-list-tile-sub-title
               v-layout
-                v-flex(xs6) {{ player.alignment }}
-                v-flex(xs3) PL:{{ player.name }}
-                v-flex(xs3) EXP:{{ player.exp }}
-        table.mb-1
-          tr
-            td.label AC
-            td.number {{ player.ac }}
-            td.label MV
-            td.number 30'
-            td.label hp
-            td.number {{ player.hp }}
-            td.label PB
-            td.number +2
-        table
-          tr(v-for="n in 6")
-            td.label {{ abilityLabel[n-1] }}
-            td.number {{ player.ability[n-1] }}
-            td.number {{ player.abilityMod[n-1] }}
-            td.number {{ player.saves.includes(abilityLabel[n-1]) ? '●' : '' }}
-            td.skill {{ skillDisplay[n-1].join('、') }}
+                v-flex(xs7) {{ player.race }}/{{ player.background }}
+                v-flex(xs5) PL:{{ player.name }}
+            v-list-tile-sub-title
+              v-layout
+                v-flex(xs7) {{ player.alignment }}
+                v-flex(xs5) EXP:{{ player.exp }}
+        v-divider
+        v-list-tile
+          v-list-tile-content
+            v-list-tile-sub-title
+              v-layout.center
+                v-flex(xs2 v-for="(label, i) in abilityLabel" :key="'label' + i") {{ label }}
+            v-list-tile-title
+              v-layout.center
+                v-flex(xs2 v-for="(a, i) in player.ability" :key="'ability' + i") {{ a }}
+            v-list-tile-sub-title
+              v-layout.center
+                v-flex(xs2 v-for="(m, i) in player.abilityMod" :key="'mod' + i") ({{ m }})
+        v-divider
+        v-list-tile
+          v-layout.center
+            v-flex(xs2)
+              v-list-tile-title.center 最大hp
+              v-list-tile-sub-title {{ player.hp }}
+            v-flex(xs10)
+              v-list-tile-sub-title.caption.center 数字をタップで値を変更
+              LifeCounter(v-model="hp" :maxHp="player.hp")
 
-        ListHeader(title="武器" icon="add" @click="$router.push('/weapons')")
+        v-divider
+        v-list-tile
+          v-list-tile-content
+            v-list-tile-title
+              v-layout
+                v-flex.center(xs2) AC
+                v-flex(xs8) {{ player.armor }}
+            v-list-tile-sub-title
+              v-layout
+                v-flex.center(xs2) {{ player.ac }}
         template(v-for="(w, i) in weapons")
+          v-divider
           v-list-tile
-            v-list-tile-action(@click="$store.dispatch('deleteWeapon', i)"): v-icon clear
             v-list-tile-content
               v-list-tile-title {{ player.weapon[i] }}：{{ w.category }}
               v-list-tile-sub-title 攻撃+{{ player.toHit(w) }}、間合い{{ w.range }}、ヒット：{{ w.damage }}+{{ player.toHit(w) }}[{{ w.type }}]ダメージ
-            v-list-tile-action: v-icon keyboard_arrow_right
-          v-divider
-
-        ListHeader(title="呪文" icon="add" @click="$router.push('/spells')")
-        template(v-for="(spell, key) of spells")
-          v-list-tile
-            v-list-tile-action(@click="$store.dispatch('deleteSpell', key)"): v-icon clear
-            v-list-tile-content
-              v-list-tile-title {{ spell && spell.name }}
-              v-list-tile-sub-title {{ spell && spell.klass }}/{{ spell && spell.level }}lv
-            v-list-tile-action(@click="$router.push(`/spellForm/${key}`)")
-              v-icon keyboard_arrow_right
-          v-divider
-
-
-        ListHeader(title="特技・クラス能力" icon="add")
-        v-list-tile
-          v-list-tile-content
-            v-list-tile-title {{ player.memo }}
-          v-list-tile-action: v-icon keyboard_arrow_right
         v-divider
+        v-list-tile
+          v-btn(absolute dark fab top left small color="red" @click="edit")
+            v-icon add
+          v-list-tile-content
+            v-list-tile-title メモ
+            v-list-tile-sub-title {{ player.memo }}
 
 </template>
 
@@ -73,10 +75,9 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import LifeCounter from '@/components/LifeCounter.vue';
 import IconSelect from '@/components/IconSelect.vue';
-import ListHeader from '@/components/ListHeader.vue';
 import { Player } from '@/models/Player';
-import Spell from '@/models/Spell';
-import { ABILITY_LABEL, WEAPON, SKILLS } from '@/data/DATA';
+import { ABILITY_LABEL } from '@/data/DATA';
+import { WEAPON } from '@/data/DATA';
 import { Weapon } from '@/models/Weapon';
 import { db } from '@/plugins/firebase';
 
@@ -84,97 +85,41 @@ import { db } from '@/plugins/firebase';
   components: {
     LifeCounter,
     IconSelect,
-    ListHeader,
   },
 })
 export default class PlayerCard extends Vue {
+  public player: Player = new Player({});
   private abilityLabel = ABILITY_LABEL;
-  private skills = SKILLS;
+  private weapons: Array<Weapon | undefined> = [];
   private hp: number = 0;
   @Prop() private id!: string;
 
-  private get alert(): boolean {
-    return this.$store.state.alert;
-  }
-
-  private get alertMsg(): string {
-    return this.$store.state.alertMsg;
-  }
-
-  private get player(): Player | undefined {
-    return this.$store.state.players[this.id];
-  }
-
-  private get weapons(): Weapon[] {
-    if (this.player === undefined) {
-      return [];
-    }
-
-    const result: Weapon[] = [];
-    for (const name of this.player.weapon) {
-      const weapon = WEAPON.get(name);
-      if (weapon !== undefined) {
-        result.push(weapon);
-      }
-    }
-    return result;
-  }
-
-  private get spells(): { [key: string]: Spell } {
-    const result: { [key: string]: Spell } = {};
-    if (this.player !== undefined) {
-      this.player.spells.forEach((spellId) => {
-        result[spellId] = this.$store.state.spells[spellId];
-      });
-    }
-    return result;
-  }
-
-  private get skillDisplay(): string[][] {
-    return this.skills.map((list) =>
-      list.map((skill) =>
-        (!!this.player && this.player.skills.includes(skill)) ? `●${skill}` : skill,
-      ),
-    );
-  }
-
   private edit(): void {
-    this.$router.push(`/playerForm/${this.id}`);
+    this.$router.push(`/playerForm/${this.player.id}`);
   }
 
-  private mounted(): void {
-    this.$store.commit('setCurrentPlayerId', this.id);
+  private created(): void {
+    if (typeof this.$store.state.player === 'undefined') {
+      db.collection('players').doc(this.id).get()
+        .then((doc) => {
+          this.player = new Player({
+            id: doc.id,
+            ...doc.data(),
+          });
+          this.hp = this.player.hp || 0;
+          this.weapons = this.player.weapon.map((w) => {
+            return WEAPON.get(w);
+          });
+        })
+        .catch((e) => alert(e));
+    } else {
+      this.player = this.$store.state.player.find((p: Player) => p.id === this.id);
+    }
   }
-
 }
 </script>
 
-<style lang="stylus">
-.center
-  text-align center
-.border
-  border 1px black solid
-
-table
-  width 100%
-  border solid 1px grey
-  border-collapse collapse
-
-tr
-  height 32px
-
-td
-  border solid 1px grey
-  padding 0 2px
-
-td.label
-  text-align center
-  width 48px
-  background-color #212121 
-  color white
-
-td.number
-  text-align center
-  width 32px
-
+<style lang="stylus" scoped>
+  .center
+    text-align center
 </style>

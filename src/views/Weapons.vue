@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     v-toolbar(color="green darken-3" dark app)
-      v-btn(icon @click="$router.go(-1)"): v-icon arrow_back_ios
+      v-btn(icon to="/"): v-icon clear
       v-toolbar-title.white--text 武器一覧
       v-spacer
       v-btn(icon): v-icon search
@@ -59,8 +59,7 @@ export default class WeaponList extends Vue {
   }
 
   private select(weapon: Weapon): void {
-    this.$store.dispatch('addWeapon', weapon);
-    this.$router.go(-1);
+    // this.$emit('input', weapon.name);
   }
 }
 </script>
