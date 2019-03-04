@@ -11,6 +11,6 @@ import MenuButton from '@/components/MenuButton.vue';
     MenuButton,
   },
 })
-export default class GuildMenu extends Vue {
+export default class GuildPlayerMenu extends Vue {
 }
 </script>

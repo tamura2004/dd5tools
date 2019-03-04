@@ -1,8 +1,8 @@
-import GuildReception from '@/views/GuildReception.vue';
-import GuildMenu from '@/views/GuildMenu.vue';
-import GuildPlayers from '@/views/GuildPlayers.vue';
 import Guild from '@/views/Guild.vue';
+import GuildReception from '@/views/GuildReception.vue';
+import GuildPlayers from '@/views/GuildPlayers.vue';
 import GuildPlayer from '@/views/GuildPlayer.vue';
+import GuildPlayerMenu from '@/views/GuildPlayerMenu.vue';
 import GuildPlayerRank from '@/views/GuildPlayerRank.vue';
 import PlayerForm from '@/views/PlayerForm.vue';
 import GuildPlayerQuests from '@/views/GuildPlayerQuests.vue';
@@ -30,7 +30,7 @@ const GuildRoute: RouteConfig[] = [
         children: [
           {
             path: 'menu',
-            component: GuildMenu,
+            component: GuildPlayerMenu,
           },
           {
             path: 'form',
@@ -50,7 +50,7 @@ const GuildRoute: RouteConfig[] = [
             path: 'quest/:questId',
             component: GuildPlayerQuest,
             props: true,
-          }
+          },
         ],
       },
     ],
