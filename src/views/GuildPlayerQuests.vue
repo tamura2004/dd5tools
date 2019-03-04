@@ -1,8 +1,8 @@
 <template lang="pug">
   v-layout(row wrap)
     v-flex.text-xs-center(xs12)
-      .headline クエスト掲示板
-    v-flex.pa-2(xs4 v-for="i in 12" :key="i")
+      .headline.my-3 クエスト掲示板
+    v-flex.pa-1(xs4 v-for="i in 12" :key="i")
       v-card(flat dark color="primary")
         v-responsive(:aspect-ratio="8/1")
           v-card-text.py-1.caption 採取依頼

@@ -26,6 +26,7 @@ const GuildRoute: RouteConfig[] = [
       {
         path: 'player/:playerId',
         component: GuildPlayer,
+        props: true,
         children: [
           {
             path: 'menu',
@@ -34,10 +35,12 @@ const GuildRoute: RouteConfig[] = [
           {
             path: 'form',
             component: PlayerForm,
+            props: true,
           },
           {
             path: 'rank',
             component: GuildPlayerRank,
+            props: true,
           },
           {
             path: 'quests',
@@ -46,6 +49,7 @@ const GuildRoute: RouteConfig[] = [
           {
             path: 'quest/:questId',
             component: GuildPlayerQuest,
+            props: true,
           }
         ],
       },

@@ -25,11 +25,13 @@ import MenuButton from '@/components/MenuButton.vue';
 })
 export default class GuildPlayerRank extends Vue {
   @Prop() private playerId!: string;
-  private get player(): Player {
+  private get player(): Player | undefined {
     return this.$store.state.players[this.playerId];
   }
   private created(): void {
-    this.$store.commit('layout/title', `${this.player.characterName}さん`);
+    if (this.player !== undefined) {
+      this.$store.commit('layout/title', this.player.characterName + 'さん');
+    }
   }
 }
 </script>
