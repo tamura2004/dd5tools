@@ -45,9 +45,9 @@ def copyWithReplace(to)
   if File.exist?(basefile)
     File.foreach(basefile) do |line|
       buffer.push(line)
-      if line.include?(to[0])
-        line.gsub!(FROMS[0], to[0])
-        buffer.push(line)
+      if line =~ FROMS[0]
+        newline = line.gsub(FROMS[0], to[0])
+        buffer.push(newline)
       end
     end
     File.open(basefile, "w") do |fh|
