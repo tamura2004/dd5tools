@@ -10,7 +10,7 @@
               v-card-title.display-4.font-weight-black.white--text {{ player.rank }}
       v-flex.mt-4(xs12)
         .headline.text-xs-center です
-      MenuButton(label="受付へ" color="primary" to="/guild/selectPlayer")
+      MenuButton(label="掲示板へ" color="primary" to="menu")
 </template>
 
 <script lang="ts">
@@ -23,7 +23,7 @@ import MenuButton from '@/components/MenuButton.vue';
     MenuButton,
   },
 })
-export default class GuildRank extends Vue {
+export default class GuildPlayerRank extends Vue {
   @Prop() private playerId!: string;
   private get player(): Player {
     return this.$store.state.players[this.playerId];

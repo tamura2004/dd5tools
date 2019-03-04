@@ -4,7 +4,6 @@
     :items="skillLabels"
     :value="value"
     @input="input"
-    :rules="requird"
     chips
     multiple
   )
@@ -14,8 +13,6 @@
   import { Component } from 'vue-property-decorator';
   import SelectBase from '@/components/select/Base.vue';
   import { SKILL_LABELS } from '@/data/DATA';
-
-  type Validation = (v: string) => boolean | string;
 
   @Component
   export default class SelectSkill extends SelectBase {

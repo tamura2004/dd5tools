@@ -8,16 +8,11 @@ import { Player } from '@/models/Player';
 import MenuButton from '@/components/MenuButton.vue';
 
 @Component
-export default class GuildBase extends Vue {
-  @Prop() private playerId!: string;
-
-  private get player(): Player {
-    return this.$store.state.players[this.playerId];
-  }
+export default class Guild extends Vue {
   private created(): void {
     this.$store.commit('layout/toolbar', true);
     this.$store.commit('layout/color', 'primary');
-    this.$store.commit('layout/title', '冒険者ギルド?');
+    this.$store.commit('layout/title', '冒険者ギルド');
   }
 }
 </script>

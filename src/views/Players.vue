@@ -1,31 +1,26 @@
 <template lang="pug">
-  v-app(style="border: 1px solid black")
-    v-toolbar(app flat dark dense)
-      v-btn(icon @click="$router.go(-1)"): v-icon arrow_back_ios
-      v-toolbar-title.text-xs-center ＰＣ一覧
-      v-spacer
-      v-btn(icon @click="$router.push('/playerForm/new')"): v-icon add
-    v-content(app)
-      v-list(two-line)
-        PlayerTile(
-          v-for="(player, key) in players"
+  v-list(two-line)
+    template(
+        v-for="(player, key) in players"
+    )
+      v-list-tile
+        PlayerTileContent(
           :id="key"
           :key="key"
           @click="$router.push(`/player/${key}`)"
         )
-      p.ma-1 designed by Freepik from Flaticon
-
+      v-divider
 </template>
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import PlayerTile from '@/components/PlayerTile.vue';
+  import PlayerTileContent from '@/components/PlayerTileContent.vue';
   import LifeCounter from '@/components/LifeCounter.vue';
   import { db } from '@/plugins/firebase';
 
   @Component({
     components: {
-      PlayerTile,
+      PlayerTileContent,
       LifeCounter,
     },
   })
@@ -33,6 +28,10 @@
     private get players() {
         return this.$store.state.players;
     }
+    private created(): void {
+    this.$store.commit('layout/icon', 'add');
+    this.$store.commit('layout/path', '/playerForm/new');
+  }
   }
 </script>
 

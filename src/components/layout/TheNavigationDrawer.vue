@@ -39,7 +39,7 @@ interface MenuItem {
 }
 
 @Component
-export default class NavigationDrawer extends Vue {
+export default class TheNavigationDrawe extends Vue {
   private title!: string;
   private color!: string;
 
@@ -54,7 +54,7 @@ export default class NavigationDrawer extends Vue {
     {
       icon: 'home',
       text: 'player',
-      model: true,
+      model: false,
       children: [
         {
           text: 'home',
@@ -71,16 +71,19 @@ export default class NavigationDrawer extends Vue {
     {
       icon: 'home',
       text: 'master',
-      model: false,
+      model: true,
       children: [
         {
-          text: 'monsters',
+          text: 'PC',
+          path: '/players',
         },
         {
-          text: 'dungeons',
+          text: 'ダンジョン',
+          path: '/dungeons',
         },
         {
-          text: 'item floors',
+          text: 'モンスター',
+          path: '/monsters',
         },
       ],
     },

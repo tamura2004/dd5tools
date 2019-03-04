@@ -3,4 +3,6 @@ export default class LayoutState {
   public title = 'no title';
   public toolbar = true;
   public drawer = false;
+  public icon = 'home';
+  public path = '/';
 }

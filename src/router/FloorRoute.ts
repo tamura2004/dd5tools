@@ -5,8 +5,9 @@ import FloorMonsterList from '@/views/FloorMonsterList.vue';
 import FloorList from '@/views/FloorList.vue';
 import FloorForm from '@/views/FloorForm.vue';
 import MonsterInfoSheet from '@/views/MonsterInfoSheet.vue';
+import { RouteConfig } from 'vue-router';
 
-const FloorRoute = [
+const FloorRoute: RouteConfig[] = [
   {
     path: 'floor/list',
     component: FloorList,

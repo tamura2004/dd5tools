@@ -22,8 +22,9 @@ import SpellForm from '@/views/SpellForm.vue';
 import Spells from '@/views/Spells.vue';
 import Weapons from '@/views/Weapons.vue';
 
-import DungeonRoute from '@/router/modules/DungeonRoute';
-import GuildRoute from '@/router/modules/GuildRoute';
+import DungeonRoute from '@/router/DungeonRoute';
+import GuildRoute from '@/router/GuildRoute';
+import Menu from '@/views/Menu.vue';
 
 Vue.use(Router);
 
@@ -37,6 +38,10 @@ const router = new Router({
       path: '/',
       name: 'menuTop',
       component: MenuTop,
+    },
+    {
+      path: '/menu',
+      component: Menu,
     },
     {
       path: '/monsters',

@@ -1,8 +1,8 @@
-import LayoutState from '@/models/LayoutState';
-import State from '@/models/State';
+import LayoutState from '@/store/LayoutState';
+import BaseState from '@/store/BaseState';
 import { Module } from 'vuex';
 
-const LayoutStore: Module<LayoutState, State> = {
+const LayoutStore: Module<LayoutState, BaseState> = {
   namespaced: true,
   state: new LayoutState(),
   mutations: {
@@ -17,6 +17,12 @@ const LayoutStore: Module<LayoutState, State> = {
     },
     drawer(state: LayoutState, drawer: boolean) {
       state.drawer = drawer;
+    },
+    icon(state: LayoutState, icon: string) {
+      state.icon = icon;
+    },
+    path(state: LayoutState, path: string) {
+      state.path = path;
     },
   },
 };

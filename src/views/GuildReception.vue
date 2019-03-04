@@ -9,9 +9,9 @@
         v-card(flat)
           v-img(src="/img/kaisya_uketsuke_woman.png")
       v-flex(xs12)
-        MenuButton(label="新規登録" color="success" to="/player/new")
+        MenuButton(label="新規登録" color="success" to="player/new/form")
       v-flex(xs12)
-        MenuButton(label="ギルドカード提示" color="primary" to="/guild/selectPlayer")
+        MenuButton(label="ギルドカード提示" color="primary" to="players")
 </template>
 
 <script lang="ts">

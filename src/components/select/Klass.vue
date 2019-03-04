@@ -4,7 +4,7 @@
     :items="klass"
     :value="value"
     @input="input"
-    :rules="requird"
+    :rules="required"
   )
 </template>
 

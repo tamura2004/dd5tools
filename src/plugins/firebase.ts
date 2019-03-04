@@ -1,7 +1,7 @@
 import 'firebase/firestore';
 import firebase from 'firebase/app';
 import { Store } from 'vuex';
-import State from '@/models/State';
+import BaseState from '@/store/BaseState';
 
 const firebaseApp = firebase.initializeApp({
     apiKey: 'AIzaSyANamGza96l_HKbG-hsw73WvCFxNv_I_YY',
@@ -15,7 +15,7 @@ const firebaseApp = firebase.initializeApp({
 export const db = firebaseApp.firestore();
 
 export function listen<T>(
-  store: Store<State>,
+  store: Store<BaseState>,
   fn: (new(init: Partial<T>) => T) & { collectionName: string },
 ) {
   const name = fn.collectionName;

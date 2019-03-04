@@ -1,10 +1,11 @@
 import Dungeon from '@/views/Dungeon.vue';
 import Dungeons from '@/views/Dungeons.vue';
 import DungeonForm from '@/views/DungeonForm.vue';
+import FloorRoute from '@/router/FloorRoute';
 
-import FloorRoute from '@/router/modules/FloorRoute';
+import { RouteConfig } from 'vue-router';
 
-const DungeonRoute = [
+const DungeonRoute: RouteConfig[] = [
   {
     path: '/dungeons',
     name: 'dungeons',

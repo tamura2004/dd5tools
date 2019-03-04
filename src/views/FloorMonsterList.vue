@@ -21,7 +21,7 @@
 
   import Floor from '@/models/Floor';
   import { Player } from '@/models/Player';
-  import State from '@/models/State';
+  import BaseState from '@/store/BaseState';
   import MonsterInfo from '@/models/MonsterInfo';
 
   import ListHeader from '@/components/ListHeader.vue';

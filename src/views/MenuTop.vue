@@ -7,7 +7,7 @@
       v-flex(xs12)
         .display-1.text-xs-center  あなたは・・・
     MenuButton(label="冒険者" color="primary" to="/guild/reception")
-    MenuButton(label="マスター" color="grey darken-4" to="/menu/master")
+    MenuButton(label="マスター" color="grey darken-4" to="/menu")
 </template>
 
 <script lang="ts">

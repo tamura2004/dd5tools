@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import './plugins/vuetify';
-import router from '@/router/index';
-import store from '@/store/index';
+import router from '@/router/BaseRoute';
+import store from '@/store/BaseStore';
 import App from './App.vue';
 
 import { Player } from '@/models/Player';

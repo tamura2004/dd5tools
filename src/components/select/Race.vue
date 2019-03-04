@@ -4,7 +4,7 @@
     :items="races"
     :value="value"
     @input="input"
-    :rules="requird"
+    :rules="required"
   )
 </template>
 

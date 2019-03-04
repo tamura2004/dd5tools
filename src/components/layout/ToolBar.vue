@@ -12,23 +12,19 @@
     v-toolbar-title
       v-toolbar-side-icon(@click="$store.commit('layout/drawer', !drawer)")
       span {{ title }}
+    v-spacer
+    v-btn(icon :to="path")
+      v-icon {{ icon }}
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import { createNamespacedHelpers } from 'vuex';
-import LayoutState from '@/models/LayoutState';
-
-const {mapState} = createNamespacedHelpers('layout');
+import { mapState } from 'vuex';
+import LayoutState from '@/store/LayoutState';
 
 @Component({
   computed: {
-    ...mapState({
-      color: (state: LayoutState) => state.color,
-      title: (state: LayoutState) => state.title,
-      toolbar: (state: LayoutState) => state.toolbar,
-      drawer: (state: LayoutState) => state.drawer,
-    }),
+    ...mapState('layout', ['color', 'title', 'toolbar', 'drawer', 'icon', 'path']),
   },
 })
 export default class ToolBar extends Vue {

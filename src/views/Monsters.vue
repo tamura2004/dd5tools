@@ -1,16 +1,11 @@
 <template lang="pug">
-  v-app
-    v-toolbar(app dark flat dense)
-      v-btn(icon to="/"): v-icon arrow_back_ios
-      v-toolbar-title.text-xs-center モンスター
-    v-content(app)
-      v-list(three-line)
-        template(v-for="(monsterInfo, id) in monsterInfos")
-          MonsterInfoTile(:id="id" :key="id" @click="go(id)")
-            v-img(slot="avatar" :src="`/img/${monsterInfo.avatar}`")
-            v-btn(slot="action" flat small fab @click="go(id)")
-              v-icon arrow_forward_ios
-          v-divider
+  v-list(three-line)
+    template(v-for="(monsterInfo, id) in monsterInfos")
+      MonsterInfoTile(:id="id" :key="id" @click="go(id)")
+        v-img(slot="avatar" :src="`/img/${monsterInfo.avatar}`")
+        v-btn(slot="action" flat small fab @click="go(id)")
+          v-icon arrow_forward_ios
+      v-divider
 </template>
 
 <script lang="ts">
