@@ -6,7 +6,7 @@
   import { Component, Vue } from 'vue-property-decorator';
 
   @Component
-  export default class Quest extends Vue {
+  export default class GuildPlayerQuest extends Vue {
   }
 </script>
 

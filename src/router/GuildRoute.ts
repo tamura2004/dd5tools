@@ -5,8 +5,8 @@ import Guild from '@/views/Guild.vue';
 import GuildPlayer from '@/views/GuildPlayer.vue';
 import GuildPlayerRank from '@/views/GuildPlayerRank.vue';
 import PlayerForm from '@/views/PlayerForm.vue';
-import Quests from '@/views/Quests';
-import Quest from '@/views/Quest';
+import GuildPlayerQuests from '@/views/GuildPlayerQuests.vue';
+import GuildPlayerQuest from '@/views/GuildPlayerQuest.vue';
 
 import { RouteConfig } from 'vue-router';
 
@@ -38,15 +38,14 @@ const GuildRoute: RouteConfig[] = [
           {
             path: 'rank',
             component: GuildPlayerRank,
-            props: true,
           },
           {
             path: 'quests',
-            component: Quests,
+            component: GuildPlayerQuests,
           },
           {
             path: 'quest/:questId',
-            component: Quest,
+            component: GuildPlayerQuest,
           }
         ],
       },

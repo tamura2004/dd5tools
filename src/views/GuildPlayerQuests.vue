@@ -1,5 +1,7 @@
 <template lang="pug">
   v-layout(row wrap)
+    v-flex.text-xs-center(xs12)
+      .headline クエスト掲示板
     v-flex.pa-2(xs4 v-for="i in 12" :key="i")
       v-card(flat dark color="primary")
         v-responsive(:aspect-ratio="8/1")
@@ -15,10 +17,7 @@
   import { Component, Vue } from 'vue-property-decorator';
 
   @Component
-  export default class Quests extends Vue {
-    private created(): void {
-      this.$store.commit('layout/title', 'クエスト');
-    }
+  export default class GuildPlayerQuests extends Vue {
   }
 </script>
 
