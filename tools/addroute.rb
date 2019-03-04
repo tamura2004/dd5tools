@@ -43,11 +43,13 @@ def copyWithReplace(to)
   basefile = "src/router/#{ARGV.map(&:titleize).join}Route.ts"
   buffer = []
   if File.exist?(basefile)
+    $log.info("basefile: #{basefile}")
     File.foreach(basefile) do |line|
       buffer.push(line)
       if line =~ FROMS[0]
         newline = line.gsub(FROMS[0], to[0])
         buffer.push(newline)
+        $log.info("addline: #{newline}")
       end
     end
     File.open(basefile, "w") do |fh|
