@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-btn.menu.my-4(round dark block large :color="color" :to="to") {{label}}
+  v-btn.menu.my-2(round dark block large :color="color" :to="to") {{label}}
 </template>
 
 <script lang="ts">

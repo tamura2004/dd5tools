@@ -95,7 +95,7 @@ type Validation = (v: string) => boolean | string;
   },
 })
 export default class PlayerForm extends Vue {
-  @Prop() private id!: string;
+  @Prop() private playerId!: string;
 
   private player: Player = new Player({});
   private abilityLabel: string[] = ABILITY_LABEL;
@@ -147,8 +147,8 @@ export default class PlayerForm extends Vue {
   private save(): void {
     if (this.valid) {
       this.player.hp = this.player.maxHp;
-      if (this.id !== 'new') {
-        db.collection('players').doc(this.id).set({...this.player})
+      if (this.playerId !== 'new') {
+        db.collection('players').doc(this.playerId).set({...this.player})
           .then((doc) => this.$router.push('/players'))
           .catch((error) => alert(error));
       } else {
@@ -163,11 +163,11 @@ export default class PlayerForm extends Vue {
   }
 
   private created(): void {
-    if (this.id === 'new') {
+    if (this.playerId === 'new') {
       this.player.rollAbility();
       this.player.exp = 0;
     } else {
-      const player = this.$store.state.players[this.id];
+      const player = this.$store.state.players[this.playerId];
       if (player !== undefined) {
         Object.assign(this.player, player);
       }

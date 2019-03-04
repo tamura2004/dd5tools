@@ -7,7 +7,7 @@
         PlayerTileContent(
           :id="key"
           :key="key"
-          @click="$router.push(`/player/${key}`)"
+          @click="$router.push(`player/${key}/sheet`)"
         )
       v-divider
 </template>
@@ -30,7 +30,7 @@
     }
     private created(): void {
     this.$store.commit('layout/icon', 'add');
-    this.$store.commit('layout/path', '/playerForm/new');
+    this.$store.commit('layout/path', 'player/new/form');
   }
   }
 </script>

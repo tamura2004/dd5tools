@@ -5,37 +5,30 @@
     app
     v-model="drawer"
   )
+    v-toolbar(flat)
+      v-list
+        v-list-tile
+          v-list-tile-title.title メニュー
+    v-divider
     v-list(dense)
-      template(v-for="item in items")
-        v-list-group(
-          v-if="item.children"
-          v-model="item.model"
-          :prepend-icon="item.icon"
-          :key="item.text"
-          no-action
-        )
-          v-list-tile(slot="activator")
-            v-list-tile-content
-              v-list-tile-title {{ item.text }}
-          v-list-tile(
-            v-for="(child, i) in item.children"
-            :key="i"
-            :to="child.path"
-          )
-            v-list-tile-content
-              v-list-tile-title {{ child.text }}
+      v-list-tile(
+        v-for="item in items"
+        :key="item.title"
+        :to="item.path"
+      )
+        v-list-tile-action
+          v-icon {{ item.icon }}
+        v-list-tile-content
+          v-list-tile-title {{ item.title }}
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
 interface MenuItem {
-  icon?: string;
-  alt?: string;
-  text: string;
-  model?: boolean;
-  path?: string;
-  children?: MenuItem[];
+  icon: string;
+  title: string;
+  path: string;
 }
 
 @Component
@@ -51,42 +44,11 @@ export default class TheNavigationDrawe extends Vue {
   }
 
   private items: MenuItem[] = [
-    {
-      icon: 'home',
-      text: 'player',
-      model: false,
-      children: [
-        {
-          text: 'home',
-          path: '/',
-        },
-        {
-          text: 'THK',
-        },
-        {
-          text: 'item shop',
-        },
-      ],
-    },
-    {
-      icon: 'home',
-      text: 'master',
-      model: true,
-      children: [
-        {
-          text: 'PC',
-          path: '/players',
-        },
-        {
-          text: 'ダンジョン',
-          path: '/dungeons',
-        },
-        {
-          text: 'モンスター',
-          path: '/monsters',
-        },
-      ],
-    },
+    { icon: 'home', title: 'ホーム', path: '/' },
+    { icon: 'home', title: '冒険者ギルド', path: '/guild/reception' },
+    { icon: 'home', title: 'マスターメニュー', path: '/master/menu' },
+    { icon: 'home', title: 'PC一覧', path: '/master/players' },
+    { icon: 'home', title: 'モンスター', path: '/master/monsters' },
   ];
 }
 </script>

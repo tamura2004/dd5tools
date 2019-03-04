@@ -3,7 +3,7 @@ import { RouteConfig } from 'vue-router';
 import MasterItems from '@/views/MasterItems.vue';
 import MasterItem from '@/views/MasterItem.vue';
 import MasterItemForm from '@/views/MasterItemForm.vue';
-import MasterItemSheet from '@/views/MasterItemCard.vue';
+import MasterItemSheet from '@/views/MasterItemSheet.vue';
 
 const MasterItemRoute: RouteConfig[] = [
   {

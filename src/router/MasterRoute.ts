@@ -9,7 +9,7 @@ import MasterItemRoute from '@/router/MasterItemRoute';
 
 const MasterRoute: RouteConfig[] = [
   {
-    path: 'master',
+    path: '/master',
     component: Master,
     children: [
       {

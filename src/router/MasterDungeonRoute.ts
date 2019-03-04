@@ -3,7 +3,7 @@ import { RouteConfig } from 'vue-router';
 import MasterDungeons from '@/views/MasterDungeons.vue';
 import MasterDungeon from '@/views/MasterDungeon.vue';
 import MasterDungeonForm from '@/views/MasterDungeonForm.vue';
-import MasterDungeonSheet from '@/views/MasterDungeonCard.vue';
+import MasterDungeonSheet from '@/views/MasterDungeonSheet.vue';
 
 const MasterDungeonRoute: RouteConfig[] = [
   {

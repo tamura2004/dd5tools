@@ -3,7 +3,7 @@ import { RouteConfig } from 'vue-router';
 import MasterPlayers from '@/views/MasterPlayers.vue';
 import MasterPlayer from '@/views/MasterPlayer.vue';
 import MasterPlayerForm from '@/views/MasterPlayerForm.vue';
-import MasterPlayerSheet from '@/views/MasterPlayerCard.vue';
+import MasterPlayerSheet from '@/views/MasterPlayerSheet.vue';
 
 const MasterPlayerRoute: RouteConfig[] = [
   {
