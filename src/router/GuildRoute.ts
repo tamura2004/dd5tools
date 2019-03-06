@@ -7,6 +7,8 @@ import GuildPlayerRank from '@/views/GuildPlayerRank.vue';
 import PlayerForm from '@/views/PlayerForm.vue';
 import GuildPlayerQuests from '@/views/GuildPlayerQuests.vue';
 import GuildPlayerQuest from '@/views/GuildPlayerQuest.vue';
+import GuildPlayerQuestSuccess from '@/views/GuildPlayerQuestSuccess.vue';
+import GuildPlayerQuestFailure from '@/views/GuildPlayerQuestFailure.vue';
 
 import { RouteConfig } from 'vue-router';
 
@@ -46,6 +48,16 @@ const GuildRoute: RouteConfig[] = [
           {
             path: 'quests',
             component: GuildPlayerQuests,
+          },
+          {
+            path: 'quest/success',
+            component: GuildPlayerQuestSuccess,
+            props: true,
+          },
+          {
+            path: 'quest/failure',
+            component: GuildPlayerQuestFailure,
+            props: true,
           },
           {
             path: 'quest/:questId',

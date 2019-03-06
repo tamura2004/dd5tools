@@ -27,7 +27,7 @@ import LayoutState from '@/store/LayoutState';
     ...mapState('layout', ['color', 'title', 'toolbar', 'drawer', 'icon', 'path']),
   },
 })
-export default class ToolBar extends Vue {
+export default class TheToolBar extends Vue {
 }
 
 </script>
