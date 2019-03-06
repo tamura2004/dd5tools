@@ -6,16 +6,19 @@
       v-container.pa-0
         transition(name="router" mode="out-in")
           router-view
+    TheBottomNav
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import TheNavigationDrawer from '@/components/layout/TheNavigationDrawer.vue';
+import TheBottomNav from '@/components/TheBottomNav.vue';
 import ToolBar from '@/components/layout/ToolBar.vue';
 
 @Component({
   components: {
     TheNavigationDrawer,
+    TheBottomNav,
     ToolBar,
   },
 })

@@ -31,6 +31,7 @@ const GuildRoute: RouteConfig[] = [
           {
             path: 'menu',
             component: GuildPlayerMenu,
+            props: true,
           },
           {
             path: 'form',
