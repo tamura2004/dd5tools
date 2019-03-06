@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     v-list-tile-avatar
-      v-img(:src="`/img/${value}`" @click="dialog=true" v-if="value")
+      v-img(:src="`/img/${player.avatar}`" @click="dialog=true" v-if="player && player.avatar")
       v-btn(outline fab small @click="dialog=true" v-else).mr-4: v-icon people
     v-dialog(v-model="dialog")
       v-card
@@ -16,15 +16,21 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import { AVATAR } from '@/data/DATA';
+import { Player } from '@/models/Player';
+import { db } from '@/plugins/firebase';
 
 @Component
 export default class Avater extends Vue {
-  @Prop() private value!: string;
+  @Prop() private playerId!: string;
   private dialog: boolean = false;
   private avatars = AVATAR;
 
-  private select(avater: string): void {
-    this.$emit('input', avater);
+  private get player(): Player | undefined {
+    return this.$store.state.players[this.playerId];
+  }
+
+  private async select(avatar: string) {
+    await db.collection('players').doc(this.playerId).update({ avatar });
     this.dialog = false;
   }
 }

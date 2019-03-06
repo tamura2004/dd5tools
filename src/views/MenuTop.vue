@@ -6,7 +6,7 @@
       v-flex(xs12): .display-3.text-xs-center キャンペーン
       v-flex(xs12)
         .display-1.text-xs-center  あなたは・・・
-    MenuButton(label="冒険者" color="primary" to="/guild/reception")
+    MenuButton.my-4(label="冒険者" color="primary" to="/guild/reception")
     MenuButton(label="マスター" color="grey darken-4" to="/master/menu")
 </template>
 

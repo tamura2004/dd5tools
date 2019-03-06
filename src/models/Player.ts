@@ -28,7 +28,7 @@ export class Player {
   public weapon: string[] = [];
   public armor?: string;
   public memo?: string;
-  public avatar?: string;
+  public avatar: string = '047-pinocchio.png';
 
   constructor(init: Partial<Player>) {
     Object.assign(this, init);

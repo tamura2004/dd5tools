@@ -29,11 +29,11 @@ export default class App extends Vue {
 
 <style lang="stylus">
   .router-enter-active, .router-leave-active
-    transition all 0.3s ease
+    will-change opacity
+    transition opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms
+    // transition all 0.3s ease
 
-  .router-enter
-    transform translateX(100%)
-
-  .router-leave-active
-    transform translateX(-100%)
+  .router-enter, .router-.router-leave-to
+    opacity 0
+    // transform translateX(100%)
 </style>

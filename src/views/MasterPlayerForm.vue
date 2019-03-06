@@ -1,8 +1,8 @@
 <template lang="pug">
   v-form(v-model="valid" ref="form")
     v-layout(row wrap)
-      v-flex.px-2(xs2 md1): IconSelect(v-model="player.avatar")
-      v-flex.px-2(xs6 md3)
+      //- v-flex.px-2(xs2 md1): IconSelect(v-model="player.avatar")
+      v-flex.px-2(xs8 md4)
         v-text-field(
           label="キャラクター名"
           v-model="player.characterName"
@@ -149,11 +149,11 @@ export default class PlayerForm extends Vue {
       this.player.hp = this.player.maxHp;
       if (this.playerId !== 'new') {
         db.collection('players').doc(this.playerId).set({...this.player})
-          .then((doc) => this.$router.push('/players'))
+          .then((doc: any) => this.$router.push('../../players'))
           .catch((error) => alert(error));
       } else {
         db.collection('players').add({...this.player})
-          .then((doc) => this.$router.push('/players'))
+          .then((doc) => this.$router.push('../../players'))
           .catch((error) => alert(error));
       }
     } else {

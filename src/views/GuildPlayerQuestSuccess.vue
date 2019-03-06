@@ -19,17 +19,17 @@ v-container(fluid)
 </template>
 
 <script lang="ts">
-  import { Component, Vue, Prop } from 'vue-property-decorator';
-  import MenuButton from '@/components/MenuButton.vue';
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import MenuButton from '@/components/MenuButton.vue';
 
-  @Component({
-    components: {
-      MenuButton,
-    }
-  })
-  export default class GuildPlayerQuestSuccess extends Vue {
-    @Prop() private questId!: string;
-  }
+@Component({
+  components: {
+    MenuButton,
+  },
+})
+export default class GuildPlayerQuestSuccess extends Vue {
+  @Prop() private questId!: string;
+}
 </script>
 
 <style lang="stylus" scoped>

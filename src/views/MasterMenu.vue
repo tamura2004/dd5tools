@@ -19,12 +19,12 @@ export default class Menu extends Vue {
     { label: 'ＰＣ', name: 'players' },
     { label: 'モンスター', name: 'monsters' },
     { label: 'ダンジョン', name: 'dungeons' },
-    { label: 'NPC', name: 'npc' },
-    { label: '武器', name: 'weapon' },
-    { label: '防具', name: 'armor' },
-    { label: '呪文', name: 'spell' },
-    { label: '場所', name: 'place' },
-    { label: '道具', name: 'item' },
+    // { label: 'NPC', name: 'npc' },
+    // { label: '武器', name: 'weapon' },
+    // { label: '防具', name: 'armor' },
+    // { label: '呪文', name: 'spell' },
+    // { label: '場所', name: 'place' },
+    // { label: '道具', name: 'item' },
   ];
 }
 </script>
