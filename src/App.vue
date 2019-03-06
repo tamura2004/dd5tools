@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
     TheNavigationDrawer
-    ToolBar
+    TheToolBar
     v-content(app)
       v-container.pa-0
         transition(name="router" mode="out-in")
@@ -11,15 +11,15 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import TheNavigationDrawer from '@/components/layout/TheNavigationDrawer.vue';
+import TheNavigationDrawer from '@/components/TheNavigationDrawer.vue';
 import TheBottomNav from '@/components/TheBottomNav.vue';
-import ToolBar from '@/components/layout/ToolBar.vue';
+import TheToolBar from '@/components/TheToolBar.vue';
 
 @Component({
   components: {
     TheNavigationDrawer,
     TheBottomNav,
-    ToolBar,
+    TheToolBar,
   },
 })
 export default class App extends Vue {
