@@ -16,7 +16,7 @@ export default class MasterPlayer extends Vue {
 
   private created(): void {
     this.$store.commit('layout/icon', 'add');
-    this.$store.commit('layout/path', '/player/new/form');
+    this.$store.commit('layout/path', '/master/player/new/form');
     this.$store.commit('layout/title', this.player && this.player.characterName);
   }
 }
