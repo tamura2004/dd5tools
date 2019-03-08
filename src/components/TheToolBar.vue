@@ -11,7 +11,7 @@
   )
     v-toolbar-title
       v-toolbar-side-icon(@click="$store.commit('layout/drawer', !drawer)")
-      span {{ title }}
+      span {{ route }}
     v-spacer
     v-btn(icon :to="path")
       v-icon {{ icon }}
@@ -28,6 +28,9 @@ import LayoutState from '@/store/LayoutState';
   },
 })
 export default class TheToolBar extends Vue {
+  private get route(): string {
+    return this.$route.fullPath;
+  }
 }
 
 </script>

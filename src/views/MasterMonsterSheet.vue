@@ -49,10 +49,10 @@
 
   @Component
   export default class MasterMonsterSheeet extends Vue {
-    @Prop() private id!: number;
+    @Prop() private monsterId!: number;
 
     private get monsterInfo(): MonsterInfo {
-      return MONSTER_INFOS[this.id];
+      return MONSTER_INFOS[this.monsterId];
     }
   }
 </script>

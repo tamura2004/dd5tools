@@ -12,11 +12,13 @@ const MasterPlayerRoute: RouteConfig[] = [
   },
   {
     path: 'player/:playerId',
+    name: 'player',
     component: MasterPlayer,
     props: true,
     children: [
       {
         path: 'sheet',
+        name: 'index',
         component: MasterPlayerSheet,
         props: true,
       },
