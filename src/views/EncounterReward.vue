@@ -1,12 +1,13 @@
 <template lang="pug">
-  .headline EncounterForm
-    v-btn(to="/encounter/1/battle") モンスター選択
+  .headline EncounterReward
+    v-btn(to="rest") 休憩へ
+
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class EncounterForm extends Vue {
+export default class EncounterReward extends Vue {
 }
 </script>

@@ -8,6 +8,15 @@ import Encounters from '@/views/Encounters.vue';
 import EncounterForm from '@/views/EncounterForm.vue';
 import Encounter from '@/views/Encounter.vue';
 
+import SessionPlayers from '@/views/SessionPlayers.vue';
+import SessionEncounters from '@/views/SessionEncounters.vue';
+import SessionReward from '@/views/SessionReward.vue';
+
+import EncounterBattle from '@/views/EncounterBattle.vue';
+import EncounterReward from '@/views/EncounterReward.vue';
+import EncounterRest from '@/views/EncounterRest.vue';
+
+
 Vue.use(Router);
 
 export default new Router({
@@ -32,6 +41,26 @@ export default new Router({
       name: 'session',
       component: Session,
       props: true,
+      children: [
+        {
+          path: 'players',
+          name: 'session/players',
+          component: SessionPlayers,
+          props: true,
+        },
+        {
+          path: 'encounters',
+          name: 'session/encounters',
+          component: SessionEncounters,
+          props: true,
+        },
+        {
+          path: 'reward',
+          name: 'session/reward',
+          component: SessionReward,
+          props: true,
+        },
+      ],
     },
     {
       path: '/session/:sessionId/edit',
@@ -52,11 +81,26 @@ export default new Router({
       path: '/encounter/:encounterId',
       name: 'encounter',
       component: Encounter,
-    },
-    {
-      path: '/encounter/:encounterId/edit',
-      name: 'encounter/edit',
-      component: EncounterForm,
+      children: [
+        {
+          path: 'battle',
+          name: 'encounter/battle',
+          component: EncounterBattle,
+          props: true,
+        },
+        {
+          path: 'reward',
+          name: 'encounter/reward',
+          component: EncounterReward,
+          props: true,
+        },
+        {
+          path: 'rest',
+          name: 'encounter/rest',
+          component: EncounterRest,
+          props: true,
+        },
+      ],
     },
   ],
 });
