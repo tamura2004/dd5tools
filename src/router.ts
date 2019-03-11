@@ -7,11 +7,9 @@ import Session from '@/views/Session.vue';
 import Encounters from '@/views/Encounters.vue';
 import EncounterForm from '@/views/EncounterForm.vue';
 import Encounter from '@/views/Encounter.vue';
-
 import SessionPlayers from '@/views/SessionPlayers.vue';
 import SessionEncounters from '@/views/SessionEncounters.vue';
 import SessionReward from '@/views/SessionReward.vue';
-
 import EncounterBattle from '@/views/EncounterBattle.vue';
 import EncounterReward from '@/views/EncounterReward.vue';
 import EncounterRest from '@/views/EncounterRest.vue';
