@@ -60,7 +60,7 @@ export default class SessionForm extends Vue {
   private required: Validator[] = [
     (v: string) => !!v || '必須項目です',
   ];
-  private form = Session.form();
+  private form = new Session({});
 
   private get dungeons() {
     return Item.from(this.$store.state.dungeons);

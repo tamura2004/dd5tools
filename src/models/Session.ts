@@ -1,23 +1,15 @@
-import BaseCollection from '@/models/BaseCollection';
-
-export default class Session extends BaseCollection {
+export default class Session {
   public static collectionName: string = 'sessions';
 
-  public static form(): Session {
-    return new Session({
-      name: '',
-      dungeonId: '',
-      npcId: '',
-      purpose: '',
-      reward: 0,
-      limit: '',
-    });
-  }
+  public name: string | null = null;
+  public dungeonId: string | null = null;
+  public npcId: string | null = null;
+  public purpose: string | null = null;
+  public reward: number | null = null;
+  public limit: string | null = null;
+  public playerIds: string[] = [];
 
-  public name!: string;
-  public dungeonId!: string;
-  public npcId!: string;
-  public purpose!: string;
-  public reward!: number;
-  public limit!: string;
+  constructor(init: Partial<Session>) {
+    Object.assign(this, init);
+  }
 }

@@ -4,7 +4,7 @@
       v-list-tile(
         v-for="[key, session] in Array.from(sessions)"
         :key="key"
-        :to="{ name: 'session', params: { sessionId: key }}"
+        :to="{ name: 'session/players', params: { sessionId: key }}"
       )
         v-list-tile-content
           v-list-tile-title {{ session.name }}

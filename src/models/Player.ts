@@ -1,4 +1,3 @@
-import BaseCollection from '@/models/BaseCollection';
 import Weapon from '@/models/Weapon';
 import ARMOR_DATA from '@/data/ARMOR_DATA';
 import RACE_ABILITY from '@/data/RACE_ABILITY';
@@ -8,7 +7,7 @@ function modify(ability: number): number {
   return Math.floor((ability - 10) / 2);
 }
 
-export default class Player extends BaseCollection {
+export default class Player {
   public static collectionName: string = 'players';
 
   public name: string | null = null;
@@ -31,7 +30,6 @@ export default class Player extends BaseCollection {
   public avatar: string | null = null;
 
   constructor(init: Partial<Player>) {
-    super(init);
     Object.assign(this, init);
   }
 

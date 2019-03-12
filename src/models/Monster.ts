@@ -1,9 +1,8 @@
-import BaseCollection from '@/models/BaseCollection';
 import Ability from '@/models/Ability';
 import { EXP } from '@/data/ENCOUNTER_DATA';
 import Template from './Template';
 
-export default class Monster extends BaseCollection {
+export default class Monster {
   public name!: string;
   public size!: string;
   public type!: string;
@@ -18,7 +17,6 @@ export default class Monster extends BaseCollection {
   public specials: string[] = [];
 
   constructor(init: Partial<Monster>) {
-    super(init);
     Object.assign(this, init);
   }
 

@@ -53,25 +53,4 @@ export default class Encounter {
   public chooseMonster(exp: number): Monster | undefined {
     return _.sample(MONSTERS.filter((monster) => monster.exp === exp));
   }
-
-  // public monster(): MonsterInfo {
-  //   const num = this.monsterNum();
-  //   const modify = NUM_MODIFY.lookupOver(num) || 1;
-  //   const unitExp = this.party.totalExp(this.mode) / modify / num;
-  //   const exp = CR.lookupOver(unitExp) || 10;
-  //   const monsters = MONSTERS.filter((m) => m.exp === exp);
-  //   const init = monsters[Math.floor(Math.random() * monsters.length)];
-  //   return new Monster(init, num);
-  // }
-
-  // private monsterNum(): number {
-  //   return Math.floor(Math.random() * this.maxNumber() + 1);
-  // }
-
-  // private maxNumber(): number {
-  //   const total = this.party.totalExp(this.diff);
-  //   let num = Math.floor(total / 100);
-  //   num = num > 8 ? 8 : num;
-  //   return num;
-  // }
 }

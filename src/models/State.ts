@@ -8,5 +8,4 @@ export default class State {
   public players: Map<string, Player> = new Map<string, Player>();
   public dungeons: Map<string, Dungeon> = new Map<string, Dungeon>();
   public npcs: Map<string, Npc> = new Map<string, Npc>();
-  public playerIds: string[] = [];
 }

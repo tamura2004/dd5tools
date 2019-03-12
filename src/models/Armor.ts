@@ -1,6 +1,4 @@
-import BaseCollection from './BaseCollection';
-
-export default class Armor extends BaseCollection {
+export default class Armor {
   public static collectionName: string = 'armors';
 
   public name!: string;
@@ -12,6 +10,10 @@ export default class Armor extends BaseCollection {
   public strReq!: number;
   public hide!: string;
   public weight!: string;
+
+  constructor(init: Partial<Armor>) {
+    Object.assign(this, init);
+  }
 
   public get description(): string {
     let msg: string = `${this.type}（${this.price}/${this.weight}）：AC${this.ac}`;

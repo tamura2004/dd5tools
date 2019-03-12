@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { ADD_SESSION } from '@/types/MutationTypes';
-import { CREATE_SESSION } from '@/types/ActionTypes';
+import { CREATE_SESSION, UPDATE_SESSION_PLAYERS } from '@/types/ActionTypes';
 import { db } from '@/plugins/firebase';
 import State from '@/models/State';
 import Session from '@/models/Session';
@@ -30,10 +30,12 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async [CREATE_SESSION]({commit}, session) {
+    async [CREATE_SESSION]({}, session) {
       const docRef: any = await db.collection('sessions').add({...session});
-      // commit(ADD_SESSION, { sessionId, session });
       return docRef.id;
     },
+    async [UPDATE_SESSION_PLAYERS]({}, {sessionId, playerIds}) {
+      await db.collection('sessions').doc(sessionId).update({ playerIds });
+    }
   },
 });
