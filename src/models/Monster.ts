@@ -17,7 +17,7 @@ export default class Monster extends BaseCollection {
   public actions: string[] = [];
   public specials: string[] = [];
 
-  constructor(init: Required<Monster>) {
+  constructor(init: Partial<Monster>) {
     super(init);
     Object.assign(this, init);
   }

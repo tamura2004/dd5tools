@@ -37,17 +37,15 @@ import LifeCounter from '@/components/LifeCounter.vue';
 export default class PlayerTile extends Vue {
   @Prop() private id!: string;
 
-  private get hp(): number | undefined {
-    if (this.player !== undefined) {
-      return this.player.hp;
-    }
+  private get hp(): number | null {
+    return this.player ? this.player.hp : null;
   }
 
-  private set hp(value: number | undefined) {
+  private set hp(value: number | null) {
     if (
-      value === undefined ||
+      value === null ||
       this.player === undefined ||
-      this.player.maxHp === undefined
+      this.player.maxHp === null
     ) {
       return;
     }
@@ -68,14 +66,12 @@ export default class PlayerTile extends Vue {
     }
   }
 
-  private get avatar(): string | undefined {
-    if (this.player !== undefined) {
-      return this.player.avatar;
-    }
+  private get avatar(): string | null {
+    return this.player ? this.player.avatar : null;
   }
 
-  private set avatar(value: string | undefined) {
-    if (value !== undefined) {
+  private set avatar(value: string | null) {
+    if (value !== null) {
       db.collection('players').doc(this.id).update({
         avatar: value,
       })

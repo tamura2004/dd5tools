@@ -5,10 +5,10 @@ interface Named {
 type Filter<T> = (t: T) => boolean;
 
 export default class Item {
-  public static from<T extends Named>(map: Map<string, T>, fn?: Filter<T>): Item[] {
+  public static from<T extends Named>(map: Map<string, T>, filter?: Filter<T>): Item[] {
     const items = [];
     for (const [key, value] of map) {
-      if (fn === undefined || fn(value)) {
+      if (filter === undefined || filter(value)) {
         items.push(new this({ id: key, name: value.name }));
       }
     }

@@ -31,7 +31,7 @@ export default new Vuex.Store({
   },
   actions: {
     async [CREATE_SESSION]({commit}, session) {
-      const docRef: any = await db.collection('sessions').add({...session})
+      const docRef: any = await db.collection('sessions').add({...session});
       // commit(ADD_SESSION, { sessionId, session });
       return docRef.id;
     },
