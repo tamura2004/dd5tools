@@ -1,13 +1,13 @@
-import Monster from '@/models/Monster';
+import Template from '@/models/Template';
 
-const MONSTER_TEMPLATE_DATA: Array<Partial<Monster>> = [
+const TEMPLATE_DATA: Array<Required<Template>> = [
     {
         name: 'ゾンビ',
         type: 'アンデッド',
         alignment: '中立にして悪',
-        ac: -4,
-        maxHp: 1.2,
-        ability: [
+        acMod: -4,
+        hpMod: 1.2,
+        abilityMod: [
             0,
             -4,
             +4,
@@ -21,8 +21,8 @@ const MONSTER_TEMPLATE_DATA: Array<Partial<Monster>> = [
     },
 ];
 
-const MONSTER_TEMPLATES = MONSTER_TEMPLATE_DATA.map((init) => {
-    return new Monster(init);
+const TEMPLATES = TEMPLATE_DATA.map((init) => {
+    return new Template(init);
 });
 
-export default MONSTER_TEMPLATES;
+export default TEMPLATES;

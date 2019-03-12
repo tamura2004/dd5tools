@@ -1,6 +1,7 @@
 import BaseCollection from '@/models/BaseCollection';
 import Ability from '@/models/Ability';
-import EXP from '@/data/EXP';
+import { EXP } from '@/data/ENCOUNTER_DATA';
+import Template from './Template';
 
 export default class Monster extends BaseCollection {
   public name!: string;
@@ -16,6 +17,11 @@ export default class Monster extends BaseCollection {
   public actions: string[] = [];
   public specials: string[] = [];
 
+  constructor(init: Required<Monster>) {
+    super(init);
+    Object.assign(this, init);
+  }
+
   public get cr(): string | undefined {
     return EXP.get(this.exp);
   }
@@ -23,6 +29,19 @@ export default class Monster extends BaseCollection {
   public abilityString(i: number): string {
     const ability = this.ability[i];
     return `${ability}${Ability.modifyString(ability)}`;
+  }
+
+  public add(template: Template): Monster {
+    this.name = template.name + '・' + this.name;
+    this.type = template.type;
+    this.alignment = template.alignment;
+    for (let i = 0; i < 6; i++) {
+      this.ability[i] += template.abilityMod[i];
+    }
+    this.ac += template.acMod;
+    this.maxHp = Math.floor(this.maxHp * template.hpMod);
+    this.attributes = this.attributes.concat(template.attributes);
+    return this;
   }
 
   public get avatar(): string {

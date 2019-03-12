@@ -11,31 +11,36 @@ function modify(ability: number): number {
 export default class Player extends BaseCollection {
   public static collectionName: string = 'players';
 
-  public name?: string = undefined;
-  public characterName?: string = undefined;
-  public klass?: string = undefined;
-  public level?: number = 1;
-  public background?: string = undefined;
-  public race?: string = undefined;
-  public alignment?: string = undefined;
-  public maxHp?: number = 1;
-  public hp?: number = 1;
-  public exp?: number = 0;
+  public name: string | null = null;
+  public characterName: string | null = null;
+  public klass: string | null = null;
+  public level: number | null = null;
+  public background: string | null = null;
+  public race: string | null = null;
+  public alignment: string | null = null;
+  public maxHp: number | null = null;
+  public hp: number | null = null;
+  public exp: number | null = null;
   public baseAbility: number[] = [];
-  public saves: string[] = [];
-  public skills: string[] = [];
-  public spells: string[] = [];
-  public weapons: string[] = [];
-  public armor?: string = undefined;
-  public memo?: string;
-  public avatar: string = '047-pinocchio.png';
+  public saves?: string[] = [];
+  public skills?: string[] = [];
+  public spells?: string[] = [];
+  public weapons?: string[] = [];
+  public armor: string | null = null;
+  public memo: string | null = null;
+  public avatar: string | null = null;
+
+  constructor(init: Partial<Player>) {
+    super(init);
+    Object.assign(this, init);
+  }
 
   public get summary(): string {
     return `${this.characterName}/${this.klass}${this.level}/${this.race}/${this.background}/${this.alignment}`;
   }
 
   public get ability(): number[] | undefined {
-    if (typeof this.race !== 'undefined') {
+    if (this.race !== null) {
       const abilityBonus = RACE_ABILITY.get(this.race);
       if (typeof abilityBonus !== 'undefined') {
         return abilityBonus.map((a, i) => a + this.baseAbility[i]);
@@ -44,7 +49,7 @@ export default class Player extends BaseCollection {
   }
 
   public get abilityMod(): string[] | undefined {
-    if (typeof this.ability !== 'undefined') {
+    if (this.ability !== undefined) {
       return this.ability.map((a) => {
         if (a >= 10) {
           return `+${modify(a)}`;
@@ -113,7 +118,7 @@ export default class Player extends BaseCollection {
   }
 
   public get baseMod(): number {
-    if (typeof this.level !== 'undefined') {
+    if (this.level !== null) {
       return Math.floor((this.level + 7) / 4);
     } else {
       return 0;
@@ -151,7 +156,7 @@ export default class Player extends BaseCollection {
       [10, 'SSS'],
     ]);
 
-    if (this.level !== undefined) {
+    if (this.level !== null) {
       return rankMap.get(this.level);
     }
   }
