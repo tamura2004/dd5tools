@@ -1,26 +1,15 @@
 <template lang="pug">
   .headline SessionPlayers
-    v-list
-      v-list-tile(v-for="[id, player] in Array.from(players)")
-        PlayerTileContent(:id="id")
-    //- v-btn(
-    //-   block
-    //-   dark
-    //-   color="primary"
-    //-   @click.stop="dialog=true"
-    //- ) 参加ＰＣ選択
-    //- v-dialog(v-model="dialog")
-    //-   v-card
-    //-     v-card-title.headline SELECT PC
-    //-     v-container(fluid)
-    //-       v-form
-    //-         v-checkbox.my-0(
-    //-           v-for="(player, id) in players"
-    //-           v-model="playerIds"
-    //-           :label="player.characterName"
-    //-           :value="id"
-    //-         )
-    //-         v-btn(@click="dialog=false") OK
+    v-btn(block dark color="primary" v-if="!edit" @click="edit=true") 参加ＰＣ選択
+    v-btn(block dark color="success" v-if="edit" @click="save") 決定
+    v-list(three-line)
+      template(v-for="[id, player] in Array.from(players)")
+        template(v-if="playerIds.includes(id) || edit")
+          v-list-tile(:key="id")
+            v-list-tile-action(v-if="edit")
+              v-checkbox(v-model="playerIds" :value="id")
+            PlayerTileContent(:id="id")
+          v-divider
 </template>
 
 <script lang="ts">
@@ -32,14 +21,18 @@ import PlayerTileContent from '@/components/PlayerTileContent.vue';
 @Component({
   components: {
     PlayerTileContent,
-  }
+  },
 })
 export default class SessionPlayers extends Vue {
-  private dialog: boolean = false;
+  private edit: boolean = false;
   private playerIds: string[] = [];
 
   private get players(): Player[] {
     return this.$store.state.players;
+  }
+
+  private save() {
+    this.edit = false;
   }
 }
 </script>

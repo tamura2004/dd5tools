@@ -1,5 +1,5 @@
 <template lang="pug">
-  .headline Session # {{ sessionId }}
+  .headline(v-if="available") Session # {{ sessionId }}
     table
       tr
         th.label.body-2 セッション名
@@ -39,6 +39,10 @@ import SessionModel from '@/models/Session';
 })
 export default class Session extends Vue {
   @Prop() private sessionId!: string;
+
+  private get available(): boolean {
+    return this.session !== undefined && this.npc !== undefined;
+  }
 
   private get session(): SessionModel {
     return this.$store.state.sessions.get(this.sessionId);

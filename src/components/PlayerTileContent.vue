@@ -24,7 +24,7 @@ export default class PlayerTile extends Vue {
   @Prop() private id!: string;
 
   private get player(): Player | undefined {
-    return this.$store.state.players[this.id];
+    return this.$store.state.players.get(this.id);
   }
 }
 </script>
