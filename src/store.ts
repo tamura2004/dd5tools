@@ -36,6 +36,6 @@ export default new Vuex.Store({
     },
     async [UPDATE_SESSION_PLAYERS]({}, {sessionId, playerIds}) {
       await db.collection('sessions').doc(sessionId).update({ playerIds });
-    }
+    },
   },
 });

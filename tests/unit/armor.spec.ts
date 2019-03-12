@@ -3,11 +3,10 @@ import ARMOR_DATA from '@/data/ARMOR_DATA';
 
 describe('Armor.ts', () => {
   it('create collection from init data', () => {
-    const got: any = Armor.from(ARMOR_DATA);
-    expect(got.length).toBe(13);
-    expect(got[1].name).toBe('パデッド');
-    expect(got[1].type).toBe('軽装鎧');
-    expect(got[1].price).toBe('5gp');
-    expect(got[1].ac).toBe(11);
+    const got = new Armor(ARMOR_DATA[1]);
+    expect(got.name).toBe('パデッド');
+    expect(got.type).toBe('軽装鎧');
+    expect(got.price).toBe('5gp');
+    expect(got.ac).toBe(11);
   });
 });
