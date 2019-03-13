@@ -15,6 +15,7 @@ export default class Monster {
   public attributes: string[] = [];
   public actions: string[] = [];
   public specials: string[] = [];
+  public num: number | null = null;
 
   constructor(init: Partial<Monster>) {
     Object.assign(this, init);

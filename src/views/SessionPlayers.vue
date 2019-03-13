@@ -1,8 +1,9 @@
 <template lang="pug">
   .headline SessionPlayers
     v-btn(block dark color="primary" v-if="!edit" @click="edit=true") 参加ＰＣ選択
+    v-btn(block dark v-if="!edit" to="encounters") 遭遇選択へ
     v-btn(block dark color="success" v-if="edit" @click="save") 決定
-    v-btn(block dark color="warning" v-if="edit" @click="cancel") キャンセル
+    v-btn(block dark v-if="edit" @click="cancel") キャンセル
     v-list(three-line)
       template(v-for="[id, player] in Array.from(players)")
         template(v-if="session.playerIds.includes(id) || edit")

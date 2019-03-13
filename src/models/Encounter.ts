@@ -50,7 +50,22 @@ export default class Encounter {
     return [key, candidate.get(key)];
   }
 
-  public chooseMonster(exp: number): Monster | undefined {
-    return _.sample(MONSTERS.filter((monster) => monster.exp === exp));
+  public chooseMonster(mode?: MODE): Monster | undefined {
+    const [exp, num] = this.chooseExpNum(mode);
+    const monster = _.sample(MONSTERS.filter((m: Monster) => m.exp === exp));
+    if (monster !== undefined && num !== undefined) {
+      monster.num = num;
+      return monster;
+    }
+  }
+
+  public chooseMonsterId(mode?: MODE): {id: number, num: number } | undefined {
+    const monster = this.chooseMonster(mode);
+    if (monster !== undefined && monster.num !== null) {
+      const id = MONSTERS.findIndex((m: Monster) => {
+        return m.name === monster.name;
+      });
+      return { id, num: monster.num };
+    }
   }
 }

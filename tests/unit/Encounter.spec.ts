@@ -48,14 +48,21 @@ describe('Encounter', () => {
     expect([15, 10, 6, 4, 2, 1].includes(num || 0)).toBe(true);
   });
 
-  it('can choose random monster by exp', () => {
-    let received = encounter.chooseMonster(25);
-    expect(received && received.exp).toBe(25);
+  it('can choose random monster and num', () => {
+    let received = encounter.chooseMonster(MODE.EASY);
+    expect(received && received).toEqual(expect.any(Monster));
 
-    received = encounter.chooseMonster(1100);
-    expect(received && received.exp).toBe(1100);
+    received = encounter.chooseMonster(MODE.HELL);
+    expect(received && received).toEqual(expect.any(Monster));
+  });
 
-    received = encounter.chooseMonster(5);
-    expect(received && received.exp).toBe(undefined);
+  it('can choose random monsterID and num', () => {
+    let received = encounter.chooseMonsterId(MODE.EASY);
+    expect(received && received.id).toEqual(expect.any(Number));
+    expect(received && received.num).toEqual(expect.any(Number));
+
+    received = encounter.chooseMonsterId(MODE.HELL);
+    expect(received && received.id).toEqual(expect.any(Number));
+    expect(received && received.num).toEqual(expect.any(Number));
   });
 });

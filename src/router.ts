@@ -66,17 +66,17 @@ export default new Router({
       component: SessionForm,
     },
     {
-      path: '/encounters',
+      path: '/session/:sessionId/encounters',
       name: 'encounters',
       component: Encounters,
     },
     {
-      path: '/encounters/new',
+      path: '/session/:sessionId/encounters/new',
       name: 'encounters/new',
       component: EncounterForm,
     },
     {
-      path: '/encounter/:encounterId',
+      path: '/session/:sessionId/encounter/:encounterId',
       name: 'encounter',
       component: Encounter,
       children: [
