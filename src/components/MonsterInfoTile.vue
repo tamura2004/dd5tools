@@ -21,13 +21,13 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import MonsterInfo from '@/models/MonsterInfo';
+import Monster from '@/models/Monster';
 import MONSTER_INFOS from '@/data/MONSTERS';
 
 @Component
 export default class MonsterInfoTile extends Vue {
   @Prop() private id!: number;
-  private get info(): MonsterInfo {
+  private get info(): Monster {
     return MONSTER_INFOS[this.id];
   }
 }

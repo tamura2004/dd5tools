@@ -4,12 +4,12 @@
       v-list-tile-content
         v-list-tile-title
           v-layout
-            v-flex(xs12) {{ monsterInfo.name }}
+            v-flex(xs12) {{ monster.name }}
         v-list-tile-sub-title
           v-layout
-            v-flex(xs3) AC: {{ monsterInfo.ac }}
-            v-flex(xs3) hp: {{ monsterInfo.hp }}
-            v-flex(xs3) exp:{{ monsterInfo.exp }}
+            v-flex(xs3) AC: {{ monster.ac }}
+            v-flex(xs3) hp: {{ monster.hp }}
+            v-flex(xs3) exp:{{ monster.exp }}
       v-list-tile-action
         v-icon keyboard_arrow_right
 
@@ -19,14 +19,14 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import MonsterInfo from '@/models/MonsterInfo';
+import Monster from '@/models/Monster';
 import MONSTER_INFOS from '@/data/MONSTERS';
 
 @Component
 export default class MonsterCard extends Vue {
   @Prop() private id!: number;
 
-  private get monsterInfo(): MonsterInfo {
+  private get monster(): Monster {
     return MONSTER_INFOS[this.id];
   }
 

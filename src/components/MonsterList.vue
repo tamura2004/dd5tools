@@ -16,7 +16,7 @@ v-list-tile.my-1.elevation-4
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import MonsterInfo from '@/models/Monster';
+import Monster from '@/models/Monster';
 import MONSTERS from '@/data/MONSTERS';
 import { MODE } from '@/data/ENCOUNTER_DATA';
 import Mode from '@/models/Mode';
@@ -27,7 +27,7 @@ export default class MonsterList extends Vue {
   @Prop() private num!: number;
   @Prop() private mode!: MODE;
 
-  private get monster(): MonsterInfo {
+  private get monster(): Monster {
     return MONSTERS[this.id];
   }
   private get color(): string {
