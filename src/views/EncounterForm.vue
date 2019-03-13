@@ -35,7 +35,7 @@ export default class EncounterForm extends Vue {
   }
 
   private get encounterNum() {
-    return this.$store.getters.encounters(this.sessionId).size + 1;
+    return this.$store.getters.encounters(this.sessionId).length + 1;
   }
 
 
@@ -79,7 +79,7 @@ export default class EncounterForm extends Vue {
         sessionId: this.sessionId,
         level: this.encounterNum,
         monster: monster.name,
-      })
+      }),
     });
     this.$router.push({ name: 'session/encounters' });
   }

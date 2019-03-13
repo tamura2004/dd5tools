@@ -15,6 +15,6 @@ export const ROOMS = new Map<string, string[]>([
       '工具の保管庫',
       '金庫室',
       '宝物庫',
-    ]
-  ]
+    ],
+  ],
 ]);
