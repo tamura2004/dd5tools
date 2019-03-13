@@ -3,18 +3,16 @@ import Vuetify from 'vuetify';
 import { mount } from '@vue/test-utils';
 import MonsterList from '@/components/MonsterList.vue';
 import { MODE } from '@/data/ENCOUNTER_DATA';
+import MONSTERS from '@/data/MONSTERS';
 
 describe('MonsterList', () => {
   let wrapper: any = null;
 
   beforeEach(() => {
     Vue.use(Vuetify);
-    wrapper = mount(MonsterList, {
-      propsData: {
-        id: 1,
-        mode: MODE.HARD,
-      },
-    });
+    const monster = MONSTERS[1];
+    monster.mode = MODE.EASY;
+    wrapper = mount(MonsterList, { propsData: { monster }});
   });
 
   it('is a Vue instance', () => {
@@ -26,6 +24,6 @@ describe('MonsterList', () => {
   });
 
   it('is render mode label', () => {
-    expect(wrapper.text()).toMatch('困難');
+    expect(wrapper.text()).toMatch('簡単');
   });
 });
