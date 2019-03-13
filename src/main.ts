@@ -5,6 +5,8 @@ import router from './router';
 import store from './store';
 import { listen } from '@/plugins/firebase';
 import Session from '@/models/Session';
+import Encounter from '@/models/Encounter';
+import Creature from '@/models/Creature';
 import Player from '@/models/Player';
 import Dungeon from '@/models/Dungeon';
 import Npc from '@/models/Npc';
@@ -12,6 +14,8 @@ import Npc from '@/models/Npc';
 Vue.config.productionTip = false;
 
 listen(store, Session);
+listen(store, Encounter);
+listen(store, Creature);
 listen(store, Player);
 listen(store, Dungeon);
 listen(store, Npc);

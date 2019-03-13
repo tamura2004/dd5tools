@@ -1,4 +1,4 @@
-import Encounter from '@/models/Encounter';
+import MonsterGenerator from '@/models/MonsterGenerator';
 import Player from '@/models/Player';
 import { MODE, BASE_EXP, NUM_MODIFY, EXP, CR } from '@/data/ENCOUNTER_DATA';
 import Monster from '@/models/Monster';
@@ -6,28 +6,28 @@ import Monster from '@/models/Monster';
 describe('Encounter', () => {
   const player = new Player({level: 3});
   const players = [player, player, player, player];
-  const encounter = new Encounter();
-  encounter.loadPlayers(players);
+  const generator = new MonsterGenerator();
+  generator.loadPlayers(players);
 
   it('can initialize by loading players', () => {
-    expect(JSON.stringify(encounter.players)).toBe(JSON.stringify(new Map([[3, 4]])));
+    expect(JSON.stringify(generator.players)).toBe(JSON.stringify(new Map([[3, 4]])));
   });
 
   it('can calculate total monster exp by difficulty', () => {
-    expect(encounter.totalMonsterExp(MODE.EASY)).toBe(300);
-    expect(encounter.totalMonsterExp(MODE.NORMAL)).toBe(600);
-    expect(encounter.totalMonsterExp(MODE.HARD)).toBe(900);
-    expect(encounter.totalMonsterExp(MODE.HELL)).toBe(1600);
+    expect(generator.totalMonsterExp(MODE.EASY)).toBe(300);
+    expect(generator.totalMonsterExp(MODE.NORMAL)).toBe(600);
+    expect(generator.totalMonsterExp(MODE.HARD)).toBe(900);
+    expect(generator.totalMonsterExp(MODE.HELL)).toBe(1600);
   });
 
   it('can calculate monster exp by num of monster', () => {
-    expect(encounter.monsterExp(1, MODE.HELL)).toBe(1100);
-    expect(encounter.monsterExp(2, MODE.HELL)).toBe(450);
-    expect(encounter.monsterExp(3, MODE.HELL)).toBe(200);
-    expect(encounter.monsterExp(7, MODE.HELL)).toBe(50);
-    expect(encounter.monsterExp(11, MODE.HELL)).toBe(25);
-    expect(encounter.monsterExp(15, MODE.HELL)).toBe(25);
-    expect(encounter.monsterExp(15, MODE.EASY)).toBe(0);
+    expect(generator.monsterExp(1, MODE.HELL)).toBe(1100);
+    expect(generator.monsterExp(2, MODE.HELL)).toBe(450);
+    expect(generator.monsterExp(3, MODE.HELL)).toBe(200);
+    expect(generator.monsterExp(7, MODE.HELL)).toBe(50);
+    expect(generator.monsterExp(11, MODE.HELL)).toBe(25);
+    expect(generator.monsterExp(15, MODE.HELL)).toBe(25);
+    expect(generator.monsterExp(15, MODE.EASY)).toBe(0);
   });
 
   it('can make candidate of monster exp and number pair by Map', () => {
@@ -39,29 +39,29 @@ describe('Encounter', () => {
       [450, 2],
       [1100, 1],
     ]);
-    expect(encounter.candidateExpNums(MODE.HELL)).toEqual(expected);
+    expect(generator.candidateExpNums(MODE.HELL)).toEqual(expected);
   });
 
   it('can choose monster exp and number pair', () => {
-    const [exp, num] = encounter.chooseExpNum(MODE.HELL);
+    const [exp, num] = generator.chooseExpNum(MODE.HELL);
     expect([25, 50, 100, 200, 450, 1100].includes(exp)).toBe(true);
     expect([15, 10, 6, 4, 2, 1].includes(num || 0)).toBe(true);
   });
 
   it('can choose random monster and num', () => {
-    let received = encounter.chooseMonster(MODE.EASY);
+    let received = generator.chooseMonster(MODE.EASY);
     expect(received && received).toEqual(expect.any(Monster));
 
-    received = encounter.chooseMonster(MODE.HELL);
+    received = generator.chooseMonster(MODE.HELL);
     expect(received && received).toEqual(expect.any(Monster));
   });
 
   it('can choose random monsterID and num', () => {
-    let received = encounter.chooseMonsterId(MODE.EASY);
+    let received = generator.chooseMonsterId(MODE.EASY);
     expect(received && received.id).toEqual(expect.any(Number));
     expect(received && received.num).toEqual(expect.any(Number));
 
-    received = encounter.chooseMonsterId(MODE.HELL);
+    received = generator.chooseMonsterId(MODE.HELL);
     expect(received && received.id).toEqual(expect.any(Number));
     expect(received && received.num).toEqual(expect.any(Number));
   });
