@@ -1,11 +1,13 @@
 <template lang="pug">
 .headline.mt-4 遭遇一覧
-  v-list(three-line)
+  v-list(two-line)
     template(v-for="(encounter, index) in encounters")
       v-list-tile
         v-list-tile-avatar
-          v-btn.font-weight-bold(fab small outline color="black") {{ index }}
-        v-list-tile-title {{ encounter.name }}
+          v-btn.font-weight-bold(fab small outline color="black") {{ encounter.level }}
+        v-list-tile-content
+          v-list-tile-title {{ encounter.room }}
+          v-list-tile-sub-title {{ encounter.monster }}
         v-list-tile-action
           v-btn(flat icon)
             v-icon done

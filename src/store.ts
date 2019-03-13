@@ -18,7 +18,8 @@ export default new Vuex.Store({
     },
     encounters(state) {
       return (sessionId: string) => [...state.encounters.values()]
-        .filter((e: Encounter) => e.sessionId === sessionId);
+        .filter((e: Encounter) => e.sessionId === sessionId)
+        .sort((a, b) => a.level - b.level);
     },
     encounter(state) {
       return (encounterId: string) => state.encounters.get(encounterId);

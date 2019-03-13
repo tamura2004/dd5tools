@@ -1,5 +1,5 @@
 <template lang="pug">
-  .headline Sessions
+  .headline セッション一覧
     v-list(two-line)
       template(v-for="[key, session] in Array.from(sessions)")
         v-list-tile(

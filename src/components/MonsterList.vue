@@ -29,7 +29,7 @@ export default class MonsterList extends Vue {
   @Prop() private monster!: Monster;
 
   private get mode(): MODE {
-    return this.monster.mode === null ? MODE.NORMAL : MODE.EASY;
+    return this.monster.mode === null ? MODE.NORMAL : this.monster.mode;
   }
   private get color(): string {
     return Mode.color(this.mode);

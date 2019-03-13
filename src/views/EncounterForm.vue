@@ -17,6 +17,7 @@ import { CREATE_ENCOUNTER } from '@/types/ActionTypes';
 import MonsterList from '@/components/MonsterList.vue';
 import MonsterGenerator from '@/models/MonsterGenerator';
 import Session from '@/models/Session';
+import Encounter from '@/models/Encounter';
 import Player from '@/models/Player';
 import Monster from '@/models/Monster';
 import MONSTERS from '@/data/MONSTERS';
@@ -32,6 +33,11 @@ export default class EncounterForm extends Vue {
   private get session(): Session {
     return this.$store.state.sessions.get(this.sessionId);
   }
+
+  private get encounterNum() {
+    return this.$store.getters.encounters(this.sessionId).size + 1;
+  }
+
 
   private get players(): Map<string, Player> {
     return this.$store.state.players;
@@ -57,16 +63,23 @@ export default class EncounterForm extends Vue {
     MODE.HELL,
   ];
 
-  private get monsters(): (Monster | undefined)[] {
+  private get monsters(): Array<Monster | undefined> {
     const generator = new MonsterGenerator();
     generator.loadPlayers(Array.from(this.players.values()));
     return this.modes.map((mode: MODE) => generator.chooseMonster(mode));
   }
 
   private async select(monster: Monster) {
-    const encounterId = await this.$store.dispatch(CREATE_ENCOUNTER, {
+    const encounter = new Encounter({
       sessionId: this.sessionId,
-      name: `${monster.num} ${monster.name} attack!`,
+
+    });
+    const encounterId = await this.$store.dispatch(CREATE_ENCOUNTER, {
+      ...new Encounter({
+        sessionId: this.sessionId,
+        level: this.encounterNum,
+        monster: monster.name,
+      })
     });
     this.$router.push({ name: 'session/encounters' });
   }

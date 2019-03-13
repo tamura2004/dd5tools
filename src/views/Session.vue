@@ -1,5 +1,5 @@
 <template lang="pug">
-  .headline(v-if="available") Session # {{ sessionId }}
+  .headline(v-if="available")
     table
       tr
         th.label.body-2 セッション名
@@ -54,27 +54,4 @@ export default class Session extends Vue {
 </script>
 
 <style lang="stylus">
-table
-  width 100%
-  border solid 1px grey
-  border-collapse collapse
-
-tr
-  height 32px
-
-td
-  border solid 1px grey
-  padding 0 4px
-
-th
-  border solid 1px grey
-
-th.label
-  text-align center
-  background-color #212121
-  color white
-
-td.number
-  text-align center
-  width 32px
 </style>
