@@ -1,5 +1,5 @@
 <template lang="pug">
-v-list-tile.my-1.elevation-4
+v-list-tile(v-if="monster")
   v-list-tile-avatar
     v-btn.font-weight-bold(fab dark small :color="color") {{ label }}
   v-list-tile-content
@@ -8,10 +8,13 @@ v-list-tile.my-1.elevation-4
         v-flex(xs12) {{ monster.name }}
     v-list-tile-sub-title
       v-layout
-        v-flex(xs3) {{ num }} 体
+        v-flex(xs3) {{ monster.num }} 体
         v-flex(xs3) AC: {{ monster.ac }}
-        v-flex(xs3) hp: {{ monster.hp }}
-        v-flex(xs3) exp:{{ monster.totalExp }}
+        v-flex(xs3) hp: {{ monster.maxHp }}
+        v-flex(xs3) exp:{{ monster.exp * monster.num }}
+  v-list-tile-action
+    slot
+
 </template>
 
 <script lang="ts">
@@ -23,21 +26,16 @@ import Mode from '@/models/Mode';
 
 @Component
 export default class MonsterList extends Vue {
-  @Prop() private id!: number;
-  @Prop() private num!: number;
-  @Prop() private mode!: MODE;
+  @Prop() private monster!: Monster;
 
-  private get monster(): Monster {
-    return MONSTERS[this.id];
+  private get mode(): MODE {
+    return this.monster.mode || MODE.NORMAL;
   }
   private get color(): string {
     return Mode.color(this.mode);
   }
   private get label(): string {
     return Mode.label(this.mode);
-  }
-  private go(): void {
-    this.$router.push(`/monster/${this.id}`);
   }
 }
 </script>

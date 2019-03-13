@@ -5254,8 +5254,12 @@ const MONSTER_DATA: Array<Partial<Monster>> = [
   },
 ];
 
-const MONSTERS = MONSTER_DATA.map((init) => {
-  return new Monster(init);
-});
+const MONSTERS: Monster[] = [];
+for (let id = 0; id < MONSTER_DATA.length; id++) {
+  MONSTERS.push(new Monster({
+    id,
+    ...MONSTER_DATA[id],
+  }));
+}
 
 export default MONSTERS;

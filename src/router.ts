@@ -4,7 +4,6 @@ import Home from '@/views/Home.vue';
 import Sessions from '@/views/Sessions.vue';
 import SessionForm from '@/views/SessionForm.vue';
 import Session from '@/views/Session.vue';
-import Encounters from '@/views/Encounters.vue';
 import EncounterForm from '@/views/EncounterForm.vue';
 import Encounter from '@/views/Encounter.vue';
 import SessionPlayers from '@/views/SessionPlayers.vue';
@@ -64,21 +63,19 @@ export default new Router({
       path: '/session/:sessionId/edit',
       name: 'session/edit',
       component: SessionForm,
-    },
-    {
-      path: '/session/:sessionId/encounters',
-      name: 'encounters',
-      component: Encounters,
+      props: true,
     },
     {
       path: '/session/:sessionId/encounters/new',
       name: 'encounters/new',
       component: EncounterForm,
+      props: true,
     },
     {
       path: '/session/:sessionId/encounter/:encounterId',
       name: 'encounter',
       component: Encounter,
+      props: true,
       children: [
         {
           path: 'battle',

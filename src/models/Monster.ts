@@ -1,8 +1,11 @@
 import Ability from '@/models/Ability';
 import { EXP } from '@/data/ENCOUNTER_DATA';
 import Template from './Template';
+import { MODE } from '@/data/ENCOUNTER_DATA';
 
 export default class Monster {
+  public mode: MODE | null = null;
+  public id!: number;
   public name!: string;
   public size!: string;
   public type!: string;

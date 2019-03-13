@@ -5,6 +5,8 @@ import { CREATE_SESSION, UPDATE_SESSION_PLAYERS, CREATE_ENCOUNTER } from '@/type
 import { db } from '@/plugins/firebase';
 import State from '@/models/State';
 import Session from '@/models/Session';
+import Encounter from '@/models/Encounter';
+import Creature from '@/models/Creature';
 
 Vue.use(Vuex);
 
@@ -13,6 +15,13 @@ export default new Vuex.Store({
   getters: {
     session(state) {
       return (sessionId: string) => state.sessions.get(sessionId);
+    },
+    encounters(state) {
+      return (sessionId: string) => [...state.encounters.values()]
+        .filter((e: Encounter) => e.sessionId === sessionId);
+    },
+    encounter(state) {
+      return (encounterId: string) => state.encounters.get(encounterId);
     },
     dungeon(state) {
       return (dungeonId: string) => state.dungeons.get(dungeonId);

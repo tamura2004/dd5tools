@@ -10,6 +10,8 @@ import Creature from '@/models/Creature';
 import Player from '@/models/Player';
 import Dungeon from '@/models/Dungeon';
 import Npc from '@/models/Npc';
+import Reward from '@/models/Reward';
+import Log from '@/models/Log';
 
 Vue.config.productionTip = false;
 
@@ -19,6 +21,8 @@ listen(store, Creature);
 listen(store, Player);
 listen(store, Dungeon);
 listen(store, Npc);
+listen(store, Reward);
+listen(store, Log);
 
 new Vue({
   router,

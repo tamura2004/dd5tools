@@ -2,8 +2,11 @@
   .headline EncounterForm
     v-btn(block dark to="/encounter/1/battle") モンスター選択
     v-list(two-line)
-      template(v-for="(item, index) in items")
-        MonsterList(:id="item.id" :num="item.num" :mode="modes[index]" @click="select(index)")
+      template(v-for="monster in monsters")
+        MonsterList(:monster="monster")
+          v-list-tile-action
+            v-btn(flat @click="select(monster)")
+              v-icon done
         v-divider
 </template>
 
@@ -25,10 +28,6 @@ import MONSTERS from '@/data/MONSTERS';
 })
 export default class EncounterForm extends Vue {
   @Prop() private sessionId!: string;
-
-  private get monsters(): Monster[] {
-    return MONSTERS;
-  }
 
   private get session(): Session {
     return this.$store.state.sessions.get(this.sessionId);
@@ -58,18 +57,18 @@ export default class EncounterForm extends Vue {
     MODE.HELL,
   ];
 
-  private get items() {
+  private get monsters(): (Monster | undefined)[] {
     const generator = new MonsterGenerator();
     generator.loadPlayers(Array.from(this.players.values()));
-    return this.modes.map((mode: MODE) => generator.chooseMonsterId(mode));
+    return this.modes.map((mode: MODE) => generator.chooseMonster(mode));
   }
 
-  private async select(index: number) {
-    const monster = this.monsters[index];
+  private async select(monster: Monster) {
     const encounterId = await this.$store.dispatch(CREATE_ENCOUNTER, {
       sessionId: this.sessionId,
       name: `${monster.num} ${monster.name} attack!`,
     });
+    this.$router.push({ name: 'session/encounters' });
   }
 }
 </script>
