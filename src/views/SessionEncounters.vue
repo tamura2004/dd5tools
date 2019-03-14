@@ -1,8 +1,8 @@
 <template lang="pug">
 .headline.mt-4 遭遇一覧
   v-list(two-line)
-    template(v-for="(encounter, index) in encounters")
-      v-list-tile
+    template(v-for="[encounterId, encounter] in Array.from(encounters(sessionId))")
+      v-list-tile(@click="go(encounterId)")
         v-list-tile-avatar
           v-btn.font-weight-bold(fab small outline color="black") {{ encounter.level }}
         v-list-tile-content
@@ -17,12 +17,24 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import { mapGetters } from 'vuex';
 
-@Component
+@Component({
+  computed: {
+    ...mapGetters(['encounters']),
+  },
+})
 export default class SessionEncounter extends Vue {
   @Prop() private sessionId!: string;
-  private get encounters() {
-    return this.$store.getters.encounters(this.sessionId);
+
+  private go(encounterId: string) {
+    this.$router.push({
+      name: 'encounter/battle',
+      params: {
+        sessionId: this.sessionId,
+        encounterId: encounterId,
+      }
+    })
   }
 }
 </script>

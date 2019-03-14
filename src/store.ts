@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { ADD_SESSION } from '@/types/MutationTypes';
-import { CREATE_SESSION, UPDATE_SESSION_PLAYERS, CREATE_ENCOUNTER } from '@/types/ActionTypes';
+import { CREATE_SESSION, UPDATE_SESSION_PLAYERS, CREATE_ENCOUNTER, CREATE_CREATURE } from '@/types/ActionTypes';
 import { db } from '@/plugins/firebase';
 import State from '@/models/State';
 import Session from '@/models/Session';
@@ -17,12 +17,17 @@ export default new Vuex.Store({
       return (sessionId: string) => state.sessions.get(sessionId);
     },
     encounters(state) {
-      return (sessionId: string) => [...state.encounters.values()]
-        .filter((e: Encounter) => e.sessionId === sessionId)
-        .sort((a, b) => a.level - b.level);
+      return (sessionId: string) => new Map<string, Encounter>(
+        [...state.encounters.entries()]
+        .filter(([_, e]) => e.sessionId === sessionId)
+        .sort(([_, a], [__, b]) => a.level - b.level),
+      );
     },
     encounter(state) {
       return (encounterId: string) => state.encounters.get(encounterId);
+    },
+    creature(state) {
+      return (creatureId: string) => state.creatures.get(creatureId);
     },
     dungeon(state) {
       return (dungeonId: string) => state.dungeons.get(dungeonId);
@@ -46,6 +51,10 @@ export default new Vuex.Store({
     },
     async [CREATE_ENCOUNTER]({}, encounter) {
       const docRef: any = await db.collection('encounters').add({...encounter});
+      return docRef.id;
+    },
+    async [CREATE_CREATURE]({}, creature) {
+      const docRef: any = await db.collection('creature').add({...creature});
       return docRef.id;
     },
     async [UPDATE_SESSION_PLAYERS]({}, {sessionId, playerIds}) {
