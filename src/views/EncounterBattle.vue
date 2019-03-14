@@ -1,9 +1,10 @@
 <template lang="pug">
-  .headline {{ [...creatures.values()] }}
+  .headline
     v-list
-      template(v-for="creature in creatures")
+      template(v-for="[creatureId, creature] in Array.from(creatures)")
         v-list-tile
           v-list-tile-title {{ creature.name }}
+          v-list-tile-title {{ creature.hp }}
     v-btn(to="reward") 戦闘終了
 </template>
 
@@ -17,7 +18,7 @@ export default class EncounterBattle extends Vue {
   @Prop() private encounterId!: string;
 
   private get creatures() {
-    return [...this.$store.state.creatures.values()];
+    return this.$store.getters.creatures(this.encounterId);
   }
 }
 </script>

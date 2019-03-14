@@ -27,7 +27,6 @@ export default new Vuex.Store({
       return (encounterId: string) => state.encounters.get(encounterId);
     },
     creatures(state) {
-      // return state.creatures;
       return (encounterId: string) => new Map<string, Creature>(
         [...state.creatures].filter(([, c]) => c.encounterId === encounterId),
       );
@@ -60,7 +59,7 @@ export default new Vuex.Store({
       return docRef.id;
     },
     async [CREATE_CREATURE]({}, creature) {
-      const docRef: any = await db.collection('creature').add({...creature});
+      const docRef: any = await db.collection('creatures').add({...creature});
       return docRef.id;
     },
     async [UPDATE_SESSION_PLAYERS]({}, {sessionId, playerIds}) {
