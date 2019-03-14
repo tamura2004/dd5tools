@@ -1,5 +1,6 @@
 import { ROOMS } from '@/data/ROOMS';
 import _ from 'lodash';
+import { chooseTrap } from '@/data/TRAP';
 
 export default class Encounter {
   public static collectionName: string = 'encounters';
@@ -14,6 +15,7 @@ export default class Encounter {
 
   constructor(init: Partial<Encounter>) {
     this.room = _.sample(ROOMS.get('鉱山')) || null;
+    this.trap = chooseTrap();
     Object.assign(this, init);
   }
 }

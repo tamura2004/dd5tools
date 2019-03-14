@@ -18,13 +18,19 @@ export default new Vuex.Store({
     },
     encounters(state) {
       return (sessionId: string) => new Map<string, Encounter>(
-        [...state.encounters.entries()]
+        [...state.encounters]
         .filter(([_, e]) => e.sessionId === sessionId)
         .sort(([_, a], [__, b]) => a.level - b.level),
       );
     },
     encounter(state) {
       return (encounterId: string) => state.encounters.get(encounterId);
+    },
+    creatures(state) {
+      // return state.creatures;
+      return (encounterId: string) => new Map<string, Creature>(
+        [...state.creatures].filter(([, c]) => c.encounterId === encounterId),
+      );
     },
     creature(state) {
       return (creatureId: string) => state.creatures.get(creatureId);

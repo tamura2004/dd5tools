@@ -1,5 +1,12 @@
 <template lang="pug">
-  .headline Encounter
+  .headline(v-if="encounter(encounterId)")
+    table
+      tr
+        th(xs4).label.body-2 場所
+        td(xs8).body-2 {{ encounter(encounterId).room }}
+      tr
+        th.label.body-2 トラップ
+        td.body-2 {{ encounter(encounterId).trap }}
     v-tabs
       v-tab(:to="{ name: 'encounter/battle' }") 戦闘
       v-tab(:to="{ name: 'encounter/reward' }") 報酬
@@ -8,9 +15,21 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import { mapGetters } from 'vuex';
 
-@Component
+@Component({
+  computed: {
+    ...mapGetters(['encounter']),
+  },
+})
 export default class Encounter extends Vue {
+  @Prop() public sessionId!: string;
+  @Prop() public encounterId!: string;
 }
 </script>
+
+<style lang="stylus">
+.label
+  width 20%
+</style>

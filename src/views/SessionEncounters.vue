@@ -32,9 +32,9 @@ export default class SessionEncounter extends Vue {
       name: 'encounter/battle',
       params: {
         sessionId: this.sessionId,
-        encounterId: encounterId,
-      }
-    })
+        encounterId,
+      },
+    });
   }
 }
 </script>

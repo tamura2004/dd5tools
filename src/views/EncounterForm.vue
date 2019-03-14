@@ -84,6 +84,7 @@ export default class EncounterForm extends Vue {
     });
     for (let i = 0; i < (monster.num || 0); i++) {
       await this.$store.dispatch(CREATE_CREATURE, new Creature({
+        encounterId,
         sessionId: this.sessionId,
         monsterId: monster.id,
         name: monster.name,

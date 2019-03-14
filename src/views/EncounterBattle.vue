@@ -1,7 +1,7 @@
 <template lang="pug">
-  .headline EncounterBattle
+  .headline {{ [...creatures.values()] }}
     v-list
-      template(v-for="[creatureId, creature] in Array.from(creatures(encounterId))")
+      template(v-for="creature in creatures")
         v-list-tile
           v-list-tile-title {{ creature.name }}
     v-btn(to="reward") 戦闘終了
@@ -11,13 +11,13 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
 
-@Component({
-  computed: {
-    ...mapGetters(['creatures']),
-  },
-})
+@Component
 export default class EncounterBattle extends Vue {
   @Prop() private sessionId!: string;
   @Prop() private encounterId!: string;
+
+  private get creatures() {
+    return [...this.$store.state.creatures.values()];
+  }
 }
 </script>
