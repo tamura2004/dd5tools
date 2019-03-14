@@ -1,18 +1,22 @@
 <template lang="pug">
   .headline
-    v-list
+    v-list(two-line)
       template(v-for="[creatureId, creature] in Array.from(creatures)")
-        v-list-tile
-          v-list-tile-title {{ creature.name }}
-          v-list-tile-title {{ creature.hp }}
+        CreatureTile(:creatureId="creatureId")
+        v-divider
     v-btn(to="reward") 戦闘終了
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
+import CreatureTile from '@/components/CreatureTile.vue';
 
-@Component
+@Component({
+  components: {
+    CreatureTile,
+  },
+})
 export default class EncounterBattle extends Vue {
   @Prop() private sessionId!: string;
   @Prop() private encounterId!: string;

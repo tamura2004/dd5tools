@@ -23,9 +23,6 @@ export function listen<T>(
   db.collection(name).onSnapshot((query) => {
     const collection = new Map<string, T>();
     query.forEach((doc: any) => {
-      if (name === 'creatures' || name === 'encounters') {
-        console.log(doc.data());
-      }
       collection.set(doc.id, new fn({...doc.data()}));
     });
     store.commit({
