@@ -28,7 +28,13 @@ v-list-tile
       v-layout(justify-center)
         .caption 残hp
       v-layout(justify-center)
-        .display-1 {{ creature.hp }}
+        Tenkey(
+          collectionName="creatures"
+          :id="creatureId"
+          field="hp"
+          title="hpを修正して=を押して下さい"
+        )
+        //- .display-1 {{ creature.hp }}
         //- LifeCounter(v-model="hp")
 
 </template>
@@ -48,7 +54,7 @@ import Tenkey from '@/components/Tenkey.vue';
   },
   components: {
     Tenkey,
-  }
+  },
 })
 export default class CreatureTile extends Vue {
   @Prop() private creatureId!: string;
