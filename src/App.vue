@@ -10,7 +10,7 @@ v-app
         v-list-tile-title {{ menu.label }}
   v-toolbar(app flat dark dense)
     v-toolbar-side-icon(@click="drawer=!drawer")
-    v-toolbar-title.headline マスターツール
+    v-toolbar-title.headline {{ titles.get($route.name) }}
   v-content
     v-container
       router-view
@@ -18,6 +18,8 @@ v-app
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { TITLES } from '@/data/TITLES';
+
 interface Menu {
   path: string;
   icon: string;
@@ -44,6 +46,7 @@ export default class App extends Vue {
       label: '新規セッション',
     },
   ];
+  private titles: Map<string, string> = TITLES;
 }
 </script>
 <style lang="stylus">

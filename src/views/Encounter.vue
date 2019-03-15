@@ -2,6 +2,10 @@
   .headline(v-if="encounter(encounterId)")
     table
       tr
+        th(xs4).label.body-2 セッション
+        td(xs8).body-2
+          router-link(:to="{ name: 'session/encounters', params: { sessionId }}") {{ session(sessionId).name }}
+      tr
         th(xs4).label.body-2 場所
         td(xs8).body-2 {{ encounter(encounterId).room }}
       tr
@@ -20,7 +24,7 @@ import { mapGetters } from 'vuex';
 
 @Component({
   computed: {
-    ...mapGetters(['encounter']),
+    ...mapGetters(['encounter', 'session']),
   },
 })
 export default class Encounter extends Vue {
@@ -32,4 +36,6 @@ export default class Encounter extends Vue {
 <style lang="stylus">
 .label
   width 20%
+td.body-2
+  line-height 24px
 </style>

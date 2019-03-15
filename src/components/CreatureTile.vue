@@ -7,15 +7,15 @@ v-list-tile
       v-layout(justify-center)
         .display-1.red--text {{ creature(creatureId).initiative }}
   v-list-tile-avatar
-    v-img(:src="`/img/#{creature(creatureId).avatar}`")
+    v-img(:src="`/img/${creature(creatureId).avatar}`")
   v-list-tile-content
     v-list-tile-title
       v-layout
-        v-flex.text-truncate(xs8) {{ creature(creatureId).name }}
-        v-flex.caption(xs4) AC:{{ creature(creatureId).ac }}
+        v-flex.text-truncate(xs12) {{ creature(creatureId).name }}
     v-list-tile-sub-title
       v-layout
         v-flex.text-truncate(xs8) {{ creature(creatureId).type }}
+        v-flex.caption(xs4) AC:{{ creature(creatureId).ac }}
 
   v-list-tile-action
     v-container.ma-0.pa-0

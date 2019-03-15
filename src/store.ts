@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { ADD_SESSION } from '@/types/MutationTypes';
-import { CREATE_SESSION, UPDATE_SESSION_PLAYERS, CREATE_ENCOUNTER, CREATE_CREATURE } from '@/types/ActionTypes';
+import { CREATE_SESSION, UPDATE_SESSION_PLAYERS, CREATE_ENCOUNTER, CREATE_CREATURE, CREATE } from '@/types/ActionTypes';
 import { db } from '@/plugins/firebase';
 import State from '@/models/State';
 import Session from '@/models/Session';
@@ -61,6 +61,11 @@ export default new Vuex.Store({
     async [CREATE_CREATURE]({}, creature) {
       const docRef: any = await db.collection('creatures').add({...creature});
       return docRef.id;
+    },
+    async [CREATE]({}, payload) {
+      const conn = db.collection(payload.constructor.collectionName);
+      const ref: any = await conn.add({...payload});
+      return ref.id;
     },
     async [UPDATE_SESSION_PLAYERS]({}, {sessionId, playerIds}) {
       await db.collection('sessions').doc(sessionId).update({ playerIds });

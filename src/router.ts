@@ -22,6 +22,7 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
+      meta: { title: 'マスターツール' },
     },
     {
       path: '/sessions',

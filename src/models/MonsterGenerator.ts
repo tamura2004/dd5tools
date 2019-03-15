@@ -3,6 +3,7 @@ import Player from '@/models/Player';
 import MONSTERS from '@/data/MONSTERS';
 import Monster from '@/models/Monster';
 import { MODE, BASE_EXP, NUM_MODIFY, CR } from '@/data/ENCOUNTER_DATA';
+import TEMPLATES from '@/data/TEMPLATES';
 
 export default class MonsterGenerator {
   public players: Map<number, number> = new Map();
@@ -45,9 +46,14 @@ export default class MonsterGenerator {
     return [key, candidate.get(key)];
   }
   public chooseMonster(mode: MODE = MODE.NORMAL): Monster | undefined {
+    const evil = _.sample(TEMPLATES) || TEMPLATES[0];
+
     const [exp, num] = this.chooseExpNum(mode);
-    const monster = _.sample(MONSTERS.filter((m: Monster) => m.exp === exp));
+    let monster = _.sample(MONSTERS.filter((m: Monster) => m.exp === exp));
     if (monster !== undefined && num !== undefined) {
+      if (!monster.alignment.includes('悪')) {
+        monster = monster.add(evil);
+      }
       monster.num = num;
       monster.mode = mode;
       return monster;

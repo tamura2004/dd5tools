@@ -2,7 +2,7 @@
   .headline(v-if="available")
     table
       tr
-        th.label.body-2 セッション名
+        th.label.body-2 セッション
         td.body-2 {{ session.name }}
       tr
         th.label.body-2 場所

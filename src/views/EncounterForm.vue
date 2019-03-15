@@ -13,7 +13,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { MODE } from '@/data/ENCOUNTER_DATA';
-import { CREATE_ENCOUNTER, CREATE_CREATURE } from '@/types/ActionTypes';
+import { CREATE_ENCOUNTER, CREATE } from '@/types/ActionTypes';
 import MonsterList from '@/components/MonsterList.vue';
 import MonsterGenerator from '@/models/MonsterGenerator';
 import Session from '@/models/Session';
@@ -22,6 +22,7 @@ import Creature from '@/models/Creature';
 import Player from '@/models/Player';
 import Monster from '@/models/Monster';
 import MONSTERS from '@/data/MONSTERS';
+import TEMPLATES from '@/data/TEMPLATES';
 
 @Component({
   components: {
@@ -82,8 +83,9 @@ export default class EncounterForm extends Vue {
         monster: monster.name,
       }),
     });
+
     for (let i = 0; i < (monster.num || 0); i++) {
-      await this.$store.dispatch(CREATE_CREATURE, new Creature({
+      await this.$store.dispatch(CREATE, new Creature({
         encounterId,
         sessionId: this.sessionId,
         monsterId: monster.id,
