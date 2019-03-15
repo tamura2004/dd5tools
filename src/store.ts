@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { ADD_SESSION } from '@/types/MutationTypes';
-import { CREATE_SESSION, UPDATE_SESSION_PLAYERS, CREATE_ENCOUNTER, CREATE_CREATURE, CREATE } from '@/types/ActionTypes';
+import { UPDATE_SESSION_PLAYERS, CREATE, UPDATE } from '@/types/ActionTypes';
 import { db } from '@/plugins/firebase';
 import State from '@/models/State';
 import Session from '@/models/Session';
@@ -28,7 +28,8 @@ export default new Vuex.Store({
     },
     creatures(state) {
       return (encounterId: string) => new Map<string, Creature>(
-        [...state.creatures].filter(([, c]) => c.encounterId === encounterId),
+        [...state.creatures]
+        .filter(([, c]) => c.encounterId === encounterId),
       );
     },
     creature(state) {
@@ -50,22 +51,13 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async [CREATE_SESSION]({}, session) {
-      const docRef: any = await db.collection('sessions').add({...session});
-      return docRef.id;
-    },
-    async [CREATE_ENCOUNTER]({}, encounter) {
-      const docRef: any = await db.collection('encounters').add({...encounter});
-      return docRef.id;
-    },
-    async [CREATE_CREATURE]({}, creature) {
-      const docRef: any = await db.collection('creatures').add({...creature});
-      return docRef.id;
-    },
     async [CREATE]({}, payload) {
       const conn = db.collection(payload.constructor.collectionName);
       const ref: any = await conn.add({...payload});
       return ref.id;
+    },
+    async [UPDATE]({}, { collectionName, id, updates }) {
+      await db.collection(collectionName).doc(id).update(updates);
     },
     async [UPDATE_SESSION_PLAYERS]({}, {sessionId, playerIds}) {
       await db.collection('sessions').doc(sessionId).update({ playerIds });

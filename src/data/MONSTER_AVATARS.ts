@@ -1,0 +1,16 @@
+export const MONSTER_AVATARS = new Map<string, string>([
+  ['植物', '004-tree-1.png'],
+  ['エレメンタル', '046-genie.png'],
+  ['怪物', '034-chimera.png'],
+  ['野獣', '024-loch-ness-monster.png'],
+  ['ドラゴン', '042-dragon.png'],
+  ['人造', '007-robot.png'],
+  ['巨人', '037-cyclops.png'],
+  ['粘体', '008-mushroom.png'],
+  ['人型生物', '030-goblin.png'],
+  ['アンデッド', '041-zombie.png'],
+  ['フェイ', '016-madre-monte.png'],
+  ['異形', '036-hydra.png'],
+  ['セレスチャル', '038-pegasus.png'],
+  ['フィーンド', '012-devil.png'],
+]);

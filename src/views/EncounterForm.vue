@@ -13,7 +13,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { MODE } from '@/data/ENCOUNTER_DATA';
-import { CREATE_ENCOUNTER, CREATE } from '@/types/ActionTypes';
+import { CREATE } from '@/types/ActionTypes';
 import MonsterList from '@/components/MonsterList.vue';
 import MonsterGenerator from '@/models/MonsterGenerator';
 import Session from '@/models/Session';
@@ -76,25 +76,20 @@ export default class EncounterForm extends Vue {
       sessionId: this.sessionId,
 
     });
-    const encounterId = await this.$store.dispatch(CREATE_ENCOUNTER, {
-      ...new Encounter({
+    const encounterId = await this.$store.dispatch(CREATE, new Encounter({
         sessionId: this.sessionId,
         level: this.encounterNum,
         monster: monster.name,
       }),
-    });
+    );
 
     for (let i = 0; i < (monster.num || 0); i++) {
       await this.$store.dispatch(CREATE, new Creature({
         encounterId,
         sessionId: this.sessionId,
         monsterId: monster.id,
-        name: monster.name,
         initiative: Math.floor(Math.random() * 20),
-        ac: monster.ac,
         hp: monster.maxHp,
-        maxHp: monster.maxHp,
-        avatar: monster.avatar,
       }));
     }
     this.$router.push({ name: 'session/encounters' });

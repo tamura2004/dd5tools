@@ -44,7 +44,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Session from '@/models/Session';
 import { mapState } from 'vuex';
-import { CREATE_SESSION } from '@/types/ActionTypes';
+import { CREATE } from '@/types/ActionTypes';
 
 import Item from '@/models/Item';
 import Dungeon from '@/models/Dungeon';
@@ -70,7 +70,9 @@ export default class SessionForm extends Vue {
   }
 
   private async submit() {
-    const sessionId: string = await this.$store.dispatch(CREATE_SESSION, this.form);
+    const sessionId: string = await this.$store.dispatch(CREATE,
+      new Session({...this.form}),
+    );
     this.$router.push({
       name: 'session/players',
       params: { sessionId },

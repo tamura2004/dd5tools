@@ -53,8 +53,13 @@ export default class SessionPlayers extends Vue {
     this.edit = false;
   }
 
-  private created() {
-    Object.assign(this.players, this.session.playerIds);
+  private select() {
+    this.edit = true;
+    Object.assign(this.playerIds, this.session.playerIds);
+  }
+
+private created() {
+    Object.assign(this.playerIds, this.session.playerIds);
   }
 }
 </script>
