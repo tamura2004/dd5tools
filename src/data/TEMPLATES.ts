@@ -38,7 +38,7 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
         ],
     },
     {
-        name: 'カニ',
+        name: 'スライム',
         type: '異形',
         alignment: '秩序にして悪',
         acMod: +2,
@@ -52,7 +52,7 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
             0,
         ],
         attributes: [
-            'ダメージ脆弱性: [火][雷]',
+            'ダメージ脆弱性: [刺突]',
         ],
     },
     {

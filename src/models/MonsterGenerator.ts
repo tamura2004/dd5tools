@@ -46,13 +46,13 @@ export default class MonsterGenerator {
     return [key, candidate.get(key)];
   }
   public chooseMonster(mode: MODE = MODE.NORMAL): Monster | undefined {
-    const evil = _.sample(TEMPLATES) || TEMPLATES[0];
+    // const evil = _.sample(TEMPLATES) || TEMPLATES[0];
 
     const [exp, num] = this.chooseExpNum(mode);
-    let monster = _.sample(MONSTERS.filter((m: Monster) => m.exp === exp));
+    const monster = _.sample(MONSTERS.filter((m: Monster) => m.exp === exp));
     if (monster !== undefined && num !== undefined) {
       if (!monster.alignment.includes('悪')) {
-        monster = monster.add(evil);
+        monster.templateId = _.random(0, TEMPLATES.length - 1);
       }
       monster.num = num;
       monster.mode = mode;

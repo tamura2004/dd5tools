@@ -13,6 +13,7 @@
         td.body-2 {{ encounter(encounterId).trap }}
     v-tabs
       v-tab(:to="{ name: 'encounter/battle' }") 戦闘
+      v-tab(:to="{ name: 'encounter/monster' }") モンスター
       v-tab(:to="{ name: 'encounter/reward' }") 報酬
       v-tab(:to="{ name: 'encounter/rest' }") 休憩
     router-view

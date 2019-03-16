@@ -36,16 +36,17 @@ export default class Monster {
   }
 
   public add(template: Template): Monster {
-    this.name = template.name + '・' + this.name;
-    this.type = template.type;
-    this.alignment = template.alignment;
+    const monster = new Monster({...this});
+    monster.name = template.name + '・' + monster.name;
+    monster.type = template.type;
+    monster.alignment = template.alignment;
     for (let i = 0; i < 6; i++) {
-      this.ability[i] += template.abilityMod[i];
+      monster.ability[i] += template.abilityMod[i];
     }
-    this.ac += template.acMod;
-    this.maxHp = Math.floor(this.maxHp * template.hpMod);
-    this.attributes = this.attributes.concat(template.attributes);
-    return this;
+    monster.ac += template.acMod;
+    monster.maxHp = Math.floor(monster.maxHp * template.hpMod);
+    monster.attributes = monster.attributes.concat(template.attributes);
+    return monster;
   }
 
   public get avatar(): string {

@@ -45,6 +45,7 @@ import { mapGetters } from 'vuex';
 import Creature from '@/models/Creature';
 import Monster from '@/models/Monster';
 import MONSTERS from '@/data/MONSTERS';
+import TEMPLATES from '@/data/TEMPLATES';
 import Tenkey from '@/components/Tenkey.vue';
 
 
@@ -64,7 +65,11 @@ export default class CreatureTile extends Vue {
   }
 
   private get monster(): Monster {
-    return MONSTERS[this.creature.monsterId || 0];
+    let info = MONSTERS[this.creature.monsterId || 0];
+    if (this.creature.templateId !== null) {
+      info = info.add(TEMPLATES[this.creature.templateId]);
+    }
+    return info;
   }
 
 }

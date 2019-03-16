@@ -7,11 +7,10 @@ export default class Encounter {
 
   public sessionId: string | null = null;
   public level: number = 0;
-  public name: string | null = null;
   public room: string | null = null;
   public trap: string | null = null;
-  public monster: string | null = null;
-  public treasure: string | null = null;
+  public monsterId: number | null = null;
+  public templateId: number | null = null;
 
   constructor(init: Partial<Encounter>) {
     this.room = _.sample(ROOMS.get('鉱山')) || null;

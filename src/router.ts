@@ -9,6 +9,7 @@ import Encounter from '@/views/Encounter.vue';
 import SessionPlayers from '@/views/SessionPlayers.vue';
 import SessionEncounters from '@/views/SessionEncounters.vue';
 import SessionReward from '@/views/SessionReward.vue';
+import EncounterMonster from '@/views/EncounterMonster.vue';
 import EncounterBattle from '@/views/EncounterBattle.vue';
 import EncounterReward from '@/views/EncounterReward.vue';
 import EncounterRest from '@/views/EncounterRest.vue';
@@ -78,6 +79,12 @@ export default new Router({
       component: Encounter,
       props: true,
       children: [
+        {
+          path: 'monster',
+          name: 'encounter/monster',
+          component: EncounterMonster,
+          props: true,
+        },
         {
           path: 'battle',
           name: 'encounter/battle',

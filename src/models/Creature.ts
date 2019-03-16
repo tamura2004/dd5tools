@@ -5,6 +5,7 @@ export default class Creature {
   public encounterId: string | null = null;
   public playerId: string | null = null;
   public monsterId: number | null = null;
+  public templateId: number | null = null;
   public initiative!: number;
   public hp!: number;
 

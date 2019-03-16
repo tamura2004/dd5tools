@@ -37,7 +37,7 @@ export default class EncounterForm extends Vue {
   }
 
   private get encounterNum() {
-    return this.$store.getters.encounters(this.sessionId).length + 1;
+    return this.$store.getters.encounters(this.sessionId).size + 1;
   }
 
 
@@ -79,7 +79,8 @@ export default class EncounterForm extends Vue {
     const encounterId = await this.$store.dispatch(CREATE, new Encounter({
         sessionId: this.sessionId,
         level: this.encounterNum,
-        monster: monster.name,
+        monsterId: monster.id,
+        templateId: monster.templateId,
       }),
     );
 
@@ -88,6 +89,7 @@ export default class EncounterForm extends Vue {
         encounterId,
         sessionId: this.sessionId,
         monsterId: monster.id,
+        templateId: monster.templateId,
         initiative: Math.floor(Math.random() * 20),
         hp: monster.maxHp,
       }));
