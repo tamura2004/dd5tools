@@ -80,6 +80,7 @@ export default class EncounterForm extends Vue {
         sessionId: this.sessionId,
         level: this.encounterNum,
         monsterId: monster.id,
+        monsterNum: monster.num,
         templateId: monster.templateId,
       }),
     );

@@ -7,7 +7,11 @@
           v-btn.font-weight-bold(fab small outline color="black") {{ encounter.level }}
         v-list-tile-content
           v-list-tile-title {{ encounter.room }}
-          v-list-tile-sub-title {{ encounter.monster }}
+          v-list-tile-sub-title
+            v-layout(row wrap)
+              v-flex(xs6) {{ encounter.monsterName }}
+              v-flex(xs3) {{ encounter.monsterNum }}体
+              v-flex(xs3) {{ encounter.exp }}exp
         v-list-tile-action
           v-btn(flat icon)
             v-icon done
