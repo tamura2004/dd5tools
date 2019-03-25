@@ -8,5 +8,6 @@ describe('Armor.ts', () => {
     expect(got.type).toBe('軽装鎧');
     expect(got.price).toBe('5gp');
     expect(got.ac).toBe(11);
+    expect(got.description).toBe('軽装鎧（5gp/8ポンド）：AC11＋【敏】修正値、隠密：不利');
   });
 });
