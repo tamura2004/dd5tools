@@ -72,10 +72,9 @@ export default class EncounterForm extends Vue {
   }
 
   private async select(monster: Monster) {
-    const encounter = new Encounter({
-      sessionId: this.sessionId,
-
-    });
+    // const encounter = new Encounter({
+    //   sessionId: this.sessionId,
+    // });
     const encounterId = await this.$store.dispatch(CREATE, new Encounter({
         sessionId: this.sessionId,
         level: this.encounterNum,

@@ -1,6 +1,7 @@
 import Ability from '@/models/Ability';
 import { EXP } from '@/data/ENCOUNTER_DATA';
 import Template from './Template';
+import TEMPLATES from '@/data/TEMPLATES';
 import { MODE } from '@/data/ENCOUNTER_DATA';
 import { MONSTER_AVATARS } from '@/data/MONSTER_AVATARS';
 
@@ -35,13 +36,22 @@ export default class Monster {
     return `${ability}${Ability.modifyString(ability)}`;
   }
 
+  public get merged(): Monster {
+    if (this.templateId === null) {
+      return this;
+    } else {
+      const template = TEMPLATES[this.templateId];
+      return this.add(template);
+    }
+  }
+
   public add(template: Template): Monster {
     const monster = new Monster({...this});
     monster.name = template.name + '・' + monster.name;
     monster.type = template.type;
     monster.alignment = template.alignment;
     for (let i = 0; i < 6; i++) {
-      monster.ability[i] += template.abilityMod[i];
+      monster.ability[i] = Number(monster.ability[i]) + Number(template.abilityMod[i]);
     }
     monster.ac += template.acMod;
     monster.maxHp = Math.floor(monster.maxHp * template.hpMod);

@@ -1,41 +1,49 @@
 <template lang="pug">
-v-list-tile(v-if="monster")
+v-list-tile(v-if="monster" @click="")
   v-list-tile-avatar
     v-btn.font-weight-bold(fab dark small :color="color") {{ label }}
-  v-list-tile-content
+  v-list-tile-content(@click.stop="dialog = true")
     v-list-tile-title
       v-layout
-        v-flex(xs12) {{ creature.name }}
+        v-flex(xs12) {{ merged.name }}
     v-list-tile-sub-title
       v-layout
-        v-flex(xs3) {{ monster.num }} 体
-        v-flex(xs3) AC: {{ creature.ac }}
-        v-flex(xs3) hp: {{ creature.maxHp }}
-        v-flex(xs3) exp:{{ monster.exp * monster.num }}
+        v-flex(xs3) {{ merged.num }} 体
+        v-flex(xs3) AC: {{ merged.ac }}
+        v-flex(xs3) hp: {{ merged.maxHp }}
+        v-flex(xs3) exp:{{ merged.exp * merged.num }}
   v-list-tile-action
     slot
+  v-dialog(v-model="dialog")
+    v-card
+      v-toolbar(dense)
+        v-toolbar-title data
+        v-spacer
+        v-toolbar-items
+          v-btn(flat icon @click="dialog = false")
+            v-icon close
+      MonsterTable(:monster="merged")
 
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Monster from '@/models/Monster';
-import MONSTERS from '@/data/MONSTERS';
-import { MODE } from '@/data/ENCOUNTER_DATA';
 import Mode from '@/models/Mode';
-import TEMPLATES from '@/data/TEMPLATES';
+import { MODE } from '@/data/ENCOUNTER_DATA';
+import MonsterTable from '@/components/MonsterTable.vue';
 
-@Component
+@Component({
+  components: {
+    MonsterTable,
+  },
+})
 export default class MonsterList extends Vue {
   @Prop() private monster!: Monster;
+  private dialog: boolean = false;
 
-  private get creature(): Monster {
-    if (this.monster.templateId === null) {
-      return this.monster;
-    } else {
-      const template = TEMPLATES[this.monster.templateId];
-      return this.monster.add(template);
-    }
+  private get merged(): Monster {
+    return this.monster.merged;
   }
 
   private get mode(): MODE {
