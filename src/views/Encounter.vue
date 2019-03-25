@@ -4,7 +4,7 @@
       tr
         th(xs4).label.body-2 セッション
         td(xs8).body-2
-          router-link(:to="{ name: 'session/encounters', params: { sessionId }}") {{ session(sessionId).name }}
+          router-link(:to="`/session/${sessionId}/encounters`") {{ session(sessionId).name }}
       tr
         th(xs4).label.body-2 場所
         td(xs8).body-2 {{ encounter(encounterId).room }}
@@ -12,10 +12,10 @@
         th.label.body-2 トラップ
         td.body-2 {{ encounter(encounterId).trap }}
     v-tabs
-      v-tab(:to="{ name: 'encounter/battle' }") 戦闘
-      v-tab(:to="{ name: 'encounter/monster' }") モンスター
-      v-tab(:to="{ name: 'encounter/reward' }") 報酬
-      v-tab(:to="{ name: 'encounter/rest' }") 休憩
+      v-tab(to="battle") 戦闘
+      v-tab(to="monster") モンスター
+      v-tab(to="reward") 報酬
+      v-tab(to="rest") 休憩
     router-view
 </template>
 

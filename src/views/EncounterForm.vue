@@ -23,6 +23,7 @@ import Player from '@/models/Player';
 import Monster from '@/models/Monster';
 import MONSTERS from '@/data/MONSTERS';
 import TEMPLATES from '@/data/TEMPLATES';
+import PATH from '@/types/PathTypes';
 
 @Component({
   components: {
@@ -71,9 +72,6 @@ export default class EncounterForm extends Vue {
   }
 
   private async select(monster: Monster) {
-    // const encounter = new Encounter({
-    //   sessionId: this.sessionId,
-    // });
     const encounterId = await this.$store.dispatch(CREATE, new Encounter({
         sessionId: this.sessionId,
         level: this.encounterNum,
@@ -93,7 +91,9 @@ export default class EncounterForm extends Vue {
         hp: monster.maxHp,
       }));
     }
-    this.$router.push({ name: 'session/encounters' });
+    this.$router.push({
+      name: PATH.SESSION_ENCOUNTERS,
+    });
   }
 }
 </script>

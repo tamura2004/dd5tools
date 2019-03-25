@@ -13,7 +13,7 @@ import EncounterMonster from '@/views/EncounterMonster.vue';
 import EncounterBattle from '@/views/EncounterBattle.vue';
 import EncounterReward from '@/views/EncounterReward.vue';
 import EncounterRest from '@/views/EncounterRest.vue';
-
+import PATH from '@/types/PathTypes';
 
 Vue.use(Router);
 
@@ -21,41 +21,41 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: PATH.HOME,
       component: Home,
       meta: { title: 'マスターツール' },
     },
     {
       path: '/sessions',
-      name: 'sessions',
+      name: PATH.SESSIONS,
       component: Sessions,
     },
     {
       path: '/sessions/new',
-      name: 'sessions/new',
+      name: PATH.SESSIONS_NEW,
       component: SessionForm,
     },
     {
       path: '/session/:sessionId',
-      name: 'session',
+      name: PATH.SESSION,
       component: Session,
       props: true,
       children: [
         {
           path: 'players',
-          name: 'session/players',
+          name: PATH.SESSION_PLAYERS,
           component: SessionPlayers,
           props: true,
         },
         {
           path: 'encounters',
-          name: 'session/encounters',
+          name: PATH.SESSION_ENCOUNTERS,
           component: SessionEncounters,
           props: true,
         },
         {
           path: 'reward',
-          name: 'session/reward',
+          name: PATH.SESSION_REWARD,
           component: SessionReward,
           props: true,
         },
@@ -63,43 +63,43 @@ export default new Router({
     },
     {
       path: '/session/:sessionId/edit',
-      name: 'session/edit',
+      name: PATH.SESSION_EDIT,
       component: SessionForm,
       props: true,
     },
     {
       path: '/session/:sessionId/encounters/new',
-      name: 'encounters/new',
+      name: PATH.ENCOUNTERS_NEW,
       component: EncounterForm,
       props: true,
     },
     {
       path: '/session/:sessionId/encounter/:encounterId',
-      name: 'encounter',
+      name: PATH.ENCOUNTER,
       component: Encounter,
       props: true,
       children: [
         {
           path: 'monster',
-          name: 'encounter/monster',
+          name: PATH.ENCOUNTER_MONSTER,
           component: EncounterMonster,
           props: true,
         },
         {
           path: 'battle',
-          name: 'encounter/battle',
+          name: PATH.ENCOUNTER_BATTLE,
           component: EncounterBattle,
           props: true,
         },
         {
           path: 'reward',
-          name: 'encounter/reward',
+          name: PATH.ENCOUNTER_REWARD,
           component: EncounterReward,
           props: true,
         },
         {
           path: 'rest',
-          name: 'encounter/rest',
+          name: PATH.ENCOUNTER_REST,
           component: EncounterRest,
           props: true,
         },

@@ -4,7 +4,7 @@
       template(v-for="[key, session] in Array.from(sessions)")
         v-list-tile(
           :key="key"
-          :to="{ name: 'session/players', params: { sessionId: key }}"
+          :to="`/session/${key}/players`"
         )
           v-list-tile-content
             v-list-tile-title {{ session.name }}
@@ -13,7 +13,7 @@
             v-icon arrow_forward_ios
         v-divider
 
-    v-btn(dark block color="primary" :to="{ name: 'sessions/new' }") 新規セッション
+    v-btn(dark block color="primary" to="/sessions/new") 新規セッション
 </template>
 
 <script lang="ts">

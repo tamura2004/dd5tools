@@ -16,12 +16,13 @@
           v-btn(flat icon)
             v-icon done
       v-divider
-  v-btn(block dark :to="{ name: 'encounters/new' }") 新規遭遇
+  v-btn(block dark to="encounters/new") 新規遭遇
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
+import PATH from '@/types/PathTypes';
 
 @Component({
   computed: {
@@ -33,7 +34,7 @@ export default class SessionEncounter extends Vue {
 
   private go(encounterId: string) {
     this.$router.push({
-      name: 'encounter/battle',
+      name: PATH.ENCOUNTER_BATTLE,
       params: {
         sessionId: this.sessionId,
         encounterId,

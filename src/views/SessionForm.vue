@@ -49,6 +49,7 @@ import { CREATE } from '@/types/ActionTypes';
 import Item from '@/models/Item';
 import Dungeon from '@/models/Dungeon';
 import Npc from '@/models/Npc';
+import PATH from '@/types/PathTypes';
 
 type Validator = (v: string) => boolean | string;
 
@@ -74,7 +75,7 @@ export default class SessionForm extends Vue {
       new Session({...this.form}),
     );
     this.$router.push({
-      name: 'session/players',
+      name: PATH.SESSION_PLAYERS,
       params: { sessionId },
     });
   }

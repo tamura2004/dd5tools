@@ -21,9 +21,9 @@
         td.body-2 {{ session.reward }}gp
 
     v-tabs
-      v-tab(:to="{ name: 'session/players' }") ＰＣ
-      v-tab(:to="{ name: 'session/encounters' }") 遭遇
-      v-tab(:to="{ name: 'session/reward' }") 報酬
+      v-tab(to="players") ＰＣ
+      v-tab(to="encounters") 遭遇
+      v-tab(to="reward") 報酬
     router-view
 </template>
 

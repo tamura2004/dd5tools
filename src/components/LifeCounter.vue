@@ -11,6 +11,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import Tenkey from '@/components/Tenkey.vue';
+import PATH from '@/types/PathTypes';
 
 @Component({
   components: {
@@ -28,7 +29,9 @@ export default class LifeCounter extends Vue {
     this.dialog = false;
   }
   private back(): void {
-    this.$router.push('/');
+    this.$router.push({
+      name: PATH.HOME,
+    });
   }
   private done(value: number): void {
     let hp = value < 0 ? 0 : value;
