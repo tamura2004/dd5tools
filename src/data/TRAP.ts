@@ -19,7 +19,7 @@ export const TRAP_MODE = new Map<number, string>([
 
 export const chooseTrapMode = () => {
   const dice = Math.floor(Math.random() * 6 + 1);
-  return [...TRAP_MODE].reduce((a, [num, msg]) => a = dice > num ? msg : a, '');
+  return [...TRAP_MODE].reduce((a, [num, msg]) => a = dice >= num ? msg : a, '');
 };
 
 export const TRAP_EFFECTS = [
