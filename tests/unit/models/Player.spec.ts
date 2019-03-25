@@ -17,8 +17,11 @@ describe('Player', () => {
       {
         baseAbility: [10, 0, 0, 0, 0, 0],
         race: 'マウンテンドワーフ',
+        level: 1,
       },
     );
     expect(player.ability).toEqual([12, 0, 2, 0, 0, 0]);
+    expect(player.ac).toBe(10);
+    expect(player.rank).toBe('G');
   });
 });
