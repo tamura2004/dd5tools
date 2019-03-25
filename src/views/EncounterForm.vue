@@ -40,7 +40,6 @@ export default class EncounterForm extends Vue {
     return this.$store.getters.encounters(this.sessionId).size + 1;
   }
 
-
   private get players(): Map<string, Player> {
     return this.$store.state.players;
   }

@@ -17,7 +17,7 @@ v-list-tile(v-if="monster" @click="")
   v-dialog(v-model="dialog")
     v-card
       v-toolbar(dense)
-        v-toolbar-title data
+        v-toolbar-title {{ merged.name }}
         v-spacer
         v-toolbar-items
           v-btn(flat icon @click="dialog = false")
