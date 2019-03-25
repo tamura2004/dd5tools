@@ -1,54 +1,56 @@
+import PATH from '@/types/PathTypes';
+
 export const TITLES = new Map<string, string>([
   [
-    'encounter',
+    PATH.ENCOUNTER,
     '遭遇',
   ],
   [
-    'encounter/battle',
+    PATH.ENCOUNTER_BATTLE,
     '戦闘',
   ],
   [
-    'encounter/rest',
+    PATH.ENCOUNTER_REST,
     '小休憩',
   ],
   [
-    'encounter/reward',
+    PATH.ENCOUNTER_REWARD,
     '報酬',
   ],
   [
-    'encounters/new',
+    PATH.ENCOUNTERS_NEW,
     '新規遭遇',
   ],
   [
-    'home',
+    PATH.HOME,
     'マスターツール',
   ],
   [
-    'session',
+    PATH.SESSION,
     'セッション',
   ],
   [
-    'session/edit',
+    PATH.SESSION_EDIT,
     'セッション編集',
   ],
   [
-    'session/encounters',
+    PATH.SESSION_ENCOUNTERS,
     '遭遇一覧',
   ],
   [
-    'session/players',
+    PATH.SESSION_PLAYERS,
     '参加PC一覧',
   ],
   [
-    'session/reward',
+    PATH.SESSION_REWARD,
     'セッション報酬',
   ],
   [
-    'sessions',
+    PATH.SESSIONS,
     'セッション一覧',
   ],
   [
-    'sessions/new',
+    PATH.SESSIONS_NEW,
     '新規セッション',
   ],
 ]);
