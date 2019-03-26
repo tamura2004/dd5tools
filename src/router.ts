@@ -1,21 +1,23 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '@/views/Home.vue';
-import Sessions from '@/views/Sessions.vue';
-import SessionForm from '@/views/SessionForm.vue';
-import Session from '@/views/Session.vue';
-import EncounterForm from '@/views/EncounterForm.vue';
+import PATH from '@/types/PathTypes';
+
 import Encounter from '@/views/Encounter.vue';
-import SessionPlayers from '@/views/SessionPlayers.vue';
-import SessionEncounters from '@/views/SessionEncounters.vue';
-import SessionReward from '@/views/SessionReward.vue';
-import EncounterMonster from '@/views/EncounterMonster.vue';
 import EncounterBattle from '@/views/EncounterBattle.vue';
-import EncounterReward from '@/views/EncounterReward.vue';
+import EncounterForm from '@/views/EncounterForm.vue';
+import EncounterMonster from '@/views/EncounterMonster.vue';
 import EncounterRest from '@/views/EncounterRest.vue';
+import EncounterReward from '@/views/EncounterReward.vue';
+import Home from '@/views/Home.vue';
+import NpcForm from '@/views/NpcForm.vue';
+import Session from '@/views/Session.vue';
+import SessionEncounters from '@/views/SessionEncounters.vue';
+import SessionForm from '@/views/SessionForm.vue';
+import SessionPlayers from '@/views/SessionPlayers.vue';
+import SessionReward from '@/views/SessionReward.vue';
+import Sessions from '@/views/Sessions.vue';
 import Signin from '@/views/Signin.vue';
 import Signup from '@/views/Signup.vue';
-import PATH from '@/types/PathTypes';
 
 Vue.use(Router);
 
@@ -25,6 +27,11 @@ export default new Router({
       path: '/',
       name: PATH.HOME,
       component: Home,
+    },
+    {
+      path: '/npcs/new',
+      name: PATH.NPCS_NEW,
+      component: NpcForm,
     },
     {
       path: '/signin',
