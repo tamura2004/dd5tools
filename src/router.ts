@@ -13,6 +13,8 @@ import EncounterMonster from '@/views/EncounterMonster.vue';
 import EncounterBattle from '@/views/EncounterBattle.vue';
 import EncounterReward from '@/views/EncounterReward.vue';
 import EncounterRest from '@/views/EncounterRest.vue';
+import Signin from '@/views/Signin.vue';
+import Signup from '@/views/Signup.vue';
 import PATH from '@/types/PathTypes';
 
 Vue.use(Router);
@@ -23,7 +25,16 @@ export default new Router({
       path: '/',
       name: PATH.HOME,
       component: Home,
-      meta: { title: 'マスターツール' },
+    },
+    {
+      path: '/signin',
+      name: PATH.SIGNIN,
+      component: Signin,
+    },
+    {
+      path: '/signup',
+      name: PATH.SIGNUP,
+      component: Signup,
     },
     {
       path: '/sessions',

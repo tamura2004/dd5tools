@@ -53,4 +53,12 @@ export const TITLES = new Map<string, string>([
     PATH.SESSIONS_NEW,
     '新規セッション',
   ],
+  [
+    PATH.SIGNIN,
+    'サインイン',
+  ],
+  [
+    PATH.SIGNUP,
+    'サインアップ',
+  ],
 ]);

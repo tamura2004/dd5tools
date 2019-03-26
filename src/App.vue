@@ -36,6 +36,16 @@ export default class App extends Vue {
       label: 'ホーム',
     },
     {
+      path: '/signin',
+      icon: 'person',
+      label: 'サインイン',
+    },
+    {
+      path: '/signup',
+      icon: 'person_add',
+      label: 'サインアップ',
+    },
+    {
       path: '/sessions',
       icon: 'list',
       label: 'セッション一覧',
