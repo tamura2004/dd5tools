@@ -1,7 +1,7 @@
 <template lang="pug">
   .headline NPC
-    v-btn(block)
-      input(
+    .label
+      input#upload(
         type="file"
         accept="image/*"
         @change="select($event)"
@@ -14,6 +14,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import firebase from 'firebase/app';
 
 @Component
 export default class NpcForm extends Vue {
@@ -26,11 +27,30 @@ export default class NpcForm extends Vue {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.imageData = e.target.result;
-      }
+      };
       reader.readAsDataURL(file);
+
+      //
+      const storageRef = firebase.storage().ref();
+      const imageRef = storageRef.child(file.name);
+      imageRef.put(file).then((snapshot) => alert(snapshot));
     }
   }
   private upload(e: any) {
+    alert('ok');
   }
 }
 </script>
+
+<style lang="stylus">
+.label
+  border 1px solid black
+  width 100px
+  height 100px
+
+#upload
+  opacity 0
+  width 100%
+  height 100%
+  cursor pointer
+</style>

@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase';
 
 type validateFunc = Array<(v: string) => boolean | string>;
 
