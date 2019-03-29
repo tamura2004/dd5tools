@@ -55,6 +55,11 @@ export default class App extends Vue {
       icon: 'add',
       label: '新規セッション',
     },
+    {
+      path: '/npcs/new',
+      icon: 'person_add',
+      label: '新規NPC',
+    },
   ];
   private titles: Map<string, string> = TITLES;
 }
