@@ -1,6 +1,6 @@
 <template lang="pug">
 v-app
-  v-navigation-drawer(app fixed v-model="drawer")
+  v-navigation-drawer(app fixed right v-model="drawer")
     v-toolbar(flat dark dense)
       v-toolbar-title メニュー
     v-list(dense)
@@ -8,13 +8,13 @@ v-app
         v-list-tile-action
           v-icon {{ menu.icon }}
         v-list-tile-title {{ menu.label }}
-  v-toolbar(app flat dark dense)
-    v-toolbar-side-icon(@click="drawer=!drawer")
+  v-toolbar(app fixed flat dark dense)
+    v-toolbar-items
+      v-btn(flat icon @click="$router.go(-1)")
+        v-icon arrow_back_ios
     v-toolbar-title.headline {{ titles.get($route.name) }}
     v-spacer
-    v-toolbar-items
-      v-btn(flat icon @click="processing=!processing")
-        v-icon done
+    v-toolbar-side-icon(@click="drawer=!drawer")
   v-content
     v-container
       template(v-if="!processing && ready")
