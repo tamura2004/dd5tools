@@ -3,16 +3,20 @@ div
   v-toolbar(flat dark dense)
     v-toolbar-title.subheading {{ npc.name }}
   v-card
-    v-responsive(:aspect-ratio="2/3")
+    v-responsive(:aspect-ratio="4/5")
       v-img(
         :src="url"
         @error="error=true"
       )
-      v-card-title.body {{ npc.description }}
+      v-card-title.caption {{ npc.description }}
     v-divider
     v-card-actions
       v-spacer
-      v-btn(small color="primary") 編集
+      v-btn(
+        small
+        color="primary"
+        :to="`/npc/${id}/edit`"
+      ) 編集
 </template>
 
 <script lang="ts">

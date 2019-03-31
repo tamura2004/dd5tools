@@ -11,6 +11,7 @@ import EncounterReward from '@/views/EncounterReward.vue';
 import Home from '@/views/Home.vue';
 import NpcForm from '@/views/NpcForm.vue';
 import NpcIndex from '@/views/NpcIndex.vue';
+import NpcEdit from '@/views/NpcEdit.vue';
 import Session from '@/views/Session.vue';
 import SessionEncounters from '@/views/SessionEncounters.vue';
 import SessionForm from '@/views/SessionForm.vue';
@@ -38,6 +39,12 @@ export default new Router({
       path: '/npcs/new',
       name: PATH.NPCS_NEW,
       component: NpcForm,
+    },
+    {
+      path: '/npc/:npcId/edit',
+      name: PATH.NPC_EDIT,
+      component: NpcEdit,
+      props: true,
     },
     {
       path: '/signin',

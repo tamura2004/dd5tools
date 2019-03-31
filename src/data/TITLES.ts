@@ -9,6 +9,7 @@ export const TITLES = new Map<string, string>([
   [ PATH.HOME, 'マスターツール' ],
   [ PATH.NPCS_NEW, 'NPC登録' ],
   [ PATH.NPCS_INDEX, 'NPC一覧' ],
+  [ PATH.NPC_EDIT, 'NPC編集' ],
   [ PATH.SESSION, 'セッション' ],
   [ PATH.SESSION_EDIT, 'セッション編集' ],
   [ PATH.SESSION_ENCOUNTERS, '遭遇一覧' ],
