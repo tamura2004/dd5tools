@@ -16,17 +16,13 @@ v-form(v-model="valid" v-if="form")
     )
     v-text-field.pa-2(
       label="名前"
-      :value="npc.name"
+      v-model="form.name"
       :rules="required"
-      @input="updateName"
-      ref="name"
     )
     v-textarea.pa-2(
       label="説明"
-      :value="npc.description"
+      :value="form.description"
       :rules="required"
-      @input="updateDescription"
-      ref="description"
     )
     v-card-actions
       v-spacer
@@ -72,14 +68,6 @@ export default class NpcEdit extends Vue {
     if (this.npc) {
       Object.assign(this.form, this.npc);
     }
-  }
-
-  private updateName() {
-    this.form.name = this.$refs.name.lazyValue;
-  }
-
-  private updateDescription() {
-    this.form.description = this.$refs.description.lazyValue;
   }
 
   private fileChangeHandler() {

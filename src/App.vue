@@ -17,7 +17,7 @@ v-app
         v-icon done
   v-content
     v-container
-      template(v-if="!processing")
+      template(v-if="!processing && ready")
         router-view
       template(v-else)
         v-layout(align-center justify-center fill-height)
@@ -76,6 +76,9 @@ export default class App extends Vue {
     },
   ];
   private titles: Map<string, string> = TITLES;
+  private get ready(): boolean {
+    return this.$store.state.npcs.size > 0;
+  }
 }
 </script>
 <style lang="stylus">
