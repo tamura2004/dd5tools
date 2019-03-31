@@ -38,6 +38,9 @@ export default new Vuex.Store({
     dungeon(state) {
       return (dungeonId: string) => state.dungeons.get(dungeonId);
     },
+    npcs(state) {
+      return state.npcs;
+    },
     npc(state) {
       return (npcId: string) => state.npcs.get(npcId);
     },

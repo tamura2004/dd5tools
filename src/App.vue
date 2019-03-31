@@ -11,9 +11,17 @@ v-app
   v-toolbar(app flat dark dense)
     v-toolbar-side-icon(@click="drawer=!drawer")
     v-toolbar-title.headline {{ titles.get($route.name) }}
+    v-spacer
+    v-toolbar-items
+      v-btn(flat icon @click="processing=!processing")
+        v-icon done
   v-content
     v-container
-      router-view
+      template(v-if="!processing")
+        router-view
+      template(v-else)
+        v-layout(align-center justify-center fill-height)
+          v-progress-circular.mt-5(:size="100" color="primary" indeterminate)
 </template>
 
 <script lang="ts">
@@ -29,6 +37,7 @@ interface Menu {
 @Component
 export default class App extends Vue {
   private drawer: boolean = false;
+  private processing: boolean = false;
   private menues: Menu[] = [
     {
       path: '/',
@@ -54,6 +63,11 @@ export default class App extends Vue {
       path: '/sessions/new',
       icon: 'add',
       label: '新規セッション',
+    },
+    {
+      path: '/npcs',
+      icon: 'list',
+      label: 'NPC一覧',
     },
     {
       path: '/npcs/new',

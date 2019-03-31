@@ -1,70 +1,147 @@
 <template lang="pug">
-v-layout(row wrap)
-  v-flex(xs12 sm8 md4 lg 2)
-    v-card
-      v-img(
-        :src="imageData"
-        v-if="imageData"
-      )
-      v-card-title.headline bigstring
-      v-card-actions
-        label(for="upload")
-          input#upload(
-            ref="input"
-            type="file"
-            accept="image/*"
-            @change="select()"
-          )
-      v-divider
-      v-card-actions
-        v-spacer
-        v-btn(color="primary") 保存
+v-form(v-model="valid")
+  v-card(width="320px")
+    v-card-actions
+      label(for="upload")
+        input#upload(
+          ref="input"
+          type="file"
+          accept="image/*"
+          @change="fileChangeHandler()"
+        )
+    canvas(
+      ref="canvas"
+      width="320px"
+      height="180px"
+    )
+    v-text-field.pa-2(
+      label="名前"
+      v-model="form.name"
+      :rules="required"
+    )
+    v-textarea.pa-2(
+      label="説明"
+      v-model="form.description"
+      :rules="required"
+    )
+    v-card-actions
+      v-spacer
+      v-btn(
+        color="primary"
+        @click="uploadHandler"
+      ) 保存
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import firebase from 'firebase/app';
+import 'firebase/storage';
+import Npc from '@/models/Npc';
+import { CREATE } from '@/types/ActionTypes';
+
+const WIDTH = 320;
+const HEIGHT = 180;
+const RATIO = WIDTH / HEIGHT;
+
+type Validation = (v: string) => boolean | string;
 
 @Component
 export default class NpcForm extends Vue {
   public $refs!: {
-    input: HTMLInputElement,
+    input: HTMLInputElement;
+    canvas: HTMLCanvasElement;
   };
+  private form: Form<Npc> = Npc.form();
+  private file: File | null = null;
+  private valid: boolean = false;
+  private required: Validation[] = [
+    (v) => !!v || '必須項目です',
+  ];
 
-  private imageData: any = null;
-
-  private select() {
+  private fileChangeHandler() {
     const { files } = this.$refs.input;
     if (files === null) {
       return;
     }
 
-    const file = files[0];
-    if (file === null) {
+    this.file = files[0];
+    if (this.file === null) {
       return;
     }
 
     const reader = new FileReader();
-    reader.onload = (e: FileReaderProgressEvent) => {
+    const image = new Image();
+    reader.onload = (e: any) => {
+      image.onload = () => {
+        const dpr = window.devicePixelRatio || 1; // device pixel ratio
+        const canvas = this.$refs.canvas;
+        const ctx = canvas.getContext('2d');
+        if (ctx === null) {
+          return;
+        }
+        // ctx.scale(dpr, dpr);
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+
+        const ratio = image.width / image.height;
+        if (ratio < RATIO) {
+          // 画像が縦長
+          ctx.drawImage(
+            image,
+            0,
+            (image.height - image.width / RATIO) / 2,
+            image.width,
+            image.width / RATIO,
+            0,
+            0,
+            WIDTH,
+            HEIGHT,
+          );
+        } else {
+          // 画像が横長
+          ctx.drawImage(
+            image,
+            (image.width - image.height * RATIO) / 2,
+            0,
+            image.height * RATIO,
+            image.height,
+            0,
+            0,
+            WIDTH,
+            HEIGHT,
+          );
+        }
+      };
       const { target } = e;
       if (target === null) {
         return;
       }
-      this.imageData = target.result;
+      image.src = target.result;
     };
-    reader.readAsDataURL(file);
-
-    //
-    // const storageRef = firebase.storage().ref();
-    // const imageRef = storageRef.child(file.name);
-    // imageRef.put(file).then((snapshot) => alert(snapshot));
+    reader.readAsDataURL(this.file);
   }
 
-  private upload(e: any) {
-    alert('ok');
+  private async uploadHandler() {
+    if (!Npc.valid(this.form)) {
+      alert('不正な入力です');
+      return;
+    }
+    const npcId = await this.$store.dispatch(CREATE, new Npc(this.form));
+    const canvas = this.$refs.canvas;
+    canvas.toBlob((blob) => {
+      if (blob === null) {
+        alert('画像を選択して下さい');
+      } else {
+        const storageRef = firebase.storage().ref();
+        const imageRef = storageRef.child(`images/${npcId}.png`);
+        imageRef.put(blob).then((snapshot) => alert(snapshot));
+      }
+    });
   }
 }
 </script>
 
 <style lang="stylus">
+canvas {
+  border: grey 1px solid;
+}
 </style>

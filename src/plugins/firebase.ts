@@ -1,5 +1,7 @@
 import 'firebase/firestore';
 import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
 import { Store } from 'vuex';
 
 import State from '@/models/State';

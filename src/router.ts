@@ -10,6 +10,7 @@ import EncounterRest from '@/views/EncounterRest.vue';
 import EncounterReward from '@/views/EncounterReward.vue';
 import Home from '@/views/Home.vue';
 import NpcForm from '@/views/NpcForm.vue';
+import NpcIndex from '@/views/NpcIndex.vue';
 import Session from '@/views/Session.vue';
 import SessionEncounters from '@/views/SessionEncounters.vue';
 import SessionForm from '@/views/SessionForm.vue';
@@ -27,6 +28,11 @@ export default new Router({
       path: '/',
       name: PATH.HOME,
       component: Home,
+    },
+    {
+      path: '/npcs',
+      name: PATH.NPCS_INDEX,
+      component: NpcIndex,
     },
     {
       path: '/npcs/new',
