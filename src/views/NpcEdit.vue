@@ -14,12 +14,6 @@ v-form(v-model="valid" v-if="form")
       width="320px"
       height="180px"
     )
-    v-img(
-      ref="img"
-      width="320px"
-      height="180px"
-      :src="`https://storage.googleapis.com/dd5tools.appspot.com/images/${npcId}.png`"
-    )
     v-text-field.pa-2(
       label="名前"
       v-model="form.name"
@@ -47,7 +41,13 @@ import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import Npc from '@/models/Npc';
-import { UPDATE, DELETE, DELETE_IMAGE, PUT_IMAGE, TO_BLOB } from '@/types/ActionTypes';
+import {
+  UPDATE,
+  DELETE,
+  DELETE_IMAGE,
+  PUT_IMAGE,
+  TO_BLOB,
+} from '@/types/ActionTypes';
 
 const WIDTH = 320;
 const HEIGHT = 180;
@@ -82,6 +82,19 @@ export default class NpcEdit extends Vue {
     if (this.npc) {
       Object.assign(this.form, this.npc);
     }
+
+    const image = new Image();
+    image.crossOrigin = 'anonymous';
+    image.onload = () => {
+      const ctx = this.canvas.getContext('2d');
+      if (ctx === null) {
+        return;
+      }
+      // ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, WIDTH, HEIGHT);
+      ctx.drawImage(image, 0, 0);
+    };
+    image.src = `https://storage.googleapis.com/dd5tools.appspot.com/images/${this.npcId}.png`;
   }
 
   private fileChangeHandler() {
@@ -162,6 +175,7 @@ export default class NpcEdit extends Vue {
     });
     await this.$store.dispatch(PUT_IMAGE, {
       id: this.npcId,
+      blob,
     });
     this.$root.$data.processing = false;
     this.$router.push('/npcs');

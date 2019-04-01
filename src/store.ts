@@ -78,14 +78,16 @@ export default new Vuex.Store({
       const imageRef = storageRef.child(`images/${id}.png`);
       await imageRef.put(blob);
     },
-    async [TO_BLOB]({ }, { canvas }) {
-      canvas.toBlob((blob: any) => {
-        if (blob === null) {
-          alert('画像を選択して下さい');
-          throw new Error('画像がありません');
-        } else {
-          return blob;
-        }
+    [TO_BLOB]({ }, { canvas }) {
+      return new Promise((resolve, reject) => {
+        canvas.toBlob((blob: any) => {
+          if (blob === null) {
+            alert('画像を選択して下さい');
+            reject('画像がありません');
+          } else {
+            resolve(blob);
+          }
+        });
       });
     },
     async [UPDATE_SESSION_PLAYERS]({}, {sessionId, playerIds}) {
