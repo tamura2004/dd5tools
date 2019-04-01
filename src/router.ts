@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import PATH from '@/types/PathTypes';
 
 import Encounter from '@/views/Encounter.vue';
@@ -23,7 +25,7 @@ import Signup from '@/views/Signup.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -138,3 +140,14 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  const currentUser = firebase.auth().currentUser;
+  if (!currentUser && to.path === '/npcs/new') {
+    next('/signin');
+  } else {
+    next();
+  }
+});
+
+export default router;

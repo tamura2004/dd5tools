@@ -24,6 +24,9 @@
     v-card-actions
       v-spacer
       v-btn(color="primary" @click="signup" :disabled="!valid") サインアップ
+    v-card-text
+      .caption メールアドレスとパスワードを登録して下さい
+
 </template>
 
 <script lang="ts">
@@ -45,7 +48,8 @@ export default class Signup extends Vue {
   private async signup() {
     try {
       const { user } = await firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
-      alert(user && user.email);
+      alert(`${user && user.email}でアカウントを作成しました`);
+      this.$router.push('/signin');
 
     } catch (err) {
       alert(err);

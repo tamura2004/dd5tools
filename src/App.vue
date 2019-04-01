@@ -27,55 +27,16 @@ v-app
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { TITLES } from '@/data/TITLES';
-
-interface Menu {
-  path: string;
-  icon: string;
-  label: string;
-}
+import { MENUES } from '@/data/MENUES';
 
 @Component
 export default class App extends Vue {
   private drawer: boolean = false;
   private processing: boolean = false;
-  private menues: Menu[] = [
-    {
-      path: '/',
-      icon: 'home',
-      label: 'ホーム',
-    },
-    {
-      path: '/signin',
-      icon: 'person',
-      label: 'サインイン',
-    },
-    {
-      path: '/signup',
-      icon: 'person_add',
-      label: 'サインアップ',
-    },
-    {
-      path: '/sessions',
-      icon: 'list',
-      label: 'セッション一覧',
-    },
-    {
-      path: '/sessions/new',
-      icon: 'add',
-      label: '新規セッション',
-    },
-    {
-      path: '/npcs',
-      icon: 'list',
-      label: 'NPC一覧',
-    },
-    {
-      path: '/npcs/new',
-      icon: 'person_add',
-      label: '新規NPC',
-    },
-  ];
+
+  private menues = MENUES;
   private titles: Map<string, string> = TITLES;
+
   private get ready(): boolean {
     return this.$store.state.npcs.size > 0;
   }

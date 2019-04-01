@@ -23,7 +23,10 @@
         )
     v-card-actions
       v-spacer
+      v-btn(color="success" to="/signup") サインアップ
       v-btn(color="primary" @click="signin" :disabled="!valid") サインイン
+    v-card-text
+      .caption ログインIDがまだ無い場合はサインアップで登録して下さい
 </template>
 
 <script lang="ts">
@@ -46,7 +49,8 @@ export default class Signin extends Vue {
   private async signin() {
     try {
       const { user } = await firebase.auth().signInWithEmailAndPassword(this.email, this.password);
-      alert(user && user.email);
+      alert(`${user && user.email}でログインしました`);
+      this.$router.push('/');
 
     } catch (err) {
       alert(err);
