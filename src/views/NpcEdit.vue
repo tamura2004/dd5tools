@@ -68,6 +68,16 @@ export default class NpcEdit extends Vue {
     if (this.npc) {
       Object.assign(this.form, this.npc);
     }
+    const image = new Image();
+    image.onload = () => {
+      const canvas = this.$refs.canvas;
+      const ctx = canvas.getContext('2d');
+      if (ctx === null) {
+        return;
+      }
+      ctx.drawImage(image, 0, 0);
+    };
+    image.src = `https://storage.googleapis.com/dd5tools.appspot.com/images/${this.npcId}.png`;
   }
 
   private fileChangeHandler() {

@@ -25,6 +25,10 @@ listen(store, Reward);
 listen(store, Log);
 
 new Vue({
+  data: {
+    drawer: false,
+    processing: false,
+  },
   router,
   store,
   render: (h) => h(App),

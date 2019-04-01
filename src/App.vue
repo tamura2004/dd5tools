@@ -1,6 +1,6 @@
 <template lang="pug">
 v-app
-  v-navigation-drawer(app fixed right v-model="drawer")
+  v-navigation-drawer(app fixed right v-model="$root.drawer")
     v-toolbar(flat dark dense)
       v-toolbar-title メニュー
     v-list(dense)
@@ -14,10 +14,10 @@ v-app
         v-icon arrow_back_ios
     v-toolbar-title.headline {{ titles.get($route.name) }}
     v-spacer
-    v-toolbar-side-icon(@click="drawer=!drawer")
+    v-toolbar-side-icon(@click="$root.drawer=!$root.drawer")
   v-content
     v-container
-      template(v-if="!processing && ready")
+      template(v-if="!$root.processing && ready")
         router-view
       template(v-else)
         v-layout(align-center justify-center fill-height)
@@ -31,9 +31,6 @@ import { MENUES } from '@/data/MENUES';
 
 @Component
 export default class App extends Vue {
-  private drawer: boolean = false;
-  private processing: boolean = false;
-
   private menues = MENUES;
   private titles: Map<string, string> = TITLES;
 
