@@ -48,7 +48,9 @@ export default class Signin extends Vue {
 
   private async signin() {
     try {
+      this.$root.$data.processing = true;
       const { user } = await firebase.auth().signInWithEmailAndPassword(this.email, this.password);
+      this.$root.$data.processing = false;
       alert(`${user && user.email}でログインしました`);
       this.$router.push('/');
 
