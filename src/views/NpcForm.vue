@@ -37,7 +37,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import Npc from '@/models/Npc';
-import { CREATE } from '@/types/ActionTypes';
+import { CREATE, TO_BLOB, PUT_IMAGE } from '@/types/ActionTypes';
 
 const WIDTH = 320;
 const HEIGHT = 180;
@@ -125,17 +125,17 @@ export default class NpcForm extends Vue {
       alert('不正な入力です');
       return;
     }
+    this.$root.$data.processing = true;
     const npcId = await this.$store.dispatch(CREATE, new Npc(this.form));
     const canvas = this.$refs.canvas;
-    canvas.toBlob((blob) => {
-      if (blob === null) {
-        alert('画像を選択して下さい');
-      } else {
-        const storageRef = firebase.storage().ref();
-        const imageRef = storageRef.child(`images/${npcId}.png`);
-        imageRef.put(blob).then((snapshot) => alert(snapshot));
-      }
+    const blob = await this.$store.dispatch(TO_BLOB, {
+      canvas,
     });
+    await this.$store.dispatch(PUT_IMAGE, {
+      blob,
+      id: npcId,
+    });
+    this.$root.$data.processing = false;
   }
 }
 </script>

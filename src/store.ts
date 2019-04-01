@@ -1,12 +1,15 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { ADD_SESSION } from '@/types/MutationTypes';
-import { UPDATE_SESSION_PLAYERS, CREATE, UPDATE } from '@/types/ActionTypes';
+import { UPDATE_SESSION_PLAYERS, PUT_IMAGE, TO_BLOB } from '@/types/ActionTypes';
+import { CREATE, UPDATE, DELETE, DELETE_IMAGE } from '@/types/ActionTypes';
 import { db } from '@/plugins/firebase';
 import State from '@/models/State';
 import Session from '@/models/Session';
 import Encounter from '@/models/Encounter';
 import Creature from '@/models/Creature';
+import firebase from 'firebase/app';
+import 'firebase/storage';
 
 Vue.use(Vuex);
 
@@ -61,6 +64,29 @@ export default new Vuex.Store({
     },
     async [UPDATE]({}, { collectionName, id, updates }) {
       await db.collection(collectionName).doc(id).update(updates);
+    },
+    async [DELETE]({}, { collectionName, id }) {
+      await db.collection(collectionName).doc(id).delete();
+    },
+    async [DELETE_IMAGE]({}, { id }) {
+      const storageRef = firebase.storage().ref();
+      const imageRef = storageRef.child(`images/${id}.png`);
+      await imageRef.delete();
+    },
+    async [PUT_IMAGE]({}, { id, blob }) {
+      const storageRef = firebase.storage().ref();
+      const imageRef = storageRef.child(`images/${id}.png`);
+      await imageRef.put(blob);
+    },
+    async [TO_BLOB]({ }, { canvas }) {
+      canvas.toBlob((blob: any) => {
+        if (blob === null) {
+          alert('画像を選択して下さい');
+          throw new Error('画像がありません');
+        } else {
+          return blob;
+        }
+      });
     },
     async [UPDATE_SESSION_PLAYERS]({}, {sessionId, playerIds}) {
       await db.collection('sessions').doc(sessionId).update({ playerIds });
