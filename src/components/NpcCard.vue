@@ -5,6 +5,7 @@ div
   v-card
     v-responsive(:aspect-ratio="4/5")
       v-img(
+        ref="img"
         :src="url"
         @error="error=true"
       )
@@ -27,16 +28,17 @@ import Npc from '@/models/Npc';
 
 @Component
 export default class NpcCard extends Vue {
+  public $refs!: { img: any };
   @Prop() private npc!: Npc;
   @Prop() private id!: string;
 
-  private error: boolean = false;
-  private get url(): string {
-    if (!this.error) {
-      return `https://storage.googleapis.com/dd5tools.appspot.com/images/${this.id}.png`;
-    } else {
-      return 'img/noimage.png';
-    }
+  private url: string = 'img/noimage.png';
+
+  private async created() {
+    const storage = firebase.storage();
+    const ref = storage.ref(`images/${this.id}.png`);
+    const url = await ref.getDownloadURL();
+    this.url = url;
   }
 }
 </script>
