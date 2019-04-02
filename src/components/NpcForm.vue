@@ -7,7 +7,7 @@ v-form(v-model="valid" v-if="form")
           ref="input"
           type="file"
           accept="image/*"
-          @change="fileChangeHandler()"
+          @change="fileChangeHandler"
         )
     canvas(
       ref="canvas"
@@ -26,6 +26,11 @@ v-form(v-model="valid" v-if="form")
     )
     v-card-actions
       v-spacer
+      v-btn(
+        v-if="deletable"
+        color="error"
+        @click="deleteHandler"
+      ) 削除
       v-btn(
         color="primary"
         @click="uploadHandler"
@@ -51,13 +56,45 @@ export default class NpcForm extends Vue {
     input: HTMLInputElement;
     canvas: HTMLCanvasElement;
   };
+
+  @Prop() private deletable?: boolean;
+  @Prop() private init?: Form<Npc>;
+  @Prop() private id?: string;
+
   private form: Form<Npc> = Npc.form();
   private file: File | null = null;
   private valid: boolean = false;
   private required: Validation[] = [(v) => !!v || '必須項目です'];
+
+  private created() {
+    if (this.init === undefined) {
+      this.form = Npc.form();
+    } else {
+      Object.assign(this.form, this.init);
+    }
+
+    if (this.id === undefined) {
+      return;
+    }
+
+    // edit
+    const image = new Image();
+    image.crossOrigin = 'anonymous';
+    image.onload = () => {
+      const ctx = this.canvas.getContext('2d');
+      if (ctx === null) {
+        return;
+      }
+      ctx.clearRect(0, 0, WIDTH, HEIGHT);
+      ctx.drawImage(image, 0, 0);
+    };
+    image.src = `https://storage.googleapis.com/dd5tools.appspot.com/images/${this.id}.png`;
+  }
+
   private get canvas(): HTMLCanvasElement {
     return this.$refs.canvas;
   }
+
   private fileChangeHandler() {
     const { files } = this.$refs.input;
     if (files === null) {
@@ -117,22 +154,23 @@ export default class NpcForm extends Vue {
     reader.readAsDataURL(this.file);
   }
 
-  private async uploadHandler() {
+  private uploadHandler() {
     if (!Npc.valid(this.form)) {
       alert('不正な入力です');
       return;
     }
-    this.$root.$data.processing = true;
-    const npcId = await this.$store.dispatch(CREATE, new Npc(this.form));
-    const blob = await this.$store.dispatch(TO_BLOB, {
+    this.$emit('upload', {
       canvas: this.canvas,
+      form: this.form,
     });
-    await this.$store.dispatch(PUT_IMAGE, {
-      id: npcId,
-      blob,
-    });
-    this.$root.$data.processing = false;
-    this.$router.push('/npcs');
+  }
+
+  private deleteHandler() {
+    const ok = confirm(`${this.form && this.form.name}を削除してよろしいですか`);
+    if (!ok) {
+      return;
+    }
+    this.$emit('delete');
   }
 }
 </script>

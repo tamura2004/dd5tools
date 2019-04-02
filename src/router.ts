@@ -11,7 +11,7 @@ import EncounterMonster from '@/views/EncounterMonster.vue';
 import EncounterRest from '@/views/EncounterRest.vue';
 import EncounterReward from '@/views/EncounterReward.vue';
 import Home from '@/views/Home.vue';
-import NpcForm from '@/views/NpcForm.vue';
+import NpcNew from '@/views/NpcNew.vue';
 import NpcIndex from '@/views/NpcIndex.vue';
 import NpcEdit from '@/views/NpcEdit.vue';
 import Session from '@/views/Session.vue';
@@ -40,7 +40,7 @@ const router = new Router({
     {
       path: '/npcs/new',
       name: PATH.NPCS_NEW,
-      component: NpcForm,
+      component: NpcNew,
     },
     {
       path: '/npc/:npcId/edit',

@@ -10,7 +10,7 @@ v-layout(row wrap)
       v-divider
       v-card-actions
         v-spacer
-        v-btn(flat icon color="grey")
+        v-btn(flat small icon color="grey")
           v-icon add
 
 
