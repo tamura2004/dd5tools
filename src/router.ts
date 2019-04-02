@@ -11,9 +11,12 @@ import EncounterMonster from '@/views/EncounterMonster.vue';
 import EncounterRest from '@/views/EncounterRest.vue';
 import EncounterReward from '@/views/EncounterReward.vue';
 import Home from '@/views/Home.vue';
+import MenuMaster from '@/views/MenuMaster.vue';
+import MenuGuild from '@/views/MenuGuild.vue';
 import NpcNew from '@/views/NpcNew.vue';
 import NpcIndex from '@/views/NpcIndex.vue';
 import NpcEdit from '@/views/NpcEdit.vue';
+import PlayerIndex from '@/views/PlayerIndex.vue';
 import Session from '@/views/Session.vue';
 import SessionEncounters from '@/views/SessionEncounters.vue';
 import SessionForm from '@/views/SessionForm.vue';
@@ -33,6 +36,16 @@ const router = new Router({
       component: Home,
     },
     {
+      path: '/menu/master',
+      name: PATH.MENU_MASTER,
+      component: MenuMaster,
+    },
+    {
+      path: '/menu/guild',
+      name: PATH.MENU_GUILD,
+      component: MenuGuild,
+    },
+    {
       path: '/npcs',
       name: PATH.NPCS_INDEX,
       component: NpcIndex,
@@ -41,6 +54,11 @@ const router = new Router({
       path: '/npcs/new',
       name: PATH.NPCS_NEW,
       component: NpcNew,
+    },
+    {
+      path: '/players',
+      name: PATH.PLAYERS_INDEX,
+      component: PlayerIndex,
     },
     {
       path: '/npc/:npcId/edit',

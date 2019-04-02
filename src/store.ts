@@ -47,6 +47,9 @@ export default new Vuex.Store({
     npc(state) {
       return (npcId: string) => state.npcs.get(npcId);
     },
+    players(state) {
+      return state.players;
+    },
   },
   mutations: {
     [ADD_SESSION](state, { sessionId, session }) {

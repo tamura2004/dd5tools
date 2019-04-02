@@ -12,8 +12,6 @@ v-layout(row wrap)
         v-spacer
         v-btn(flat small icon color="grey")
           v-icon add
-
-
   v-flex.pa-2(xs6 sm4 md3 v-for="[key, npc] in Array.from(npcs)" :key="key")
     npc-card(
       :npc="npc"
