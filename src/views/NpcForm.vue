@@ -1,5 +1,5 @@
 <template lang="pug">
-v-form(v-model="valid")
+v-form(v-model="valid" v-if="form")
   v-card(width="320px")
     v-card-actions
       label(for="upload")
@@ -54,10 +54,10 @@ export default class NpcForm extends Vue {
   private form: Form<Npc> = Npc.form();
   private file: File | null = null;
   private valid: boolean = false;
-  private required: Validation[] = [
-    (v) => !!v || '必須項目です',
-  ];
-
+  private required: Validation[] = [(v) => !!v || '必須項目です'];
+  private get canvas(): HTMLCanvasElement {
+    return this.$refs.canvas;
+  }
   private fileChangeHandler() {
     const { files } = this.$refs.input;
     if (files === null) {
@@ -73,13 +73,10 @@ export default class NpcForm extends Vue {
     const image = new Image();
     reader.onload = (e: any) => {
       image.onload = () => {
-        const dpr = window.devicePixelRatio || 1; // device pixel ratio
-        const canvas = this.$refs.canvas;
-        const ctx = canvas.getContext('2d');
+        const ctx = this.canvas.getContext('2d');
         if (ctx === null) {
           return;
         }
-        // ctx.scale(dpr, dpr);
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
         const ratio = image.width / image.height;
@@ -127,15 +124,15 @@ export default class NpcForm extends Vue {
     }
     this.$root.$data.processing = true;
     const npcId = await this.$store.dispatch(CREATE, new Npc(this.form));
-    const canvas = this.$refs.canvas;
     const blob = await this.$store.dispatch(TO_BLOB, {
-      canvas,
+      canvas: this.canvas,
     });
     await this.$store.dispatch(PUT_IMAGE, {
-      blob,
       id: npcId,
+      blob,
     });
     this.$root.$data.processing = false;
+    this.$router.push('/npcs');
   }
 }
 </script>

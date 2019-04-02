@@ -21,7 +21,7 @@ v-form(v-model="valid" v-if="form")
     )
     v-textarea.pa-2(
       label="説明"
-      :value="form.description"
+      v-model="form.description"
       :rules="required"
     )
     v-card-actions
@@ -61,8 +61,6 @@ export default class NpcEdit extends Vue {
 
   public $refs!: {
     input: HTMLInputElement;
-    name: any;
-    description: any;
     canvas: HTMLCanvasElement;
   };
   private form: Form<Npc> = Npc.form();
@@ -90,7 +88,6 @@ export default class NpcEdit extends Vue {
       if (ctx === null) {
         return;
       }
-      // ctx.scale(dpr, dpr);
       ctx.clearRect(0, 0, WIDTH, HEIGHT);
       ctx.drawImage(image, 0, 0);
     };
@@ -110,15 +107,12 @@ export default class NpcEdit extends Vue {
 
     const reader = new FileReader();
     const image = new Image();
-    // image.crossOrigin = "anonymous";
     reader.onload = (e: any) => {
       image.onload = () => {
-        const dpr = window.devicePixelRatio || 1; // device pixel ratio
         const ctx = this.canvas.getContext('2d');
         if (ctx === null) {
           return;
         }
-        // ctx.scale(dpr, dpr);
         ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
         const ratio = image.width / image.height;
