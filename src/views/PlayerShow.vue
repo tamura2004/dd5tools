@@ -76,7 +76,8 @@ import IconSelect from '@/components/IconSelect.vue';
 import ListHeader from '@/components/ListHeader.vue';
 import Player from '@/models/Player';
 import Spell from '@/models/Spell';
-import { ABILITY_LABEL, WEAPON, SKILLS } from '@/data/DATA';
+import { ABILITY_LABEL, SKILLS } from '@/data/DATA';
+import WEAPONS from '@/data/WEAPON_DATA';
 import Weapon from '@/models/Weapon';
 import { db } from '@/plugins/firebase';
 
@@ -115,9 +116,9 @@ export default class PlayerCard extends Vue {
       return [];
     }
     for (const name of this.player.weapons) {
-      const weapon = WEAPON.get(name);
+      const weapon = WEAPONS.get(name);
       if (weapon !== undefined) {
-        result.push(weapon);
+        result.push(new Weapon(weapon));
       }
     }
     return result;
