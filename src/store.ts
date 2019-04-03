@@ -50,6 +50,9 @@ export default new Vuex.Store({
     players(state) {
       return state.players;
     },
+    player(state) {
+      return (playerId: string) => state.players.get(playerId);
+    },
   },
   mutations: {
     [ADD_SESSION](state, { sessionId, session }) {

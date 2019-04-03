@@ -27,7 +27,7 @@ import { mapState } from 'vuex';
 })
 export default class PlayerIndex extends Vue {
   private select(playerId: string): void {
-    this.$router.push(`player/${playerId}/rank`);
+    this.$router.push(`player/${playerId}`);
   }
 }
 </script>

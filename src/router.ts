@@ -37,7 +37,7 @@ const router = new Router({
     { name: PATH.NPCS_INDEX, path: '/npcs', component: NpcIndex },
     { name: PATH.NPCS_NEW, path: '/npcs/new', component: NpcNew },
     { name: PATH.PLAYERS_INDEX, path: '/players', component: PlayerIndex },
-    { name: PATH.PLAYER_SHOW, path: '/player/:playerId', component: PlayerShow },
+    { name: PATH.PLAYER_SHOW, path: '/player/:playerId', component: PlayerShow, props: true },
     { name: PATH.NPC_EDIT, path: '/npc/:npcId/edit', component: NpcEdit, props: true },
     { name: PATH.SIGNIN, path: '/signin', component: Signin },
     { name: PATH.SIGNUP, path: '/signup', component: Signup },
