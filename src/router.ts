@@ -17,6 +17,7 @@ import NpcNew from '@/views/NpcNew.vue';
 import NpcIndex from '@/views/NpcIndex.vue';
 import NpcEdit from '@/views/NpcEdit.vue';
 import PlayerIndex from '@/views/PlayerIndex.vue';
+import PlayerShow from '@/views/PlayerShow.vue';
 import Session from '@/views/Session.vue';
 import SessionEncounters from '@/views/SessionEncounters.vue';
 import SessionForm from '@/views/SessionForm.vue';
@@ -30,130 +31,41 @@ Vue.use(Router);
 
 const router = new Router({
   routes: [
+    { name: PATH.HOME, path: '/', component: Home },
+    { name: PATH.MENU_MASTER, path: '/menu/master', component: MenuMaster },
+    { name: PATH.MENU_GUILD, path: '/menu/guild', component: MenuGuild },
+    { name: PATH.NPCS_INDEX, path: '/npcs', component: NpcIndex },
+    { name: PATH.NPCS_NEW, path: '/npcs/new', component: NpcNew },
+    { name: PATH.PLAYERS_INDEX, path: '/players', component: PlayerIndex },
+    { name: PATH.PLAYER_SHOW, path: '/player/:playerId', component: PlayerShow },
+    { name: PATH.NPC_EDIT, path: '/npc/:npcId/edit', component: NpcEdit, props: true },
+    { name: PATH.SIGNIN, path: '/signin', component: Signin },
+    { name: PATH.SIGNUP, path: '/signup', component: Signup },
+    { name: PATH.SESSIONS, path: '/sessions', component: Sessions },
+    { name: PATH.SESSIONS_NEW, path: '/sessions/new', component: SessionForm },
+    { name: PATH.SESSION_EDIT, path: '/session/:sessionId/edit', component: SessionForm, props: true },
     {
-      path: '/',
-      name: PATH.HOME,
-      component: Home,
-    },
-    {
-      path: '/menu/master',
-      name: PATH.MENU_MASTER,
-      component: MenuMaster,
-    },
-    {
-      path: '/menu/guild',
-      name: PATH.MENU_GUILD,
-      component: MenuGuild,
-    },
-    {
-      path: '/npcs',
-      name: PATH.NPCS_INDEX,
-      component: NpcIndex,
-    },
-    {
-      path: '/npcs/new',
-      name: PATH.NPCS_NEW,
-      component: NpcNew,
-    },
-    {
-      path: '/players',
-      name: PATH.PLAYERS_INDEX,
-      component: PlayerIndex,
-    },
-    {
-      path: '/npc/:npcId/edit',
-      name: PATH.NPC_EDIT,
-      component: NpcEdit,
-      props: true,
-    },
-    {
-      path: '/signin',
-      name: PATH.SIGNIN,
-      component: Signin,
-    },
-    {
-      path: '/signup',
-      name: PATH.SIGNUP,
-      component: Signup,
-    },
-    {
-      path: '/sessions',
-      name: PATH.SESSIONS,
-      component: Sessions,
-    },
-    {
-      path: '/sessions/new',
-      name: PATH.SESSIONS_NEW,
-      component: SessionForm,
-    },
-    {
-      path: '/session/:sessionId',
       name: PATH.SESSION,
+      path: '/session/:sessionId',
       component: Session,
       props: true,
       children: [
-        {
-          path: 'players',
-          name: PATH.SESSION_PLAYERS,
-          component: SessionPlayers,
-          props: true,
-        },
-        {
-          path: 'encounters',
-          name: PATH.SESSION_ENCOUNTERS,
-          component: SessionEncounters,
-          props: true,
-        },
-        {
-          path: 'reward',
-          name: PATH.SESSION_REWARD,
-          component: SessionReward,
-          props: true,
-        },
+        { name: PATH.SESSION_PLAYERS, path: 'players', component: SessionPlayers, props: true },
+        { name: PATH.SESSION_ENCOUNTERS, path: 'encounters', component: SessionEncounters, props: true },
+        { name: PATH.SESSION_REWARD, path: 'reward', component: SessionReward, props: true },
       ],
     },
+    { name: PATH.ENCOUNTERS_NEW, path: '/session/:sessionId/encounters/new', component: EncounterForm, props: true },
     {
-      path: '/session/:sessionId/edit',
-      name: PATH.SESSION_EDIT,
-      component: SessionForm,
-      props: true,
-    },
-    {
-      path: '/session/:sessionId/encounters/new',
-      name: PATH.ENCOUNTERS_NEW,
-      component: EncounterForm,
-      props: true,
-    },
-    {
-      path: '/session/:sessionId/encounter/:encounterId',
       name: PATH.ENCOUNTER,
+      path: '/session/:sessionId/encounter/:encounterId',
       component: Encounter,
       props: true,
       children: [
-        {
-          path: 'monster',
-          name: PATH.ENCOUNTER_MONSTER,
-          component: EncounterMonster,
-          props: true,
-        },
-        {
-          path: 'battle',
-          name: PATH.ENCOUNTER_BATTLE,
-          component: EncounterBattle,
-          props: true,
-        },
-        {
-          path: 'reward',
-          name: PATH.ENCOUNTER_REWARD,
-          component: EncounterReward,
-          props: true,
-        },
-        {
-          path: 'rest',
-          name: PATH.ENCOUNTER_REST,
-          component: EncounterRest,
-          props: true,
-        },
+        { name: PATH.ENCOUNTER_MONSTER, path: 'monster', component: EncounterMonster, props: true },
+        { name: PATH.ENCOUNTER_BATTLE, path: 'battle', component: EncounterBattle, props: true },
+        { name: PATH.ENCOUNTER_REWARD, path: 'reward', component: EncounterReward, props: true },
+        { name: PATH.ENCOUNTER_REST, path: 'rest', component: EncounterRest, props: true },
       ],
     },
   ],
