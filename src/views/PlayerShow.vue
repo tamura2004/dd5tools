@@ -32,9 +32,9 @@ div
         td.number {{ player.saves.includes(abilityLabel[n-1]) ? '●' : '' }}
         td.skill {{ skillDisplay[n-1].join('、') }}
   v-tabs
-    v-tab(to="weapons") 武器
-    v-tab(to="spells") 呪文
-    v-tab(to="feats") 特技
+    v-tab(:to="`/player/${playerId}/weapons`") 武器
+    v-tab(:to="`/player/${playerId}/spells`") 呪文
+    v-tab(:to="`/player/${playerId}/feats`") 特技
   router-view
       // ListHeader(title="武器" icon="add" @click="$router.push('/weapons')")
       // template(v-for="(w, i) in weapons")
@@ -108,7 +108,6 @@ export default class PlayerShow extends Vue {
     if (this.player === undefined) {
       return [];
     }
-
     const result: Weapon[] = [];
     if (this.player.weapons === undefined) {
       return [];
