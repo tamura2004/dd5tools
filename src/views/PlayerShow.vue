@@ -1,45 +1,50 @@
 <template lang="pug">
-    v-list(dense)
-      v-list-tile
-        v-list-tile-avatar(tile)
-          v-img(:src="`/img/${player.avatar}`")
-        v-list-tile-content
-          v-list-tile-title
-            v-layout
-              v-flex(xs6) {{ player.klass }} {{ player.level}}レベル
-              v-flex(xs6) {{ player.race }}/{{ player.background }}
-          v-list-tile-sub-title
-            v-layout
-              v-flex(xs6) {{ player.alignment }}
-              v-flex(xs3) PL:{{ player.name }}
-              v-flex(xs3) EXP:{{ player.exp }}
-      table.mb-1
-        tr
-          td.label AC
-          td.number {{ player.ac }}
-          td.label MV
-          td.number 30'
-          td.label hp
-          td.number {{ player.hp }}
-          td.label PB
-          td.number +2
-      table
-        tr(v-for="n in 6")
-          td.label {{ abilityLabel[n-1] }}
-          td.number {{ player.ability[n-1] }}
-          td.number {{ player.abilityMod[n-1] }}
-          td.number {{ player.saves.includes(abilityLabel[n-1]) ? '●' : '' }}
-          td.skill {{ skillDisplay[n-1].join('、') }}
-
-      ListHeader(title="武器" icon="add" @click="$router.push('/weapons')")
-      template(v-for="(w, i) in weapons")
-        v-list-tile
-          v-list-tile-action(@click="$store.dispatch('deleteWeapon', i)"): v-icon clear
-          v-list-tile-content
-            v-list-tile-title {{ player.weapon[i] }}：{{ w.category }}
-            v-list-tile-sub-title 攻撃+{{ player.toHit(w) }}、間合い{{ w.range }}、ヒット：{{ w.damage }}+{{ player.toHit(w) }}[{{ w.type }}]ダメージ
-          v-list-tile-action: v-icon keyboard_arrow_right
-        v-divider
+div
+  v-list(dense)
+    v-list-tile
+      v-list-tile-avatar(tile)
+        v-img(:src="`/img/${player.avatar}`")
+      v-list-tile-content
+        v-list-tile-title
+          v-layout
+            v-flex(xs6) {{ player.klass }} {{ player.level}}レベル
+            v-flex(xs6) {{ player.race }}/{{ player.background }}
+        v-list-tile-sub-title
+          v-layout
+            v-flex(xs6) {{ player.alignment }}
+            v-flex(xs3) PL:{{ player.name }}
+            v-flex(xs3) EXP:{{ player.exp }}
+    table.mb-1
+      tr
+        td.label AC
+        td.number {{ player.ac }}
+        td.label MV
+        td.number 30'
+        td.label hp
+        td.number {{ player.hp }}
+        td.label PB
+        td.number +2
+    table
+      tr(v-for="n in 6")
+        td.label {{ abilityLabel[n-1] }}
+        td.number {{ player.ability[n-1] }}
+        td.number {{ player.abilityMod[n-1] }}
+        td.number {{ player.saves.includes(abilityLabel[n-1]) ? '●' : '' }}
+        td.skill {{ skillDisplay[n-1].join('、') }}
+  v-tabs
+    v-tab(to="weapons") 武器
+    v-tab(to="spells") 呪文
+    v-tab(to="feats") 特技
+  router-view
+      // ListHeader(title="武器" icon="add" @click="$router.push('/weapons')")
+      // template(v-for="(w, i) in weapons")
+      //   v-list-tile
+      //     v-list-tile-action(@click="$store.dispatch('deleteWeapon', i)"): v-icon clear
+      //     v-list-tile-content
+      //       v-list-tile-title {{ player.weapon[i] }}：{{ w.category }}
+      //       v-list-tile-sub-title 攻撃+{{ player.toHit(w) }}、間合い{{ w.range }}、ヒット：{{ w.damage }}+{{ player.toHit(w) }}[{{ w.type }}]ダメージ
+      //     v-list-tile-action: v-icon keyboard_arrow_right
+      //   v-divider
 
       // ListHeader(title="呪文" icon="add" @click="$router.push('/spells')")
       // template(v-for="(spell, key) of spells")
@@ -53,12 +58,12 @@
       //   v-divider
 
 
-      ListHeader(title="特技・クラス能力" icon="add")
-      v-list-tile
-        v-list-tile-content
-          v-list-tile-title {{ player.memo }}
-        v-list-tile-action: v-icon keyboard_arrow_right
-      v-divider
+      // ListHeader(title="特技・クラス能力" icon="add")
+      // v-list-tile
+      //   v-list-tile-content
+      //     v-list-tile-title {{ player.memo }}
+      //   v-list-tile-action: v-icon keyboard_arrow_right
+      // v-divider
 
 </template>
 

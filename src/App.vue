@@ -35,7 +35,8 @@ export default class App extends Vue {
   private titles: Map<string, string> = TITLES;
 
   private get ready(): boolean {
-    return this.$store.state.npcs.size > 0;
+    return this.$store.state.npcs.size > 0 &&
+      this.$store.state.players.size > 0;
   }
 }
 </script>
