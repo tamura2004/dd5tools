@@ -104,23 +104,6 @@ export default class PlayerShow extends Vue {
     return this.$store.getters.player(this.playerId);
   }
 
-  private get weapons(): Weapon[] {
-    if (this.player === undefined) {
-      return [];
-    }
-    const result: Weapon[] = [];
-    if (this.player.weapons === undefined) {
-      return [];
-    }
-    for (const name of this.player.weapons) {
-      const weapon = WEAPONS.get(name);
-      if (weapon !== undefined) {
-        result.push(new Weapon(weapon));
-      }
-    }
-    return result;
-  }
-
   private get spells(): { [key: string]: Spell } {
     const result: { [key: string]: Spell } = {};
     if (this.player !== undefined && this.player.spells !== undefined) {

@@ -1,9 +1,11 @@
 <template lang="pug">
   .headline SessionPlayers
-    v-btn(block dark color="primary" v-if="!edit" @click="edit=true") 参加ＰＣ選択
-    v-btn(block dark v-if="!edit" to="encounters") 遭遇選択へ
-    v-btn(block dark color="success" v-if="edit" @click="save") 決定
-    v-btn(block dark v-if="edit" @click="cancel") キャンセル
+    template(v-if="!edit")
+      v-btn(block dark color="primary" @click="edit=true") 参加ＰＣ選択
+      v-btn(block dark to="encounters") 遭遇選択へ
+    template(v-else)
+      v-btn(block dark color="success"  @click="save") 決定
+      v-btn(block dark  @click="edit=false") キャンセル
     v-list(three-line)
       template(v-for="[id, player] in Array.from(players)")
         template(v-if="session.playerIds.includes(id) || edit")
@@ -19,7 +21,7 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import Item from '@/models/Item';
 import Player from '@/models/Player';
 import PlayerTileContent from '@/components/PlayerTileContent.vue';
-import { UPDATE_SESSION_PLAYERS } from '@/types/ActionTypes';
+import { UPDATE } from '@/types/ActionTypes';
 import Session from '@/models/Session';
 
 @Component({
@@ -41,25 +43,26 @@ export default class SessionPlayers extends Vue {
     return this.$store.getters.session(this.sessionId);
   }
 
-  private save() {
-    this.$store.dispatch(UPDATE_SESSION_PLAYERS, {
-      sessionId: this.sessionId,
-      playerIds: this.playerIds,
-    })
-    .then(() => this.edit = false);
-  }
+    // async [UPDATE]({}, { collectionName, id, updates }) {
 
-  private cancel() {
+  private async save() {
+    await this.$store.dispatch(UPDATE, {
+      collectionName: 'sessions',
+      id: this.sessionId,
+      updates: {
+        playerIds: this.playerIds,
+      },
+    });
     this.edit = false;
   }
 
   private select() {
     this.edit = true;
-    Object.assign(this.playerIds, this.session.playerIds);
+    this.playerIds = [...this.session.playerIds];
   }
 
-private created() {
-    Object.assign(this.playerIds, this.session.playerIds);
+  private created() {
+    this.playerIds = [...this.session.playerIds];
   }
 }
 </script>

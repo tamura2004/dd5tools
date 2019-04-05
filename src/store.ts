@@ -71,6 +71,9 @@ export default new Vuex.Store({
     async [UPDATE]({}, { collectionName, id, updates }) {
       await db.collection(collectionName).doc(id).update(updates);
     },
+    async [UPDATE_SESSION_PLAYERS]({}, {sessionId, playerIds}) {
+      await db.collection('sessions').doc(sessionId).update({ playerIds });
+    },
     async [DELETE]({}, { collectionName, id }) {
       await db.collection(collectionName).doc(id).delete();
     },
@@ -95,9 +98,6 @@ export default new Vuex.Store({
           }
         });
       });
-    },
-    async [UPDATE_SESSION_PLAYERS]({}, {sessionId, playerIds}) {
-      await db.collection('sessions').doc(sessionId).update({ playerIds });
     },
   },
 });
