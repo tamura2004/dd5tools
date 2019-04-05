@@ -45,4 +45,14 @@ export const MENUES: Menu[] = [
     icon: 'person_add',
     label: '新規NPC',
   },
+  {
+    path: '/spells',
+    icon: 'list',
+    label: '呪文一覧',
+  },
+  {
+    path: '/spells/new',
+    icon: 'person_add',
+    label: '新規呪文',
+  },
 ];

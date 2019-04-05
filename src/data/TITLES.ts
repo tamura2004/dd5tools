@@ -26,4 +26,7 @@ export const TITLES = new Map<string, string>([
   [ PATH.SESSIONS_NEW, '新規セッション' ],
   [ PATH.SIGNIN, 'サインイン' ],
   [ PATH.SIGNUP, 'サインアップ' ],
+  [ PATH.SPELLS_NEW, '呪文登録' ],
+  [ PATH.SPELLS_INDEX, '呪文一覧' ],
+  [ PATH.SPELL_EDIT, '呪文編集' ],
 ]);

@@ -10,8 +10,8 @@ div
       )
   canvas(
     ref="canvas"
-    width="320px"
-    height="180px"
+    :width="`${width}px`"
+    :height="`${height}px`"
   )
 </template>
 
@@ -20,9 +20,9 @@ import firebase from 'firebase/app';
 import 'firebase/storage';
 import { Component, Vue, Prop } from 'vue-property-decorator';
 
-const WIDTH = 320;
-const HEIGHT = 180;
-const RATIO = WIDTH / HEIGHT;
+// const width = 320;
+// const HEIGHT = 180;
+// const RATIO = WIDTH / HEIGHT;
 
 @Component
 export default class VCanvas extends Vue {
@@ -32,6 +32,12 @@ export default class VCanvas extends Vue {
   };
 
   @Prop() private id?: string;
+  @Prop() private width!: number;
+  @Prop() private height!: number;
+
+  private get ratio() {
+    return this.width / this.height;
+  }
 
   private file: File | null = null;
 
@@ -52,7 +58,7 @@ export default class VCanvas extends Vue {
       if (ctx === null) {
         return;
       }
-      ctx.clearRect(0, 0, WIDTH, HEIGHT);
+      ctx.clearRect(0, 0, this.width, this.height);
       ctx.drawImage(image, 0, 0);
     };
     const storage = firebase.storage();
@@ -62,6 +68,7 @@ export default class VCanvas extends Vue {
   }
 
   private fileChangeHandler() {
+    this.$emit('fileChange', this.canvas);
     const { files } = this.$refs.input;
     if (files === null) {
       return;
@@ -80,34 +87,34 @@ export default class VCanvas extends Vue {
         if (ctx === null) {
           return;
         }
-        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+        ctx.clearRect(0, 0, this.width, this.height);
 
         const ratio = image.width / image.height;
-        if (ratio < RATIO) {
+        if (ratio < this.ratio) {
           // 画像が縦長
           ctx.drawImage(
             image,
             0,
-            (image.height - image.width / RATIO) / 2,
+            (image.height - image.width / this.ratio) / 2,
             image.width,
-            image.width / RATIO,
+            image.width / this.ratio,
             0,
             0,
-            WIDTH,
-            HEIGHT,
+            this.width,
+            this.height,
           );
         } else {
           // 画像が横長
           ctx.drawImage(
             image,
-            (image.width - image.height * RATIO) / 2,
+            (image.width - image.height * this.ratio) / 2,
             0,
-            image.height * RATIO,
+            image.height * this.ratio,
             image.height,
             0,
             0,
-            WIDTH,
-            HEIGHT,
+            this.width,
+            this.height,
           );
         }
       };

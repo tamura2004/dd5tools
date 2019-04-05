@@ -4,18 +4,28 @@ v-form(v-model="valid" v-if="form")
     v-canvas(
       :id="id"
       width="320"
-      height="180"
+      height="480"
       @fileChange="fileChangeHandler"
+
     )
     v-text-field.pa-2(
       label="名前"
       v-model="form.name"
       :rules="required"
     )
+    v-text-field.pa-2(
+      label="レベル"
+      v-model.number="form.level"
+      :rules="required"
+    )
+    v-text-field.pa-2(
+      label="クラス"
+      v-model="form.klass"
+      :rules="required"
+    )
     v-textarea.pa-2(
       label="説明"
       v-model="form.description"
-      :rules="required"
     )
     v-card-actions
       v-spacer
@@ -35,7 +45,7 @@ import firebase from 'firebase/app';
 import 'firebase/storage';
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { CREATE, TO_BLOB, PUT_IMAGE } from '@/types/ActionTypes';
-import Npc from '@/models/Npc';
+import Spell from '@/models/Spell';
 import VCanvas from '@/components/VCanvas.vue';
 
 type Validation = (v: string) => boolean | string;
@@ -45,19 +55,19 @@ type Validation = (v: string) => boolean | string;
     VCanvas,
   },
 })
-export default class NpcForm extends Vue {
+export default class SpellForm extends Vue {
   @Prop() private deletable?: boolean;
-  @Prop() private init?: Form<Npc>;
+  @Prop() private init?: Form<Spell>;
   @Prop() private id?: string;
 
-  private form: Form<Npc> = Npc.form();
+  private form: Form<Spell> = Spell.form();
   private valid: boolean = false;
   private required: Validation[] = [(v) => !!v || '必須項目です'];
   private canvas: HTMLCanvasElement | null = null;
 
   private created() {
     if (this.init === undefined) {
-      this.form = Npc.form();
+      this.form = Spell.form();
     } else {
       Object.assign(this.form, this.init);
     }
@@ -68,7 +78,7 @@ export default class NpcForm extends Vue {
   }
 
   private uploadHandler() {
-    if (!Npc.valid(this.form)) {
+    if (!Spell.valid(this.form)) {
       alert('不正な入力です');
       return;
     }

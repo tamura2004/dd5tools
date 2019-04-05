@@ -47,6 +47,12 @@ export default new Vuex.Store({
     npc(state) {
       return (npcId: string) => state.npcs.get(npcId);
     },
+    spells(state) {
+      return state.spells;
+    },
+    spell(state) {
+      return (spellId: string) => state.spells.get(spellId);
+    },
     players(state) {
       return state.players;
     },

@@ -16,6 +16,9 @@ import MenuGuild from '@/views/MenuGuild.vue';
 import NpcNew from '@/views/NpcNew.vue';
 import NpcIndex from '@/views/NpcIndex.vue';
 import NpcEdit from '@/views/NpcEdit.vue';
+import SpellNew from '@/views/SpellNew.vue';
+import SpellIndex from '@/views/SpellIndex.vue';
+import SpellEdit from '@/views/SpellEdit.vue';
 import PlayerIndex from '@/views/PlayerIndex.vue';
 import PlayerShow from '@/views/PlayerShow.vue';
 import PlayerWeapons from '@/views/PlayerWeapons.vue';
@@ -41,6 +44,9 @@ const router = new Router({
     { name: PATH.NPCS_NEW, path: '/npcs/new', component: NpcNew },
     { name: PATH.NPC_EDIT, path: '/npc/:npcId/edit', component: NpcEdit, props: true },
     { name: PATH.PLAYERS_INDEX, path: '/players', component: PlayerIndex },
+    { name: PATH.SPELLS_INDEX, path: '/spells', component: SpellIndex },
+    { name: PATH.SPELLS_NEW, path: '/spells/new', component: SpellNew },
+    { name: PATH.SPELL_EDIT, path: '/spell/:spellId/edit', component: SpellEdit, props: true },
     {
       name: PATH.PLAYER_SHOW,
       path: '/player/:playerId',

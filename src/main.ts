@@ -10,6 +10,7 @@ import Creature from '@/models/Creature';
 import Player from '@/models/Player';
 import Dungeon from '@/models/Dungeon';
 import Npc from '@/models/Npc';
+import Spell from '@/models/Spell';
 import Reward from '@/models/Reward';
 import Log from '@/models/Log';
 
@@ -21,6 +22,7 @@ listen(store, Creature);
 listen(store, Player);
 listen(store, Dungeon);
 listen(store, Npc);
+listen(store, Spell);
 listen(store, Reward);
 listen(store, Log);
 
