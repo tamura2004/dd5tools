@@ -9,7 +9,8 @@
         td.body-2 {{ dungeon(session.dungeonId).name }}
       tr
         th.label.body-2 依頼人
-        td.body-2 {{ npc.name }}
+        td.body-2
+          router-link(:to="`/npc/${session.npcId}/edit`") {{ npc.name }}
       tr
         th.label.body-2 目的
         td.body-2 {{ session.purpose }}
