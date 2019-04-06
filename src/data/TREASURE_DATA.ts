@@ -2,24 +2,25 @@ import _ from 'lodash';
 
 export interface ItemChart {
   type: string,
-  times: number,
+  dice: number,
+}
+
+function rollChart<T>(dice: number, chart: Map<number, T>): T {
+  const roll = _.random(1, dice);
+  const line = [...chart].reduce((a, [num, t]) => a = roll >= num ? [num, t] : a);
+  return line[1];
 }
 
 export const TREASURE_CHART = new Map<number, ItemChart>([
-  [28, { type: '', times: 0 }],
-  [44, { type: 'A', times: 6 }],
-  [63, { type: 'B', times: 4 }],
-  [74, { type: 'C', times: 4 }],
-  [80, { type: 'D', times: 1 }],
-  [94, { type: 'F', times: 4 }],
-  [98, { type: 'G', times: 4 }],
-  [100, { type: 'H', times: 1 }],
+  [28, { type: '', dice: 0 }],
+  [44, { type: 'A', dice: 6 }],
+  [63, { type: 'B', dice: 4 }],
+  [74, { type: 'C', dice: 4 }],
+  [80, { type: 'D', dice: 1 }],
+  [94, { type: 'F', dice: 4 }],
+  [98, { type: 'G', dice: 4 }],
+  [100, { type: 'H', dice: 1 }],
 ]);
-
-export const chooseItemChart = () => {
-  const dice = _.random(1, 100);
-  return [...TREASURE_CHART].reduce((a, [num, type]) => a = dice >= num ? type : a, { type: '', times: 0 });
-}
 
 export const ITEM_CHART = new Map<string, Map<number, string>>([
   ['A', new Map<number, string>([
@@ -349,3 +350,15 @@ export const ITEM_CHART = new Map<string, Map<number, string>>([
     [100, 'トウム·オヴ·アンダスタンディング'],
   ])],
 ]);
+
+export function chooseItems(): string[] {
+  const items: string[] = [];
+  const { type, dice } = rollChart(100, TREASURE_CHART);
+  const chart = ITEM_CHART.get(type);
+  if (chart !== undefined) {
+    for (let i = 0; i < dice; i++) {
+      items.push(rollChart(100, chart));
+    }
+  }
+  return items;
+}
