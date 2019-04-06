@@ -149,7 +149,7 @@ export const chooseTrap = () => {
   const condition = chooseTrapCondition();
   const effect = chooseTrapEffect();
   const item = chooseTrapItem();
-  const find = _.random(8, 16);
-  const disable = _.random(10, 18);
+  const find = _.random(5, 15);
+  const disable = _.random(5, 15);
   return `${item}を${condition}と発動する${mode}罠。発見難易度${find}、無効化難易度${disable}。効果：${effect}`;
 };
