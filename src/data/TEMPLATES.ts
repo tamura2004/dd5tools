@@ -16,14 +16,14 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
             0,
         ],
         attributes: [
-            'ダメージ脆弱性: [光輝][斬撃]',
+            'ダメージ脆弱性: [光輝]',
         ],
     },
     {
         name: 'スケルトン',
         type: 'アンデッド',
         alignment: '中立にして悪',
-        acMod: +2,
+        acMod: +1,
         hpMod: 0.8,
         abilityMod: [
             0,
@@ -42,6 +42,44 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
         type: '異形',
         alignment: '秩序にして悪',
         acMod: -6,
+        hpMod: 2.0,
+        abilityMod: [
+            0,
+            -4,
+            0,
+            0,
+            0,
+            0,
+        ],
+        attributes: [
+            'ダメージ脆弱性: [炎][冷気]',
+            'ダメージ耐性: [酸][毒][精神][死霊]',
+        ],
+    },
+    {
+        name: 'メタル',
+        type: '人造',
+        alignment: '秩序にして悪',
+        acMod: +2,
+        hpMod: 1.0,
+        abilityMod: [
+            0,
+            +2,
+            -2,
+            0,
+            0,
+            0,
+        ],
+        attributes: [
+            'ダメージ脆弱性: [電撃][酸]',
+            'ダメージ耐性: [毒][精神][死霊]',
+        ],
+    },
+    {
+        name: 'デーモン',
+        type: 'フィーンド',
+        alignment: '秩序にして悪',
+        acMod: 0,
         hpMod: 1.0,
         abilityMod: [
             0,
@@ -52,43 +90,8 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
             0,
         ],
         attributes: [
-            'ダメージ抵抗: [刺突][斬撃][殴打]',
-        ],
-    },
-    {
-        name: 'メタル',
-        type: '人造',
-        alignment: '秩序にして悪',
-        acMod: +6,
-        hpMod: 0.2,
-        abilityMod: [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-        ],
-        attributes: [
-            'ダメージ脆弱性: [電撃]',
-        ],
-    },
-    {
-        name: 'デーモン',
-        type: 'フィーンド',
-        alignment: '秩序にして悪',
-        acMod: +2,
-        hpMod: 0.8,
-        abilityMod: [
-            0,
-            +2,
-            -2,
-            0,
-            0,
-            0,
-        ],
-        attributes: [
-            'ダメージ脆弱性: [光輝][善]',
+            '飛行：60フィート',
+            'ダメージ脆弱性: [光輝]',
         ],
     },
     {
@@ -106,7 +109,7 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
             0,
         ],
         attributes: [
-            'ブレス: 30フィート円錐、3d6(敏捷DC16で半減)',
+            'ブレス: 30フィート円錐、3d6(敏捷DC13で半減)',
         ],
     },
 ];

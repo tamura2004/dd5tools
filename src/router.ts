@@ -4,7 +4,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import PATH from '@/types/PathTypes';
 
-import Encounter from '@/views/Encounter.vue';
+import EncounterShow from '@/views/EncounterShow.vue';
 import EncounterBattle from '@/views/EncounterBattle.vue';
 import EncounterForm from '@/views/EncounterForm.vue';
 import EncounterMonster from '@/views/EncounterMonster.vue';
@@ -78,7 +78,7 @@ const router = new Router({
     {
       name: PATH.ENCOUNTER,
       path: '/session/:sessionId/encounter/:encounterId',
-      component: Encounter,
+      component: EncounterShow,
       props: true,
       children: [
         { name: PATH.ENCOUNTER_MONSTER, path: 'monster', component: EncounterMonster, props: true },

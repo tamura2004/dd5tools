@@ -24,7 +24,7 @@ export default class Player {
   public saves?: string[] = [];
   public skills?: string[] = [];
   public spells?: string[] = [];
-  public weapon?: string[] = [];
+  public weapon: string[] = [];
   public armor: string | null = null;
   public memo: string | null = null;
   public avatar: string | null = null;

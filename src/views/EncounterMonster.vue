@@ -27,10 +27,11 @@ export default class EncounterMonster extends Vue {
 
   private get monster() {
     let info = MONSTERS[(this.encounter && this.encounter.monsterId) || 0];
-    if (this.encounter.templateId !== null) {
-      info = info.add(TEMPLATES[this.encounter.templateId]);
-    }
-    return info;
+    info.templateId = this.encounter.templateId;
+    // if (this.encounter.templateId !== null) {
+    //   info = info.add(TEMPLATES[this.encounter.templateId]);
+    // }
+    return info.merged;
   }
 }
 </script>

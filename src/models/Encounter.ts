@@ -1,6 +1,7 @@
 import { ROOMS } from '@/data/ROOMS';
 import _ from 'lodash';
 import { chooseTrap } from '@/data/TRAP';
+import { chooseItems } from '@/data/TREASURE_DATA';
 import Monster from '@/models/Monster';
 import MONSTERS from '@/data/MONSTERS';
 import Template from '@/models/Template';
@@ -16,10 +17,12 @@ export default class Encounter {
   public monsterId: number | null = null;
   public monsterNum: number | null = null;
   public templateId: number | null = null;
+  public items: string[] = [];
 
   constructor(init: Partial<Encounter>) {
     this.room = _.sample(ROOMS.get('鉱山')) || null;
     this.trap = chooseTrap();
+    this.items = chooseItems(_.random);
     Object.assign(this, init);
   }
 
@@ -46,11 +49,17 @@ export default class Encounter {
     if (this.monster === undefined) {
       return;
     }
-
     if (this.monsterNum === null) {
       return;
     }
-
     return this.monster.exp * this.monsterNum;
+  }
+
+  public get itemDescription(): string {
+    if (this.items === undefined || this.items.length === 0) {
+      return 'なし';
+    } else {
+      return this.items.join('、');
+    }
   }
 }

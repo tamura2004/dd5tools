@@ -2,8 +2,6 @@ import MONSTERS from '@/data/MONSTERS';
 import TEMPLATES from '@/data/TEMPLATES';
 
 describe('Monster', () => {
-  const info = MONSTERS[1];
-
   it('can initialize with template', () => {
     const tree = MONSTERS[1];
     expect(tree.name).toBe('アウェイクンド・ツリー');
@@ -20,6 +18,6 @@ describe('Monster', () => {
     expect(zombieTree.ac).toBe(9);
     expect(zombieTree.ability[1]).toBe(2); // dex -4
     expect(zombieTree.ability[2]).toBe(19); // con +4
-    expect(zombieTree.attributes).toContain('ダメージ脆弱性: [光輝][斬撃]');
+    expect(zombieTree.attributes).toContain('ダメージ脆弱性: [光輝]');
   });
 });

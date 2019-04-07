@@ -1,16 +1,19 @@
 <template lang="pug">
-  .headline(v-if="encounter(encounterId)")
+  .headline(v-if="encounter")
     table
       tr
         th(xs4).label.body-2 セッション
         td(xs8).body-2
-          router-link(:to="`/session/${sessionId}/encounters`") {{ session(sessionId).name }}
+          router-link(:to="`/session/${sessionId}/encounters`") {{ session.name }}
       tr
         th(xs4).label.body-2 場所
-        td(xs8).body-2 {{ encounter(encounterId).room }}
+        td(xs8).body-2 {{ encounter.room }}
       tr
         th.label.body-2 トラップ
-        td.body-2 {{ encounter(encounterId).trap }}
+        td.body-2 {{ encounter.trap }}
+      tr
+        th.label.body-2 宝物
+        td.body-2 {{ encounter.itemDescription }}
     v-tabs
       v-tab(to="battle") 戦闘
       v-tab(to="monster") モンスター
@@ -22,15 +25,20 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
+import Session from '@/models/Session';
+import Encounter from '@/models/Encounter';
 
-@Component({
-  computed: {
-    ...mapGetters(['encounter', 'session']),
-  },
-})
-export default class Encounter extends Vue {
+@Component
+export default class EncounterShow extends Vue {
   @Prop() public sessionId!: string;
   @Prop() public encounterId!: string;
+
+  private get session(): Session {
+    return this.$store.getters.session(this.sessionId);
+  }
+  private get encounter(): Encounter {
+    return this.$store.getters.encounter(this.encounterId);
+  }
 }
 </script>
 

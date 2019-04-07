@@ -1,5 +1,6 @@
 <template lang="pug">
 .headline.mt-4 遭遇一覧
+  v-btn(block dark to="encounters/new") 新規遭遇
   v-list(two-line)
     template(v-for="[encounterId, encounter] in Array.from(encounters(sessionId))")
       v-list-tile(@click="go(encounterId)")
@@ -16,7 +17,6 @@
           v-btn(flat icon)
             v-icon done
       v-divider
-  v-btn(block dark to="encounters/new") 新規遭遇
 </template>
 
 <script lang="ts">

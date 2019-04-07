@@ -35,7 +35,7 @@ export default class SessionPlayers extends Vue {
   private edit: boolean = false;
   private playerIds: string[] = [];
 
-  private get players(): Player[] {
+  private get players(): Map<string, Player> {
     return this.$store.state.players;
   }
 
