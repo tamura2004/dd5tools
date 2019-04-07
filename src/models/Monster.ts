@@ -4,6 +4,7 @@ import Template from './Template';
 import TEMPLATES from '@/data/TEMPLATES';
 import { MODE } from '@/data/ENCOUNTER_DATA';
 import { MONSTER_AVATARS } from '@/data/MONSTER_AVATARS';
+import MONSTERS from '@/data/MONSTERS';
 
 export default class Monster {
   public mode: MODE | null = null;
@@ -46,7 +47,7 @@ export default class Monster {
   }
 
   public add(template: Template): Monster {
-    const monster = new Monster({...this});
+    const monster = new Monster(MONSTERS[this.id]);
     monster.name = template.name + '・' + monster.name;
     monster.type = template.type;
     monster.alignment = template.alignment;
