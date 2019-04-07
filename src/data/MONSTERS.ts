@@ -5253,10 +5253,10 @@ const MONSTER_DATA: Array<Partial<Monster>> = [
     ],
   },
   {
-    name: 'アティアグ',
+    name: 'デス・アティアグ',
     size: '大型',
     type: '異形',
-    alignment: '真なる中立',
+    alignment: '中立にして悪',
     ac: 14,
     maxHp: 114,
     mv: '30フィート',
