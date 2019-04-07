@@ -22,6 +22,7 @@ import { db } from '@/plugins/firebase';
 @Component
 export default class Avater extends Vue {
   @Prop() private playerId!: string;
+
   private dialog: boolean = false;
   private avatars = AVATAR_DATA;
 

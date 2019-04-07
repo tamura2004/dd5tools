@@ -4,7 +4,6 @@ import { chooseTrap } from '@/data/TRAP';
 import { chooseItems } from '@/data/TREASURE_DATA';
 import Monster from '@/models/Monster';
 import MONSTERS from '@/data/MONSTERS';
-import Template from '@/models/Template';
 import TEMPLATES from '@/data/TEMPLATES';
 
 export default class Encounter {
@@ -30,12 +29,9 @@ export default class Encounter {
     if (this.monsterId === null) {
       return;
     }
-    const base = MONSTERS[this.monsterId];
-    if (this.templateId === null) {
-      return base;
-    }
-    const template = TEMPLATES[this.templateId];
-    return base.add(template);
+    const base = new Monster(MONSTERS[this.monsterId]);
+    base.templateId = this.templateId;
+    return base.merged;
   }
 
   public get monsterName(): string | undefined {

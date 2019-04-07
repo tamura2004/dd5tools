@@ -26,7 +26,7 @@ export default class Ability {
   public get description(): string {
     const ret = [];
     for (let i = 0; i < 6; i++) {
-      ret.push(`${Ability.kanjiName(this.nums[i])}${this.nums[i]}(${Ability.modifyString(this.nums[i])}`)
+      ret.push(`${Ability.kanjiName(this.nums[i])}${this.nums[i]}(${Ability.modifyString(this.nums[i])}`);
     }
     return ret.join();
   }

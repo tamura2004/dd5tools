@@ -28,6 +28,7 @@ export default class Player {
   public armor: string | null = null;
   public memo: string | null = null;
   public avatar: string | null = null;
+  public gold: number | null = null;
 
   constructor(init: Partial<Player>) {
     Object.assign(this, init);

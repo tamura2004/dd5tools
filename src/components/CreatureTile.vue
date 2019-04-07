@@ -11,7 +11,6 @@ v-list-tile
           field="initiative"
           title="イニシアチブを入力して下さい"
         )
-        //- .display-1.red--text {{ creature.initiative }}
   v-list-tile-avatar(tile)
     v-img(:src="`/img/${monster.avatar}`")
   v-list-tile-content

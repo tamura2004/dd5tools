@@ -37,7 +37,7 @@ export default class Monster {
   }
 
   public get merged(): Monster {
-    if (this.templateId === null) {
+    if (this.templateId === null || this.templateId === undefined) {
       return this;
     } else {
       const template = TEMPLATES[this.templateId];

@@ -21,9 +21,25 @@ div
         td.label MV
         td.number 30'
         td.label hp
-        td.number {{ player.hp }}
-        td.label PB
-        td.number +2
+        td.number
+          v-container.ma-0.pa-0
+            v-layout(justify-center)
+              Tenkey(
+                collectionName="players"
+                :id="playerId"
+                field="hp"
+                title="hpを修正して=を押して下さい"
+              )
+        td.label 所持金
+        td.number
+          v-container.ma-0.pa-0
+            v-layout(justify-center)
+              Tenkey(
+                collectionName="players"
+                :id="playerId"
+                field="gold"
+                title="所持金を修正して=を押して下さい"
+              )
     table
       tr(v-for="n in 6")
         td.label {{ abilityLabel[n-1] }}
@@ -78,12 +94,14 @@ import { ABILITY_LABEL, SKILLS } from '@/data/DATA';
 import WEAPONS from '@/data/WEAPON_DATA';
 import Weapon from '@/models/Weapon';
 import { db } from '@/plugins/firebase';
+import Tenkey from '@/components/Tenkey.vue';
 
 @Component({
   components: {
     LifeCounter,
     IconSelect,
     ListHeader,
+    Tenkey,
   },
 })
 export default class PlayerShow extends Vue {
