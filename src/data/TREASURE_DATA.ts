@@ -13,6 +13,38 @@ function rollChart<T>(dice: Dice, chart: Map<number, T>): T {
   return line[1];
 }
 
+export const GOLD_CHART = new Map<number, number>([
+  [4, 0],
+  [10, 125],
+  [16, 500],
+  [22, 1000],
+  [28, 1250],
+  [32, 125],
+  [36, 500],
+  [40, 1000],
+  [44, 1250],
+  [49, 125],
+  [54, 500],
+  [59, 1000],
+  [63, 1250],
+  [66, 125],
+  [69, 500],
+  [72, 1000],
+  [74, 1250],
+  [76, 125],
+  [78, 500],
+  [79, 1000],
+  [80, 1250],
+  [84, 125],
+  [88, 500],
+  [91, 1000],
+  [94, 1250],
+  [96, 1000],
+  [98, 1250],
+  [99, 1000],
+  [100, 1250],
+]);
+
 export const TREASURE_CHART = new Map<number, ItemChart>([
   [28, { type: '', max: 0 }],
   [44, { type: 'A', max: 6 }],
@@ -364,4 +396,9 @@ export function chooseItems(dice: Dice): string[] {
     }
   }
   return items;
+}
+
+export function chooseGold(dice: Dice): number {
+  const gems = rollChart(dice, GOLD_CHART);
+  return gems + dice(6, 36) * 100 + dice(3, 18) * 100;
 }

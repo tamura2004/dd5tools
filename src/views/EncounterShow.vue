@@ -12,8 +12,11 @@
         th.label.body-2 トラップ
         td.body-2 {{ encounter.trap }}
       tr
-        th.label.body-2 宝物
+        th.label.body-2 アイテム
         td.body-2 {{ encounter.itemDescription }}
+      tr
+        th.label.body-2 金貨
+        td.body-2 {{ encounter.goldDescription }}
     v-tabs
       v-tab(to="battle") 戦闘
       v-tab(to="monster") モンスター
