@@ -95,8 +95,8 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
         ],
     },
     {
-        name: 'ドラゴン',
-        type: 'ドラゴン',
+        name: 'ファイア',
+        type: 'エレメンタル',
         alignment: '混沌にして悪',
         acMod: 0,
         hpMod: 0.5,
@@ -109,7 +109,7 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
             0,
         ],
         attributes: [
-            'ブレス: 30フィート円錐、3d6(敏捷DC13で半減)',
+            'ブレス: 30フィート円錐、5d6[火](敏捷DC10で半減)、チャージ5-6',
         ],
     },
 ];
