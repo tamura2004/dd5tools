@@ -43,7 +43,7 @@ export default class MonsterGenerator {
     const candidate = this.candidateExpNums(mode);
     const keys = Array.from(candidate.keys());
     // const key = keys[Math.floor(Math.random() * keys.length)];
-    const key = keys.reduce((a, num) => Math.random() < 0.5 ? num : a);
+    const key = keys.reduce((a, num) => Math.random() < 0.4 ? num : a);
     return [key, candidate.get(key)];
   }
   public chooseMonster(mode: MODE = MODE.NORMAL): Monster | undefined {
