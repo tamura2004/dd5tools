@@ -14,7 +14,6 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { MODE } from '@/data/ENCOUNTER_DATA';
 import { CREATE } from '@/types/ActionTypes';
-import MonsterList from '@/components/MonsterList.vue';
 import MonsterGenerator from '@/models/MonsterGenerator';
 import Session from '@/models/Session';
 import Encounter from '@/models/Encounter';
@@ -25,11 +24,7 @@ import MONSTERS from '@/data/MONSTERS';
 import TEMPLATES from '@/data/TEMPLATES';
 import PATH from '@/types/PathTypes';
 
-@Component({
-  components: {
-    MonsterList,
-  },
-})
+@Component
 export default class EncounterForm extends Vue {
   @Prop() private sessionId!: string;
 

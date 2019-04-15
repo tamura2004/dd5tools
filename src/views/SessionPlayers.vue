@@ -12,7 +12,7 @@
           v-list-tile(:key="id")
             v-list-tile-action(v-if="edit")
               v-checkbox(v-model="playerIds" :value="id")
-            PlayerTileContent(:id="id")
+            player-tile-content(:id="id")
           v-divider
 </template>
 
@@ -20,15 +20,10 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Item from '@/models/Item';
 import Player from '@/models/Player';
-import PlayerTileContent from '@/components/PlayerTileContent.vue';
 import { UPDATE } from '@/types/ActionTypes';
 import Session from '@/models/Session';
 
-@Component({
-  components: {
-    PlayerTileContent,
-  },
-})
+@Component
 export default class SessionPlayers extends Vue {
   @Prop() private sessionId!: string;
 

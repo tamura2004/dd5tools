@@ -85,25 +85,14 @@ div
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import LifeCounter from '@/components/LifeCounter.vue';
-import IconSelect from '@/components/IconSelect.vue';
-import ListHeader from '@/components/ListHeader.vue';
 import Player from '@/models/Player';
 import Spell from '@/models/Spell';
 import { ABILITY_LABEL, SKILLS } from '@/data/DATA';
 import WEAPONS from '@/data/WEAPON_DATA';
 import Weapon from '@/models/Weapon';
 import { db } from '@/plugins/firebase';
-import Tenkey from '@/components/Tenkey.vue';
 
-@Component({
-  components: {
-    LifeCounter,
-    IconSelect,
-    ListHeader,
-    Tenkey,
-  },
-})
+@Component
 export default class PlayerShow extends Vue {
   private abilityLabel = ABILITY_LABEL;
   private skills = SKILLS;

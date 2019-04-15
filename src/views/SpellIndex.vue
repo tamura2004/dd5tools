@@ -22,14 +22,10 @@ v-layout(row wrap)
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
-import SpellCard from '@/components/SpellCard.vue';
 
 @Component({
   computed: {
     ...mapGetters(['spells']),
-  },
-  components: {
-    SpellCard,
   },
 })
 export default class SpellIndex extends Vue {

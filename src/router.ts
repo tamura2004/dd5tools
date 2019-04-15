@@ -29,7 +29,7 @@ import SessionEncounters from '@/views/SessionEncounters.vue';
 import SessionForm from '@/views/SessionForm.vue';
 import SessionPlayers from '@/views/SessionPlayers.vue';
 import SessionReward from '@/views/SessionReward.vue';
-import Sessions from '@/views/Sessions.vue';
+import SessionIndex from '@/views/SessionIndex.vue';
 import Signin from '@/views/Signin.vue';
 import Signup from '@/views/Signup.vue';
 
@@ -60,7 +60,7 @@ const router = new Router({
     },
     { name: PATH.SIGNIN, path: '/signin', component: Signin },
     { name: PATH.SIGNUP, path: '/signup', component: Signup },
-    { name: PATH.SESSIONS, path: '/sessions', component: Sessions },
+    { name: PATH.SESSIONS, path: '/sessions', component: SessionIndex },
     { name: PATH.SESSIONS_NEW, path: '/sessions/new', component: SessionForm },
     { name: PATH.SESSION_EDIT, path: '/session/:sessionId/edit', component: SessionForm, props: true },
     {

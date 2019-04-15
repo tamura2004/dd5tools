@@ -14,13 +14,9 @@ v-list(two-line)
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import PlayerTileContent from '@/components/PlayerTileContent.vue';
 import { mapState } from 'vuex';
 
 @Component({
-  components: {
-    PlayerTileContent,
-  },
   computed: {
     ...mapState(['players']),
   },

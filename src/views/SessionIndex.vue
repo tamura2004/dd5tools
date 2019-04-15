@@ -2,15 +2,7 @@
   .headline セッション一覧
     v-list(two-line)
       template(v-for="[key, session] in Array.from(sessions)")
-        v-list-tile(
-          :key="key"
-          :to="`/session/${key}/players`"
-        )
-          v-list-tile-content
-            v-list-tile-title {{ session.name }}
-            v-list-tile-sub-title 報酬：{{ session.reward }}gp
-          v-list-tile-action
-            v-icon arrow_forward_ios
+        session-tile(:sessionId="key" :key="key")
         v-divider
 
     v-btn(dark block color="primary" to="/sessions/new") 新規セッション
@@ -25,6 +17,6 @@ import { mapState } from 'vuex';
     ...mapState(['sessions']),
   },
 })
-export default class Sessions extends Vue {
+export default class SessionIndex extends Vue {
 }
 </script>

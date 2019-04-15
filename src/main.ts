@@ -13,6 +13,8 @@ import Npc from '@/models/Npc';
 import Spell from '@/models/Spell';
 import Reward from '@/models/Reward';
 import Log from '@/models/Log';
+import uppperFirst from 'lodash/upperFirst';
+import camelCase from 'lodash/camelCase';
 
 Vue.config.productionTip = false;
 
@@ -25,6 +27,28 @@ listen(store, Npc);
 listen(store, Spell);
 listen(store, Reward);
 listen(store, Log);
+
+const requireComponent = require.context(
+  './components',
+  false,
+  /\w+\.vue$/,
+);
+
+requireComponent.keys().forEach((fileName: any) => {
+  const componentConfig = requireComponent(fileName);
+  const componentName = uppperFirst(
+    camelCase(
+      fileName
+        .split('/')
+        .pop()
+        .replace(/\.\w+$/, ''),
+    ),
+  );
+  Vue.component(
+    componentName,
+    componentConfig.default || componentConfig,
+  );
+});
 
 new Vue({
   data: {

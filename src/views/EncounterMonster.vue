@@ -6,17 +6,10 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
-import CreatureTile from '@/components/CreatureTile.vue';
-import MonsterTable from '@/components/MonsterTable.vue';
 import MONSTERS from '@/data/MONSTERS';
 import TEMPLATES from '@/data/TEMPLATES';
 
-@Component({
-  components: {
-    CreatureTile,
-    MonsterTable,
-  },
-})
+@Component
 export default class EncounterMonster extends Vue {
   @Prop() private sessionId!: string;
   @Prop() private encounterId!: string;

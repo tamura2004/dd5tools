@@ -8,13 +8,8 @@ import 'firebase/storage';
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { CREATE, TO_BLOB, PUT_IMAGE } from '@/types/ActionTypes';
 import Spell from '@/models/Spell';
-import SpellForm from '@/components/SpellForm.vue';
 
-@Component({
-  components: {
-    SpellForm,
-  },
-})
+@Component
 export default class SpellNew extends Vue {
   private async uploadHandler(payload: any) {
     this.$root.$data.processing = true;

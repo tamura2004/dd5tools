@@ -8,13 +8,8 @@ import 'firebase/storage';
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { CREATE, TO_BLOB, PUT_IMAGE } from '@/types/ActionTypes';
 import Npc from '@/models/Npc';
-import NpcForm from '@/components/NpcForm.vue';
 
-@Component({
-  components: {
-    NpcForm,
-  },
-})
+@Component
 export default class NpcNew extends Vue {
   private async uploadHandler(payload: any) {
     this.$root.$data.processing = true;

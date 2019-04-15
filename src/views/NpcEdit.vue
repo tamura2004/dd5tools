@@ -14,13 +14,8 @@ import 'firebase/storage';
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import { UPDATE, DELETE, DELETE_IMAGE, PUT_IMAGE, TO_BLOB } from '@/types/ActionTypes';
 import Npc from '@/models/Npc';
-import NpcForm from '@/components/NpcForm.vue';
 
-@Component({
-  components: {
-    NpcForm,
-  },
-})
+@Component
 export default class NpcEdit extends Vue {
   @Prop() public npcId!: string;
 

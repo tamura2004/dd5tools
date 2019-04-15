@@ -24,14 +24,10 @@ import { Component, Vue } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
 import firebase from 'firebase/app';
 import 'firebase/storage';
-import NpcCard from '@/components/NpcCard.vue';
 
 @Component({
   computed: {
     ...mapGetters(['npcs']),
-  },
-  components: {
-    NpcCard,
   },
 })
 export default class NpcIndex extends Vue {

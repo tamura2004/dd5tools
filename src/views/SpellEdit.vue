@@ -14,13 +14,8 @@ import 'firebase/storage';
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
 import { UPDATE, DELETE, DELETE_IMAGE, PUT_IMAGE, TO_BLOB } from '@/types/ActionTypes';
 import Spell from '@/models/Spell';
-import SpellForm from '@/components/SpellForm.vue';
 
-@Component({
-  components: {
-    SpellForm,
-  },
-})
+@Component
 export default class SpellEdit extends Vue {
   @Prop() public spellId!: string;
 
