@@ -21,8 +21,8 @@ export default class Signin extends Vue {
   private password: string = '';
   private valid: boolean = false;
 
-  private async signin() {
-    await this.$store.dispatch(ACTION.WAIT,
+  private signin() {
+    this.$store.dispatch(ACTION.WAIT,
       async () => this.$store.dispatch(ACTION.SIGNIN, this),
     );
     this.$router.push('/');

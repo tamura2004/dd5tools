@@ -11,29 +11,24 @@ div
             v-flex(xs6) {{ player.race }}/{{ player.background }}
         v-list-tile-sub-title
           v-layout
-            v-flex(xs6) {{ player.alignment }}
+            v-flex(xs3) {{ player.alignment }}
             v-flex(xs3) PL:{{ player.name }}
             v-flex(xs3) MV:30'
+            v-flex(xs3) AC:{{ player.ac }}
     v-layout.mb-1(row wrap)
-      v-flex(xs3)
-        table.mb-1
-          tr
-            td.label AC
-            td.number
-              base-user-ac-tenkey(:id="playerId")
-      v-flex(xs3)
+      v-flex(xs4)
         table.mb-1
           tr
             td.label 経験値
             td.number
               base-user-exp-tenkey(:id="playerId")
-      v-flex(xs3)
+      v-flex(xs4)
         table.mb-1
           tr
             td.label hp
             td.number
               base-user-hp-tenkey(:id="playerId")
-      v-flex(xs3)
+      v-flex(xs4)
         table.mb-1
           tr
             td.label 所持金
