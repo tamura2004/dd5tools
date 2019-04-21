@@ -14,4 +14,5 @@ export default class State {
   public dungeons: Map<string, Dungeon> = new Map<string, Dungeon>();
   public npcs: Map<string, Npc> = new Map<string, Npc>();
   public spells: Map<string, Spell> = new Map<string, Spell>();
+  public wait: boolean = false;
 }

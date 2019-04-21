@@ -6,23 +6,10 @@ v-form(v-model="valid" v-if="form")
       width="320"
       height="480"
       @fileChange="fileChangeHandler"
-
     )
-    v-text-field.pa-2(
-      label="名前"
-      v-model="form.name"
-      :rules="required"
-    )
-    v-text-field.pa-2(
-      label="レベル"
-      v-model.number="form.level"
-      :rules="required"
-    )
-    v-text-field.pa-2(
-      label="クラス"
-      v-model="form.klass"
-      :rules="required"
-    )
+    base-text-field(v-model="form.name" label="名前")
+    base-number-field(v-model="form.level" label="レベル")
+    base-text-field(v-model="form.klass" label="クラス")
     v-textarea.pa-2(
       label="説明"
       v-model="form.description"

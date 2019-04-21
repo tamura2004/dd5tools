@@ -1,39 +1,17 @@
 <template lang="pug">
-  v-card.elevation-12
-    v-toolbar(dark dense)
-      v-toolbar-title サインアップ
-    v-card-text
-      v-form(v-model="valid")
-        v-text-field(
-          prepend-icon="person"
-          name="email"
-          label="email"
-          type="text"
-          v-model="email"
-          :rules="rules"
-        )
-        v-text-field(
-          id="password"
-          prepend-icon="lock"
-          name="password"
-          label="password"
-          type="password"
-          v-model="password"
-          :rules="rules"
-        )
-    v-card-actions
-      v-spacer
-      v-btn(color="primary" @click="signup" :disabled="!valid") サインアップ
-    v-card-text
-      .caption メールアドレスとパスワードを登録して下さい
-
+base-menu-card(title="ＩＤ登録")
+  template(v-slot:form)
+    v-form(v-model="valid")
+      base-email-text-field(v-model="email")
+      base-password-text-field(v-model="password")
+  template(v-slot:action)
+    v-spacer
+    v-btn(color="primary" @click="signup" :disabled="!valid") サインアップ
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
-import * as firebase from 'firebase/app';
-
-type validateFunc = Array<(v: string) => boolean | string>;
+import * as ACTION from '@/types/ActionTypes';
 
 @Component
 export default class Signup extends Vue {
@@ -41,21 +19,11 @@ export default class Signup extends Vue {
   private password: string = '';
   private valid: boolean = false;
 
-  private rules: validateFunc = [
-    (v: string) => v !== '' || '必須項目です',
-  ];
-
   private async signup() {
-    try {
-      this.$root.$data.processing = true;
-      const { user } = await firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
-      this.$root.$data.processing = false;
-      alert(`${user && user.email}でアカウントを作成しました`);
-      this.$router.push('/signin');
-
-    } catch (err) {
-      alert(err);
-    }
+    await this.$store.dispatch(ACTION.WAIT,
+      async () => this.$store.dispatch(ACTION.SIGNUP, this),
+    );
+    this.$router.push('/signin');
   }
 }
 </script>

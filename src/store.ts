@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { ADD_SESSION } from '@/types/MutationTypes';
-import { UPDATE_SESSION_PLAYERS, PUT_IMAGE, TO_BLOB } from '@/types/ActionTypes';
-import { CREATE, UPDATE, DELETE, DELETE_IMAGE } from '@/types/ActionTypes';
+import * as MUTATION from '@/types/MutationTypes';
+import * as ACTION from '@/types/ActionTypes';
 import { db } from '@/plugins/firebase';
 import State from '@/models/State';
 import Session from '@/models/Session';
@@ -61,39 +60,42 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    [ADD_SESSION](state, { sessionId, session }) {
+    [MUTATION.ADD_SESSION](state, { sessionId, session }) {
       Vue.set(state.sessions, sessionId, new Session(session));
     },
     set(state, { name, collection }) {
       Vue.set(state, name, collection);
     },
+    [MUTATION.SET_WAIT](state, payload) {
+      state.wait = payload;
+    },
   },
   actions: {
-    async [CREATE]({}, payload) {
+    async [ACTION.CREATE]({}, payload) {
       const conn = db.collection(payload.constructor.collectionName);
       const ref: any = await conn.add({...payload});
       return ref.id;
     },
-    async [UPDATE]({}, { collectionName, id, updates }) {
+    async [ACTION.UPDATE]({}, { collectionName, id, updates }) {
       await db.collection(collectionName).doc(id).update(updates);
     },
-    async [UPDATE_SESSION_PLAYERS]({}, {sessionId, playerIds}) {
+    async [ACTION.UPDATE_SESSION_PLAYERS]({}, {sessionId, playerIds}) {
       await db.collection('sessions').doc(sessionId).update({ playerIds });
     },
-    async [DELETE]({}, { collectionName, id }) {
+    async [ACTION.DELETE]({}, { collectionName, id }) {
       await db.collection(collectionName).doc(id).delete();
     },
-    async [DELETE_IMAGE]({}, { id }) {
+    async [ACTION.DELETE_IMAGE]({}, { id }) {
       const storageRef = firebase.storage().ref();
       const imageRef = storageRef.child(`images/${id}.png`);
       await imageRef.delete();
     },
-    async [PUT_IMAGE]({}, { id, blob }) {
+    async [ACTION.PUT_IMAGE]({}, { id, blob }) {
       const storageRef = firebase.storage().ref();
       const imageRef = storageRef.child(`images/${id}.png`);
       await imageRef.put(blob);
     },
-    [TO_BLOB]({ }, { canvas }) {
+    [ACTION.TO_BLOB]({ }, { canvas }) {
       return new Promise((resolve, reject) => {
         canvas.toBlob((blob: any) => {
           if (blob === null) {
@@ -104,6 +106,28 @@ export default new Vuex.Store({
           }
         });
       });
+    },
+    async [ACTION.WAIT]({ commit }, cb) {
+      try {
+        commit(MUTATION.SET_WAIT, true);
+        await cb();
+      } catch (err) {
+        alert(err);
+      } finally {
+        commit(MUTATION.SET_WAIT, false);
+      }
+    },
+    async [ACTION.SIGNIN]({}, { email, password }) {
+      await firebase.auth().signInWithEmailAndPassword(
+        email,
+        password,
+      );
+    },
+    async [ACTION.SIGNIN]({}, { email, password }) {
+      await firebase.auth().createUserWithEmailAndPassword(
+        email,
+        password,
+      );
     },
   },
 });
