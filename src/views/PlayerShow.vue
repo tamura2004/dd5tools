@@ -13,33 +13,32 @@ div
           v-layout
             v-flex(xs6) {{ player.alignment }}
             v-flex(xs3) PL:{{ player.name }}
-            v-flex(xs3) EXP:{{ player.exp }}
-    table.mb-1
-      tr
-        td.label AC
-        td.number {{ player.ac }}
-        td.label MV
-        td.number 30'
-        td.label hp
-        td.number
-          v-container.ma-0.pa-0
-            v-layout(justify-center)
-              Tenkey(
-                collectionName="players"
-                :id="playerId"
-                field="hp"
-                title="hpを修正して=を押して下さい"
-              )
-        td.label 所持金
-        td.number
-          v-container.ma-0.pa-0
-            v-layout(justify-center)
-              Tenkey(
-                collectionName="players"
-                :id="playerId"
-                field="gold"
-                title="所持金を修正して=を押して下さい"
-              )
+            v-flex(xs3) MV:30'
+    v-layout.mb-1(row wrap)
+      v-flex(xs3)
+        table.mb-1
+          tr
+            td.label AC
+            td.number
+              base-user-ac-tenkey(:id="playerId")
+      v-flex(xs3)
+        table.mb-1
+          tr
+            td.label 経験値
+            td.number
+              base-user-exp-tenkey(:id="playerId")
+      v-flex(xs3)
+        table.mb-1
+          tr
+            td.label hp
+            td.number
+              base-user-hp-tenkey(:id="playerId")
+      v-flex(xs3)
+        table.mb-1
+          tr
+            td.label 所持金
+            td.number
+              base-user-gold-tenkey(:id="playerId")
     table
       tr(v-for="n in 6")
         td.label {{ abilityLabel[n-1] }}
