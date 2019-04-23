@@ -22,5 +22,5 @@ export const EXP_LEVEL = new Map<number, number>([
 ]);
 
 export function expToLevel(user: number): number {
-  return [...EXP_LEVEL].reduce((acc, [exp, level]) => user < exp ? acc : level, 0)
+  return [...EXP_LEVEL].reduce((acc, [exp, level]) => user < exp ? acc : level, 0);
 }
