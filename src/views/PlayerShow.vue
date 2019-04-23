@@ -1,5 +1,5 @@
 <template lang="pug">
-div
+div(v-if="player")
   v-list(dense)
     v-list-tile
       v-list-tile-avatar(tile)
@@ -16,10 +16,10 @@ div
             v-flex(xs3) MV:30'
             v-flex(xs3) AC:{{ player.ac }}
     v-layout.mb-1(row wrap)
-      base-user-tenkey(:id="playerId" :field="hp" :title="hp")
-      base-user-tenkey(:id="playerId" :field="maxHp" :title="最大hp")
-      base-user-tenkey(:id="playerId" :field="exp" :title="経験値")
-      base-user-tenkey(:id="playerId" :field="gold" :title="所持金")
+      base-user-tenkey(:id="playerId" field="hp" title="hp")
+      base-user-tenkey(:id="playerId" field="maxHp" title="最大hp")
+      base-user-tenkey(:id="playerId" field="exp" title="経験値")
+      base-user-tenkey(:id="playerId" field="gold" title="所持金")
     table
       tr(v-for="n in 6")
         td.label {{ abilityLabel[n-1] }}

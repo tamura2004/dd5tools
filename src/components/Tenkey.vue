@@ -1,6 +1,6 @@
 <template lang="pug">
 v-dialog(v-model="dialog" width="320")
-  .display-1(slot="activator") {{ value }}
+  .headline(slot="activator") {{ value }}
   v-card
     v-card-title.pb-0 {{ title }}
     v-container(grid-list-md text-xs-center style="width: 320px")

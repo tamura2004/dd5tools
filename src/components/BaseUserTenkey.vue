@@ -1,5 +1,5 @@
 <template lang="pug">
-v-flex(xs3)
+v-flex(xs6 sm3)
   table.mb-1
     tr
       td.label {{ title }}

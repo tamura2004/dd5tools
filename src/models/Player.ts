@@ -2,6 +2,7 @@ import Weapon from '@/models/Weapon';
 import ARMOR_DATA from '@/data/ARMOR_DATA';
 import RACE_ABILITY from '@/data/RACE_ABILITY';
 import Armor from './Armor';
+import { expToLevel } from '@/data/EXP';
 
 function modify(ability: number): number {
   return Math.floor((ability - 10) / 2);
@@ -32,6 +33,9 @@ export default class Player {
 
   constructor(init: Partial<Player>) {
     Object.assign(this, init);
+    if (this.exp !== null) {
+      this.level = expToLevel(this.exp);
+    }
   }
 
   public get summary(): string {
