@@ -16,24 +16,10 @@ div
             v-flex(xs3) MV:30'
             v-flex(xs3) AC:{{ player.ac }}
     v-layout.mb-1(row wrap)
-      v-flex(xs4)
-        table.mb-1
-          tr
-            td.label 経験値
-            td.number
-              base-user-exp-tenkey(:id="playerId")
-      v-flex(xs4)
-        table.mb-1
-          tr
-            td.label hp
-            td.number
-              base-user-hp-tenkey(:id="playerId")
-      v-flex(xs4)
-        table.mb-1
-          tr
-            td.label 所持金
-            td.number
-              base-user-gold-tenkey(:id="playerId")
+      base-user-tenkey(:id="playerId" :field="hp" :title="hp")
+      base-user-tenkey(:id="playerId" :field="maxHp" :title="最大hp")
+      base-user-tenkey(:id="playerId" :field="exp" :title="経験値")
+      base-user-tenkey(:id="playerId" :field="gold" :title="所持金")
     table
       tr(v-for="n in 6")
         td.label {{ abilityLabel[n-1] }}

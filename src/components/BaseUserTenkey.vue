@@ -1,10 +1,15 @@
 <template lang="pug">
-  base-number-tenkey(
-    collectionName="players"
-    :title="`${title}を修正して=を押して下さい`"
-    :field="field"
-    :id="id"
-  )
+v-flex(xs3)
+  table.mb-1
+    tr
+      td.label {{ title }}
+      td.number
+        base-number-tenkey(
+          collectionName="players"
+          :title="`${title}を修正して=を押して下さい`"
+          :field="field"
+          :id="id"
+        )
 </template>
 
 <script lang="ts">
