@@ -13,7 +13,7 @@ v-list-tile(v-if="!!feat")
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import Feat from '@/models/Feat'
+import Feat from '@/models/Feat';
 
 @Component
 export default class BaseFeatList extends Vue {
