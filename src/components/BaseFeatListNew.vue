@@ -6,16 +6,17 @@ v-list-tile
     v-list-tile-avatar(@click="show=!show")
       v-icon clear
     v-list-tile-content
-      v-layout(row wrap)
-        v-flex(xs12)
-          v-text-field(
-            solo
-            flat
-            hide-details
-            block
-            v-model="name"
-            label="名前を入力"
-          )
+      v-container
+        v-layout(row wrap)
+          v-flex(xs12)
+            v-text-field(
+              solo
+              flat
+              hide-details
+              block
+              v-model="name"
+              label="名前を入力"
+            )
     v-list-tile-action
       v-btn(small dark color="primary" @click="save") 保存
 </template>
