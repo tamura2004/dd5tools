@@ -9,3 +9,4 @@ export const UPDATE_PLAYER_AVATAR = 'update/player/avatar';
 export const WAIT = 'WAIT';
 export const SIGNIN = 'SIGNIN';
 export const SIGNUP = 'SIGNUP';
+export const CREATE_FEAT = 'CREATE_FEAT';

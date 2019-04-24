@@ -9,6 +9,7 @@ import Encounter from '@/models/Encounter';
 import Creature from '@/models/Creature';
 import firebase from 'firebase/app';
 import 'firebase/storage';
+import Feat from './models/Feat';
 
 Vue.use(Vuex);
 
@@ -57,6 +58,13 @@ export default new Vuex.Store({
     },
     player(state) {
       return (playerId: string) => state.players.get(playerId);
+    },
+    feats(state) {
+      return (playerId: string) =>
+        [...state.feats].filter(([, feat]) => feat.playerId === playerId);
+    },
+    feat(state) {
+      return (featId: string) => state.feats.get(featId);
     },
   },
   mutations: {
@@ -128,6 +136,13 @@ export default new Vuex.Store({
         email,
         password,
       );
+    },
+    async [ACTION.CREATE_FEAT]({ dispatch }, { playerId, name }) {
+      await dispatch(ACTION.CREATE, new Feat({
+        playerId,
+        name,
+        num: 1,
+      }));
     },
   },
 });

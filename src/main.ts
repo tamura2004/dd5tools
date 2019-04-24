@@ -13,6 +13,7 @@ import Npc from '@/models/Npc';
 import Spell from '@/models/Spell';
 import Reward from '@/models/Reward';
 import Log from '@/models/Log';
+import Feat from '@/models/Feat';
 import uppperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
 
@@ -27,6 +28,7 @@ listen(store, Npc);
 listen(store, Spell);
 listen(store, Reward);
 listen(store, Log);
+listen(store, Feat);
 
 const requireComponent = require.context(
   './components',
