@@ -1,5 +1,7 @@
 <template lang="pug">
 v-list-tile(v-if="!!feat")
+  v-list-tile-avatar
+    v-icon done
   v-list-tile-content
     v-list-tile-title {{ feat.name }}
   v-list-tile-action

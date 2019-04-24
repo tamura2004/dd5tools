@@ -1,13 +1,23 @@
 <template lang="pug">
 v-list-tile
-  v-list-tile-content
-    base-text-field(
-      v-model="name"
-      label="特技・アイテム"
-      prepend-icon="colorize"
-    )
-  v-list-tile-action
-    v-btn(tile small @click="save") 保存
+  v-list-tile-avatar(@click="show=!show" v-if="!show")
+    v-icon add
+  template(v-else)
+    v-list-tile-avatar(@click="show=!show")
+      v-icon clear
+    v-list-tile-content
+      v-layout(row wrap)
+        v-flex(xs12)
+          v-text-field(
+            solo
+            flat
+            hide-details
+            block
+            v-model="name"
+            label="名前を入力"
+          )
+    v-list-tile-action
+      v-btn(small dark color="primary" @click="save") 保存
 </template>
 
 <script lang="ts">
@@ -18,6 +28,7 @@ import * as ACTION from '@/types/ActionTypes';
 export default class BaseFeatListNew extends Vue {
   @Prop() private playerId!: string;
 
+  private show: boolean = false;
   private name: string = '';
 
   private save() {
@@ -25,3 +36,6 @@ export default class BaseFeatListNew extends Vue {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+</style>
