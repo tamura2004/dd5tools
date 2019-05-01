@@ -55,4 +55,12 @@ export default class Session extends Vue {
 </script>
 
 <style lang="stylus">
+th.label
+  text-align center
+  width 48px
+  background-color #212121
+  color white
+  width 15%
+td.body-2
+  line-height 24px
 </style>

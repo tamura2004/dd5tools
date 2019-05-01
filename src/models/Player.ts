@@ -95,39 +95,6 @@ export default class Player {
     return baseAc + mod;
   }
 
-  public toHit(weapon: Weapon): number {
-    let value = this.baseMod;
-    const ability = this.ability;
-
-    if (typeof ability !== 'undefined') {
-      const strMod = modify(ability[0]);
-      const dexMod = modify(ability[1]);
-
-      if (weapon.category.includes('近接')) {
-        if (weapon.special.includes('妙技')) {
-          if (strMod < dexMod) {
-            value += dexMod;
-          } else {
-            value += strMod;
-          }
-        } else {
-          value += strMod;
-        }
-      } else {
-        value += dexMod;
-      }
-    }
-    return value;
-  }
-
-  public get baseMod(): number {
-    if (this.level !== null) {
-      return Math.floor((this.level + 7) / 4);
-    } else {
-      return 0;
-    }
-  }
-
   public rollAbility(): void {
     this.baseAbility = [];
     for (let i = 0; i < 6; i++) {

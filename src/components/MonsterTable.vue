@@ -10,6 +10,9 @@ table
     th(xs4).label.body-2 属性
     td(xs8).body-2 {{ monster.alignment }}
   tr
+    th(xs4).label.body-2 経験値
+    td(xs8).body-2 {{ monster.exp }}exp
+  tr
     th(xs4).label.body-2 AC
     td(xs8).body-2 {{ monster.ac }}
   tr
@@ -20,7 +23,8 @@ table
     td(xs8).body-2 {{ monster.mv }}
   tr
     th(xs4).label.body-2 能力値
-    td(xs8).body-2 {{ monster.ability.join('/') }}
+    td(xs8).body-2
+      ability-label(:ability="monster.ability")
   tr
     th(xs4).label.body-2 能力
     td(xs8).body-2
@@ -46,8 +50,12 @@ export default class MonsterTable extends Vue {
 </script>
 
 <style lang="stylus" scoped>
-.label
-  width 20%
+th.label
+  text-align center
+  width 48px
+  background-color #212121
+  color white
+  width 15%
 td.body-2
   line-height 24px
 </style>

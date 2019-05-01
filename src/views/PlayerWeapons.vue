@@ -21,7 +21,8 @@
                 v-checkbox(v-model="weaponNames" :value="name")
               v-list-tile-content
                 v-list-tile-title {{ name }}：{{ weapon.category }}
-                v-list-tile-sub-title 攻撃+{{ player.toHit(weapon) }}、間合い{{ weapon.range }}、ヒット：{{ weapon.damage }}+{{ player.toHit(weapon) }}[{{ weapon.type }}]ダメージ
+                v-list-tile-sub-title
+                  weapon-description(:weapon="weapon" :player="player")
             v-divider
   </template>
 

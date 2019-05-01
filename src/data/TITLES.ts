@@ -3,6 +3,7 @@ import PATH from '@/types/PathTypes';
 export const TITLES = new Map<string, string>([
   [ PATH.ENCOUNTER, '遭遇' ],
   [ PATH.ENCOUNTER_BATTLE, '戦闘' ],
+  [ PATH.ENCOUNTER_MONSTER, 'モンスターデータ' ],
   [ PATH.ENCOUNTER_REST, '小休憩' ],
   [ PATH.ENCOUNTER_REWARD, '報酬' ],
   [ PATH.ENCOUNTERS_NEW, '新規遭遇' ],

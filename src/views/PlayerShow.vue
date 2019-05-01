@@ -32,73 +32,22 @@ div(v-if="player")
     v-tab(:to="`/player/${playerId}/spells`") 呪文
     v-tab(:to="`/player/${playerId}/feats`") 特技
   router-view
-      // ListHeader(title="武器" icon="add" @click="$router.push('/weapons')")
-      // template(v-for="(w, i) in weapons")
-      //   v-list-tile
-      //     v-list-tile-action(@click="$store.dispatch('deleteWeapon', i)"): v-icon clear
-      //     v-list-tile-content
-      //       v-list-tile-title {{ player.weapon[i] }}：{{ w.category }}
-      //       v-list-tile-sub-title 攻撃+{{ player.toHit(w) }}、間合い{{ w.range }}、ヒット：{{ w.damage }}+{{ player.toHit(w) }}[{{ w.type }}]ダメージ
-      //     v-list-tile-action: v-icon keyboard_arrow_right
-      //   v-divider
-
-      // ListHeader(title="呪文" icon="add" @click="$router.push('/spells')")
-      // template(v-for="(spell, key) of spells")
-      //   v-list-tile
-      //     v-list-tile-action(@click="$store.dispatch('deleteSpell', key)"): v-icon clear
-      //     v-list-tile-content
-      //       v-list-tile-title {{ spell && spell.name }}
-      //       v-list-tile-sub-title {{ spell && spell.klass }}/{{ spell && spell.level }}lv
-      //     v-list-tile-action(@click="$router.push(`/spellForm/${key}`)")
-      //       v-icon keyboard_arrow_right
-      //   v-divider
-
-
-      // ListHeader(title="特技・クラス能力" icon="add")
-      // v-list-tile
-      //   v-list-tile-content
-      //     v-list-tile-title {{ player.memo }}
-      //   v-list-tile-action: v-icon keyboard_arrow_right
-      // v-divider
-
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Player from '@/models/Player';
-import Spell from '@/models/Spell';
 import { ABILITY_LABEL, SKILLS } from '@/data/DATA';
-import WEAPONS from '@/data/WEAPON_DATA';
-import Weapon from '@/models/Weapon';
-import { db } from '@/plugins/firebase';
 
 @Component
 export default class PlayerShow extends Vue {
-  private abilityLabel = ABILITY_LABEL;
-  private skills = SKILLS;
-  private hp: number = 0;
   @Prop() private playerId!: string;
 
-  private get alert(): boolean {
-    return this.$store.state.alert;
-  }
-
-  private get alertMsg(): string {
-    return this.$store.state.alertMsg;
-  }
+  private abilityLabel = ABILITY_LABEL;
+  private skills = SKILLS;
 
   private get player(): Player | undefined {
     return this.$store.getters.player(this.playerId);
-  }
-
-  private get spells(): { [key: string]: Spell } {
-    const result: { [key: string]: Spell } = {};
-    if (this.player !== undefined && this.player.spells !== undefined) {
-      this.player.spells.forEach((spellId) => {
-        result[spellId] = this.$store.state.spells[spellId];
-      });
-    }
-    return result;
   }
 
   private get skillDisplay(): string[][] {
@@ -108,16 +57,13 @@ export default class PlayerShow extends Vue {
       ),
     );
   }
-
-  private edit(): void {
-    this.$router.push(`/playerForm/${this.playerId}`);
-  }
 }
 </script>
 
 <style lang="stylus">
 .center
   text-align center
+
 .border
   border 1px black solid
 
