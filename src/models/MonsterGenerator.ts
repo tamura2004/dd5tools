@@ -50,9 +50,9 @@ export default class MonsterGenerator {
     // const evil = _.sample(TEMPLATES) || TEMPLATES[0];
 
     const [exp, num] = this.chooseExpNum(mode);
-    const monster = _.sample(MONSTERS.filter((m: Monster) =>
+    const monster = _.cloneDeep(_.sample(MONSTERS.filter((m: Monster) =>
       m.exp === exp &&
-      (m.alignment.includes('悪') || Math.random() < 0.2)));
+      (m.alignment.includes('悪') || Math.random() < 0.3))));
     if (monster !== undefined && num !== undefined) {
       if (!monster.alignment.includes('悪')) {
         monster.templateId = _.random(0, TEMPLATES.length - 1);

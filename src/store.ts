@@ -7,6 +7,7 @@ import State from '@/models/State';
 import Session from '@/models/Session';
 import Encounter from '@/models/Encounter';
 import Creature from '@/models/Creature';
+import Player from '@/models/Player';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import Feat from './models/Feat';
@@ -35,6 +36,19 @@ export default new Vuex.Store({
         .filter(([, c]) => c.encounterId === encounterId),
       );
     },
+    players(state) {
+      return (sessionId: string) => {
+        const session = state.sessions.get(sessionId);
+        if (session === undefined) {
+          return new Map<string, Player>();
+        } else {
+          return new Map<string, Player>(
+            [...state.players]
+            .filter(([playerId]) => session.playerIds.includes(playerId)),
+          );
+        }
+      };
+    },
     creature(state) {
       return (creatureId: string) => state.creatures.get(creatureId);
     },
@@ -52,9 +66,6 @@ export default new Vuex.Store({
     },
     spell(state) {
       return (spellId: string) => state.spells.get(spellId);
-    },
-    players(state) {
-      return state.players;
     },
     player(state) {
       return (playerId: string) => state.players.get(playerId);

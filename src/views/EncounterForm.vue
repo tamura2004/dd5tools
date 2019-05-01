@@ -1,6 +1,6 @@
 <template lang="pug">
   .headline EncounterForm
-    v-btn(block dark to="/encounter/1/battle") モンスター選択
+    v-btn(block dark @click="reload") 振り直し
     v-list(two-line)
       template(v-for="monster in monsters")
         MonsterList(:monster="monster")
@@ -28,6 +28,27 @@ import PATH from '@/types/PathTypes';
 export default class EncounterForm extends Vue {
   @Prop() private sessionId!: string;
 
+  private monsters: Array<Monster | undefined> = [];
+
+  private modes: MODE[] = [
+    MODE.EASY,
+    MODE.NORMAL,
+    MODE.NORMAL,
+    MODE.NORMAL,
+    MODE.HARD,
+    MODE.HELL,
+  ];
+
+  private created() {
+    this.reload();
+  }
+
+  private reload() {
+    const generator = new MonsterGenerator();
+    generator.loadPlayers(Array.from(this.players.values()));
+    this.monsters = this.modes.map((mode: MODE) => generator.chooseMonster(mode));
+  }
+
   private get session(): Session {
     return this.$store.state.sessions.get(this.sessionId);
   }
@@ -37,7 +58,7 @@ export default class EncounterForm extends Vue {
   }
 
   private get players(): Map<string, Player> {
-    return this.$store.state.players;
+    return this.$store.getters.players(this.sessionId);
   }
 
   private get party(): Player[] {
@@ -49,21 +70,6 @@ export default class EncounterForm extends Vue {
       }
     }
     return ret;
-  }
-
-  private modes: MODE[] = [
-    MODE.EASY,
-    MODE.NORMAL,
-    MODE.NORMAL,
-    MODE.NORMAL,
-    MODE.HARD,
-    MODE.HELL,
-  ];
-
-  private get monsters(): Array<Monster | undefined> {
-    const generator = new MonsterGenerator();
-    generator.loadPlayers(Array.from(this.players.values()));
-    return this.modes.map((mode: MODE) => generator.chooseMonster(mode));
   }
 
   private async select(monster: Monster) {
