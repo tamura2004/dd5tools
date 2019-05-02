@@ -20,7 +20,7 @@ export default class WeaponDescription extends Vue {
     if (this.player.ability === undefined) {
       return [10, 10, 10, 10, 10, 10];
     } else {
-      return this.player.ability
+      return this.player.ability;
     }
   }
 

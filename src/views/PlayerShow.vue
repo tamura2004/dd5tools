@@ -28,9 +28,9 @@ div(v-if="player")
         td.number {{ player.saves.includes(abilityLabel[n-1]) ? '●' : '' }}
         td.skill {{ skillDisplay[n-1].join('、') }}
   v-tabs
-    v-tab(:to="`/player/${playerId}/weapons`") 武器
-    v-tab(:to="`/player/${playerId}/spells`") 呪文
-    v-tab(:to="`/player/${playerId}/feats`") 特技
+    v-tab(@click="goWeapon") 武器
+    v-tab(@click="goSpell") 呪文
+    v-tab(@click="goFeat") 特技
   router-view
 </template>
 
@@ -38,6 +38,7 @@ div(v-if="player")
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Player from '@/models/Player';
 import { ABILITY_LABEL, SKILLS } from '@/data/DATA';
+import PATH from '../types/PathTypes';
 
 @Component
 export default class PlayerShow extends Vue {
@@ -56,6 +57,27 @@ export default class PlayerShow extends Vue {
         (!!this.player && this.player.skills && this.player.skills.includes(skill)) ? `●${skill}` : skill,
       ),
     );
+  }
+
+  private go(path: string) {
+    this.$router.replace({
+      name: path,
+      params: {
+        playerId: this.playerId,
+      },
+    });
+  }
+
+  private goWeapon() {
+    this.go(PATH.PLAYER_WEAPONS);
+  }
+
+  private goSpell() {
+    this.go(PATH.PLAYER_SPELLS);
+  }
+
+  private goFeat() {
+    this.go(PATH.PLAYER_FEATS);
   }
 }
 </script>

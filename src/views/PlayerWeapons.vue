@@ -14,16 +14,15 @@
         v-tab(@click="type='刺突'") 刺突
     v-list
       template(v-for="[name, weapon] in Array.from(weapons)")
-        template(v-if="weapon.category.includes(range) && weapon.type.includes(type)")
-          template(v-if="player.weapon.includes(name) || edit")
-            v-list-tile(:key="name")
-              v-list-tile-action(v-if="edit")
-                v-checkbox(v-model="weaponNames" :value="name")
-              v-list-tile-content
-                v-list-tile-title {{ name }}：{{ weapon.category }}
-                v-list-tile-sub-title
-                  weapon-description(:weapon="weapon" :player="player")
-            v-divider
+        template(v-if="show(name, weapon)")
+          v-list-tile(:key="name")
+            v-list-tile-action(v-if="edit")
+              v-checkbox(v-model="weaponNames" :value="name")
+            v-list-tile-content
+              v-list-tile-title {{ name }}：{{ weapon.category }}
+              v-list-tile-sub-title
+                weapon-description(:weapon="weapon" :player="player")
+          v-divider
   </template>
 
 <script lang="ts">
@@ -48,6 +47,18 @@ export default class PlayerWeapons extends Vue {
 
   private get weapons(): Map<string, Partial<Weapon>> {
     return WEAPONS;
+  }
+
+  private show(name: string, weapon: Weapon): boolean {
+    if (this.edit) {
+      return weapon.category.includes(this.range) && weapon.type.includes(this.type);
+
+    } else if (this.player) {
+      return this.player.weapon.includes(name);
+
+    } else {
+      return false;
+    }
   }
 
   private async save() {

@@ -20,7 +20,7 @@ export default class AbilityLabel extends Vue {
     '【魅】',
   ];
 
-  private label(i: number):string {
+  private label(i: number): string {
     return this.abilityLabel[i];
   }
 

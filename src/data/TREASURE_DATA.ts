@@ -9,7 +9,7 @@ type Dice = (min: number, max: number) => number;
 
 function rollChart<T>(dice: Dice, chart: Map<number, T>): T {
   const roll = dice(1, 100);
-  const line = [...chart].reduce((a, [num, t]) => a = roll >= num ? [num, t] : a);
+  const line = [...chart].reverse().reduce((a, [num, t]) => a = roll <= num ? [num, t] : a);
   return line[1];
 }
 
@@ -392,10 +392,10 @@ export function chooseItems(dice: Dice): string[] {
   if (chart !== undefined) {
     const times = dice(1, max);
     for (let i = 0; i < times; i++) {
-      items.push(rollChart(dice, chart));
+      items.push(`${type}:${rollChart(dice, chart)}`);
     }
   }
-  return items;
+  return items.sort();
 }
 
 export function chooseGold(dice: Dice): number {

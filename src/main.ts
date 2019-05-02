@@ -14,6 +14,7 @@ import Spell from '@/models/Spell';
 import Reward from '@/models/Reward';
 import Log from '@/models/Log';
 import Feat from '@/models/Feat';
+
 import uppperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
 
