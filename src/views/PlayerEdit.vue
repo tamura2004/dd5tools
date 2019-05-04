@@ -14,7 +14,7 @@ import _ from 'lodash';
 @Component
 export default class PlayerEdit extends Vue {
   @Prop() private playerId!: string;
-  private form!: Player | null = null;
+  private form: Player | null = null;
 
   private created() {
     if (this.player !== undefined) {
