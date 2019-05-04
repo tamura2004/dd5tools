@@ -11,6 +11,30 @@ function modify(ability: number): number {
 export default class Player {
   public static collectionName: string = 'players';
 
+  public static form() {
+    return {
+      name: '',
+      characterName: '',
+      klass: '',
+      background: '',
+      race: '',
+      alignment: '',
+      level: 5,
+      maxHp: 10,
+      hp: 10,
+      exp: 7000,
+      baseAbility: [10, 10, 10, 10, 10, 10],
+      saves: [],
+      skills: [],
+      spells: [],
+      weapon: [],
+      armor: '',
+      memo: '',
+      avatar: '',
+      gold: 0,
+    };
+  }
+
   public name: string | null = null;
   public characterName: string | null = null;
   public klass: string | null = null;

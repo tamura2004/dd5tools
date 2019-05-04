@@ -31,6 +31,7 @@ div(v-if="player")
     v-tab(@click="goWeapon") 武器
     v-tab(@click="goSpell") 呪文
     v-tab(@click="goFeat") 特技
+    v-tab(:to="`/player/${playerId}/edit`") 編集
   router-view
 </template>
 

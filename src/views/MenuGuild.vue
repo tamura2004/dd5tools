@@ -4,7 +4,7 @@
       v-flex(xs12)
         menu-button(label="ギルドカード提示" color="primary" to="/players")
       v-flex(xs12)
-        menu-button(label="新規登録" color="success" to="player/new/form")
+        menu-button(label="新規登録" color="success" to="/players/new")
       v-flex(xs12)
         .headline.text-xs-center いらっしゃいませ
       v-flex(xs12)
