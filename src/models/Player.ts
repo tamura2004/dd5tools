@@ -32,6 +32,7 @@ export default class Player {
       memo: '',
       avatar: '',
       gold: 0,
+      languages: [],
     };
   }
 
@@ -54,6 +55,7 @@ export default class Player {
   public memo: string | null = null;
   public avatar: string | null = null;
   public gold: number | null = null;
+  public languages?: string[] = [];
 
   constructor(init: Partial<Player>) {
     Object.assign(this, init);

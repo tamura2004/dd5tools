@@ -6,6 +6,8 @@
     :items="items"
     :rules="required"
     :value="value"
+    :multiple="multiple"
+    :chips="multiple"
     @input="$emit('input', $event)"
   )
 </template>
@@ -21,6 +23,7 @@ export default class BaseSelect extends Vue {
   @Prop() private value!: string;
   @Prop() private items!: Item[];
   @Prop() private label!: string;
+  @Prop({ default: false }) private multiple!: boolean;
 
   private required: Validator[] = [
     (v: string) => !!v || '必須項目です',

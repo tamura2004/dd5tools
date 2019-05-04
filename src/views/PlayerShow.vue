@@ -1,5 +1,6 @@
 <template lang="pug">
 div(v-if="player")
+  .headline {{ player.characterName }}
   v-list(dense)
     v-list-tile
       v-list-tile-avatar(tile)

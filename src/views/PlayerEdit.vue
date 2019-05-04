@@ -1,6 +1,6 @@
 <template lang="pug">
 player-form(
-  v-model="form"
+  :form="form"
   @save="save"
 )
 </template>
