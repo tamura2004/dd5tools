@@ -56,6 +56,10 @@ v-form(v-model="valid" v-if="form")
       :items="languages"
       v-model="form.languages"
     )
+    base-textarea(
+      label="メモ"
+      v-model="form.memo"
+    )
     v-card-actions
       v-spacer
       v-btn(

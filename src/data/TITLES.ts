@@ -20,6 +20,7 @@ export const TITLES = new Map<string, string>([
   [ PATH.PLAYER_WEAPONS, 'キャラクターシート' ],
   [ PATH.PLAYER_SPELLS, 'キャラクターシート' ],
   [ PATH.PLAYER_FEATS, 'キャラクターシート' ],
+  [ PATH.PLAYER_MEMO, 'キャラクターシート' ],
   [ PATH.SESSION, 'セッション' ],
   [ PATH.SESSION_EDIT, 'セッション編集' ],
   [ PATH.SESSION_ENCOUNTERS, '遭遇一覧' ],

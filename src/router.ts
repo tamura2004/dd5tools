@@ -26,6 +26,7 @@ import PlayerShow from '@/views/PlayerShow.vue';
 import PlayerWeapons from '@/views/PlayerWeapons.vue';
 import PlayerSpells from '@/views/PlayerSpells.vue';
 import PlayerFeats from '@/views/PlayerFeats.vue';
+import PlayerMemo from '@/views/PlayerMemo.vue';
 import Session from '@/views/Session.vue';
 import SessionEncounters from '@/views/SessionEncounters.vue';
 import SessionForm from '@/views/SessionForm.vue';
@@ -57,6 +58,7 @@ const router = new Router({
         { name: PATH.PLAYER_WEAPONS, path: 'weapons', component: PlayerWeapons, props: true },
         { name: PATH.PLAYER_SPELLS, path: 'spells', component: PlayerSpells, props: true },
         { name: PATH.PLAYER_FEATS, path: 'feats', component: PlayerFeats, props: true },
+        { name: PATH.PLAYER_MEMO, path: 'memo', component: PlayerMemo, props: true },
       ],
     },
     { name: PATH.SPELLS_INDEX, path: '/spells', component: SpellIndex },

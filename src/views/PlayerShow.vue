@@ -32,6 +32,7 @@ div(v-if="player")
     v-tab(@click="goWeapon") 武器
     v-tab(@click="goSpell") 呪文
     v-tab(@click="goFeat") 特技
+    v-tab(@click="goMemo") メモ
     v-tab(:to="`/player/${playerId}/edit`") 編集
   router-view
 </template>
@@ -80,6 +81,10 @@ export default class PlayerShow extends Vue {
 
   private goFeat() {
     this.go(PATH.PLAYER_FEATS);
+  }
+
+  private goMemo() {
+    this.go(PATH.PLAYER_MEMO);
   }
 }
 </script>
