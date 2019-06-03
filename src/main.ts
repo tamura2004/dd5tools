@@ -20,16 +20,14 @@ import camelCase from 'lodash/camelCase';
 
 Vue.config.productionTip = false;
 
-listen(store, Session);
-listen(store, Encounter);
-listen(store, Creature);
-listen(store, Player);
-listen(store, Dungeon);
-listen(store, Npc);
-listen(store, Spell);
-listen(store, Reward);
-listen(store, Log);
-listen(store, Feat);
+listen(store, Session, () => store.state.sessions);
+listen(store, Encounter, () => store.state.encounters);
+listen(store, Creature, () => store.state.creatures);
+listen(store, Player, () => store.state.players);
+listen(store, Dungeon, () => store.state.dungeons);
+listen(store, Npc, () => store.state.npcs);
+listen(store, Spell, () => store.state.spells);
+listen(store, Feat, () => store.state.feats);
 
 const requireComponent = require.context(
   './components',

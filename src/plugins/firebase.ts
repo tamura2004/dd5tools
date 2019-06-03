@@ -20,10 +20,11 @@ export const db = firebaseApp.firestore();
 export function listen<T>(
   store: Store<State>,
   fn: (new(init: Partial<T>) => T) & { collectionName: string },
+  getCollection: () => Map<string, any>,
 ) {
   const name = fn.collectionName;
+  const collection = getCollection();
   db.collection(name).onSnapshot((query) => {
-    const collection = new Map<string, T>();
     query.docChanges().forEach((change: any) => {
       if (change.type === 'added' || change.type === 'modified') {
         collection.set(change.doc.id, new fn({...change.doc.data()}));
