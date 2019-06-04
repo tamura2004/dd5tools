@@ -23,8 +23,8 @@ export function listen<T>(
   getMap: () => Map<string, T>,
 ) {
   const name = fn.collectionName;
+  const collection = _.cloneDeep(getMap());
   db.collection(name).onSnapshot((query) => {
-    const collection = _.cloneDeep(getMap());
     query.docChanges().forEach((change: any) => {
       if (change.type === 'added' || change.type === 'modified') {
         collection.set(change.doc.id, new fn({...change.doc.data()}));
