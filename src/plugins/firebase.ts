@@ -23,12 +23,10 @@ export function listen<T>(
   getMap: () => Map<string, T>,
 ) {
   const name = fn.collectionName;
-  const collection = _.cloneDeep(getMap());
   db.collection(name).onSnapshot((query) => {
-    query.docChanges().forEach((change: any) => {
-      if (change.type === 'added' || change.type === 'modified') {
-        collection.set(change.doc.id, new fn({...change.doc.data()}));
-      }
+    const collection = new Map<string, any>();
+    query.forEach((doc: any) => {
+      collection.set(doc.id, new fn({...doc.data()}));
     });
     store.commit({
       type: 'set',
