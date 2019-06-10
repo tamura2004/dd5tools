@@ -18,31 +18,34 @@ const firebaseApp = firebase.initializeApp({
 
 export const db = firebaseApp.firestore();
 
-export function listenCreature(encounterId: string): any {
-  const unsubscribe = db.collection('creatures')
-  .where('encounterId', '==', encounterId)
-  .onSnapshot((query) => {
-    const collection = new Map<string, any>();
-    query.forEach((doc: any) => {
-      collection.set(doc.id, new Creature({...doc.data()}));
-    });
-    store.commit({
-      type: 'set',
-      name: 'creatures',
-      collection,
-    });
-  });
-  return unsubscribe;
-}
+// export function listen<T>(encounterId: string): any {
+//   const unsubscribe = db.collection('creatures')
+//   .where('encounterId', '==', encounterId)
+//   .onSnapshot((query) => {
+//     const collection = new Map<string, any>();
+//     query.forEach((doc: any) => {
+//       collection.set(doc.id, new Creature({...doc.data()}));
+//     });
+//     store.commit({
+//       type: 'set',
+//       name: 'creatures',
+//       collection,
+//     });
+//   });
+//   return unsubscribe;
+// }
 
 export function listen<T>(
-  // store: Store<State>,
   fn: (new(init: Partial<T>) => T) & { collectionName: string },
+  keyName?: string,
+  key?: string,
 ) {
   const name = fn.collectionName;
-  db.collection(name).onSnapshot((query) => {
+  const cRef = db.collection(name);
+  const query = keyName ? cRef.where(keyName, '==', key) : cRef;
+  const subscribe = query.onSnapshot((queryRef) => {
     const collection = new Map<string, any>();
-    query.forEach((doc: any) => {
+    queryRef.forEach((doc: any) => {
       collection.set(doc.id, new fn({...doc.data()}));
     });
     store.commit({

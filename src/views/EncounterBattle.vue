@@ -10,7 +10,8 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
-import { listenCreature} from '@/plugins/firebase';
+import { listen } from '@/plugins/firebase';
+import Creature from '@/models/Creature';
 
 @Component
 export default class EncounterBattle extends Vue {
@@ -20,7 +21,11 @@ export default class EncounterBattle extends Vue {
   private unsubscribe: any;
 
   private created() {
-    this.unsubscribe = listenCreature(this.encounterId);
+    this.unsubscribe = listen<Creature>(
+      Creature,
+      'encounterId',
+      this.encounterId,
+    );
   }
 
   private destroyed() {

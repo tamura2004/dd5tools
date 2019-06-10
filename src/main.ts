@@ -6,7 +6,6 @@ import store from './store';
 import { listen } from '@/plugins/firebase';
 import Session from '@/models/Session';
 import Encounter from '@/models/Encounter';
-import Creature from '@/models/Creature';
 import Player from '@/models/Player';
 import Dungeon from '@/models/Dungeon';
 import Npc from '@/models/Npc';
@@ -18,13 +17,13 @@ import camelCase from 'lodash/camelCase';
 
 Vue.config.productionTip = false;
 
-listen(Session);
-listen(Encounter);
-listen(Player);
-listen(Dungeon);
-listen(Npc);
-listen(Spell);
-listen(Feat);
+listen<Session>(Session);
+listen<Encounter>(Encounter);
+listen<Player>(Player);
+listen<Dungeon>(Dungeon);
+listen<Npc>(Npc);
+listen<Spell>(Spell);
+listen<Feat>(Feat);
 
 const requireComponent = require.context(
   './components',
