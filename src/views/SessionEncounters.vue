@@ -22,7 +22,9 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
+import { listen } from '@/plugins/firebase';
 import PATH from '@/types/PathTypes';
+import Encounter from '@/models/Encounter';
 
 @Component({
   computed: {
@@ -31,6 +33,16 @@ import PATH from '@/types/PathTypes';
 })
 export default class SessionEncounter extends Vue {
   @Prop() private sessionId!: string;
+
+  private unsubscribe: any;
+
+  private created() {
+    this.unsubscribe = listen<Encounter>(Encounter, 'sessionId', this.sessionId);
+  }
+
+  private destroyed() {
+    this.unsubscribe();
+  }
 
   private go(encounterId: string) {
     this.$router.push({

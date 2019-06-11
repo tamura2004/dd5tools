@@ -23,6 +23,7 @@ import Monster from '@/models/Monster';
 import MONSTERS from '@/data/MONSTERS';
 import TEMPLATES from '@/data/TEMPLATES';
 import PATH from '@/types/PathTypes';
+import { listen } from '@/plugins/firebase';
 
 @Component
 export default class EncounterForm extends Vue {
@@ -39,8 +40,15 @@ export default class EncounterForm extends Vue {
     MODE.HELL,
   ];
 
+  private unsubscribe: any;
+
   private created() {
     this.reload();
+    this.unsubscribe = listen<Encounter>(Encounter, 'sessionId', this.sessionId);
+  }
+
+  private destroyed() {
+    this.unsubscribe();
   }
 
   private reload() {

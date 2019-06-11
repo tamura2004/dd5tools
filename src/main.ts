@@ -18,7 +18,6 @@ import camelCase from 'lodash/camelCase';
 Vue.config.productionTip = false;
 
 listen<Session>(Session);
-listen<Encounter>(Encounter);
 listen<Player>(Player);
 listen<Dungeon>(Dungeon);
 listen<Npc>(Npc);

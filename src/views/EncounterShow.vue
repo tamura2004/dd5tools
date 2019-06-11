@@ -28,6 +28,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import { mapGetters } from 'vuex';
+import { listen } from '@/plugins/firebase';
 import Session from '@/models/Session';
 import Encounter from '@/models/Encounter';
 
@@ -35,6 +36,16 @@ import Encounter from '@/models/Encounter';
 export default class EncounterShow extends Vue {
   @Prop() public sessionId!: string;
   @Prop() public encounterId!: string;
+
+  private unsubscribe: any;
+
+  private created() {
+    this.unsubscribe = listen<Encounter>(Encounter, 'sessionId', this.sessionId);
+  }
+
+  private destroyed() {
+    this.unsubscribe();
+  }
 
   private get session(): Session {
     return this.$store.getters.session(this.sessionId);

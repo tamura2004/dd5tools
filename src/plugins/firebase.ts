@@ -18,32 +18,15 @@ const firebaseApp = firebase.initializeApp({
 
 export const db = firebaseApp.firestore();
 
-// export function listen<T>(encounterId: string): any {
-//   const unsubscribe = db.collection('creatures')
-//   .where('encounterId', '==', encounterId)
-//   .onSnapshot((query) => {
-//     const collection = new Map<string, any>();
-//     query.forEach((doc: any) => {
-//       collection.set(doc.id, new Creature({...doc.data()}));
-//     });
-//     store.commit({
-//       type: 'set',
-//       name: 'creatures',
-//       collection,
-//     });
-//   });
-//   return unsubscribe;
-// }
-
 export function listen<T>(
   fn: (new(init: Partial<T>) => T) & { collectionName: string },
   keyName?: string,
   key?: string,
-) {
+): () => void {
   const name = fn.collectionName;
   const cRef = db.collection(name);
-  const query = keyName ? cRef.where(keyName, '==', key) : cRef;
-  const subscribe = query.onSnapshot((queryRef) => {
+  const query = (keyName && key) ? cRef.where(keyName, '==', key) : cRef;
+  const unsubscribe = query.onSnapshot((queryRef) => {
     const collection = new Map<string, any>();
     queryRef.forEach((doc: any) => {
       collection.set(doc.id, new fn({...doc.data()}));
@@ -54,4 +37,5 @@ export function listen<T>(
       collection,
     });
   });
+  return unsubscribe;
 }
