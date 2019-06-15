@@ -4,6 +4,10 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import PATH from '@/types/PathTypes';
 
+import DungeonIndex from '@/views/DungeonIndex.vue';
+import DungeonShow from '@/views/DungeonShow.vue';
+import DungeonNew from '@/views/DungeonNew.vue';
+import DungeonEdit from '@/views/DungeonEdit.vue';
 import EncounterShow from '@/views/EncounterShow.vue';
 import EncounterBattle from '@/views/EncounterBattle.vue';
 import EncounterForm from '@/views/EncounterForm.vue';
@@ -27,9 +31,10 @@ import PlayerWeapons from '@/views/PlayerWeapons.vue';
 import PlayerSpells from '@/views/PlayerSpells.vue';
 import PlayerFeats from '@/views/PlayerFeats.vue';
 import PlayerMemo from '@/views/PlayerMemo.vue';
-import Session from '@/views/Session.vue';
+import SessionShow from '@/views/SessionShow.vue';
 import SessionEncounters from '@/views/SessionEncounters.vue';
-import SessionForm from '@/views/SessionForm.vue';
+import SessionNew from '@/views/SessionNew.vue';
+import SessionEdit from '@/views/SessionEdit.vue';
 import SessionPlayers from '@/views/SessionPlayers.vue';
 import SessionReward from '@/views/SessionReward.vue';
 import SessionIndex from '@/views/SessionIndex.vue';
@@ -40,6 +45,18 @@ Vue.use(Router);
 
 const router = new Router({
   routes: [
+    { name: PATH.DUNGEONS_INDEX, path: '/dungeons', component: DungeonIndex },
+    { name: PATH.DUNGEONS_NEW, path: '/dungeons/new', component: DungeonNew },
+    { name: PATH.DUNGEON_EDIT, path: '/dungeon/:dungeonId/edit', component: DungeonEdit, props: true },
+    {
+      name: PATH.DUNGEON_SHOW,
+      path: '/dungeon/:dungeonId',
+      component: DungeonShow,
+      props: true,
+      children: [
+        { name: PATH.DUNGEON_SESSIONS, path: 'sessions', component: SessionIndex, props: true },
+      ],
+    },
     { name: PATH.HOME, path: '/', component: Home },
     { name: PATH.MENU_MASTER, path: '/menu/master', component: MenuMaster },
     { name: PATH.MENU_GUILD, path: '/menu/guild', component: MenuGuild },
@@ -66,13 +83,13 @@ const router = new Router({
     { name: PATH.SPELL_EDIT, path: '/spell/:spellId/edit', component: SpellEdit, props: true },
     { name: PATH.SIGNIN, path: '/signin', component: Signin },
     { name: PATH.SIGNUP, path: '/signup', component: Signup },
-    { name: PATH.SESSIONS, path: '/sessions', component: SessionIndex },
-    { name: PATH.SESSIONS_NEW, path: '/sessions/new', component: SessionForm },
-    { name: PATH.SESSION_EDIT, path: '/session/:sessionId/edit', component: SessionForm, props: true },
+    { name: PATH.SESSIONS, path: '/sessions', component: SessionIndex, props: true },
+    { name: PATH.SESSIONS_NEW, path: '/sessions/new', component: SessionNew },
+    { name: PATH.SESSION_EDIT, path: '/session/:sessionId/edit', component: SessionEdit, props: true },
     {
       name: PATH.SESSION,
       path: '/session/:sessionId',
-      component: Session,
+      component: SessionShow,
       props: true,
       children: [
         { name: PATH.SESSION_PLAYERS, path: 'players', component: SessionPlayers, props: true },

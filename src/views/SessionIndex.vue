@@ -1,7 +1,7 @@
 <template lang="pug">
   .headline セッション一覧
     v-list(two-line)
-      template(v-for="[key, session] in Array.from(sessions)")
+      template(v-for="[key, session] in Array.from(sessions(dungeonId))")
         session-tile(:sessionId="key" :key="key")
         v-divider
 
@@ -9,14 +9,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { mapState } from 'vuex';
+import { Component, Vue, Prop } from 'vue-property-decorator';
+import { mapGetters } from 'vuex';
 
 @Component({
   computed: {
-    ...mapState(['sessions']),
+    ...mapGetters(['sessions']),
   },
 })
 export default class SessionIndex extends Vue {
+  @Prop({ default: null }) private dungeonId!: string;
 }
 </script>

@@ -1,6 +1,10 @@
 import PATH from '@/types/PathTypes';
 
 export const TITLES = new Map<string, string>([
+  [ PATH.DUNGEONS_INDEX, 'ダンジョン一覧' ],
+  [ PATH.DUNGEONS_NEW, '新規ダンジョン' ],
+  [ PATH.DUNGEON_SHOW, 'ダンジョン' ],
+  [ PATH.DUNGEON_EDIT, 'ダンジョン編集' ],
   [ PATH.ENCOUNTER, '遭遇' ],
   [ PATH.ENCOUNTER_BATTLE, '戦闘' ],
   [ PATH.ENCOUNTER_MONSTER, 'モンスターデータ' ],

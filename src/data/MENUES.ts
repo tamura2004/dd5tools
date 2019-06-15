@@ -31,9 +31,19 @@ export const MENUES: Menu[] = [
     label: '新規セッション',
   },
   {
+    path: '/dungeons',
+    icon: 'list',
+    label: 'ダンジョン一覧',
+  },
+  {
     path: '/players',
     icon: 'list',
     label: 'PC一覧',
+  },
+  {
+    path: '/players/new',
+    icon: 'person_add',
+    label: '新規PC',
   },
   {
     path: '/npcs',

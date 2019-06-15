@@ -1,5 +1,5 @@
 <template lang="pug">
-player-form(
+session-form(
   :form="form"
   @save="save"
 )
@@ -7,21 +7,18 @@ player-form(
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
-import Player from '@/models/Player';
+import Session from '@/models/Session';
 import * as ACTION from '@/types/ActionTypes';
 
 @Component
-export default class PlayerNew extends Vue {
-  private form = Player.form();
+export default class SessionNew extends Vue {
+  private form = Session.form();
 
   private save() {
     this.$store.dispatch(ACTION.WAIT,
-      () => this.$store.dispatch(ACTION.CREATE, new Player(this.form)),
+      () => this.$store.dispatch(ACTION.CREATE, new Session(this.form)),
     );
-    this.$router.push('/players');
+    this.$router.push('/sessions');
   }
 }
 </script>
-
-<style lang="stylus">
-</style>

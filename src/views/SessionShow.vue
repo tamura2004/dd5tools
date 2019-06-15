@@ -6,7 +6,8 @@
         td.body-2 {{ session.name }}
       tr
         th.label.body-2 場所
-        td.body-2 {{ dungeon(session.dungeonId).name }}
+        td.body-2
+          router-link(:to="`/dungeon/${session.dungeonId}/sessions`") {{ dungeon(session.dungeonId).name }}
       tr
         th.label.body-2 依頼人
         td.body-2
@@ -25,6 +26,7 @@
       v-tab(to="players") ＰＣ
       v-tab(to="encounters") 遭遇
       v-tab(to="reward") 報酬
+      v-tab(:to="`/session/${sessionId}/edit`") 編集
     router-view
 </template>
 
@@ -38,7 +40,7 @@ import SessionModel from '@/models/Session';
     ...mapGetters(['dungeon']),
   },
 })
-export default class Session extends Vue {
+export default class SessionShow extends Vue {
   @Prop() private sessionId!: string;
 
   private get available(): boolean {

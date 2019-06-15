@@ -7,7 +7,7 @@ v-list(two-line)
   )
     v-list-tile
       v-list-tile-avatar
-        v-img(:src="`/img/${player.avatar}`")
+        v-img(:src="`/img/${player.avatar || '035-elf.png'}`")
       PlayerTileContent(:id="id")
     v-divider
 </template>

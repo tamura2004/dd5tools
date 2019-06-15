@@ -20,6 +20,12 @@ export default new Vuex.Store({
     session(state) {
       return (sessionId: string) => state.sessions.get(sessionId);
     },
+    sessions(state) {
+      return (dungeonId: string) => new Map<string, Session>(
+        [...state.sessions]
+        .filter(([_, s]) => s.dungeonId === dungeonId || !dungeonId),
+      );
+    },
     encounters(state) {
       return (sessionId: string) => new Map<string, Encounter>(
         [...state.encounters]

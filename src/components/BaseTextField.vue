@@ -3,7 +3,7 @@
     :label="label"
     :prepend-icon="icon"
     :type="type"
-    :rules="required"
+    :rules="required ? rule : undefined"
     :value="value"
     @input="$emit('input', $event)"
   )
@@ -20,8 +20,9 @@ export default class BaseTextField extends Vue {
   @Prop() private label!: string;
   @Prop() private icon!: string;
   @Prop({ default: 'text' }) private type!: string;
+  @Prop({ default: true }) private required!: boolean;
 
-  private required: Validator[] = [
+  private rule: Validator[] = [
     (v: string) => !!v || '必須項目です',
   ];
 }
