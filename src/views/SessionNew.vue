@@ -12,7 +12,14 @@ import * as ACTION from '@/types/ActionTypes';
 
 @Component
 export default class SessionNew extends Vue {
+  @Prop({ default: null }) private dungeonId!: string;
   private form = Session.form();
+
+  private created() {
+    if (this.dungeonId !== null) {
+      this.form.dungeonId = this.dungeonId;
+    }
+  }
 
   private save() {
     this.$store.dispatch(ACTION.WAIT,

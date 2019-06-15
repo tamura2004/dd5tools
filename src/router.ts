@@ -84,7 +84,7 @@ const router = new Router({
     { name: PATH.SIGNIN, path: '/signin', component: Signin },
     { name: PATH.SIGNUP, path: '/signup', component: Signup },
     { name: PATH.SESSIONS, path: '/sessions', component: SessionIndex, props: true },
-    { name: PATH.SESSIONS_NEW, path: '/sessions/new', component: SessionNew },
+    { name: PATH.SESSIONS_NEW, path: '/sessions/new/:dungeonId', component: SessionNew, props: true },
     { name: PATH.SESSION_EDIT, path: '/session/:sessionId/edit', component: SessionEdit, props: true },
     {
       name: PATH.SESSION,

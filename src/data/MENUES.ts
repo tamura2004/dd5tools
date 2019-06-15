@@ -21,6 +21,11 @@ export const MENUES: Menu[] = [
     label: 'サインアップ',
   },
   {
+    path: '/dungeons',
+    icon: 'list',
+    label: 'ダンジョン一覧',
+  },
+  {
     path: '/sessions',
     icon: 'list',
     label: 'セッション一覧',
@@ -29,11 +34,6 @@ export const MENUES: Menu[] = [
     path: '/sessions/new',
     icon: 'add',
     label: '新規セッション',
-  },
-  {
-    path: '/dungeons',
-    icon: 'list',
-    label: 'ダンジョン一覧',
   },
   {
     path: '/players',

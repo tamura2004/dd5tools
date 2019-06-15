@@ -5,7 +5,7 @@
         session-tile(:sessionId="key" :key="key")
         v-divider
 
-    v-btn(dark block color="primary" to="/sessions/new") 新規セッション
+    v-btn(dark block color="primary" :to="`/sessions/new/${dungeonId}`") 新規セッション
 </template>
 
 <script lang="ts">
