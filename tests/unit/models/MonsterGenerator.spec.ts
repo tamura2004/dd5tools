@@ -2,12 +2,14 @@ import MonsterGenerator from '@/models/MonsterGenerator';
 import Player from '@/models/Player';
 import { MODE, BASE_EXP, NUM_MODIFY, EXP, CR } from '@/data/ENCOUNTER_DATA';
 import Monster from '@/models/Monster';
+import Guild from '@/models/Guild';
 
 describe('Encounter', () => {
-  const player = new Player({level: 3});
+  const player = new Player({guildId: 'guild'});
+  const guilds = new Map<string, Guild>([['guild', new Guild({ exp: 9000 })]]);
   const players = [player, player, player, player];
   const generator = new MonsterGenerator();
-  generator.loadPlayers(players);
+  generator.loadPlayers(players, guilds);
 
   it('can initialize by loading players', () => {
     expect(JSON.stringify(generator.players)).toBe(JSON.stringify(new Map([[3, 4]])));

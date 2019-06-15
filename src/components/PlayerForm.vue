@@ -4,11 +4,16 @@ v-form(v-model="valid" v-if="form")
   v-card.pt-2(flat)
     base-text-field(
       label="プレイヤー名"
-      v-model="form.name"
+      v-model="form.playerName"
     )
     base-text-field(
       label="キャラクター名"
       v-model="form.characterName"
+    )
+    base-select(
+      label="ギルド"
+      :items="guilds"
+      v-model="form.guildId"
     )
     base-select(
       label="属性"
@@ -73,6 +78,7 @@ v-form(v-model="valid" v-if="form")
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import Player from '@/models/Player';
 import * as DATA from '@/data/DATA';
+import Item from '@/models/Item';
 
 @Component
 export default class PlayerForm extends Vue {
@@ -88,6 +94,10 @@ export default class PlayerForm extends Vue {
   private skills = DATA.SKILL_LABELS;
   private abilities = DATA.ABILITY_LABEL;
   private languages = DATA.LANGUAGES;
+
+  private get guilds() {
+    return Item.from(this.$store.state.guilds);
+  }
 }
 </script>
 

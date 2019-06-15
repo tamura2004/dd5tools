@@ -40,11 +40,13 @@ export default class EncounterForm extends Vue {
     MODE.HELL,
   ];
 
-  private unsubscribe: any;
+  private unsubscribe: () => void = () => {
+    //
+  }
 
-  private created() {
+  private async reated() {
     this.reload();
-    this.unsubscribe = listen<Encounter>(Encounter, 'sessionId', this.sessionId);
+    this.unsubscribe = await listen<Encounter>(Encounter, 'sessionId', this.sessionId);
   }
 
   private destroyed() {
@@ -53,7 +55,7 @@ export default class EncounterForm extends Vue {
 
   private reload() {
     const generator = new MonsterGenerator();
-    generator.loadPlayers(Array.from(this.players.values()));
+    generator.loadPlayers(Array.from(this.players.values()), this.$store.state.guilds);
     this.monsters = this.modes.map((mode: MODE) => generator.chooseMonster(mode));
   }
 

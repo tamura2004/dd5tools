@@ -8,6 +8,10 @@ import DungeonIndex from '@/views/DungeonIndex.vue';
 import DungeonShow from '@/views/DungeonShow.vue';
 import DungeonNew from '@/views/DungeonNew.vue';
 import DungeonEdit from '@/views/DungeonEdit.vue';
+import GuildIndex from '@/views/GuildIndex.vue';
+import GuildShow from '@/views/GuildShow.vue';
+import GuildNew from '@/views/GuildNew.vue';
+import GuildEdit from '@/views/GuildEdit.vue';
 import EncounterShow from '@/views/EncounterShow.vue';
 import EncounterBattle from '@/views/EncounterBattle.vue';
 import EncounterForm from '@/views/EncounterForm.vue';
@@ -45,6 +49,18 @@ Vue.use(Router);
 
 const router = new Router({
   routes: [
+    { name: PATH.GUILDS_INDEX, path: '/guilds', component: GuildIndex },
+    { name: PATH.GUILDS_NEW, path: '/guilds/new', component: GuildNew },
+    { name: PATH.GUILD_EDIT, path: '/guild/:guildId/edit', component: GuildEdit, props: true },
+    {
+      name: PATH.GUILD_SHOW,
+      path: '/guild/:guildId',
+      component: GuildShow,
+      props: true,
+      children: [
+        { name: PATH.GUILD_PLAYERS, path: 'players', component: PlayerIndex, props: true },
+      ],
+    },
     { name: PATH.DUNGEONS_INDEX, path: '/dungeons', component: DungeonIndex },
     { name: PATH.DUNGEONS_NEW, path: '/dungeons/new', component: DungeonNew },
     { name: PATH.DUNGEON_EDIT, path: '/dungeon/:dungeonId/edit', component: DungeonEdit, props: true },

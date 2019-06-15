@@ -36,6 +36,11 @@ export const MENUES: Menu[] = [
     label: '新規セッション',
   },
   {
+    path: '/guilds',
+    icon: 'people',
+    label: 'ギルド一覧',
+  },
+  {
     path: '/players',
     icon: 'list',
     label: 'PC一覧',

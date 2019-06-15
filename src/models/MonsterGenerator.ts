@@ -3,14 +3,17 @@ import Player from '@/models/Player';
 import MONSTERS from '@/data/MONSTERS';
 import Monster from '@/models/Monster';
 import { MODE, BASE_EXP, NUM_MODIFY, CR } from '@/data/ENCOUNTER_DATA';
+import { expToLevel} from '@/data/EXP';
 import TEMPLATES from '@/data/TEMPLATES';
+import Guild from '@/models/Guild';
 
 export default class MonsterGenerator {
   public players: Map<number, number> = new Map();
 
-  public loadPlayers(players: Player[]) {
+  public loadPlayers(players: Player[], guilds: Map<string, Guild>) {
     for (const player of players) {
-      const level = player.level || 0;
+      const guild = guilds.get(player.guildId);
+      const level = guild ? expToLevel(guild.exp) : 0;
       const num = this.players.get(level) || 0;
       this.players.set(level, num + 1);
     }

@@ -1,25 +1,24 @@
 <template lang="pug">
 div(v-if="player")
   .headline {{ player.characterName }}
-  v-list(dense)
+  v-list(two-line)
     v-list-tile
       v-list-tile-avatar(tile)
         v-img(:src="`/img/${player.avatar}`")
       v-list-tile-content
         v-list-tile-title
           v-layout
-            v-flex(xs6) {{ player.klass }} {{ player.level}}レベル
+            v-flex(xs6) {{ player.klass }} {{ player.level }}レベル
             v-flex(xs6) {{ player.race }}/{{ player.background }}
         v-list-tile-sub-title
           v-layout
             v-flex(xs3) {{ player.alignment }}
-            v-flex(xs3) PL:{{ player.name }}
+            v-flex(xs3) PL:{{ player.playerName }}
             v-flex(xs3) MV:30'
             v-flex(xs3) AC:{{ player.ac }}
     v-layout.mb-1(row wrap)
       base-user-tenkey(:id="playerId" field="hp" title="hp")
       base-user-tenkey(:id="playerId" field="maxHp" title="最大hp")
-      base-user-tenkey(:id="playerId" field="exp" title="経験値")
       base-user-tenkey(:id="playerId" field="gold" title="所持金")
     table
       tr(v-for="n in 6")

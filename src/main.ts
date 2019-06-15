@@ -5,7 +5,7 @@ import router from './router';
 import store from './store';
 import { listen } from '@/plugins/firebase';
 import Session from '@/models/Session';
-import Encounter from '@/models/Encounter';
+import Guild from '@/models/Guild';
 import Player from '@/models/Player';
 import Dungeon from '@/models/Dungeon';
 import Npc from '@/models/Npc';
@@ -18,6 +18,7 @@ import camelCase from 'lodash/camelCase';
 Vue.config.productionTip = false;
 
 listen<Session>(Session);
+listen<Guild>(Guild);
 listen<Player>(Player);
 listen<Dungeon>(Dungeon);
 listen<Npc>(Npc);

@@ -1,8 +1,6 @@
-import Weapon from '@/models/Weapon';
 import ARMOR_DATA from '@/data/ARMOR_DATA';
 import RACE_ABILITY from '@/data/RACE_ABILITY';
 import Armor from './Armor';
-import { expToLevel } from '@/data/EXP';
 
 function modify(ability: number): number {
   return Math.floor((ability - 10) / 2);
@@ -13,16 +11,15 @@ export default class Player {
 
   public static form() {
     return {
-      name: '',
+      playerName: '',
       characterName: '',
       klass: '',
       background: '',
       race: '',
       alignment: '',
-      level: 5,
       maxHp: 10,
       hp: 10,
-      exp: 7000,
+      guildId: '',
       baseAbility: [10, 10, 10, 10, 10, 10],
       saves: [],
       skills: [],
@@ -36,36 +33,28 @@ export default class Player {
     };
   }
 
-  public name: string | null = null;
-  public characterName: string | null = null;
-  public klass: string | null = null;
-  public level: number | null = null;
-  public background: string | null = null;
-  public race: string | null = null;
-  public alignment: string | null = null;
-  public maxHp: number | null = null;
-  public hp: number | null = null;
-  public exp: number | null = null;
-  public baseAbility: number[] = [];
-  public saves?: string[] = [];
-  public skills?: string[] = [];
-  public spells?: string[] = [];
-  public weapon: string[] = [];
-  public armor: string | null = null;
-  public memo: string | null = null;
-  public avatar: string | null = null;
-  public gold: number | null = null;
-  public languages?: string[] = [];
+  public playerName!: string;
+  public characterName!: string;
+  public klass!: string;
+  public background!: string;
+  public race!: string;
+  public alignment!: string;
+  public maxHp!: number;
+  public hp!: number;
+  public guildId!: string;
+  public baseAbility!: number[];
+  public saves!: string[];
+  public skills!: string[];
+  public spells!: string[];
+  public weapon!: string[];
+  public armor!: string;
+  public memo!: string;
+  public avatar!: string;
+  public gold!: number;
+  public languages!: string[];
 
   constructor(init: Partial<Player>) {
     Object.assign(this, init);
-    if (this.exp !== null) {
-      this.level = expToLevel(this.exp);
-    }
-  }
-
-  public get summary(): string {
-    return `${this.characterName}/${this.klass}${this.level}/${this.race}/${this.background}/${this.alignment}`;
   }
 
   public get ability(): number[] | undefined {
@@ -135,25 +124,6 @@ export default class Player {
         this.baseAbility[i]++;
         this.baseAbility[j]--;
       }
-    }
-  }
-
-  public get rank(): string | undefined {
-    const rankMap = new Map<number, string>([
-      [1, 'G'],
-      [2, 'F'],
-      [3, 'E'],
-      [4, 'D'],
-      [5, 'C'],
-      [6, 'B'],
-      [7, 'A'],
-      [8, 'S'],
-      [9, 'SS'],
-      [10, 'SSS'],
-    ]);
-
-    if (this.level !== null) {
-      return rankMap.get(this.level);
     }
   }
 }

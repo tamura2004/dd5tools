@@ -6,6 +6,7 @@ import Dungeon from './Dungeon';
 import Npc from './Npc';
 import Spell from './Spell';
 import Feat from './Feat';
+import Guild from '@/models/Guild';
 
 export default class State {
   public sessions: Map<string, Session> = new Map<string, Session>();
@@ -16,5 +17,6 @@ export default class State {
   public npcs: Map<string, Npc> = new Map<string, Npc>();
   public spells: Map<string, Spell> = new Map<string, Spell>();
   public feats: Map<string, Feat> = new Map<string, Feat>();
+  public guilds: Map<string, Guild> = new Map<string, Guild>();
   public wait: boolean = false;
 }

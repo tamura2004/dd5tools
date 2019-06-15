@@ -17,6 +17,9 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: new State(),
   getters: {
+    guild(state) {
+      return (guildId: string) => state.guilds.get(guildId);
+    },
     session(state) {
       return (sessionId: string) => state.sessions.get(sessionId);
     },

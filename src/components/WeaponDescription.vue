@@ -4,6 +4,8 @@ span 攻撃+{{ toHit }}{{ rangeDescription }}、ヒット：{{ weapon.damage }}+
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator';
+import { expToLevel } from '@/data/EXP';
+import Guild from '@/models/Guild';
 import Player from '@/models/Player';
 import Weapon from '@/models/Weapon';
 
@@ -11,6 +13,10 @@ import Weapon from '@/models/Weapon';
 export default class WeaponDescription extends Vue {
   @Prop() private player!: Player;
   @Prop() private weapon!: Weapon;
+
+  private get guilds() {
+    return this.$store.state.guilds;
+  }
 
   private modify(ability: number): number {
     return Math.floor((ability - 10) / 2);
@@ -49,7 +55,8 @@ export default class WeaponDescription extends Vue {
   }
 
   private get level(): number {
-    return this.player.level || 1;
+    const guild = this.guilds.get(this.player.guildId);
+    return guild ? expToLevel(guild.exp) : 1;
   }
 
   private get profMod(): number {

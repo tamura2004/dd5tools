@@ -3,7 +3,7 @@
     v-list-tile-title
       v-layout
         v-flex.text-truncate(xs9) {{ player.characterName }}
-        v-flex.caption(xs3) PL:{{ player.name }}
+        v-flex.caption(xs3) PL:{{ player.playerName }}
     v-list-tile-sub-title
       v-layout
         v-flex.text-truncate(xs6) {{ player.klass }}{{ player.level }}

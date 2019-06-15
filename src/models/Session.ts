@@ -3,12 +3,12 @@ export default class Session {
 
   public static form() {
     return {
-      name: null,
-      dungeonId: null,
-      npcId: null,
-      purpose: null,
-      reward: null,
-      limit: null,
+      name: '',
+      dungeonId: '',
+      npcId: '',
+      purpose: '',
+      reward: 0,
+      limit: '',
       playerIds: [],
     };
   }
