@@ -8,7 +8,7 @@ div(v-if="player")
       v-list-tile-content
         v-list-tile-title
           v-layout
-            v-flex(xs6) {{ player.klass }} {{ player.level }}レベル
+            v-flex(xs6) {{ player.klass }} {{ level(playerId) }}レベル
             v-flex(xs6) {{ player.race }}/{{ player.background }}
         v-list-tile-sub-title
           v-layout
@@ -41,8 +41,13 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 import Player from '@/models/Player';
 import { ABILITY_LABEL, SKILLS } from '@/data/DATA';
 import PATH from '../types/PathTypes';
+import { mapGetters } from 'vuex';
 
-@Component
+@Component({
+  computed: {
+    ...mapGetters(['level']),
+  },
+})
 export default class PlayerShow extends Vue {
   @Prop() private playerId!: string;
 

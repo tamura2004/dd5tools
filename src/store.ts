@@ -11,12 +11,24 @@ import Player from '@/models/Player';
 import firebase from 'firebase/app';
 import 'firebase/storage';
 import Feat from './models/Feat';
+import { expToLevel} from '@/data/EXP';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: new State(),
   getters: {
+    level(state) {
+      return (playerId: string) => {
+        const player = state.players.get(playerId);
+        if (player !== undefined) {
+          const guild = state.guilds.get(player.guildId);
+          if (guild !== undefined) {
+            return expToLevel(guild.exp);
+          }
+        }
+      };
+    },
     guild(state) {
       return (guildId: string) => state.guilds.get(guildId);
     },
