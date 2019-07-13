@@ -1,5 +1,5 @@
 <template lang="pug">
-dungeon-form(
+guild-form(
   :form="form"
   @save="save"
 )
