@@ -45,8 +45,8 @@ export default class MonsterGenerator {
   public chooseExpNum(mode?: MODE): [number, number | undefined] {
     const candidate = this.candidateExpNums(mode);
     const keys = Array.from(candidate.keys());
-    // const key = keys[Math.floor(Math.random() * keys.length)];
-    const key = keys.reduce((a, num) => Math.random() < 0.4 ? num : a);
+    const key = keys[Math.floor(Math.random() * keys.length)];
+    // const key = keys.reduce((a, num) => Math.random() < 0.3 ? num : a);
     return [key, candidate.get(key)];
   }
   public chooseMonster(mode: MODE = MODE.NORMAL): Monster | undefined {
@@ -55,7 +55,7 @@ export default class MonsterGenerator {
     const [exp, num] = this.chooseExpNum(mode);
     const monster = _.cloneDeep(_.sample(MONSTERS.filter((m: Monster) =>
       m.exp === exp &&
-      (m.alignment.includes('悪') || Math.random() < 0.3))));
+      (m.alignment.includes('悪') || Math.random() < 0.5))));
     if (monster !== undefined && num !== undefined) {
       if (!monster.alignment.includes('悪')) {
         monster.templateId = _.random(0, TEMPLATES.length - 1);

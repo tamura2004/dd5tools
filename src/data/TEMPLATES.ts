@@ -7,6 +7,8 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
         alignment: '中立にして悪',
         acMod: -4,
         hpMod: 1.2,
+        move: '10フィート',
+        damage: '殴打',
         abilityMod: [
             0,
             -4,
@@ -25,6 +27,8 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
         alignment: '中立にして悪',
         acMod: +1,
         hpMod: 0.8,
+        move: '',
+        damage: '刺突',
         abilityMod: [
             0,
             +2,
@@ -43,6 +47,8 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
         alignment: '秩序にして悪',
         acMod: -6,
         hpMod: 2.0,
+        move: '10フィート',
+        damage: '酸',
         abilityMod: [
             0,
             -4,
@@ -52,7 +58,6 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
             0,
         ],
         attributes: [
-            'ダメージ脆弱性: [炎][冷気]',
             'ダメージ耐性: [酸][毒][精神][死霊]',
         ],
     },
@@ -60,18 +65,19 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
         name: 'メタル',
         type: '人造',
         alignment: '秩序にして悪',
-        acMod: +1,
-        hpMod: 0.8,
+        acMod: 0,
+        hpMod: 1,
+        move: '',
+        damage: '電撃',
         abilityMod: [
             0,
-            +2,
-            -2,
+            0,
+            0,
             0,
             0,
             0,
         ],
         attributes: [
-            'ダメージ脆弱性: [電撃][酸]',
             'ダメージ耐性: [毒][精神][死霊]',
         ],
     },
@@ -81,6 +87,8 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
         alignment: '秩序にして悪',
         acMod: 0,
         hpMod: 1.0,
+        move: '飛行：60フィート',
+        damage: '炎',
         abilityMod: [
             0,
             0,
@@ -90,8 +98,6 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
             0,
         ],
         attributes: [
-            '飛行：60フィート',
-            'ダメージ脆弱性: [光輝]',
         ],
     },
     {
@@ -100,6 +106,8 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
         alignment: '混沌にして悪',
         acMod: 0,
         hpMod: 1,
+        move: '飛行：40フィート',
+        damage: '死霊',
         abilityMod: [
             0,
             0,
@@ -109,7 +117,7 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
             +4,
         ],
         attributes: [
-            '吸血: 与えたダメージと同じだけhpを回復する',
+            '吸血: 与えた[死霊]ダメージと同じだけhpを回復する',
         ],
     },
     {
@@ -118,6 +126,8 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
         alignment: '混沌にして悪',
         acMod: 0,
         hpMod: 1,
+        move: '飛行：20フィート',
+        damage: '精神',
         abilityMod: [
             0,
             0,
@@ -127,8 +137,7 @@ const TEMPLATE_DATA: Array<Required<Template>> = [
             +4,
         ],
         attributes: [
-            'ダメージ耐性: 非魔法の[殴打][刺突][斬撃]、[酸][毒]',
-            'ダメージ脆弱性: [光輝][精神]',
+            'ダメージ耐性: 非魔法の[殴打][刺突][斬撃]',
         ],
     },
 ];

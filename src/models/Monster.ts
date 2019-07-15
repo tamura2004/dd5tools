@@ -58,6 +58,14 @@ export default class Monster {
     monster.ac += template.acMod;
     monster.maxHp = Math.floor(monster.maxHp * template.hpMod);
     monster.attributes = monster.attributes.concat(template.attributes);
+    if (template.move !== '') {
+      monster.mv = template.move;
+    }
+    if (template.damage !== '') {
+      monster.actions = monster.actions.map((action) =>
+        action.replace(/[\[［].*[\]］]/g, `[${template.damage}]`),
+      );
+    }
     return monster;
   }
 

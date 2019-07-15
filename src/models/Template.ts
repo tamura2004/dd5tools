@@ -8,6 +8,8 @@ export default class Template {
   public hpMod!: number;
   public abilityMod!: number[];
   public attributes!: string[];
+  public move!: string;
+  public damage!: string;
 
   constructor(init: Required<Template>) {
     Object.assign(this, init);
