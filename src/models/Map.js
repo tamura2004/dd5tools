@@ -1,52 +1,78 @@
 const width = 60;
 let locked = false;
-let p;
-let q;
+const tiles = [];
+let balls = [];
+let select = null;
+
+class Tile {
+  constructor(p) {
+    this.p = p;
+  }
+  draw() {
+    rect(this.p.x, this.p.y, width, width);
+  }
+  collid(x, y) {
+    return this.p.x < x && x < this.p.x + width &&
+      this.p.y < y && y < this.p.y + width;
+  }
+}
+
+class Ball {
+  constructor(p) {
+    this.p = p;
+    this.q = p.copy();
+  }
+  move() {
+    this.p.add(this.q.copy().sub(this.p).div(8));
+  }fishbed
+
+  draw() {
+    fill('#65ace4')
+    ellipse(this.p.x, this.p.y, width - 10);
+  }
+      collid(x, y) {
+        return this.p.x < x && x < this.p.x + width &&
+          this.p.y < y && y < this.p.y + width;
+      }
+}
 
 function setup() {
   createCanvas(480, 360);
-  p = createVector(width / 2, width / 2)
-  q = createVector(width / 2, width / 2)
+  for (let y = 0; y < 8; y++) {
+    for (let x = 0; x < 12; x++) {
+      tiles.push(new Tile(createVector(x * width, y * width)));
+    }
+  }
+  for (let i = 0; i < 4; i++) {
+    balls.push(new Ball(createVector(i * width + width / 2, width / 2)));
+  }
 }
 
 function draw() {
   background(220);
-  for (let iy = 0; iy < 8; iy++) {
-    for (let ix = 0; ix < 12; ix++) {
-      const x = ix * width;
-      const y = iy * width;
-      if (
-        x < mouseX &&
-        mouseX < x + width &&
-        y < mouseY &&
-        mouseY < y + width &&
-        locked
-      ) {
-        fill('white');
-      } else {
-        fill(192);
-      }
-      rect(x, y, width, width);
-    }
+  for (const tile of tiles) {
+    const color = tile.collid(mouseX, mouseY) ? 'white' : 192;
+    fill(color);
+    tile.draw();
   }
   if (locked) {
     fill(128, 128, 128, 0)
     ellipse(mouseX, mouseY, width - 10)
-    line(p.x, p.y, mouseX, mouseY)
+    line(ball.p.x, ball.p.y, mouseX, mouseY)
   } else {
-    v = p5.Vector.sub(q, p).div(8);
-    p.add(v);
-
+    // ball.move();
   }
-  fill('#65ace4')
-  ellipse(p.x, p.y, width - 10);
+  for (const ball of balls) {
+    ball.draw();
+  }
 }
 
 function mousePressed() {
   locked = true;
+  select = balls.find((ball) => ball.collid(mouseX, mouseY));
 }
 
 function mouseReleased() {
   locked = false;
-  q = createVector(int(mouseX / width) * width + width / 2, int(mouseY / width) * width + width / 2);
+  ball.q = createVector(int(mouseX / width) * width + width / 2, int(mouseY / width) * width + width / 2);
 }
