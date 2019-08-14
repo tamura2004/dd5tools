@@ -1,7 +1,21 @@
 <template lang="pug">
-  v-layout(justify-start align-center column)
-    v-flex(xs12): h1.display-4 center
-    v-flex(xs12): .display-3 center
-    v-flex(xs12): .display-3 center
-    v-flex(xs12): .display-2 center
+  v-layout.pa-4(justify-start align-center column)
+    .display-3.mb-4 トワイライト
+    .display-3.mb-4 D&D5版
+    .display-3.mb-4 キャンペーン
+    .display-1.mb-4 あなたは・・・
+    base-menu-button(color="primary" to="/menu/guild") 冒険者
+    base-menu-button(color="grey darken-4" to="/menu/master") マスター
 </template>
+
+<script>
+export default {
+  layout: "menu",
+};
+</script>
+
+<style lang="stylus" scoped>
+#btn
+  height 60px
+  font-size 32px
+</style>
