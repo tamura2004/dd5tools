@@ -16,11 +16,10 @@ module.exports = {
   ],
   plugins: [
     "~/plugins/components.js",
+    "~/plugins/firebase.js",
+    "~/plugins/form.js",
   ],
   router: {
     middleware: ["firebase"],
   },
-  // router: {
-  //   middleware: ["firebase"],
-  // },
 };
