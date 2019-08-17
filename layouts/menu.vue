@@ -20,11 +20,11 @@ export default {
       drawer: false,
     };
   },
-  computed: mapGetters('nav', ['title']),
-}
+  computed: mapGetters("nav", ["title"]),
+};
 </script>
 
 <style scoped lang="stylus">
-  #a
-    border 2px solid red
+#a
+  border 2px solid red
 </style>

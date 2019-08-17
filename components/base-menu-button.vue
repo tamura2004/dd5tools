@@ -12,9 +12,9 @@
 
 <script>
 export default {
-  name: 'base-menu-button',
-  props: ['color', 'to'],
-}
+  name: "base-menu-button",
+  props: ["color", "to"],
+};
 </script>
 
 <style lang="stylus" scoped>

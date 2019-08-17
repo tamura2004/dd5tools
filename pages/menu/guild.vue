@@ -12,7 +12,7 @@
 export default {
   layout: "menu",
   created() {
-    this.$store.dispatch('nav/title', "冒険者ギルド")
+    this.$store.dispatch("nav/title", "冒険者ギルド");
   },
 };
 </script>

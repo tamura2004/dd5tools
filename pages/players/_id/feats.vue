@@ -6,7 +6,7 @@
 export default {
   asyncData(context) {
     const title = context.route.params;
-    return { title }
-  }
-}
+    return { title };
+  },
+};
 </script>

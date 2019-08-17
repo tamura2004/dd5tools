@@ -12,8 +12,8 @@
 export default {
   layout: "menu",
   created() {
-    this.$store.dispatch('nav/title', "ゲームマスター");
-  }
+    this.$store.dispatch("nav/title", "ゲームマスター");
+  },
 };
 </script>
 
