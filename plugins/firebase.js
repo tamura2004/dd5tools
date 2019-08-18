@@ -1,6 +1,7 @@
 import Vue from "vue";
 import firebase from "firebase/app";
 import "firebase/firestore";
+import pluralize from "pluralize";
 
 if (!firebase.apps.length) {
   firebase.initializeApp({
@@ -18,6 +19,8 @@ export const db = firebase.firestore();
 export class Firestore {
   constructor(name) {
     this.name = name;
+    this.collectionName = this.name;
+    this.memberName = pluralize.singular(this.name);
   }
   get state() {
     return () => ({
@@ -28,7 +31,9 @@ export class Firestore {
   get getters() {
     return {
       collection: state => state.values,
+      [this.collectionName]: state => state.values,
       member: state => id => state.values.find(value => value.id === id),
+      [this.memberName]: state => id => state.values.find(value => value.id === id),
     };
   }
   get mutations() {

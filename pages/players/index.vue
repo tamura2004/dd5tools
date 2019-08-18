@@ -1,37 +1,29 @@
 <template lang="pug">
-  v-card.mt-4
-    v-toolbar(flat)
-      v-toolbar-title プレイヤー一覧
-      v-spacer
-      v-switch.pt-8(color="primary" v-model="edit")
-    v-divider
-    v-list-item(three-lint v-for="player in collection" :key="player.id")
-      v-list-item-avatar
-        v-img(:src="`/img/${player.avatar || '032-leprechaun.png'}`")
-      v-list-item-content
-        v-list-item-title
-          v-layout
-            v-flex(xs8) {{ player.characterName }}
-            v-flex(xs4) PL:{{ player.name }}
-        v-list-item-subtitle
-          v-layout
-            v-flex(xs6) {{ player.klass }}
-            v-flex(xs6) {{ player.race }}/{{ player.background}}
-        v-list-item-subtitle
-          v-layout
-            v-flex(xs4) AC:{{ player.ac }}
-            v-flex(xs4) hp:{{ player.hp }}
-        v-divider
+  app-bar(title="冒険者名簿")
+    v-card
+      v-list
+        template(v-for="player in players")
+          player-list(:player="player")
+          v-divider(:key="'div' + player.id")
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import appBar from "~/components/layouts/app-bar";
+import playerList from "~/components/pages/player-list";
 
 export default {
+  components: {
+    appBar,
+    playerList,
+  },
   data: () => ({
     edit: false,
   }),
-  computed: mapGetters("players", ["collection"]),
+  computed: {
+    ...mapGetters("players", ["players"]),
+    ...mapGetters("guilds", ["guild"]),
+  },
 };
 </script>
 

@@ -1,16 +1,6 @@
 <template lang="pug">
   v-app
-    v-navigation-drawer(app v-model="drawer" temporary)
-      v-list-item
-        h1 menu
-    v-app-bar(app dark dense color="grey darken-4")
-      v-app-bar-nav-icon(@click="drawer = !drawer")
-      v-toolbar-title.headline {{ title }}
-    v-content
-      v-container(fluid)
-        v-layout(align-start justify-center)
-          v-flex(xs12 sm12 md8 xl8)
-            nuxt
+    nuxt
 </template>
 
 <script>
