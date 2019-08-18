@@ -1,6 +1,6 @@
 <template lang="pug">
   v-layout.pa-4(justify-start align-center column)
-    base-menu-button(color="primary") ギルドカード提示
+    base-menu-button(color="primary" to="/players") ギルドカード提示
     base-menu-button(color="success") 新規登録
     .headline.mt-4 いらっしゃいませ
     .headline ギルドカードをご提示ください

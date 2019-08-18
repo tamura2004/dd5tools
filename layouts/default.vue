@@ -6,10 +6,11 @@
     v-app-bar(app dark dense color="grey darken-4")
       v-app-bar-nav-icon(@click="drawer = !drawer")
       v-toolbar-title.headline {{ title }}
-    v-content#a
-      v-container#a(fluid)
-        v-layout(align-center justify-center)
-          nuxt
+    v-content
+      v-container(fluid)
+        v-layout(align-start justify-center)
+          v-flex(xs12 sm12 md8 xl8)
+            nuxt
 </template>
 
 <script>

@@ -15,9 +15,8 @@ module.exports = {
     '@nuxtjs/vuetify',
   ],
   plugins: [
-    "~/plugins/components.js",
     "~/plugins/firebase.js",
-    "~/plugins/form.js",
+    "~/plugins/components.js",
   ],
   router: {
     middleware: ["firebase"],
