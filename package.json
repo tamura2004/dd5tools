@@ -1,0 +1,25 @@
+{
+  "name": "dd5dm",
+  "version": "0.2.0",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "lint": "prettier '{store,pages,components,layouts,middleware,plugins}/**/*.{js,vue}' --write"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.2.1",
+    "nuxt": "^2.8.1",
+    "prettier": "^1.18.2",
+    "pug": "^2.0.4",
+    "pug-loader": "^2.4.0",
+    "pug-plain-loader": "^1.0.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2"
+  },
+  "dependencies": {
+    "firebase": "^6.3.5",
+    "pluralize": "^8.0.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  }
+}
