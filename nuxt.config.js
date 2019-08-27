@@ -17,14 +17,15 @@ module.exports = {
   },
   devModules: ["@nuxtjs/vuetify"],
   plugins: [
-    "~/plugins/firebase.js",
-    "~/plugins/components.js",
-    "~/plugins/filters.js",
-    "~/plugins/layout/title.js",
+    "~/plugins/firebase",
+    "~/plugins/components",
+    "~/plugins/filters",
+    "~/plugins/layout/title",
   ],
   router: {
     middleware: ["firebase"],
   },
+  buildModules: ["@nuxt/typescript-build"],
   vuetify: {
     customVariables: ["~/assets/variables.sass"],
     theme: {

@@ -1,4 +1,10 @@
-const table = [
+interface Exp {
+  exp: number;
+  level: number;
+  bab: number;
+}
+
+const table: Exp[] = [
   { exp: 0, level: 1, bab: 2 },
   { exp: 300, level: 2, bab: 2 },
   { exp: 900, level: 3, bab: 2 },
@@ -23,7 +29,7 @@ const table = [
 
 const reverse = table.reverse();
 
-export const toLevel = exp => {
+export const toLevel = (exp: any) => {
   const row = reverse.find(row => row.exp < exp);
   return row && row.level;
 };

@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  created() {
+  mounted() {
     this.$title("DD5TOOLS")
   }
 };
