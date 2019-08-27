@@ -15,13 +15,7 @@ export default {
   data: () => ({
     menues: [
       { icon: "mdi-home", to: "/", name: "トップメニュー" },
-      { icon: "mdi-bank", to: "/admin/banks", name: "モンスター" },
-      { icon: "mdi-city", to: "/admin/branches", name: "ダンジョン" },
-      { icon: "mdi-bug", to: "/admin/bugs", name: "遭遇" },
-      { icon: "mdi-bug", to: "/admin/bugs", name: "NPC" },
-      { icon: "mdi-bug", to: "/admin/bugs", name: "アイテム" },
-      { icon: "mdi-bug", to: "/admin/bugs", name: "ショップ" },
-      { icon: "mdi-bug", to: "/admin/bugs", name: "ギルド" },
+      { icon: "mdi-bacteria", to: "/monsters", name: "モンスターマニュアル" },
     ],
   }),
   computed: mapGetters("nav/drawer", ["drawer"]),
