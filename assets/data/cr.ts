@@ -1,6 +1,3 @@
-import { Middleware } from "@nuxt/types";
-import Vue from "vue";
-
 interface CR {
   index: number;
   cr: string;
@@ -34,12 +31,7 @@ const table: CR[] = [
   { index: 23, cr: "20", exp: 25000 },
 ];
 
-const setCRFilter: Middleware = () => {
-  const toCR = (monster: any) => {
-    const row = table.find(row => row.exp === monster.exp);
-    return row && row.cr;
-  };
-  Vue.filter("cr", toCR);
+export const expToCR = (exp: number) => {
+  const row = table.find(row => row.exp === exp);
+  return row && row.cr;
 };
-
-export default setCRFilter;

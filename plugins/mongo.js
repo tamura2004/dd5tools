@@ -34,7 +34,7 @@ export default class Mongo {
   get mutations() {
     return {
       add(state, data) {
-        state.values.push(data);
+        state.values.push({ ...data, id: data._id });
       },
       modify(state, { _id, data }) {
         const index = state.values.findIndex(value => value._id === _id);
@@ -69,7 +69,10 @@ export default class Mongo {
           .loginWithCredential(new AnonymousCredential())
           .then(() => db.collection(this.name).remove({ _id }));
       },
-      load: ({ commit }) => {
+      load: ({ commit, state }) => {
+        if (state.values.length > 0) {
+          return;
+        }
         client.auth
           .loginWithCredential(new AnonymousCredential())
           .then(() =>

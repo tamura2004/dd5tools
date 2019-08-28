@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-list-item(three-lint :key="player.id" nuxt :to="`/players/${player.id}`")
+  v-list-item(three-line :key="player.id" nuxt :to="`/players/${player.id}`")
     v-list-item-avatar
       v-img(:src="`/img/${player.avatar || '032-leprechaun.png'}`")
     v-list-item-content
