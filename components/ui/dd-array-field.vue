@@ -1,6 +1,6 @@
 <template lang="pug">
   v-row
-    v-col(v-for="i in 6")
+    v-col(v-for="i in 6" :key="i")
       v-text-field(:label="label(i)" :value="value && value[i-1]")
 </template>
 

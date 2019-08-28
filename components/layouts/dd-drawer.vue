@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-navigation-drawer(app clipped :value='drawer' @input="set($event)")
+  v-navigation-drawer(app clipped right :value='drawer' @input="set($event)")
     v-list(dense)
       v-list-item(v-for='menu in menues', :key='menu.name', :to='menu.to')
         v-list-item-action

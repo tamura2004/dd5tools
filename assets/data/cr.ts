@@ -35,3 +35,8 @@ export const expToCR = (exp: number) => {
   const row = table.find(row => row.exp === exp);
   return row && row.cr;
 };
+
+export const crToExp = (cr: string) => {
+  const row = table.find(row => row.cr === cr);
+  return row && row.exp;
+}
