@@ -1,4 +1,4 @@
 import Vue from "vue";
-import appMenuButton from "~/components/ui/app-menu-button.vue";
+import ddMenuButton from "~/components/ui/dd-menu-button.vue";
 
-Vue.component("app-menu-button", appMenuButton);
+Vue.component("dd-menu-button", ddMenuButton);
