@@ -9,7 +9,12 @@
 </template>
 
 <script>
+import ddMenuButton from "~/components/ui/dd-menu-button";
+
 export default {
+  components: {
+    ddMenuButton,
+  },
   created() {
     this.$title("冒険者ギルド");
   },

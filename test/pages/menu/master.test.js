@@ -6,7 +6,6 @@ describe("pages/menu/master.vue", () => {
     const wrapper = shallowMount(Component, {
       stubs: {
         "v-layout": true,
-        "dd-menu-button": true,
       },
       mocks: {
         $title: () => {},

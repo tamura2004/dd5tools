@@ -23,7 +23,6 @@ describe("pages/monsters/index.vue", () => {
         "v-card": true,
         "v-list": true,
         "v-divider": true,
-        "dd-list-item": true,
       },
       mocks: {
         $title: () => {},
