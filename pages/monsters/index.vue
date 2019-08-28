@@ -1,9 +1,9 @@
 <template lang="pug">
   v-card
     v-list
-      template(v-for="monster in monsters")
+      template(v-for="(monster, index) in monsters")
         app-list(:monster="monster")
-        v-divider(:key="'div' + monster._id")
+        v-divider(:key="`divider${index}`")
 </template>
 
 <script>
