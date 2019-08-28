@@ -5,11 +5,15 @@
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "genetate": "nuxt-ts genetate",
-    "start": "nuxt-ts start"
+    "start": "nuxt-ts start",
+    "test": "jest"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.1.11",
     "@nuxtjs/vuetify": "^1.2.1",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
     "nuxt": "^2.9",
     "prettier": "^1.18.2",
     "pug": "^2.0.4",
@@ -18,7 +22,8 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "ts-node": "^8.3.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "vue-jest": "^3.0.4"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.1.3",
