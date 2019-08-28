@@ -12,7 +12,6 @@
 
 <script>
 export default {
-  name: "base-menu-button",
   props: ["color", "to"],
 };
 </script>
