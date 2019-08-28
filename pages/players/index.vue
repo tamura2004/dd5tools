@@ -2,17 +2,17 @@
   v-card
     v-list
       template(v-for="player in players")
-        app-list(:player="player")
+        dd-list-item(:player="player")
         v-divider(:key="'div' + player.id")
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import appList from "~/components/pages/player/app-list";
+import ddListItem from "~/components/pages/player/dd-list-item";
 
 export default {
   components: {
-    appList,
+    ddListItem,
   },
   data: () => ({
     edit: false,

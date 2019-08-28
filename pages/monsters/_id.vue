@@ -1,15 +1,15 @@
 <template lang="pug">
   v-card
-    app-list(:player="id | player")
+    dd-list-item(:player="id | player")
     nuxt-child
 </template>
 
 <script>
-import appList from "~/components/pages/player/app-list";
+import ddListItem from "~/components/pages/player/dd-list-item";
 
 export default {
   components: {
-    appList,
+    ddListItem,
   },
   asyncData({ params }) {
     const id = params.id;

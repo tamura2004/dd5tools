@@ -2,17 +2,17 @@
   v-card
     v-list
       template(v-for="monster in monsters")
-        app-list(:monster="monster")
+        dd-list-item(:monster="monster")
         v-divider(:key="'div' + monster._id")
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import appList from "~/components/pages/monster/app-list";
+import ddListItem from "~/components/pages/monster/dd-list-item";
 
 export default {
   components: {
-    appList,
+    ddListItem,
   },
   computed: {
     ...mapGetters("monsters", ["monsters"]),
