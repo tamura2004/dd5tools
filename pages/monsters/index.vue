@@ -1,9 +1,11 @@
 <template lang="pug">
+div
   v-card
     v-list
-      template(v-for="monster in monsters")
+      template(v-for="monster in pageList")
         dd-list-item(:monster="monster")
         v-divider(:key="'div' + monster._id")
+  v-pagination.mt-4(v-model="page" :length="totalPage")
 </template>
 
 <script>
@@ -14,8 +16,21 @@ export default {
   components: {
     ddListItem,
   },
+  data: () => ({
+    page: 1,
+    PER_PAGE: 5,
+  }),
   computed: {
     ...mapGetters("monsters", ["monsters"]),
+    totalPage() {
+      return Math.ceil(this.monsters.length / this.PER_PAGE);
+    },
+    pageList() {
+      return this.monsters.slice(
+        (this.page - 1) * this.PER_PAGE,
+        this.page * this.PER_PAGE,
+      );
+    },
   },
   created() {
     this.$title("モンスターマニュアル");
