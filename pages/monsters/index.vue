@@ -28,11 +28,14 @@ export default {
       return crToExp(this.query);
     },
     totalPage() {
-      return Math.ceil(this.monsters.length / this.PER_PAGE);
+      return Math.ceil(this.crList.length / this.PER_PAGE);
+    },
+    crList() {
+      return this.monsters
+        .filter(monster => !this.query || monster.exp === this.exp)     
     },
     pageList() {
-      return this.monsters
-        .filter(monster => monster.exp === this.exp)
+      return this.crList
         .slice((this.page - 1) * this.PER_PAGE, this.page * this.PER_PAGE);
     },
   },
