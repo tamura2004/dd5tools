@@ -8,12 +8,10 @@
 
 <script>
 import { mapGetters } from "vuex";
-import appBar from "~/components/layouts/app-bar";
 import appList from "~/components/pages/player/app-list";
 
 export default {
   components: {
-    appBar,
     appList,
   },
   data: () => ({
