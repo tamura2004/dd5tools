@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-navigation-drawer(app clipped :value='drawer')
+  v-navigation-drawer(app clipped :value='drawer' @input="set($event)")
     v-list(dense)
       v-list-item(v-for='menu in menues', :key='menu.name', :to='menu.to')
         v-list-item-action
@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   data: () => ({
@@ -19,5 +19,6 @@ export default {
     ],
   }),
   computed: mapGetters("nav/drawer", ["drawer"]),
+  methods: mapActions("nav/drawer", ["set"]),
 };
 </script>
