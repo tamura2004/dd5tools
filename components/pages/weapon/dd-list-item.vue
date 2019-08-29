@@ -3,14 +3,14 @@
     v-list-item-content
       v-list-item-title
         v-layout
-          v-flex(xs4) {{ weapon.name }}
+          v-flex(xs6) {{ weapon.name }}
           v-flex(xs4) {{ weapon.damage }}[{{ weapon.type }}]
-          v-flex(xs2) {{ weapon.cost }}
-          v-flex(xs2) {{ weapon.weight }}㍀
+          v-flex(xs2) {{ weapon.weight }}
       v-list-item-subtitle
         v-layout
-          v-flex(xs4) {{ weapon.skill }}
-          v-flex(xs8) {{ weapon.properties }}
+          v-flex(xs4) {{ weapon.category }}
+          v-flex(xs2) {{ weapon.price }}
+          v-flex(xs6) {{ weapon.special }}
 </template>
 
 <script>

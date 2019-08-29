@@ -1,12 +1,12 @@
 import Form from "~/plugins/form";
 const form = new Form("weapons", [
   "name",
-  "skill",
-  "cost",
+  "category",
+  "price",
   "damage",
   "type",
   "weight",
-  "properties",
+  "special",
 ]);
 
 export const state = form.state;

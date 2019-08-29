@@ -48,11 +48,10 @@ export default {
     this.$title("モンスターマニュアル");
     this.search(true);
     const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => ({
-      id: i,
-      label: `CR${i}`,
+      text: `CR${i}`,
       value: `${i}`,
     }));
-    this.items([{ id: 0, label: "ALL", value: 0 }, ...items]);
+    this.items([{ text: "ALL", value: null }, ...items]);
     this.add(true);
     this.path("/monsters/new");
   },

@@ -1,6 +1,6 @@
 <template lang="pug">
   v-tabs(background-color="transparent")
-    v-tab(v-for="item in items" :key="item.id" @click="query(item.value)") {{ item.label }}
+    v-tab(v-for="item in items" :key="item.text" @click="query(item.value)") {{ item.text }}
 </template>
 
 <script>

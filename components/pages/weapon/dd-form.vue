@@ -5,35 +5,36 @@
     v-card-text
       v-form
         v-text-field(label="名称" :value="data.name" @input="name($event)")
-        v-text-field(label="分類" :value="data.skill" @input="skill($event)")
-        v-text-field(label="価格" :value="data.cost" @input="cost($event)")
+        v-select(label="分類" :items="items" :value="data.category" @input="category($event)")
+        v-text-field(label="価格" :value="data.price" @input="price($event)")
         v-text-field(label="ダメージダイス" :value="data.damage" @input="damage($event)")
         v-text-field(label="ダメージ種別" :value="data.type" @input="type($event)")
-        v-text-field(label="重量" type="number" :value="data.weight" @input="weight($event)")
-        v-textarea(
-          label="特性"
-          auto-grow
-          :value="data.properties"
-          @input="properties($event)"
-        )
+        v-text-field(label="重量" :value="data.weight" @input="weight($event)")
+        v-text-field(label="特性" :value="data.special" @input="special($event)")
     v-card-actions
       v-btn(color="primary" @click="$emit('click')") 登録
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import { items } from "~/assets/data/weapon-categories";
 
 export default {
   props: ["title"],
-  computed: mapGetters("form/weapon", ["data"]),
+  computed: {
+    ...mapGetters("form/weapon", ["data"]),
+    items() {
+      return items;
+    }
+  },
   methods: mapActions("form/weapon", [
     "name",
-    "skill",
-    "cost",
+    "category",
+    "price",
     "damage",
     "type",
     "weight",
-    "properties",
+    "special",
   ]),
 };
 </script>
