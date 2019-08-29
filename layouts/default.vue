@@ -2,8 +2,8 @@
   v-app
     dd-drawer
     v-app-bar(app dark dense clipped-left color="grey darken-4")
-      v-btn(flat icon @click="$router.go(-1)")
-        v-icon mdi-arrow_back_ios
+      v-btn(icon @click="$router.back()")
+        v-icon mdi-arrow-left
       v-toolbar-title {{ title }}
       v-spacer
       v-app-bar-nav-icon(@click.stop="toggle")

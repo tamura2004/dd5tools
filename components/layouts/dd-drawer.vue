@@ -14,8 +14,15 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   data: () => ({
     menues: [
-      { icon: "mdi-home", to: "/", name: "トップメニュー" },
+      { icon: "mdi-campfire", to: "/", name: "トップメニュー" },
       { icon: "mdi-bacteria", to: "/monsters", name: "モンスターマニュアル" },
+      { icon: "mdi-sword-cross", to: "/", name: "武器" },
+      { icon: "mdi-shield-half-full", to: "/", name: "防具" },
+      { icon: "mdi-castle", to: "/", name: "王城" },
+      { icon: "mdi-church", to: "/", name: "教会" },
+      { icon: "mdi-flask", to: "/", name: "薬屋" },
+      { icon: "mdi-cat", to: "/", name: "猫" },
+      { icon: "mdi-death-star-variant", to: "/", name: "月" },
     ],
   }),
   computed: mapGetters("nav/drawer", ["drawer"]),
