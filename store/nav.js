@@ -1,18 +1,16 @@
-export const state = () => ({
-  title: "dd5tools",
-  drawer: false,
-});
+import Values from "~/plugins/values";
+const values = new Values([
+  "title",
+  "search",
+  "extension",
+  "add",
+  "path",
+  "query",
+  "items",
+  "drawer",
+])
 
-export const getters = {
-  title: state => state.title,
-};
-
-export const mutations = {
-  title: (state, title) => (state.title = title),
-};
-
-export const actions = {
-  title({ commit }, title) {
-    commit("title", title);
-  },
-};
+export const state = values.state;
+export const mutations = values.mutations;
+export const getters = values.getters;
+export const actions = values.actions;

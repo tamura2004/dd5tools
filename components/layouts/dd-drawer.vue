@@ -1,7 +1,7 @@
 <template lang="pug">
-  v-navigation-drawer(app clipped right :value='drawer' @input="set($event)")
+  v-navigation-drawer(app clipped right :value="data.drawer" @input="drawer($event)")
     v-list(dense)
-      v-list-item(v-for='menu in menues', :key='menu.name', :to='menu.to')
+      v-list-item(v-for="menu in menues", :key="menu.name", :to="menu.to")
         v-list-item-action
           v-icon {{ menu.icon }}
         v-list-item-content
@@ -16,7 +16,7 @@ export default {
     menues: [
       { icon: "mdi-campfire", to: "/", name: "トップメニュー" },
       { icon: "mdi-bacteria", to: "/monsters", name: "モンスターマニュアル" },
-      { icon: "mdi-sword-cross", to: "/", name: "武器" },
+      { icon: "mdi-sword-cross", to: "/weapons", name: "武器" },
       { icon: "mdi-shield-half-full", to: "/", name: "防具" },
       { icon: "mdi-castle", to: "/", name: "王城" },
       { icon: "mdi-church", to: "/", name: "教会" },
@@ -25,7 +25,7 @@ export default {
       { icon: "mdi-death-star-variant", to: "/", name: "月" },
     ],
   }),
-  computed: mapGetters("nav/drawer", ["drawer"]),
-  methods: mapActions("nav/drawer", ["set"]),
+  computed: mapGetters("nav", ["data"]),
+  methods: mapActions("nav", ["drawer"]),
 };
 </script>

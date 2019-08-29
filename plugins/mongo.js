@@ -36,9 +36,9 @@ export default class Mongo {
       add(state, data) {
         state.values.push({ ...data, id: data._id });
       },
-      modify(state, { _id, data }) {
-        const index = state.values.findIndex(value => value._id === _id);
-        Vue.set(state.values, index, { _id, ...data });
+      modify(state, { id, data }) {
+        const index = state.values.findIndex(value => value.id === id);
+        Vue.set(state.values, index, { id, _id: id, ...data });
       },
       remove(state, { _id }) {
         const index = state.values.findIndex(value => value._id === _id);
@@ -55,12 +55,13 @@ export default class Mongo {
           .loginWithCredential(new AnonymousCredential())
           .then(() => db.collection(this.name).insertOne({ _id, ...data }));
       },
-      modify: ({ commit }, { _id, data }) => {
-        commit("modify", { _id, data });
+      modify: ({ commit }, { id, data }) => {
+        commit("modify", { id, data });
+        const _id = id;
         client.auth
           .loginWithCredential(new AnonymousCredential())
           .then(() =>
-            db.collection(this.name).updateOne({ _id }, { _id, data }),
+            db.collection(this.name).updateOne({ _id }, { _id, ...data }),
           );
       },
       remove: ({ commit }, _id) => {

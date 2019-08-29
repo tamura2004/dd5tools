@@ -9,7 +9,7 @@ div
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { crToExp } from "~/assets/data/cr";
 import ddListItem from "~/components/pages/monster/dd-list-item";
 
@@ -17,13 +17,14 @@ export default {
   components: {
     ddListItem,
   },
+  middleware: "mongo/monsters",
   data: () => ({
     page: 1,
     PER_PAGE: 5,
   }),
   computed: {
     ...mapGetters("monsters", ["monsters"]),
-    ...mapGetters("nav/search", ["query"]),
+    ...mapGetters("nav", ["query"]),
     exp() {
       return crToExp(this.query);
     },
@@ -31,16 +32,33 @@ export default {
       return Math.ceil(this.crList.length / this.PER_PAGE);
     },
     crList() {
-      return this.monsters
-        .filter(monster => !this.query || monster.exp === this.exp)     
+      return this.monsters.filter(
+        monster => !this.query || monster.exp === this.exp,
+      );
     },
     pageList() {
-      return this.crList
-        .slice((this.page - 1) * this.PER_PAGE, this.page * this.PER_PAGE);
+      return this.crList.slice(
+        (this.page - 1) * this.PER_PAGE,
+        this.page * this.PER_PAGE,
+      );
     },
   },
+  methods: mapActions("nav", ["search", "items", "add", "path"]),
   created() {
     this.$title("モンスターマニュアル");
+    this.search(true);
+    const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => ({
+      id: i,
+      label: `CR${i}`,
+      value: `${i}`,
+    }));
+    this.items([{ id: 0, label: "ALL", value: 0 }, ...items]);
+    this.add(true);
+    this.path("/monsters/new");
+  },
+  destroyed() {
+    this.search(false);
+    this.add(false);
   },
 };
 </script>
