@@ -30,16 +30,7 @@ declare module "@nuxt/types" {
 
 const setNav: Plugin = ({ store }, inject) => {
   inject("nav", (config: Config) => {
-    store.dispatch("nav/title", config.title);
-    store.dispatch("nav/search", config.search);
-    store.dispatch("nav/extension", config.extension);
-    store.dispatch("nav/add", config.add);
-    store.dispatch("nav/query", config.query);
-    store.dispatch("nav/path", config.path);
-    store.dispatch("nav/items", config.items);
-    store.dispatch("nav/pages", config.pages);
-    store.dispatch("nav/page", config.page);
-    store.dispatch("nav/drawer", config.drawer);
+    store.dispatch("nav/set", config);
   });
 };
 
