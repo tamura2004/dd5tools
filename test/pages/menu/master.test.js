@@ -1,15 +1,9 @@
-import { shallowMount } from "@vue/test-utils";
-import { stubs } from "~/test/stubs";
-import { localVue, store } from "~/test/mock/index";
+import { mount } from "~/test/mount";
 import Component from "~/pages/menu/master.vue";
 
 describe("pages/menu/master.vue", () => {
   test("is Vue instance", () => {
-    const wrapper = shallowMount(Component, {
-      localVue,
-      store,
-      stubs,
-    });
+    const wrapper = mount(Component);
     expect(wrapper.isVueInstance()).toBeTruthy();
   });
 });
