@@ -11,6 +11,7 @@ div
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { crToExp } from "~/assets/data/cr";
+import { items } from "~/assets/data/items/cr";
 import ddListItem from "~/components/pages/monster/dd-list-item.vue";
 
 export default {
@@ -18,6 +19,10 @@ export default {
     ddListItem,
   },
   middleware: "mongo/monsters",
+  asyncData({ query }) {
+    const cr = query.cr;
+    return { cr };
+  },
   computed: {
     ...mapGetters("monsters", ["monsters"]),
     ...mapGetters("nav", ["page", "pages", "query"]),
@@ -40,15 +45,12 @@ export default {
     },
   },
   created() {
-    const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => ({
-      text: `CR${i}`,
-      value: `${i}`,
-    }));
     this.$store.dispatch("nav/set", {
       title: "モンスターマニュアル",
       search: true,
+      query: this.cr,
       extension: true,
-      items: [{ text: "ALL", value: null }, ...items],
+      items,
       add: true,
       path: "/monsters/new",
       page: 1,

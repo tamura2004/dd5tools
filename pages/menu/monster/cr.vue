@@ -1,8 +1,6 @@
 <template lang="pug">
   v-layout.pa-4(justify-start align-center column)
-    div(v-for="i in 10")
-        dd-menu-button(color="primary" to="/monsters") 脅威度{{i+1}}
-    .headline 脅威度別モンスター
+    dd-menu-button(v-for="i in 10" color="primary" :to="`/monsters?cr=${11-i}`" :key="i") 脅威度{{11-i}}
 </template>
 
 <script>
