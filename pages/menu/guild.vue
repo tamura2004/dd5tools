@@ -16,7 +16,7 @@ export default {
     ddMenuButton,
   },
   created() {
-    this.$nav({ title: "冒険者ギルド" });
+    this.$store.dispatch("nav/set", { title: "冒険者ギルド" });
   },
 };
 </script>

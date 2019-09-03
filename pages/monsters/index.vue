@@ -44,7 +44,7 @@ export default {
       text: `CR${i}`,
       value: `${i}`,
     }));
-    this.$nav({
+    this.$store.dispatch("nav/set", {
       title: "モンスターマニュアル",
       search: true,
       extension: true,

@@ -23,7 +23,7 @@ export default {
   },
   created() {
     this.$store.dispatch("nav/set", {
-      title: "冒険者名簿"
+      title: "冒険者名簿",
     });
   },
 };

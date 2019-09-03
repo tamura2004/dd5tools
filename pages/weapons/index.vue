@@ -29,12 +29,12 @@ export default {
     ...mapActions("nav", ["search", "items", "add", "path"]),
   },
   created() {
-    this.$nav({
+    this.$store.dispatch("nav/set", {
       title: "武器",
       search: true,
       items: items,
       add: true,
-      path:"/weapons/new",
+      path: "/weapons/new",
     });
   },
 };

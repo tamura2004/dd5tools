@@ -16,7 +16,7 @@ export default {
     return { id };
   },
   created() {
-    this.$nav({ title: "キャラクターシート" });
+    this.$store.dispatch("nav/set", { title: "キャラクターシート" });
   },
 };
 </script>
