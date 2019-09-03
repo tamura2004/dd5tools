@@ -22,7 +22,7 @@ export default {
     ...mapGetters("guilds", ["guild"]),
   },
   created() {
-    this.$title("冒険者名簿");
+    this.$nav({ title: "冒険者名簿" });
   },
 };
 </script>

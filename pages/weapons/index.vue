@@ -29,15 +29,13 @@ export default {
     ...mapActions("nav", ["search", "items", "add", "path"]),
   },
   created() {
-    this.$title("武器");
-    this.search(true);
-    this.items(items);
-    this.add(true);
-    this.path("/weapons/new");
-  },
-  destroyed() {
-    this.search(false);
-    this.add(false);
+    this.$nav({
+      title: "武器",
+      search: true,
+      items: items,
+      add: true,
+      path:"/weapons/new",
+    });
   },
 };
 </script>

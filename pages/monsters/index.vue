@@ -5,31 +5,27 @@ div
       template(v-for="monster in pageList")
         dd-list-item(:monster="monster")
         v-divider(:key="'div' + monster._id")
-  v-pagination.mt-4(v-model="page" :length="totalPage")
+  v-pagination.mt-4(v-model="page" :length="pages")
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 import { crToExp } from "~/assets/data/cr";
-import ddListItem from "~/components/pages/monster/dd-list-item";
+import ddListItem from "~/components/pages/monster/dd-list-item.vue";
 
 export default {
   components: {
     ddListItem,
   },
   middleware: "mongo/monsters",
-  data: () => ({
-    page: 1,
-    PER_PAGE: 5,
-  }),
   computed: {
     ...mapGetters("monsters", ["monsters"]),
-    ...mapGetters("nav", ["query"]),
+    ...mapGetters("nav", ["page", "pages", "query"]),
     exp() {
       return crToExp(this.query);
     },
     totalPage() {
-      return Math.ceil(this.crList.length / this.PER_PAGE);
+      return Math.ceil(this.crList.length / this.pages);
     },
     crList() {
       return this.monsters.filter(
@@ -38,26 +34,26 @@ export default {
     },
     pageList() {
       return this.crList.slice(
-        (this.page - 1) * this.PER_PAGE,
-        this.page * this.PER_PAGE,
+        (this.page - 1) * this.pages,
+        this.page * this.pages,
       );
     },
   },
-  methods: mapActions("nav", ["search", "items", "add", "path"]),
   created() {
-    this.$title("モンスターマニュアル");
-    this.search(true);
     const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => ({
       text: `CR${i}`,
       value: `${i}`,
     }));
-    this.items([{ text: "ALL", value: null }, ...items]);
-    this.add(true);
-    this.path("/monsters/new");
-  },
-  destroyed() {
-    this.search(false);
-    this.add(false);
+    this.$nav({
+      title: "モンスターマニュアル",
+      search: true,
+      extension: true,
+      items: [{ text: "ALL", value: null }, ...items],
+      add: true,
+      path: "/monsters/new",
+      page: 1,
+      pages: 5,
+    });
   },
 };
 </script>

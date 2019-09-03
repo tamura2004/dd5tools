@@ -16,12 +16,13 @@ export default {
     ddMenuButton,
   },
   created() {
-    this.$title("冒険者ギルド");
+    this.$nav({ title: "冒険者ギルド" });
   },
 };
 </script>
 
 <style lang="stylus" scoped>
-#img
-  width 320px
+#img {
+  width: 320px;
+}
 </style>

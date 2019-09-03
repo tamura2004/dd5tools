@@ -4,10 +4,12 @@ const values = new Values([
   "search",
   "extension",
   "add",
-  "path",
-  "query",
-  "items",
   "drawer",
+  "query",
+  "path",
+  "items",
+  "pages",
+  "page",
 ])
 
 export const state = values.state;

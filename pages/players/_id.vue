@@ -16,7 +16,7 @@ export default {
     return { id };
   },
   created() {
-    this.$title("キャラクターシート")
-  }
+    this.$nav({ title: "キャラクターシート" });
+  },
 };
 </script>

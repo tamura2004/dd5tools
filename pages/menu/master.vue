@@ -16,12 +16,13 @@ export default {
     ddMenuButton,
   },
   created() {
-    this.$title("ゲームマスター");
+    this.$nav({ title: "ゲームマスター" });
   },
 };
 </script>
 
 <style lang="stylus" scoped>
-#img
-  width 320px
+#img {
+  width: 320px;
+}
 </style>

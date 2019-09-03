@@ -11,7 +11,7 @@
 <script>
 export default {
   mounted() {
-    this.$title("DD5TOOLS")
-  }
+    this.$nav({ title: "DD5TOOLS" });
+  },
 };
 </script>
