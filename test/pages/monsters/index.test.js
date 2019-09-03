@@ -1,33 +1,14 @@
-import { shallowMount, createLocalVue } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
+import { stubs } from "~/test/stubs";
+import { localVue, store } from "~/test/mock/index";
 import Component from "~/pages/monsters/index.vue";
-import Vuex from "vuex";
 
 describe("pages/monsters/index.vue", () => {
   test("is Vue instance", () => {
-    const localVue = createLocalVue();
-    localVue.use(Vuex);
-    const store = new Vuex.Store({
-      modules: {
-        monsters: {
-          namespaced: true,
-          getters: {
-            monsters: state => [],
-          },
-        },
-      },
-    });
     const wrapper = shallowMount(Component, {
       store,
       localVue,
-      stubs: {
-        "v-card": true,
-        "v-list": true,
-        "v-divider": true,
-        "v-pagination": true,
-      },
-      mocks: {
-        $title: () => {},
-      },
+      stubs,
     });
     expect(wrapper.isVueInstance()).toBeTruthy();
   });
