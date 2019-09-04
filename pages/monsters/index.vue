@@ -5,13 +5,12 @@ div
       template(v-for="monster in pageList")
         dd-list-item(:monster="monster")
         v-divider(:key="'div' + monster._id")
-  v-pagination.mt-4(v-model="page" :length="pages")
+  v-pagination.mt-4(:value="page" @input="$store.dispatch('nav/page', $event)" :length="totalPage")
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import { crToExp } from "~/assets/data/cr";
-import { items } from "~/assets/data/items/cr";
+import { items } from "~/assets/data/cr";
 import ddListItem from "~/components/pages/monster/dd-list-item.vue";
 
 export default {
@@ -26,15 +25,12 @@ export default {
   computed: {
     ...mapGetters("monsters", ["monsters"]),
     ...mapGetters("nav", ["page", "pages", "query"]),
-    exp() {
-      return crToExp(this.query);
-    },
     totalPage() {
       return Math.ceil(this.crList.length / this.pages);
     },
     crList() {
       return this.monsters.filter(
-        monster => !this.query || monster.exp === this.exp,
+        monster => !this.query || monster.exp === this.query,
       );
     },
     pageList() {
@@ -44,6 +40,7 @@ export default {
       );
     },
   },
+  methods: mapActions("nav", ["set"]),
   created() {
     this.$store.dispatch("nav/set", {
       title: "モンスターマニュアル",

@@ -39,4 +39,10 @@ export const expToCR = (exp: number) => {
 export const crToExp = (cr: string) => {
   const row = table.find(row => row.cr === cr);
   return row && row.exp;
-}
+};
+
+const all = { text: "ALL", value: null };
+export const items = [
+  all,
+  ...table.map(row => ({ text: "CR" + row.cr, value: row.exp })),
+];
