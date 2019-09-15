@@ -18,15 +18,11 @@ export default {
   middleware: "mongo/weapons",
   computed: {
     ...mapGetters("weapons", ["weapons"]),
-    ...mapGetters("nav", ["query"]),
     filteredWeapons() {
       return this.weapons.filter(
-        weapon => !this.query || weapon.category === this.query,
+        weapon => !this.$nav.query || weapon.category === this.$nav.query,
       );
     },
-  },
-  methods: {
-    ...mapActions("nav", ["search", "items", "add", "path"]),
   },
   created() {
     this.$store.dispatch("nav/set", {

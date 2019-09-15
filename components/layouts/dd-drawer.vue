@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-navigation-drawer(app clipped right :value="data.drawer" @input="drawer($event)")
+  v-navigation-drawer(app clipped right v-model="$nav.drawer")
     v-list(dense)
       v-list-item(v-for="menu in menues", :key="menu.name", :to="menu.to")
         v-list-item-action
@@ -9,8 +9,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-
 export default {
   data: () => ({
     menues: [
@@ -25,7 +23,5 @@ export default {
       { icon: "mdi-death-star-variant", to: "/", name: "月" },
     ],
   }),
-  computed: mapGetters("nav", ["data"]),
-  methods: mapActions("nav", ["drawer"]),
 };
 </script>

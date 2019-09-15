@@ -1,13 +1,4 @@
 <template lang="pug">
   v-tabs(background-color="transparent")
-    v-tab(v-for="item in items" :key="item.text" @click="query(item.value)") {{ item.text }}
+    v-tab(v-for="item in $nav.items" :key="item.text" @click="$nav.query = item.value") {{ item.text }}
 </template>
-
-<script>
-import { mapGetters, mapActions } from "vuex";
-
-export default {
-  computed: mapGetters("nav", ["items", "data"]),
-  methods: mapActions("nav", ["query"]),
-};
-</script>

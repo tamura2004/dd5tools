@@ -20,6 +20,7 @@ module.exports = {
     "~/plugins/firebase",
     "~/plugins/components",
     "~/plugins/filters",
+    "~/plugins/accessors/nav",
   ],
   router: {
     middleware: ["firebase"],

@@ -12,7 +12,4 @@ const values = new Values([
   "page",
 ])
 
-export const state = values.state;
-export const mutations = values.mutations;
-export const getters = values.getters;
-export const actions = values.actions;
+export const { state, getters, mutations, actions, accessors } = values;

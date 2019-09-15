@@ -5,7 +5,7 @@ div
       template(v-for="monster in pageList")
         dd-list-item(:monster="monster")
         v-divider(:key="'div' + monster._id")
-  v-pagination.mt-4(:value="page" @input="$store.dispatch('nav/page', $event)" :length="totalPage")
+  v-pagination.mt-4(v-model="$nav.page" :length="totalPage")
 </template>
 
 <script>
@@ -24,19 +24,18 @@ export default {
   },
   computed: {
     ...mapGetters("monsters", ["monsters"]),
-    ...mapGetters("nav", ["page", "pages", "query"]),
     totalPage() {
-      return Math.ceil(this.crList.length / this.pages);
+      return Math.ceil(this.crList.length / this.$nav.pages);
     },
     crList() {
       return this.monsters.filter(
-        monster => !this.query || monster.exp === this.query,
+        monster => !this.$nav.query || monster.exp === this.$nav.query,
       );
     },
     pageList() {
       return this.crList.slice(
-        (this.page - 1) * this.pages,
-        this.page * this.pages,
+        (this.$nav.page - 1) * this.$nav.pages,
+        this.$nav.page * this.$nav.pages,
       );
     },
   },
