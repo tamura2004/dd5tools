@@ -1,7 +1,4 @@
-const cuid = require("cuid");
-const fs = require("fs");
-
-const weapons = [
+const WEAPON_DATA = [
   {
     name: "クオータースタッフ",
     category: "単純近接武器",
@@ -374,22 +371,4 @@ const weapons = [
   },
 ];
 
-const writer = fs.createWriteStream("weapons.json");
-
-weapons
-  .map(({ name, category, price, damage, type, weight, special }) => ({
-    _id: cuid(),
-    name,
-    category,
-    price,
-    damage,
-    type,
-    weight,
-    special,
-  }))
-  .forEach(weapon => {
-    console.log(JSON.stringify(weapon));
-  });
-
-// cd assets/data
-// node weapons.js > weapons.json
+export default WEAPON_DATA;

@@ -1,5 +1,5 @@
-import Form from "~/plugins/form";
-const form = new Form("monsters", [
+import Values from "~/plugins/values";
+const values = new Values([
   "name",
   "size",
   "type",
@@ -14,7 +14,4 @@ const form = new Form("monsters", [
   "specials",
 ]);
 
-export const state = form.state;
-export const mutations = form.mutations;
-export const getters = form.getters;
-export const actions = form.actions;
+export const { state, getters, mutations, actions, accessors } = values;

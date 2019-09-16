@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
 import ddForm from "~/components/pages/monster/dd-form.vue";
 
 export default {
@@ -11,14 +10,11 @@ export default {
     ddForm,
   },
   created() {
-    this.clear();
+    this.$monster.data = null;
   },
-  computed: mapGetters("form/monster", ["data"]),
   methods: {
-    ...mapActions("form/monster", ["clear"]),
-    ...mapActions("monsters", ["add"]),
-    async save() {
-      await this.add(this.data);
+    save() {
+      this.$write("monsters", this.$monster.data);
       this.$router.push("/monsters");
     },
   },

@@ -33,6 +33,7 @@
     "cuid": "^2.1.6",
     "firebase": "^6.3.5",
     "mongodb-stitch-browser-sdk": "^4.4.0",
-    "pluralize": "^8.0.0"
+    "pluralize": "^8.0.0",
+    "zangodb": "^1.0.7"
   }
 }

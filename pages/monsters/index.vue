@@ -9,27 +9,25 @@ div
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import { items } from "~/assets/data/cr";
 import ddListItem from "~/components/pages/monster/dd-list-item.vue";
+import { items } from "~/assets/data/cr";
 
 export default {
   components: {
     ddListItem,
   },
-  middleware: "mongo/monsters",
   asyncData({ query }) {
     const cr = query.cr;
     return { cr };
   },
   computed: {
-    ...mapGetters("monsters", ["monsters"]),
     totalPage() {
       return Math.ceil(this.crList.length / this.$nav.pages);
     },
     crList() {
-      return this.monsters.filter(
-        monster => !this.$nav.query || monster.exp === this.$nav.query,
+      return this.$read(
+        "monsters",
+        v => !this.$nav.query || v.exp === this.$nav.query,
       );
     },
     pageList() {
@@ -39,9 +37,8 @@ export default {
       );
     },
   },
-  methods: mapActions("nav", ["set"]),
   created() {
-    this.$store.dispatch("nav/set", {
+    this.$nav.data = {
       title: "モンスターマニュアル",
       search: true,
       query: this.cr,
@@ -51,7 +48,7 @@ export default {
       path: "/monsters/new",
       page: 1,
       pages: 5,
-    });
+    };
   },
 };
 </script>

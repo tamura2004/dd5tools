@@ -4,61 +4,42 @@
     v-divider
     v-card-text
       v-form
-        v-text-field(label="名称" :value="data.name" @input="name($event)")
-        v-text-field(label="サイズ" :value="data.size" @input="size($event)")
-        v-text-field(label="種別" :value="data.type" @input="type($event)")
-        v-text-field(label="属性" :value="data.alignment" @input="alignment($event)")
-        v-text-field(label="AC" type="number" :value="data.ac" @input="ac($event)")
-        v-text-field(label="hp" type="number" :value="data.hp" @input="hp($event)")
-        v-text-field(label="移動" :value="data.mv" @input="mv($event)")
-        v-text-field(label="exp" type="number" :value="data.exp" @input="exp($event)")
-        dd-array-field(:value="data.ability")
+        v-text-field(label="名称" v-model="$monster.name")
+        v-text-field(label="サイズ" v-model="$monster.size")
+        v-text-field(label="種別" v-model="$monster.type")
+        v-text-field(label="属性" v-model="$monster.alignment")
+        v-text-field(label="AC" type="number" v-model="$monster.ac")
+        v-text-field(label="hp" type="number" v-model="$monster.hp")
+        v-text-field(label="移動" v-model="$monster.mv")
+        v-text-field(label="exp" type="number" v-model="$monster.exp")
+        dd-array-field(v-model="$monster.ability")
         v-textarea(
           label="属性"
           auto-grow
-          :value="data.attributes.join('\\n')"
-          @input="attributes($event.split('\\n'))"
+          v-model="$monster.attributes"
         )
         v-textarea(
           label="アクション"
           auto-grow
-          :value="data.actions.join('\\n')"
-          @input="actions($event.split('\\n'))"
+          v-model="$monster.actions"
         )
         v-textarea(
           label="特殊能力"
           auto-grow
-          :value="data.specials.join('\\n')"
-          @input="specials($event.split('\\n'))"
+          v-model="$monster.specials"
         )
     v-card-actions
       v-btn(color="primary" @click="$emit('click')") 登録
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import ddArrayField from "~/components/ui/dd-array-field"
+import ddArrayField from "~/components/ui/dd-array-field";
 
 export default {
   components: {
     ddArrayField,
   },
   props: ["title"],
-  computed: mapGetters("form/monster", ["data"]),
-  methods: mapActions("form/monster", [
-    "name",
-    "size",
-    "type",
-    "alignment",
-    "ac",
-    "hp",
-    "mv",
-    "ability",
-    "exp",
-    "attributes",
-    "actions",
-    "specials",
-  ]),
 };
 </script>
 

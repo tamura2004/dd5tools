@@ -20,10 +20,12 @@ module.exports = {
     "~/plugins/firebase",
     "~/plugins/components",
     "~/plugins/filters",
-    "~/plugins/accessors/nav",
+    "~/plugins/read",
+    "~/plugins/write",
+    "~/plugins/accessors",
   ],
   router: {
-    middleware: ["firebase"],
+    middleware: ["gateway"],
   },
   buildModules: ["@nuxt/typescript-build"],
   vuetify: {

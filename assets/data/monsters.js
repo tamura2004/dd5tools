@@ -1,6 +1,6 @@
 /* tslint:disable:max-line-length */
 
-const MONSTER_DATA = [
+const DATA = [
   {
     name: 'アウェイクンド・シュラブ',
     size: '小型',
@@ -5939,5 +5939,12 @@ const MONSTER_DATA = [
     ],
   },
 ];
+
+const MONSTER_DATA = DATA.map(v => ({
+  ...v,
+  actions: v.actions.join("\n"),
+  specials: v.specials.join("\n"),
+  attributes: v.attributes.join("\n"),
+}));
 
 export default MONSTER_DATA;
