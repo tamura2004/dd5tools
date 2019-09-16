@@ -6,6 +6,7 @@
     block
     :to="to"
     :color="color"
+    v-on="$listeners"
   )
     slot
 </template>

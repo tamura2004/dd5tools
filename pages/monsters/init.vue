@@ -8,15 +8,8 @@
 import MONSTER_DATA from "~/assets/data/monsters";
 
 export default {
-  async mounted() {
-    const monsters = this.$read("monsters");
-    if (monsters.length > 0) {
-      alert("既にデータが存在します。処理を中断します。");
-      this.$router.push("/monsters");
-    }
-    for (const data of MONSTER_DATA) {
-      await this.$write("monsters", data);
-    }
+  created() {
+    this.$store.dispatch("monsters/init", MONSTER_DATA);
     this.$router.push("/monsters");
   },
 };

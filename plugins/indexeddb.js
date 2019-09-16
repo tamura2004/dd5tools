@@ -6,17 +6,18 @@ import cuid from "cuid";
 const handleErr = e => e && alert(e);
 
 export class IndexedDB {
-  constructor(name) {
+  constructor(name, values) {
     this.db = new zango.Db(name, { values: true });
     this.collection = this.db.collection("values");
 
     this.name = name;
+    this.values = values;
     this.collectionName = this.name;
     this.memberName = pluralize.singular(this.name);
   }
   get state() {
     return () => ({
-      values: [],
+      values: Array.isArray(this.values) ? this.values: [],
       unsubscribe: null,
     });
   }
@@ -83,6 +84,14 @@ export class IndexedDB {
             id: doc.id,
             data: doc,
           });
+        });
+      },
+      init: ({ state, dispatch }, docs) => {
+        if (state.values.length > 0) {
+          return;
+        }
+        docs.forEach(doc => {
+          dispatch("add", doc);
         });
       },
     };
