@@ -47,16 +47,12 @@ const DATA = [
 const total = DATA.reduce((a, v) => (a += v.weight), 0);
 
 let dice = 0;
-const PLACE_DATA = DATA.map(v => {
-  const id = md5(v.name);
-  dice += v.weight;
-  return {
-    id,
-    total,
-    dice,
-    ...v,
-  };
-});
+const PLACE_DATA = DATA.map(v => ({ id: md5(v.name), ...v }))
+  .sort((a, b) => (a.id > b.id ? 1 : -1))
+  .map(v => {
+    dice += v.weight;
+    return { total, dice, ...v };
+  });
 
 export default PLACE_DATA;
 

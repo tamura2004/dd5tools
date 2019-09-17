@@ -15,8 +15,13 @@ export default {
     const id = params.id;
     return { id };
   },
+  computed: {
+    player() {
+      return this.$read("players", this.id);
+    }
+  },
   created() {
-    this.$store.dispatch("nav/set", { title: "キャラクターシート" });
+    this.$nav.title = this.player.characterName;
   },
 };
 </script>

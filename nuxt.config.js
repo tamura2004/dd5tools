@@ -16,6 +16,7 @@ module.exports = {
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
   devModules: ["@nuxtjs/vuetify"],
+  css: ["~/assets/transition.css"],
   plugins: [
     "~/plugins/firebase",
     "~/plugins/components",
