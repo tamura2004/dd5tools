@@ -7,11 +7,14 @@ export default ({ store }, inject) => {
     }
 
     if (first.hasOwnProperty("total") && first.hasOwnProperty("dice")) {
+      const collection = Object.assign([], base).sort(
+        (a, b) => a.dice - b.dice,
+      );
       const dice = Math.floor(Math.random() * first.total);
-      return base.find(v => dice < v.dice);
+      return collection.find(v => dice < v.dice);
+    } else {
+      const index = Math.floor(Math.random() * base.size);
+      return base[index];
     }
-
-    const index = Math.floor(Math.random() * base.size);
-    return base[index];
   });
 };

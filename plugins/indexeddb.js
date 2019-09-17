@@ -17,7 +17,7 @@ export class IndexedDB {
   }
   get state() {
     return () => ({
-      values: Array.isArray(this.values) ? this.values: [],
+      values: Array.isArray(this.values) ? this.values : [],
       unsubscribe: null,
     });
   }
@@ -54,7 +54,7 @@ export class IndexedDB {
   get actions() {
     return {
       add: async ({ commit }, data) => {
-        const id = cuid();
+        const id = data.id || cuid();
         const _id = id;
         const timestamp = new Date();
         Object.assign(data, { id, _id, timestamp });
@@ -75,18 +75,19 @@ export class IndexedDB {
           await this.collection.remove({ _id: id }, handleErr);
         }
       },
-      listen: ({ state, commit }) => {
+      listen: async ({ state, commit }) => {
         if (state.values.length > 0) {
           return;
         }
-        this.collection.find({}).forEach(doc => {
+        await this.collection.find({}).forEach(doc => {
           commit("add", {
             id: doc.id,
             data: doc,
           });
         });
       },
-      init: ({ state, dispatch }, docs) => {
+      init: async ({ state, dispatch }, docs) => {
+        await dispatch("listen");
         if (state.values.length > 0) {
           return;
         }

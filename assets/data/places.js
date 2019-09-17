@@ -1,3 +1,5 @@
+import md5 from "blueimp-md5";
+
 const DATA = [
   { weight: 12, name: "物質界：海岸" },
   { weight: 12, name: "物質界：極地" },
@@ -46,8 +48,10 @@ const total = DATA.reduce((a, v) => (a += v.weight), 0);
 
 let dice = 0;
 const PLACE_DATA = DATA.map(v => {
+  const id = md5(v.name);
   dice += v.weight;
   return {
+    id,
     total,
     dice,
     ...v,
