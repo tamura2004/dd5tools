@@ -1,3 +1,5 @@
+import md5 from "blueimp-md5";
+
 const DATA = [
   { weight: 12, name: "物質界：海岸" },
   { weight: 12, name: "物質界：極地" },
@@ -44,8 +46,12 @@ const DATA = [
 
 const total = DATA.reduce((a, v) => (a += v.weight), 0);
 
+const ADD_ID_AND_SORT = DATA.map(v => ({ id: md5(v), ...v })).sort((a, b) =>
+  a.id > b.id ? 1 : -1,
+);
+
 let dice = 0;
-const PLACE_DATA = DATA.map(v => {
+const PLACE_DATA = ADD_ID_AND_SORT.map(v => {
   dice += v.weight;
   return {
     total,
