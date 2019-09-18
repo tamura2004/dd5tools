@@ -1,7 +1,8 @@
 <template lang="pug">
   v-row
     v-col(v-for="(v, i) in 6" :key="i")
-      v-text-field(:label="labels[i]" :value="abilities[i]" @input="update(i, $event)")
+      //- v-text-field(:label="labels[i]" :value="abilities[i]" @input="update(i, $event)")
+      dd-tenkey(:label="labels[i]" :value="abilities[i]" @input="update(i, $event)")
 </template>
 
 <script>

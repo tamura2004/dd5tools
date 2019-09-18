@@ -10,6 +10,7 @@ const values = new Values([
   "items",
   "pages",
   "page",
-])
+  "dialog",
+]);
 
 export const { state, getters, mutations, actions, accessors } = values;
