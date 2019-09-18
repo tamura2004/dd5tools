@@ -5,6 +5,7 @@ import ddSearchButton from "~/components/layouts/dd-search-button";
 import ddBackButton from "~/components/layouts/dd-back-button";
 import ddNewButton from "~/components/layouts/dd-new-button";
 import ddAppBarExtension from "~/components/layouts/dd-app-bar-extension";
+import ddTenkey from "~/components/ui/dd-tenkey";
 
 Vue.component("dd-menu-button", ddMenuButton);
 Vue.component("dd-drawer", ddDrawer);
@@ -12,3 +13,4 @@ Vue.component("dd-search-button", ddSearchButton);
 Vue.component("dd-back-button", ddBackButton);
 Vue.component("dd-new-button", ddNewButton);
 Vue.component("dd-app-bar-extension", ddAppBarExtension);
+Vue.component("dd-tenkey", ddTenkey);
