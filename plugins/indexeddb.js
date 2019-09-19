@@ -34,7 +34,7 @@ export class IndexedDB {
         }
       },
       listen: async ({ state, commit }) => {
-        if (state.isInitialized) {
+        if (state.values.length > 0) {
           return;
         }
         await this.collection.find({}).forEach(doc => {
@@ -43,7 +43,7 @@ export class IndexedDB {
       },
       init: async ({ state, dispatch }, docs) => {
         await dispatch("listen");
-        if (state.isInitialized) {
+        if (state.values.length > 0) {
           return;
         }
         docs.forEach(doc => {

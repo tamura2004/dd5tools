@@ -8,7 +8,6 @@ export class Collection {
   get state() {
     return () => ({
       values: this.initValues,
-      isInitialized: false,
     });
   }
   get getters() {
@@ -21,7 +20,6 @@ export class Collection {
     return {
       add(state, data) {
         state.values.push(data);
-        state.isInitialized = true;
       },
       modify(state, { id, data }) {
         const index = state.values.findIndex(value => value.id === id);
@@ -30,9 +28,6 @@ export class Collection {
       remove(state, id) {
         const index = state.values.findIndex(value => value.id === id);
         state.values.splice(index, 1);
-      },
-      isInitialized(state) {
-        state.isInitialized = true;
       },
     };
   }
