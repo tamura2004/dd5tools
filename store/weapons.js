@@ -1,4 +1,5 @@
-import { Gateway } from "~/plugins/gateway";
-const gateway = new Gateway("weapons");
+import { Collection } from "~/plugins/collection";
+import { IndexedDB } from "~/plugins/indexeddb";
 
-export const { state, getters, mutations, actions, accessors } = gateway;
+export const { state, getters, mutations } = new Collection("weapons");
+export const { actions } = new IndexedDB("weapons");
