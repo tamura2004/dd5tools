@@ -1,4 +1,6 @@
-const WEAPON_DATA = [
+import md5 from "blueimp-md5";
+
+const DATA = [
   {
     name: "クオータースタッフ",
     category: "単純近接武器",
@@ -370,5 +372,7 @@ const WEAPON_DATA = [
     special: "重武器、両手用",
   },
 ];
+
+const WEAPON_DATA = DATA.map(v => ({ id: md5(v.name), ...v }));
 
 export default WEAPON_DATA;
