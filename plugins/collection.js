@@ -1,13 +1,13 @@
 import Vue from "vue";
 
 export class Collection {
-  constructor(name, initValues) {
+  constructor(name, init) {
     this.name = name;
-    this.initValues = Array.isArray(initValues) ? initValues : [];
+    this.init = Array.isArray(init) ? init : [];
   }
   get state() {
     return () => ({
-      values: this.initValues,
+      values: this.init,
     });
   }
   get getters() {
