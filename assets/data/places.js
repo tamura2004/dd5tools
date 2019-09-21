@@ -2,12 +2,15 @@ import md5 from "blueimp-md5";
 
 const DATA = [
   { weight: 12, name: "物質界：海岸" },
+  { weight: 12, name: "物質界：丘陵" },
   { weight: 12, name: "物質界：極地" },
   { weight: 12, name: "物質界：砂漠" },
   { weight: 12, name: "物質界：山岳" },
   { weight: 12, name: "物質界：湿地" },
   { weight: 12, name: "物質界：森林" },
   { weight: 12, name: "物質界：草原" },
+  { weight: 12, name: "物質界：水中" },
+  { weight: 12, name: "物質界：市街地" },
   { weight: 12, name: "アンダーダーク" },
   { weight: 8, name: "アストラル界" },
   { weight: 4, name: "境界エーテル界" },
@@ -44,15 +47,15 @@ const DATA = [
   { weight: 1, name: "ラヴニカ" },
 ];
 
-const total = DATA.reduce((a, v) => (a += v.weight), 0);
+// const total = DATA.reduce((a, v) => (a += v.weight), 0);
 
-let dice = 0;
-const PLACE_DATA = DATA.map(v => ({ id: md5(v.name), ...v }))
-  .sort((a, b) => (a.id > b.id ? 1 : -1))
-  .map(v => {
-    dice += v.weight;
-    return { total, dice, ...v };
-  });
+// let dice = 0;
+const PLACE_DATA = DATA.map(v => ({ id: md5(v.name), ...v }));
+  // .sort((a, b) => (a.id > b.id ? 1 : -1))
+  // .map(v => {
+  //   dice += v.weight;
+  //   return { total, dice, ...v };
+  // });
 
 export default PLACE_DATA;
 
