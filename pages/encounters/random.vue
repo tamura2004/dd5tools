@@ -1,7 +1,11 @@
 <template lang="pug">
   v-layout.pa-4(justify-start align-center column)
-    .display-1.my-4 次の冒険の舞台は
-    .display-1.my-4 「{{ place | name }}」だ!
+    .display-1.my-4
+      | 次の冒険の舞台は「{{ place | name }}」だ。
+    .display-1.my-4
+      | {{ intro | name }}
+      | {{ villain | name }}を相手取り、
+      | {{ purpose | name }}！
     dd-menu-button(@click="roll" color="success") 振り直す
     dd-menu-button(@click="roll" color="primary") 決定
 </template>
@@ -13,6 +17,7 @@ export default {
   data() {
     return {
       place: null,
+      purpose: null,
     };
   },
   created() {
@@ -22,6 +27,9 @@ export default {
   methods: {
     roll() {
       this.place = this.$sample("places");
+      this.purpose = this.$sample("adventure/purpose");
+      this.villain = this.$sample("adventure/villain");
+      this.intro = this.$sample("adventure/intro");
     },
   },
 };

@@ -6,6 +6,12 @@ export default ({ store }, inject) => {
       return store.getters[`${name}/${param}`];
     }
 
+    const first = base[0]
+
+    if (typeof first === "string") {
+      return base;
+    }
+
     const collection = base.map(v => ({ ...v, text: v.name, value: v.id }));
 
     if (typeof param === "string") {
