@@ -1,9 +1,10 @@
 const roll = n => Math.floor(Math.random() * n);
 
 export default ({ store, app }, inject) => {
-  inject("sample", name => {
+  inject("sample", (name, x) => {
+    console.log(x)
     // const base = store.getters[`${name}/collection`];
-    const base = app.$read(name);
+    const base = app.$read(name, x);
     if (typeof base === "undefined") {
       return null;
     }
@@ -30,6 +31,8 @@ export default ({ store, app }, inject) => {
       return {
         name: base[roll(base.length)],
       };
+    } else {
+      return base[roll(base.length)];
     }
   });
 };

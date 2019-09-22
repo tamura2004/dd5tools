@@ -1,0 +1,16 @@
+export const DATA = [
+  { weight: 2, name: "引退した冒険者" },
+  { weight: 2, name: "地元の統治者" },
+  { weight: 2, name: "軍の士官" },
+  { weight: 2, name: "神殿の役職者" },
+  { weight: 2, name: "賢者" },
+  { weight: 2, name: "尊敬される長老" },
+  { weight: 1, name: "神格またはセレスチャル" },
+  { weight: 1, name: "謎めいたフェイ" },
+  { weight: 1, name: "旧友" },
+  { weight: 1, name: "恩師" },
+  { weight: 1, name: "親その他の家族" },
+  { weight: 1, name: "困りはてた一般人" },
+  { weight: 1, name: "攻撃を受けた商人" },
+  { weight: 1, name: "依頼者のふりをした悪役" },
+];

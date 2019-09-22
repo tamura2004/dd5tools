@@ -1,6 +1,6 @@
 <template lang="pug">
   v-layout.pa-4(justify-start align-center column)
-    dd-menu-button(color="primary" to="/encounters/random") ランダムダンジョン
+    dd-menu-button(color="primary" to="/encounters/random") ランダムアドベンチャー
     dd-menu-button(color="grey darken-4" to="/menu/monster") モンスターマニュアル
     .display-1.mt-4 冒険者が来た！
     .display-1 モンスターと罠の

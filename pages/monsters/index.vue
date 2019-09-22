@@ -4,7 +4,7 @@ div
     v-list
       template(v-for="monster in pageList")
         dd-list-item(:monster="monster")
-        v-divider(:key="'div' + monster._id")
+        v-divider
   v-pagination.mt-4(v-model="$nav.page" :length="totalPage")
 </template>
 

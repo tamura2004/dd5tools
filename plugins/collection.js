@@ -1,8 +1,7 @@
 import Vue from "vue";
 
 export class Collection {
-  constructor(name, init) {
-    this.name = name;
+  constructor(init) {
     this.init = Array.isArray(init) ? init : [];
   }
   get state() {
@@ -13,7 +12,6 @@ export class Collection {
   get getters() {
     return {
       collection: state => state.values,
-      [this.name]: state => state.values,
     };
   }
   get mutations() {
