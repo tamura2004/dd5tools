@@ -1,10 +1,8 @@
 const roll = n => Math.floor(Math.random() * n);
 
-export default ({ store, app }, inject) => {
-  inject("sample", (name, x) => {
-    console.log(x)
-    // const base = store.getters[`${name}/collection`];
-    const base = app.$read(name, x);
+export default ({ app }, inject) => {
+  inject("sample", (name, option) => {
+    const base = app.$read(name, option);
     if (typeof base === "undefined") {
       return null;
     }

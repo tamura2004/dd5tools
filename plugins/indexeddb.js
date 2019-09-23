@@ -6,12 +6,13 @@ const handleErr = e => e && alert(e);
 export class IndexedDB {
   constructor(name) {
     this.name = name;
-    this.db = new zango.Db(name, { values: true });
+    this.db = new zango.Db(name, { values: ["id"] });
     this.collection = this.db.collection("values");
   }
   get actions() {
     return {
       add: async ({ commit }, data) => {
+        console.log(data)
         const id = data.id || data._id || cuid();
         const _id = id;
         const timestamp = new Date();
