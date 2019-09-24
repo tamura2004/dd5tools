@@ -1,6 +1,5 @@
 export default ({ store }, inject) => {
   inject("read", (name, param) => {
-    console.log(name)
     const base = store.getters[`${name}/collection`];
     const first = base && base[0];
     const selectable = first &&

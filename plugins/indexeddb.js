@@ -12,7 +12,6 @@ export class IndexedDB {
   get actions() {
     return {
       add: async ({ commit }, data) => {
-        console.log(data)
         const id = data.id || data._id || cuid();
         const _id = id;
         const timestamp = new Date();
@@ -21,12 +20,19 @@ export class IndexedDB {
         await this.collection.insert(data, handleErr);
         return id;
       },
-      modify: async ({ state, commit }, { id, data }) => {
-        const value = state.values.find(v => v.id === id);
-        data = Object.assign({}, value, data);
-        data.timestamp = new Date();
-        commit("modify", { id, data });
-        await this.collection.update({ id }, data, handleErr);
+      modify: async ({ commit, dispatch }, { id, data }) => {
+        const _id = id;
+        const timestamp = new Date();
+        const value = await dispatch("findOne", id);
+        console.log(value)
+        if (!!value) {
+          data = Object.assign({}, value, data, { id, _id, timestamp });
+          commit("modify", { id, data });
+          await this.collection.update({ _id }, data, handleErr);
+        } else {
+          data = Object.assign({}, data, { id, _id, timestamp });
+          dispatch("add", data);
+        }
       },
       remove: async ({ commit }, id) => {
         if (confirm("本当に削除してよろしいですか")) {
@@ -42,14 +48,9 @@ export class IndexedDB {
           commit("add", doc);
         });
       },
-      init: async ({ state, dispatch }, docs) => {
-        await dispatch("listen");
-        if (state.values.length > 0) {
-          return;
-        }
-        docs.forEach(doc => {
-          dispatch("add", doc);
-        });
+      findOne: async ({}, _id) => {
+        const value = await this.collection.findOne({ _id });
+        return value;
       },
     };
   }
