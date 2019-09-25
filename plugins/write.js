@@ -5,11 +5,6 @@
 
 export default ({ store }, inject) => {
   inject("write", (name, data) => {
-    const id = data.id || data._id;
-    if (id) {
-      store.dispatch(`${name}/modify`, { id, data });
-    } else {
-      store.dispatch(`${name}/add`, data);
-    }
+    store.dispatch(`${name}/write`, data);
   });
 };

@@ -12,27 +12,12 @@ export class IndexedDB {
   get actions() {
     return {
       add: async ({ commit }, data) => {
-        const id = data.id || data._id || cuid();
-        const _id = id;
-        const timestamp = new Date();
-        Object.assign(data, { id, _id, timestamp });
         commit("add", data);
         await this.collection.insert(data, handleErr);
-        return id;
       },
-      modify: async ({ commit, dispatch }, { id, data }) => {
-        const _id = id;
-        const timestamp = new Date();
-        const value = await dispatch("findOne", id);
-        console.log(value)
-        if (!!value) {
-          data = Object.assign({}, value, data, { id, _id, timestamp });
-          commit("modify", { id, data });
-          await this.collection.update({ _id }, data, handleErr);
-        } else {
-          data = Object.assign({}, data, { id, _id, timestamp });
-          dispatch("add", data);
-        }
+      modify: async ({ commit }, { id, data }) => {
+        commit("modify", { id, data });
+        await this.collection.update({ id }, data, handleErr);
       },
       remove: async ({ commit }, id) => {
         if (confirm("本当に削除してよろしいですか")) {
@@ -51,6 +36,19 @@ export class IndexedDB {
       findOne: async ({}, _id) => {
         const value = await this.collection.findOne({ _id });
         return value;
+      },
+      write: async ({ dispatch }, payload) => {
+        const id = payload.id || payload._id || cuid();
+        const _id = id;
+        const timestamp = new Date();
+        const saved = await dispatch("findOne", id);
+        const data = Object.assign({}, saved, payload, { id, _id, timestamp });
+
+        if (typeof saved === "undefined") {
+          dispatch("add", data);
+        } else {
+          dispatch("modify", { id, data });
+        }
       },
     };
   }
