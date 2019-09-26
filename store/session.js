@@ -9,6 +9,7 @@ const values = new Values([
   "villain",
   "monster",
   "place",
+  "event",
 ]);
 
 export const { state, getters, mutations, actions, accessors } = values;

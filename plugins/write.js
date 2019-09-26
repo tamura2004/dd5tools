@@ -4,7 +4,11 @@
  */
 
 export default ({ store }, inject) => {
-  inject("write", (name, data) => {
-    store.dispatch(`${name}/write`, data);
+  inject("write", (name, opt1, opt2) => {
+    if (typeof opt2 === "undefined") {
+      store.dispatch(`${name}/write`, opt1);
+    } else {
+      store.dispatch(`${name}/write`, { id: opt1, ...opt2 });
+    }
   });
 };
