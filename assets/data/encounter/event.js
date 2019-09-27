@@ -9,5 +9,5 @@ export const DATA = [
   { weight: 4, name: "仕掛け" },
   { weight: 4, name: "障害" },
   { weight: 4, name: "罠" },
-  { weight: 4, name: "モンスター" },
+  { weight: 32, name: "モンスター" },
 ];
