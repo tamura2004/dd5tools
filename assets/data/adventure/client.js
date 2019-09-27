@@ -1,6 +1,5 @@
 export const DATA = [
   { weight: 2, name: "引退した冒険者" },
-  { weight: 16, name: "レポーター・マルコ" },
   { weight: 8, name: "鍛冶屋アンドレイ" },
   { weight: 8, name: "トーチポート辺境伯" },
   { weight: 8, name: "ギルドマスター" },
