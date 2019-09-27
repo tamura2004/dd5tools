@@ -1,22 +1,30 @@
 <template lang="pug">
-div
-  v-card(max-width="80")
-    .overline.pa-1.black.white--text.text-center a
-    .headline.text-center(@click.stop="$refs.a.dialog = true") {{ a }}
-    dd-tenkey(label="hp" v-model="a" ref="a")
-  v-card(max-width="80")
-    .overline.pa-1.black.white--text.text-center b
-    .headline.text-center(@click.stop="$refs.b.dialog = true") {{ b }}
-    dd-tenkey(label="hp" v-model="b" ref="b")
+  v-layout.pa-4(justify-start align-center column)
+    .display-2.my-4(@click.stop="$refs.level.dialog = true")
+      | {{ level }}
+      v-icon mdi-calculator
+      dd-tenkey(label="level" v-model="level" ref="level")
+
+    .display-2.my-4(@click.stop="$refs.num.dialog = true")
+      | {{ num }}
+      v-icon mdi-calculator
+      dd-tenkey(label="num" v-model="num" ref="num")
+
+    dd-menu-button(@click="save" color="primary") 決定
 </template>
 
 <script>
 export default {
   data() {
     return {
-      a: 123,
-      b: 123,
+      level: 7,
+      num: 3,
     };
+  },
+  methods: {
+    save() {
+      return;
+    },
   },
 };
 </script>
