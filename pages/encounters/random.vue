@@ -12,7 +12,7 @@ import PLACE_DATA from "~/assets/data/places";
 export default {
   async asyncData({ store, app }) {
     app.$session.data = await store.dispatch("values/findOne", "session");
-    app.$nav.title = "アドベンチャー";
+    app.$nav.title = "遭遇";
   },
   methods: {
     roll() {

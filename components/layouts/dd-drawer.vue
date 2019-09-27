@@ -21,6 +21,7 @@ export default {
       { icon: "mdi-castle", to: "/", name: "王城" },
       { icon: "mdi-church", to: "/", name: "教会" },
       { icon: "mdi-flask", to: "/", name: "薬屋" },
+      { icon: "mdi-calculator", to: "/calc", name: "計算機" },
     ],
   }),
 };
