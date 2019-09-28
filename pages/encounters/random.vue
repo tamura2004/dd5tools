@@ -1,6 +1,8 @@
 <template lang="pug">
   v-layout.pa-4(justify-start align-center column)
     .headline.my-4
+      | {{ $session.place | name }}
+    .headline.my-4
       | {{ $session.event | name }}
     dd-menu-button(@click="roll" color="success") 振り直す
     dd-menu-button(@click="save" color="primary") 決定
@@ -17,6 +19,7 @@ export default {
   methods: {
     roll() {
       this.$session.event = this.$sample("encounter/event");
+      this.$session.place = this.$sample("places");
     },
     save() {
       this.$write("values", "session", this.$session.data);
