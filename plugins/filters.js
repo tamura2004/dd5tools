@@ -9,10 +9,15 @@ export default function({ store }) {
     player.guildId && store.getters["guilds/guild"](player.guildId);
   const level = guild => guild && guild.exp && toLevel(guild.exp);
   const cr = monster => monster && monster.exp && expToCR(monster.exp);
+  const num = v =>
+    v
+      ? v.toString().replace(/[0-9]/g, d => String.fromCharCode(d.charCodeAt(0) + 0xfee0))
+      : "----";
 
   Vue.filter("name", show("name"));
   Vue.filter("player", player);
   Vue.filter("guild", guild);
   Vue.filter("level", level);
   Vue.filter("cr", cr);
+  Vue.filter("num", num);
 }

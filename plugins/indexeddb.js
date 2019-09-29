@@ -38,6 +38,7 @@ export class IndexedDB {
         return value;
       },
       write: async ({ dispatch }, payload) => {
+        console.log(payload)
         const id = payload.id || payload._id || cuid();
         const _id = id;
         const timestamp = new Date();

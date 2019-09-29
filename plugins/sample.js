@@ -3,7 +3,7 @@ const roll = n => Math.floor(Math.random() * n);
 export default ({ app }, inject) => {
   inject("sample", (name, option) => {
     const base = app.$read(name, option);
-    if (typeof base === "undefined") {
+    if (typeof base === "undefined" || base.length === 0) {
       return null;
     }
 

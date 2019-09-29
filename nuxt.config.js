@@ -24,6 +24,7 @@ module.exports = {
     "~/plugins/read",
     "~/plugins/write",
     "~/plugins/sample",
+    "~/plugins/lookup",
     "~/plugins/accessors",
   ],
   router: {

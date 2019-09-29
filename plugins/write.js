@@ -8,7 +8,7 @@ export default ({ store }, inject) => {
     if (typeof opt2 === "undefined") {
       store.dispatch(`${name}/write`, opt1);
     } else {
-      store.dispatch(`${name}/write`, { id: opt1, ...opt2 });
+      store.dispatch(`${name}/write`, { ...opt2, id: opt1 });
     }
   });
 };
