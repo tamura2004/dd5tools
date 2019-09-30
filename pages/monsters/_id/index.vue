@@ -1,26 +1,28 @@
 <template lang="pug">
 v-card
   v-card-text
-    .body-1
+    .caption
       | {{ $monster.size }}の
       | {{ $monster.type }}
       | {{ $monster.alignment }}
     v-divider
-    .body-1
+    .caption
       | ac:{{ $monster.ac }}
       | hp:{{ $monster.hp }}
+    v-divider
+    .caption
       | mv:{{ $monster.mv }}
     v-divider
     v-row
-      v-col(v-for="i in 6") {{ $monster.ability[i-1] }}
+      v-col.py-0(v-for="i in 6") {{ $monster.ability[i-1] }}
     v-divider
-    .caption
+    .block.caption
       | {{ $monster.attributes}}
     v-divider
-    .caption
+    .block.caption
       | {{ $monster.specials}}
     v-divider
-    .caption
+    .block.caption
       | {{ $monster.actions}}
 
 </template>
@@ -30,15 +32,15 @@ export default {
   asyncData({ params, app }) {
     const id = params.id;
     app.$monster.data = app.$read("monsters", id);
-    app.$nav.data = {}
+    app.$nav.data = {};
     app.$nav.title = app.$monster.name;
   },
 };
 </script>
 
 <style scoped>
-.caption {
- white-space: pre-wrap;
- word-wrap: break-word;
+.block {
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 </style>
