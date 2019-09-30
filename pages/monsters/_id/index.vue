@@ -17,13 +17,13 @@ v-card
       v-col.py-0(v-for="i in 6") {{ $monster.ability[i-1] }}
     v-divider
     .block.caption
+      | {{ $monster.actions}}
+    v-divider
+    .block.caption
       | {{ $monster.attributes}}
     v-divider
     .block.caption
       | {{ $monster.specials}}
-    v-divider
-    .block.caption
-      | {{ $monster.actions}}
 
 </template>
 
