@@ -6,12 +6,17 @@ v-card
       | {{ $monster.type }}
       | {{ $monster.alignment }}
     v-divider
-    .caption
-      | ac:{{ $monster.ac }}
-      | hp:{{ $monster.hp }}
+    v-row
+      v-col.py-0
+        span.font-weight-black ac
+        | {{ $monster.ac }}
+      v-col.py-0
+        span.font-weight-black hp
+        | {{ $monster.hp }}
     v-divider
     .caption
-      | mv:{{ $monster.mv }}
+      span.font-weight-black 移動
+      | {{ $monster.mv }}
     v-divider
     v-row
       v-col.py-0(v-for="i in 6") {{ $monster.ability[i-1] }}
