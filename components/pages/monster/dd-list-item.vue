@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-list-item(:key="monster._id" nuxt :to="`/monsters/${monster._id}/edit`")
+  v-list-item(:key="monster.id" nuxt :to="`/monsters/${monster.id}`")
     v-list-item-content
       v-list-item-title
         v-layout

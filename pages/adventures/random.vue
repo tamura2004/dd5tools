@@ -31,9 +31,9 @@ export default {
       this.$adventure.intro = this.$sample("adventure/intro");
       this.$adventure.climax = this.$sample("adventure/climax");
 
-      const exp = this.$party.hard;
+      const exp = this.$lookup("monster/cr", v => v.exp <= this.$party.hard, "exp");
       const type = this.$adventure.villain.type;
-      console.log(exp,type)
+      console.log(exp, type);
       this.$adventure.monster = this.$sample("monsters", { type, exp });
     },
     save() {

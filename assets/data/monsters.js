@@ -1,4 +1,5 @@
 /* tslint:disable:max-line-length */
+import md5 from "blueimp-md5"
 
 const DATA = [
   {
@@ -6011,6 +6012,7 @@ const MONSTER_DATA = DATA.map(v => ({
   actions: v.actions ? v.actions.join("\n") : "",
   specials: v.specials ? v.specials.join("\n") : "",
   attributes: v.attributes ? v.attributes.join("\n") : "",
+  id: md5(v.name),
 }));
 
 export default MONSTER_DATA;

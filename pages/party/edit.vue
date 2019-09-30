@@ -30,8 +30,9 @@ export default {
     exp(mode) {
       const level = this.$party.level;
       const exp = this.$lookup("encounter/exp", { mode, level }, "exp");
-      const total = this.$party.num * exp;
-      return this.$lookup("monster/cr", v => v.exp <= total, "exp");
+      return this.$party.num * exp;
+      // const total = this.$party.num * exp;
+      // return this.$lookup("monster/cr", v => v.exp <= total, "exp");
     },
   },
 };
