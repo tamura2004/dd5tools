@@ -1,35 +1,75 @@
 <template lang="pug">
-v-card
-  v-card-text
-    .caption
+v-layout(fluid)
+  v-row(no-gutters)
+    // サイズと種類、属性
+    v-col(cols="9")
       | {{ $monster.size }}の
       | {{ $monster.type }}
+    v-col(cols="3")
       | {{ $monster.alignment }}
-    v-divider
-    v-row
-      v-col.py-0
-        span.font-weight-black ac
-        | {{ $monster.ac }}
-      v-col.py-0
-        span.font-weight-black hp
-        | {{ $monster.hp }}
-    v-divider
-    .caption
-      span.font-weight-black 移動
-      | {{ $monster.mv }}
-    v-divider
-    v-row
-      v-col.py-0(v-for="i in 6") {{ $monster.ability[i-1] }}
-    v-divider
-    .block.caption
-      | {{ $monster.actions}}
-    v-divider
-    .block.caption
-      | {{ $monster.attributes}}
-    v-divider
-    .block.caption
-      | {{ $monster.specials}}
 
+    // AC,HP,exp
+    v-col(cols="2")
+      v-card.text-center.grey.darken-4.white--text(tile outlined)
+        | AC
+    v-col(cols="2")
+      v-card.text-center(tile outlined)
+        | {{ $monster.ac }}
+    v-col(cols="2")
+      v-card.text-center.grey.darken-4.white--text(tile outlined)
+        | HP
+    v-col(cols="2")
+      v-card.text-center(tile outlined)
+        | {{ $monster.hp }}
+    v-col(cols="1")
+      v-card.text-center.grey.darken-4.white--text(tile outlined)
+        | exp
+    v-col(cols="3")
+      v-card.text-center(tile outlined)
+        | {{ $monster.exp }}
+    
+    // 移動
+    v-col(cols="2")
+      v-card.text-center.grey.darken-4.white--text(tile outlined) 移動
+    v-col(cols="10")
+      v-card.pl-2(tile outlined)
+        | {{ $monster.mv }}
+    
+    // アクション
+    v-col.mt-1(cols="12")
+      .overline.font-weight-black
+        | アクション
+    template(no-gutters v-for="action of $monster.actions")
+      v-col.mt-1(cols="12")
+        v-card.overline.pl-2.grey.darken-4.white--text(tile outlined)
+          | {{ action | label }}
+      v-col(cols="12")
+        v-card.pl-1(tile outlined)
+          | {{ action | text }}
+  
+    // 属性
+    v-col.mt-1(cols="12")
+      .overline.font-weight-black
+        | 属性
+    template(v-for="attribute of $monster.attributes")
+      v-col(cols="2")
+        v-card.text-center.grey.darken-4.white--text(tile outlined)
+          | {{ attribute | label }}
+      v-col(cols="10")
+        v-card.pl-1(tile outlined)
+          | {{ attribute | text }}
+  
+    // 特技
+    v-col.mt-1(cols="12")
+      .overline.font-weight-black
+        | 特技
+    template(no-gutters v-for="special of $monster.specials")
+      v-col.mt-1(cols="12")
+        v-card.overline.pl-2.grey.darken-4.white--text(tile outlined)
+          | {{ special | label }}
+      v-col(cols="12")
+        v-card(tile outlined)
+          | {{ special | text }} 
 </template>
 
 <script>
@@ -42,10 +82,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.block {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-</style>

@@ -4423,12 +4423,11 @@ const DATA = [
   },
 ];
 
-const MONSTER_DATA = DATA.map(v => ({
-  ...v,
-  actions: v.actions ? v.actions.join("\n") : "",
-  specials: v.specials ? v.specials.join("\n") : "",
-  attributes: v.attributes ? v.attributes.join("\n") : "",
-  id: md5(v.name),
-}));
+const MONSTER_DATA = DATA.map(v => {
+  return {
+    ...v,
+    id: md5(v.name),
+  };
+});
 
 export default MONSTER_DATA;

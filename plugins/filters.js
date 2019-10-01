@@ -14,10 +14,22 @@ export default function({ store }) {
       ? v.toString().replace(/[0-9]/g, d => String.fromCharCode(d.charCodeAt(0) + 0xfee0))
       : "----";
 
+  const label = v => {
+    const index = v.replace("：",":").indexOf(":");
+    return index > 0 ? v.slice(0, index) : null;
+  }
+
+  const text = v => {
+    const index = v.replace("：",":").indexOf(":");
+    return index > 0 ? v.slice(index + 1) : v;
+  }
+
   Vue.filter("name", show("name"));
   Vue.filter("player", player);
   Vue.filter("guild", guild);
   Vue.filter("level", level);
   Vue.filter("cr", cr);
   Vue.filter("num", num);
+  Vue.filter("label", label);
+  Vue.filter("text", text);
 }
