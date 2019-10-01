@@ -39,7 +39,7 @@ v-layout(fluid)
     v-col.mt-1(cols="12")
       .overline.font-weight-black
         | アクション
-    template(no-gutters v-for="action of $monster.actions")
+    template(v-for="action of $monster.actions")
       v-col.mt-1(cols="12")
         v-card.overline.pl-2.grey.darken-4.white--text(tile outlined)
           | {{ action | label }}
@@ -52,10 +52,10 @@ v-layout(fluid)
       .overline.font-weight-black
         | 属性
     template(v-for="attribute of $monster.attributes")
-      v-col(cols="2")
-        v-card.text-center.grey.darken-4.white--text(tile outlined)
+      v-col(cols="12")
+        v-card.overline.pl-2.grey.darken-4.white--text(tile outlined)
           | {{ attribute | label }}
-      v-col(cols="10")
+      v-col(cols="12")
         v-card.pl-1(tile outlined)
           | {{ attribute | text }}
   
@@ -63,7 +63,7 @@ v-layout(fluid)
     v-col.mt-1(cols="12")
       .overline.font-weight-black
         | 特技
-    template(no-gutters v-for="special of $monster.specials")
+    template(v-for="special of $monster.specials")
       v-col.mt-1(cols="12")
         v-card.overline.pl-2.grey.darken-4.white--text(tile outlined)
           | {{ special | label }}

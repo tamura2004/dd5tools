@@ -11,18 +11,20 @@ export default function({ store }) {
   const cr = monster => monster && monster.exp && expToCR(monster.exp);
   const num = v =>
     v
-      ? v.toString().replace(/[0-9]/g, d => String.fromCharCode(d.charCodeAt(0) + 0xfee0))
+      ? v
+          .toString()
+          .replace(/[0-9]/g, d => String.fromCharCode(d.charCodeAt(0) + 0xfee0))
       : "----";
 
   const label = v => {
-    const index = v.replace("：",":").indexOf(":");
+    const index = v.replace("：", ":").indexOf(":");
     return index > 0 ? v.slice(0, index) : null;
-  }
+  };
 
   const text = v => {
-    const index = v.replace("：",":").indexOf(":");
-    return index > 0 ? v.slice(index + 1) : v;
-  }
+    const index = v.replace("：", ":").indexOf(":");
+    return index > 0 ? v.replace(/フィート/g, "'").slice(index + 1) : v;
+  };
 
   Vue.filter("name", show("name"));
   Vue.filter("player", player);
