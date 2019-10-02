@@ -4,6 +4,7 @@ import { accessors as monster } from "~/store/form/monster";
 import { accessors as weapon } from "~/store/form/weapon";
 import { accessors as adventure } from "~/store/form/adventure";
 import { accessors as party } from "~/store/form/party";
+import { accessors as encounter } from "~/store/form/encounter";
 
 export default ({ store }, inject) => {
   inject("session", session("session", store));
@@ -12,4 +13,5 @@ export default ({ store }, inject) => {
   inject("weapon", weapon("form/weapon", store));
   inject("adventure", adventure("form/adventure", store));
   inject("party", party("form/party", store));
+  inject("encounter", encounter("form/encounter", store));
 };

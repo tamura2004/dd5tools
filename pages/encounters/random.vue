@@ -1,15 +1,13 @@
 <template lang="pug">
   v-layout.pa-4(justify-start align-center column)
     .headline.my-4
-      | {{ $session.place | name }}
+      | {{ $encounter.place | name }}
     .headline.my-4
-      | {{ $session.event | name }}
-    span(v-if="boss")
-      nuxt-link.headline.my-4(:to="`/monsters/${boss.id}`")
-        | {{ boss | name }} / {{ boss.exp}}
-    span(v-if="zako")
-      nuxt-link.headline.my-4(:to="`/monsters/${zako.id}`")
-        | {{ zako | name }} * {{ num }} / {{ zako.exp }}
+      | {{ $encounter.event | name }}
+    nuxt-link.headline.my-4(:to="`/monsters/${$encounter.boss.id}`")
+      | {{ $encounter.boss | name }} / {{ $encounter.boss.exp}}
+    nuxt-link.headline.my-4(:to="`/monsters/${$encounter.zako.id}`")
+      | {{ $encounter.zako | name }} * {{ $encounter.num }} / {{ $encounter.zako.exp }}
     dd-menu-button(@click="roll" color="success") 振り直す
     dd-menu-button(@click="save" color="primary") 決定
 </template>
@@ -17,40 +15,47 @@
 <script>
 import PLACE_DATA from "~/assets/data/places";
 
+const roll = ({ $sample, $lookup, $encounter, $party }) => {
+  debugger
+  const event = $sample("encounter/event");
+  const place = $sample("places");
+
+  let total = $party.hard / 2;
+  let exp = $lookup("monster/cr", v => v.exp < total, "exp");
+  const boss = $sample("monsters", { exp });
+
+  if (!boss) {
+    alert("null boss");
+    return;
+  }
+
+  total -= boss.exp;
+  exp = $lookup("monster/cr", v => v.exp <= total / 3, "exp");
+  const zako = $sample("monsters", { exp });
+  if (!zako) {
+    alert("null zako");
+    return;
+  }
+  const num = Math.floor(total / zako.exp);
+  $encounter.data = { place, event, boss, zako, num };
+};
+
 export default {
-  async asyncData({ store, app }) {
-    app.$session.data = await store.dispatch("values/findOne", "session");
+  async fetch({ store, app }) {
     app.$nav.title = "遭遇";
-  },
-  data() {
-    return {
-      boss: null,
-      zako: null,
-      num: null,
-    };
+    const data = await store.dispatch("values/findOne", "encounter");
+    if (data) {
+      app.$encounter.data = data;
+    } else {
+      roll(app);
+    }
   },
   methods: {
     roll() {
-      this.$session.event = this.$sample("encounter/event");
-      this.$session.place = this.$sample("places");
-      let total = this.$party.hard / 2;
-      let exp = this.$lookup("monster/cr", v => v.exp < total, "exp");
-      this.boss = this.$sample("monsters", { exp });
-      if (this.boss === null) {
-        alert("null boss");
-        return;
-      }
-      total -= this.boss.exp;
-      exp = this.$lookup("monster/cr", v => v.exp < total / 3, "exp");
-      this.zako = this.$sample("monsters", { exp });
-      if (this.zako === null) {
-        alert("null zako");
-        return;
-      }
-      this.num = Math.floor(total / this.zako.exp);
+      roll(this)
     },
     save() {
-      this.$write("values", "session", this.$session.data);
+      this.$write("values", "encounter", this.$encounter.data);
     },
   },
 };
