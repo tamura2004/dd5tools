@@ -6,7 +6,7 @@ export default ({ app }, inject) => {
     }
 
     const last = base[base.length - 1];
-    if (typeof member === "undefind") {
+    if (typeof member === "undefined") {
       return last;
     } else {
       return last[member];
