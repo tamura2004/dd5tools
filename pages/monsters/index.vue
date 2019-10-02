@@ -2,10 +2,9 @@
 div
   v-card
     v-list
-      template(v-for="monster in pageList")
+      template(v-for="monster in monsters")
         dd-list-item(:monster="monster")
         v-divider
-  v-pagination.mt-4(v-model="$nav.page" :length="totalPage")
 </template>
 
 <script>
@@ -16,19 +15,19 @@ export default {
   components: {
     ddListItem,
   },
-  asyncData({ query }) {
-    const cr = query.cr;
-    return { cr };
+  asyncData({ query, app }) {
+    const exp = parseInt(query.exp);
+    const monsters = exp
+      ? app.$read("monsters", { exp })
+      : app.$read("monsters");
+    return { monsters };
   },
   computed: {
     totalPage() {
       return Math.ceil(this.crList.length / this.$nav.pages);
     },
     crList() {
-      return this.$read(
-        "monsters",
-        v => !this.$nav.query || v.exp === this.$nav.query,
-      );
+      return this.monsters;
     },
     pageList() {
       return this.crList.slice(
@@ -40,14 +39,14 @@ export default {
   created() {
     this.$nav.data = {
       title: "モンスターマニュアル",
-      search: true,
+      search: false,
       query: this.cr,
-      extension: true,
+      extension: false,
       items,
-      add: true,
+      add: false,
       path: "/monsters/new",
       page: 1,
-      pages: 5,
+      pages: 10,
     };
   },
 };

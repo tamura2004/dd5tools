@@ -26,6 +26,16 @@ export default function({ store }) {
     return index > 0 ? v.replace(/フィート/g, "'").slice(index + 1) : v;
   };
 
+  const action = v => {
+    const atk = v.match(/攻撃[+＋][0-9０-９]+/);
+    const hit = v.match(/ヒット[:：][0-9０-９]+/);
+    if (Array.isArray(atk) && Array.isArray(hit)) {
+      return `${atk[0]}、${hit[0]}`;
+    } else {
+      return "----";
+    }
+  };
+
   Vue.filter("name", show("name"));
   Vue.filter("player", player);
   Vue.filter("guild", guild);
@@ -34,4 +44,5 @@ export default function({ store }) {
   Vue.filter("num", num);
   Vue.filter("label", label);
   Vue.filter("text", text);
+  Vue.filter("action", action);
 }
