@@ -36,6 +36,8 @@ export default function({ store }) {
     }
   };
 
+  const feet = v => v ? v.replace(/フィート/g, "'") : "----";
+
   Vue.filter("name", show("name"));
   Vue.filter("player", player);
   Vue.filter("guild", guild);
@@ -45,4 +47,5 @@ export default function({ store }) {
   Vue.filter("label", label);
   Vue.filter("text", text);
   Vue.filter("action", action);
+  Vue.filter("feet", feet);
 }

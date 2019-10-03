@@ -1,13 +1,19 @@
 <template lang="pug">
 div
-  v-tabs(v-model="tab" dark)
-    v-tab {{ $encounter.zako | name }}
+  v-row(v-if="$vuetify.breakpoint.smAndUp")
+    v-col
+      dd-monster-card(:monster="$encounter.boss" :title="true")
+    v-col
+      dd-monster-card(:monster="$encounter.zako" :title="true")
+
+  v-tabs(v-if="$vuetify.breakpoint.xsOnly" v-model="tab" dark)
     v-tab {{ $encounter.boss | name }}
-  v-tabs-items(v-model="tab")
-    v-tab-item
-      dd-monster-card(:monster="$encounter.zako")
+    v-tab {{ $encounter.zako | name }}
+  v-tabs-items(v-if="$vuetify.breakpoint.xsOnly" v-model="tab")
     v-tab-item
       dd-monster-card(:monster="$encounter.boss")
+    v-tab-item
+      dd-monster-card(:monster="$encounter.zako")
 </template>
 
 <script>

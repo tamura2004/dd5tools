@@ -11,7 +11,8 @@ v-layout.pa-4(justify-start align-center column)
     v-icon mdi-calculator
     dd-tenkey(label="人数" v-model="$party.num" ref="num")
 
-  dd-menu-button(@click="save" color="primary") 決定
+  dd-menu-button(@click="adventure" color="primary") アドベンチャー
+  dd-menu-button(@click="encounter" color="primary") 遭遇
 </template>
 
 <script>
@@ -21,11 +22,18 @@ export default {
     app.$party.data = await store.dispatch("values/findOne", "party");
   },
   methods: {
+    adventure() {
+      this.save();
+      this.$router.push("/adventures/random");
+    },
+    encounter() {
+      this.save();
+      this.$router.push("/encounters/random");
+    },
     save() {
       this.$party.normal = this.exp("NORMAL");
       this.$party.hard = this.exp("HARD");
       this.$write("values", "party", this.$party.data);
-      this.$router.push("/adventures/random");
     },
     exp(mode) {
       const level = this.$party.level;

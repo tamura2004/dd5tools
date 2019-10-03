@@ -2,6 +2,9 @@ import colors from "vuetify/es5/util/colors";
 
 module.exports = {
   mode: "spa",
+  server: {
+    host: "0.0.0.0",
+  },
   head: {
     title: "dd5tools",
     meta: [

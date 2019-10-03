@@ -1,5 +1,6 @@
 <template lang="pug">
-v-layout(fluid)
+v-card
+  .title.pl-2.grey.darken-4.white--text(v-if="title") {{ monster | name }}
   v-row(no-gutters)
     // サイズと種類、属性
     v-col(cols="9")
@@ -33,7 +34,7 @@ v-layout(fluid)
       v-card.text-center.grey.darken-4.white--text(tile outlined) 移動
     v-col(cols="10")
       v-card.pl-2(tile outlined)
-        | {{ monster.mv }}
+        | {{ monster.mv | feet }}
 
     // アクション
     v-col.mt-1(cols="12")
@@ -74,6 +75,6 @@ v-layout(fluid)
 
 <script>
 export default {
-  props: ["monster"]
+  props: ["monster", "title"]
 };
 </script>

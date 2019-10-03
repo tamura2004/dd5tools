@@ -13,12 +13,12 @@ export default {
   data: () => ({
     menues: [
       { icon: "mdi-campfire", to: "/", name: "トップメニュー" },
+      { icon: "mdi-castle", to: "/party/edit", name: "パーティ" },
       { icon: "mdi-death-star-variant", to: "/adventures/random", name: "アドベンチャー" },
       { icon: "mdi-cat", to: "/encounters/random", name: "エンカウンター" },
-      { icon: "mdi-bacteria", to: "/monsters", name: "モンスターマニュアル" },
+      { icon: "mdi-bacteria", to: "/menu/monster", name: "モンスターマニュアル" },
       { icon: "mdi-sword-cross", to: "/weapons", name: "武器" },
       { icon: "mdi-shield-half-full", to: "/", name: "防具" },
-      { icon: "mdi-castle", to: "/", name: "王城" },
       { icon: "mdi-church", to: "/", name: "教会" },
       { icon: "mdi-flask", to: "/", name: "薬屋" },
       { icon: "mdi-calculator", to: "/calc", name: "計算機" },

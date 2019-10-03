@@ -17,7 +17,7 @@ export default {
   },
   asyncData({ query, app }) {
     const exp = parseInt(query.exp);
-    const monsters = exp
+    const monsters = Number.isInteger(exp) && exp > 0
       ? app.$read("monsters", { exp })
       : app.$read("monsters");
     return { monsters };
