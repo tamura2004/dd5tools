@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  v-tabs(v-model="tab")
+  v-tabs(v-model="tab" dark)
     v-tab {{ $encounter.zako | name }}
     v-tab {{ $encounter.boss | name }}
   v-tabs-items(v-model="tab")
@@ -12,10 +12,9 @@ div
 
 <script>
 export default {
+  layout: "no-app-bar",
   data() {
-    return {
-      tab: null,
-    };
+    return { tab: null };
   },
 };
 </script>

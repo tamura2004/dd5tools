@@ -4,9 +4,9 @@
       | {{ $encounter.place | name }}
     .headline.my-4
       | {{ $encounter.event | name }}
-    nuxt-link.headline.my-4(:to="`/monsters/${$encounter.boss.id}`")
+    .headline.my-4
       | {{ $encounter.boss | name }} / {{ $encounter.boss.exp}}
-    nuxt-link.headline.my-4(:to="`/monsters/${$encounter.zako.id}`")
+    .headline.my-4
       | {{ $encounter.zako | name }} * {{ $encounter.num }} / {{ $encounter.zako.exp }}
     dd-menu-button(@click="roll" color="success") 振り直す
     dd-menu-button(@click="save" color="primary") 決定
@@ -66,9 +66,3 @@ export default {
   },
 };
 </script>
-
-<style lang="stylus" scoped>
-#img {
-  width: 320px;
-}
-</style>

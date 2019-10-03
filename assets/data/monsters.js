@@ -4420,11 +4420,18 @@ const DATA = [
   },
 ];
 
-const MONSTER_DATA = DATA.map(v => {
-  return {
+const MONSTER_DATA = [];
+
+for (const v of DATA) {
+  MONSTER_DATA.push({
     ...v,
     id: md5(v.name),
-  };
-});
+  });
+  MONSTER_DATA.push({
+    ...v,
+    id: md5(v.name),
+    name: "ゾンビ・" + v.name,
+  });
+}
 
 export default MONSTER_DATA;
