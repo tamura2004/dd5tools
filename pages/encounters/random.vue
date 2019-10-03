@@ -16,7 +16,6 @@
 import PLACE_DATA from "~/assets/data/places";
 
 const roll = ({ $sample, $lookup, $encounter, $party }) => {
-  debugger
   const event = $sample("encounter/event");
   const place = $sample("places");
 
@@ -41,21 +40,28 @@ const roll = ({ $sample, $lookup, $encounter, $party }) => {
 };
 
 export default {
-  async fetch({ store, app }) {
+  async fetch({ store, app, redirect }) {
+    if (!app.$party.num) {
+      redirect("/party/edit");
+      return;
+    }
     app.$nav.title = "遭遇";
     const data = await store.dispatch("values/findOne", "encounter");
+    console.log(data);
     if (data) {
       app.$encounter.data = data;
     } else {
+      console.log("goto roll");
       roll(app);
     }
   },
   methods: {
     roll() {
-      roll(this)
+      roll(this);
     },
     save() {
       this.$write("values", "encounter", this.$encounter.data);
+      this.$router.push("/encounters/monsters");
     },
   },
 };

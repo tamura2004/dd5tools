@@ -6,6 +6,7 @@ import ddBackButton from "~/components/layouts/dd-back-button";
 import ddNewButton from "~/components/layouts/dd-new-button";
 import ddAppBarExtension from "~/components/layouts/dd-app-bar-extension";
 import ddTenkey from "~/components/ui/dd-tenkey";
+import ddMonsterCard from "~/components/layouts/dd-monster-card";
 
 Vue.component("dd-menu-button", ddMenuButton);
 Vue.component("dd-drawer", ddDrawer);
@@ -14,3 +15,4 @@ Vue.component("dd-back-button", ddBackButton);
 Vue.component("dd-new-button", ddNewButton);
 Vue.component("dd-app-bar-extension", ddAppBarExtension);
 Vue.component("dd-tenkey", ddTenkey);
+Vue.component("dd-monster-card", ddMonsterCard);
