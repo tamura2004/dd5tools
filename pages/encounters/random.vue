@@ -1,6 +1,8 @@
 <template lang="pug">
   div
+    .title どっちに進む？
     dd-encounter-card(ref="up")
+    .title または
     dd-encounter-card(ref="down")
     dd-menu-button(@click="roll" color="success") ロール
 </template>

@@ -1,0 +1,33 @@
+<template lang="pug">
+  v-card.mb-6(width="100%" @click="save")
+    v-card-title.display-1
+      | {{ environment.place | name }}
+    v-card-text
+      .title {{ environment.event | name }}
+      .title {{ environment.prise | name }}
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      environment: Object.assign({}, this.$environment.data),
+    };
+  },
+  created() {
+    this.roll();
+  },
+  methods: {
+    roll() {
+      this.environment.place = this.$sample("places");
+      this.environment.event = this.$sample("encounter/event");
+      this.environment.prise = { name: "treasure" };
+    },
+    save() {
+      this.$environment.data = this.environment;
+      this.$write("values", "environment", this.$environment.data);
+      this.$router.push("/encounters/random");
+    },
+  },
+};
+</script>

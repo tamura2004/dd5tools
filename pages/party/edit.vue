@@ -28,7 +28,7 @@ export default {
     },
     encounter() {
       this.save();
-      this.$router.push("/encounters/random");
+      this.$router.push("/environments/random");
     },
     save() {
       this.$party.normal = this.exp("NORMAL");

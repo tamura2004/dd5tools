@@ -14,7 +14,7 @@ div
       dd-monster-card(:monster="$encounter.boss")
     v-tab-item
       dd-monster-card(:monster="$encounter.zako")
-  dd-menu-button(to="/encounters/random" color="primary") 次の遭遇へ
+  dd-menu-button(to="/environments/random" color="primary") 次の遭遇へ
 
 </template>
 

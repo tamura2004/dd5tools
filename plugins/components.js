@@ -9,6 +9,9 @@ import ddTenkey from "~/components/ui/dd-tenkey";
 import ddMonsterCard from "~/components/layouts/dd-monster-card";
 import ddEncounterCard from "~/components/layouts/dd-encounter-card";
 
+import ddEnvironmentCard from "~/components/layouts/dd-environment-card";
+Vue.component("dd-environment-card", ddEnvironmentCard);
+
 Vue.component("dd-menu-button", ddMenuButton);
 Vue.component("dd-drawer", ddDrawer);
 Vue.component("dd-search-button", ddSearchButton);

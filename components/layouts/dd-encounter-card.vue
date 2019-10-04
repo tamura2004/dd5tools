@@ -1,13 +1,9 @@
 <template lang="pug">
-  v-card.mb-6(width="100%" v-if="encounter")
+  v-card.mb-6(width="100%" @click="save")
     v-card-title.display-1
-      | {{ encounter.place | name }}
+      | {{ encounter.boss | name }}
     v-card-text
-      .title {{ encounter.event | name }}
-      .title {{ encounter.boss | name }}
-      .title {{ encounter.zako | name }} * {{ encounter.num }}
-    v-card-actions
-      dd-menu-button(@click="save" color="primary") 選ぶ
+      .title with {{ encounter.zako | name }} * {{ encounter.num }}
 </template>
 
 <script>
@@ -16,13 +12,13 @@ import PLACE_DATA from "~/assets/data/places";
 export default {
   data() {
     return {
-      encounter: null,
+      encounter: Object.assign({}, this.$encounter.data),
     };
   },
+  created() {
+    this.roll();
+  },
   methods: {
-    created() {
-      this.roll();
-    },
     roll() {
       this.encounter = this.$roll();
     },
