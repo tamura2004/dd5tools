@@ -9,5 +9,6 @@ const loadComponent = (context) => {
   });
 }
 
+// コンポーネントを一括登録
 loadComponent(require.context("~/components/layouts", false, /\.vue$/));
 loadComponent(require.context("~/components/ui", false, /\.vue$/));

@@ -1,0 +1,17 @@
+export const DATA = [
+  { num: 1, modify: 1 },
+  { num: 2, modify: 1.5 },
+  { num: 3, modify: 2 },
+  { num: 4, modify: 2 },
+  { num: 5, modify: 2 },
+  { num: 6, modify: 2 },
+  { num: 7, modify: 2.5 },
+  { num: 8, modify: 2.5 },
+  { num: 9, modify: 2.5 },
+  { num: 10, modify: 2.5 },
+  { num: 11, modify: 3 },
+  { num: 12, modify: 3 },
+  { num: 13, modify: 3 },
+  { num: 14, modify: 3 },
+  { num: 15, modify: 4 },
+];
