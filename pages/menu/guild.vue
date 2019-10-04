@@ -11,8 +11,8 @@
 <script>
 export default {
   created() {
-    this.$store.dispatch("nav/set", { title: "冒険者ギルド" });
-  },
+    this.$nav.title = "冒険者ギルド";
+  }
 };
 </script>
 

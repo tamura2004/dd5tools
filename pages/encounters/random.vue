@@ -16,7 +16,9 @@ export default {
       redirect("/party/edit");
       return;
     }
-    app.$nav.title = "遭遇";
+  },
+  created() {
+    this.$nav.title = "遭遇";
   },
   methods: {
     roll() {

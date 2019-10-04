@@ -11,8 +11,8 @@
 
 <script>
 export default {
-  mounted() {
-    this.$store.dispatch("nav/set", { title: "DD5TOOLS" });
-  },
+  created() {
+    this.$nav.title = "DD5TOOLS";
+  }
 };
 </script>

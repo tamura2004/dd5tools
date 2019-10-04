@@ -10,8 +10,8 @@
 
 <script>
 export default {
-  created() {
-    this.$store.dispatch("nav/set", { title: "種類別モンスター" });
+  fetch({ app }) {
+    app.$nav.title = "種類別モンスター";
   },
 };
 </script>

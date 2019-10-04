@@ -20,7 +20,9 @@ import PLACE_DATA from "~/assets/data/places";
 export default {
   async asyncData({ store, app }) {
     app.$adventure.data = await store.dispatch("values/findOne", "adventure");
-    app.$nav.title = "アドベンチャー";
+  },
+  created() {
+    this.$nav.title = "アドベンチャー";
   },
   methods: {
     roll() {
