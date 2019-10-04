@@ -29,6 +29,7 @@ module.exports = {
     "~/plugins/sample",
     "~/plugins/lookup",
     "~/plugins/accessors",
+    "~/plugins/roll",
   ],
   router: {
     middleware: ["gateway"],
