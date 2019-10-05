@@ -2,7 +2,7 @@ import Vue from "vue";
 
 export class Collection {
   constructor(init) {
-    this.init = init;
+    this.init = Array.isArray(init) ? init : [];
   }
   get state() {
     return () => ({

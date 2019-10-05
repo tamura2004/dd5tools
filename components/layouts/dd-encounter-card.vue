@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import PLACE_DATA from "~/assets/data/places";
-
 export default {
   data() {
     return {

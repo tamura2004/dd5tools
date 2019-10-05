@@ -8,17 +8,13 @@
 </template>
 
 <script>
-import PLACE_DATA from "~/assets/data/places";
-
 export default {
   async fetch({ store, app, redirect }) {
+    app.$nav.title = "遭遇";
     if (!app.$party.num) {
       redirect("/party/edit");
       return;
     }
-  },
-  created() {
-    this.$nav.title = "遭遇";
   },
   methods: {
     roll() {

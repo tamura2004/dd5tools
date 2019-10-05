@@ -1,9 +1,18 @@
 export default ({ store }, inject) => {
   inject("read", (name, param) => {
-    const base = store.getters[`${name}/collection`];
-    const first = base && base[0];
-    const selectable = first &&
-      first.hasOwnProperty("name") && first.hasOwnProperty("id");
+    const base =
+      store.getters["chart/collection"][name] ||
+      store.getters[`${name}/collection`];
+
+    // 配列でないならアラート
+    if (!Array.isArray(base)) {
+      console.log(`bad read param: name=${name}, param=${param}`);
+      return [];
+    }
+
+    const first = base[0];
+    const selectable =
+      first && first.hasOwnProperty("name") && first.hasOwnProperty("id");
 
     const collection = selectable
       ? base.map(v => ({ ...v, text: v.name, value: v.id }))

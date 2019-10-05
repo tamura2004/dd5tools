@@ -9,6 +9,10 @@ export default ({ app }, inject) => {
 
     const last = base[base.length - 1];
 
+    if (last === undefined) {
+      debugger
+    }
+
     if (last.hasOwnProperty("weight")) {
       const total = base.reduce((a, v) => (a += v.weight), 0);
       let dice = roll(total);
