@@ -31,16 +31,16 @@ export default {
       this.$router.push("/environments/random");
     },
     save() {
-      this.$party.normal = this.exp("NORMAL");
-      this.$party.hard = this.exp("HARD");
+      this.$party.EASY = this.exp("EASY");
+      this.$party.NORMAL = this.exp("NORMAL");
+      this.$party.HARD = this.exp("HARD");
+      this.$party.HELL = this.exp("HELL");
       this.$write("values", "party", this.$party.data);
     },
     exp(mode) {
       const level = this.$party.level;
       const exp = this.$lookup("encounter/exp", { mode, level }, "exp");
       return this.$party.num * exp;
-      // const total = this.$party.num * exp;
-      // return this.$lookup("monster/cr", v => v.exp <= total, "exp");
     },
   },
 };

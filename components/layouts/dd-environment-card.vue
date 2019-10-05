@@ -3,8 +3,9 @@
     v-card-title.display-1
       | {{ environment.place | name }}
     v-card-text
-      .title {{ environment.event | name }}
-      .title {{ environment.prise | name }}
+      .title 移動手段：{{ environment.vehicle | name }}
+      .title 要求技能：《{{ environment.skill | name }}》{{ environment.dc }}
+      .title 報酬：{{ environment.prise | name }}
 </template>
 
 <script>
@@ -20,8 +21,12 @@ export default {
   methods: {
     roll() {
       this.environment.place = this.$sample("places");
-      this.environment.event = this.$sample("encounter/event");
-      this.environment.prise = { name: "treasure" };
+      this.environment.vehicle = this.$sample("vehicle");
+      this.environment.skill = this.$sample("skills");
+      this.environment.dc = Math.floor(
+        Math.random() * 20 + 5 + this.$party.level,
+      );
+      this.environment.prise = this.$sample("prise");
     },
     save() {
       this.$environment.data = this.environment;

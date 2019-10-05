@@ -2,7 +2,9 @@ import Values from "~/plugins/values";
 
 const values = new Values([
   "place",
-  "event",
+  "vehicle",
+  "skill",
+  "dc",
   "prise",
 ]);
 

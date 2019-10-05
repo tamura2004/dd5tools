@@ -11,11 +11,8 @@
 export default {
   async fetch({ store, app, redirect }) {
     app.$nav.title = "遭遇";
-    if (!app.$party.num) {
-      redirect("/party/edit");
-      return;
-    }
   },
+  middleware: ["party"],
   methods: {
     roll() {
       this.$refs.up.roll();

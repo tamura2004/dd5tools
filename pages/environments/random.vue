@@ -12,6 +12,7 @@ export default {
   async fetch({ app }) {
     app.$nav.title = "行き先選択";
   },
+  middleware: ["party"],
   methods: {
     roll() {
       this.$refs.up.roll();
