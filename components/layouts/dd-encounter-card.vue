@@ -4,7 +4,8 @@
       | {{ encounter.boss | name }}
     v-card-text
       .title with {{ encounter.zako | name }} * {{ encounter.num }}
-      .title {{ encounter.mode.kanji }}
+      .title 難易度：{{ encounter.mode.kanji }} / {{ encounter.exp }} exp
+      .title 報酬：{{ encounter.prise | name }}
 </template>
 
 <script>

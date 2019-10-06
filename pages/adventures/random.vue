@@ -38,7 +38,7 @@ export default {
     },
     save() {
       this.$write("values", "adventure", this.$adventure.data);
-      this.$router.push("/encounters/random");
+      this.$router.push("/environments/random");
     },
   },
 };

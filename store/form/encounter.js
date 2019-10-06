@@ -5,6 +5,8 @@ const values = new Values([
   "zako",
   "num",
   "mode",
+  "exp",
+  "prise",
 ]);
 
 export const { state, getters, mutations, actions, accessors } = values;
