@@ -22,6 +22,7 @@ export default {
   created() {
     this.$nav.title = "アドベンチャー";
   },
+  middleware: ["party"],
   methods: {
     roll() {
       this.$adventure.client = this.$sample("adventure/client");
@@ -31,10 +32,12 @@ export default {
       this.$adventure.intro = this.$sample("adventure/intro");
       this.$adventure.climax = this.$sample("adventure/climax");
 
-      const exp = this.$lookup("monster/cr", v => v.exp <= this.$party.hard, "exp");
-      const type = this.$adventure.villain.type;
-      console.log(exp, type);
-      this.$adventure.monster = this.$sample("monsters", { type, exp });
+      const exp = this.$lookup(
+        "monster/cr",
+        v => v.exp <= this.$party.HARD,
+        "exp",
+      );
+      this.$adventure.monster = this.$sample("monsters", { exp });
     },
     save() {
       this.$write("values", "adventure", this.$adventure.data);

@@ -15,6 +15,7 @@ div
     v-tab-item
       dd-monster-card(:monster="$encounter.zako")
   dd-menu-button(to="/environments/random" color="primary") 次の遭遇へ
+  dd-menu-button(:to="`/monsters/${$adventure.monster.id}`" color="error") ボス戦へ
 
 </template>
 

@@ -3,7 +3,8 @@
     v-card-title.display-1
       | {{ encounter.boss | name }}
     v-card-text
-      .title with {{ encounter.zako | name }} * {{ encounter.num }}
+      .title {{ encounter.zako | name }} * {{ encounter.num }}
+      .title {{ encounter.reason | name }}
       .title 難易度：{{ encounter.mode.kanji }} / {{ encounter.exp }} exp
       .title 報酬：{{ encounter.prise | name }}
 </template>

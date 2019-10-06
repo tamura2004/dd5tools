@@ -32,5 +32,8 @@ export default ({ app }) => () => {
     prise.name = `${ 100 * mode.bonus * app.$party.num * app.$party.level }gp`
   }
 
-  return { boss, zako, num, mode, exp, prise };
+  // モンスターと戦う理由の決定
+  const reason = app.$sample("encounter/reasons");
+
+  return { boss, zako, num, mode, exp, prise, reason };
 };

@@ -7,6 +7,7 @@ const values = new Values([
   "mode",
   "exp",
   "prise",
+  "reason",
 ]);
 
 export const { state, getters, mutations, actions, accessors } = values;
