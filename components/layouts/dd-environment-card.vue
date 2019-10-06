@@ -24,7 +24,7 @@ export default {
       this.environment.vehicle = this.$sample("vehicle");
       this.environment.skill = this.$sample("skills");
       this.environment.dc = Math.floor(
-        Math.random() * 20 + 5 + this.$party.level,
+        Math.random() * 6 + 10 + this.$party.level / 2,
       );
       this.environment.prise = this.$sample("prise");
     },

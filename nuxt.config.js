@@ -21,15 +21,10 @@ module.exports = {
   devModules: ["@nuxtjs/vuetify"],
   css: ["~/assets/transition.css"],
   plugins: [
-    "~/plugins/firebase",
-    "~/plugins/components",
+    "~/plugins/loaders/accessors",
+    "~/plugins/loaders/components",
+    "~/plugins/loaders/functions",
     "~/plugins/filters",
-    "~/plugins/read",
-    "~/plugins/write",
-    "~/plugins/sample",
-    "~/plugins/lookup",
-    "~/plugins/accessors",
-    "~/plugins/roll",
   ],
   router: {
     middleware: ["gateway"],
