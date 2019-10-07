@@ -28,6 +28,7 @@ export default {
     save() {
       this.$environment.data = this.environment;
       this.$write("values", "environment", this.$environment.data);
+      this.$write("environments", this.$environment.data);
       this.$router.push("/encounters/random");
     },
   },

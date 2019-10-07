@@ -8,6 +8,18 @@ div
     dd-memo(label="悪漢" :memo="$adventure.villain")
     dd-memo(label="ボス" :memo="$adventure.monster")
     dd-memo(label="決戦" :memo="$adventure.climax")
+  .overline.font-weight-black 環境
+  v-card
+    dd-memo(label="場所" :memo="$environment.place")
+    dd-memo(label="移動手段" :memo="$environment.vehicle")
+    dd-memo(label="要求技能" :memo="$environment.skill")
+  .overline.font-weight-black 遭遇
+  v-card
+    dd-memo(label="ボス" :memo="$encounter.boss")
+    dd-memo(:label="`雑魚x${$encounter.num}`" :memo="$encounter.zako")
+    dd-memo(label="難易度" :memo="{ name: $encounter.mode.kanji }")
+    dd-memo(label="exp" :memo="{ name: $encounter.exp }")
+    dd-memo(label="報酬" :memo="$encounter.prise")
   dd-menu-button(@click="roll" color="success") 振り直す
   dd-menu-button(@click="save" color="primary") 決定
   dd-menu-button(:to="`/monsters/${$adventure.monster.id}`" color="error") ボス戦へ

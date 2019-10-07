@@ -26,6 +26,7 @@ export default {
     save() {
       this.$encounter.data = this.encounter;
       this.$write("values", "encounter", this.$encounter.data);
+      this.$write("encounters", this.$encounter.data);
       this.$router.push("/encounters/monsters");
     },
   },

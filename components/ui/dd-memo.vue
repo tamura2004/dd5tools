@@ -5,12 +5,12 @@ v-row#row(no-gutters)
       | {{ label }}
   v-col(cols="9")
     v-card(height="100%").pl-2(tile outlined)
-      | {{ memo | name }}    
+      | {{ memo | name }}
 </template>
 
 <script>
 export default {
-  props: ["label", "memo"],
+  props: ["label", "memo", "raw"],
 };
 </script>
 

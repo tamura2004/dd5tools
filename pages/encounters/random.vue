@@ -1,6 +1,9 @@
 <template lang="pug">
   div
-    .title どっちに進む？
+    dd-memo(label="場所" :memo="$environment.place")
+    dd-memo(label="移動手段" :memo="$environment.vehicle")
+    dd-memo(label="要求技能" :memo="$environment.skill")
+    .title.mt-4 どっちと戦う？
     dd-encounter-card(ref="up")
     .title または
     dd-encounter-card(ref="down")

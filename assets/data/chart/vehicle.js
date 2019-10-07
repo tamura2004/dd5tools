@@ -1,6 +1,6 @@
 export const DATA = [
   { weight: 4, name: "地底湖のポータルを潜り抜ける" },
-  { weight: 4, name: "ガレー船に野って" },
+  { weight: 4, name: "ガレー船に乗って" },
   { weight: 4, name: "螺旋階段を上る" },
   { weight: 4, name: "梯子を上る" },
   { weight: 4, name: "翼竜に乗って" },
