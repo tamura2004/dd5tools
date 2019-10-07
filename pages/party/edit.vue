@@ -24,7 +24,7 @@ export default {
   methods: {
     adventure() {
       this.save();
-      this.$router.push("/adventures/random");
+      this.$router.push("/adventures");
     },
     encounter() {
       this.save();

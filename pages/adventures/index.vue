@@ -1,26 +1,24 @@
 <template lang="pug">
-  v-layout.pa-4(justify-start align-center column)
-    .body-2.my-4
-      | {{ $adventure.client | name }}の依頼により、
-      | {{ $adventure.friend | name }}の助力を受けた冒険者一行。
-    .body-2.my-4
-      | {{ $adventure.intro | name }}
-      | {{ $adventure.monster | name }}、
-      | {{ $adventure.villain | name }}を相手取り、
-      | {{ $adventure.purpose | name }}！
-    .body-2.my-4
-      | {{ $adventure.climax | name }}
-    dd-menu-button(@click="roll" color="success") 振り直す
-    dd-menu-button(@click="save" color="primary") 決定
+div
+  v-card
+    dd-memo(label="依頼人" :memo="$adventure.client")
+    dd-memo(label="協力者" :memo="$adventure.friend")
+    dd-memo(label="導入" :memo="$adventure.intro")
+    dd-memo(label="目的" :memo="$adventure.purpose")
+    dd-memo(label="悪漢" :memo="$adventure.villain")
+    dd-memo(label="ボス" :memo="$adventure.monster")
+    dd-memo(label="決戦" :memo="$adventure.climax")
+  dd-menu-button(@click="roll" color="success") 振り直す
+  dd-menu-button(@click="save" color="primary") 決定
+  dd-menu-button(:to="`/monsters/${$adventure.monster.id}`" color="error") ボス戦へ
+
 </template>
 
 <script>
 export default {
-  async asyncData({ store, app }) {
+  async fetch({ app, store }) {
+    app.$nav.title = "アドベンチャー";
     app.$adventure.data = await store.dispatch("values/findOne", "adventure");
-  },
-  created() {
-    this.$nav.title = "アドベンチャー";
   },
   middleware: ["party"],
   methods: {
@@ -48,7 +46,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-#img {
-  width: 320px;
+#row {
+  margin-top: 1px;
 }
 </style>

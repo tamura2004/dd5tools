@@ -14,7 +14,7 @@ export default {
     menues: [
       { icon: "mdi-campfire", to: "/", name: "トップメニュー" },
       { icon: "mdi-castle", to: "/party/edit", name: "パーティ" },
-      { icon: "mdi-death-star-variant", to: "/adventures/random", name: "アドベンチャー" },
+      { icon: "mdi-death-star-variant", to: "/adventures", name: "アドベンチャー" },
       { icon: "mdi-image-filter-hdr", to: "/environments/random", name: "冒険の舞台" },
       { icon: "mdi-cat", to: "/encounters/random", name: "エンカウンター" },
       // { icon: "mdi-bacteria", to: "/menu/monster", name: "モンスターマニュアル" },
