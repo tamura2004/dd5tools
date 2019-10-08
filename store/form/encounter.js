@@ -6,6 +6,7 @@ const values = new Values([
   "num",
   "mode",
   "exp",
+  "clue",
   "prise",
   "reason",
 ]);

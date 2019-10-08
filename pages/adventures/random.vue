@@ -10,8 +10,8 @@
       | {{ $adventure.purpose | name }}！
     .body-2.my-4
       | {{ $adventure.climax | name }}
-    dd-menu-button(@click="roll" color="success") 振り直す
     dd-menu-button(@click="save" color="primary") 決定
+    dd-menu-button(@click="roll" color="success") 振り直す
 </template>
 
 <script>

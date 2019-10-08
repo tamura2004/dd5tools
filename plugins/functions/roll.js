@@ -23,17 +23,24 @@ export default ({ app }) => () => {
   if (prise.name === "ポーション") {
     const potions = [];
     for (let i = 0; i < mode.bonus; i++) {
-      potions.push(app.$sample("potions").name)
+      potions.push(app.$sample("potions").name);
     }
-    prise.name = "ポーション（" + potions.join("、") + "）"
+    prise.name = "ポーション（" + potions.join("、") + "）";
   }
 
+  // 手がかりの決定
+  const clues = [];
+  for (let i = 0; i < mode.bonus - 1; i++) {
+    clues.push(app.$sample("clues").name);
+  }
+  const clue = clues.join("、");
+
   if (prise.name === "ゴールド") {
-    prise.name = `${ 100 * mode.bonus * app.$party.num * app.$party.level }gp`
+    prise.name = `${100 * mode.bonus * app.$party.num * app.$party.level}gp`;
   }
 
   // モンスターと戦う理由の決定
   const reason = app.$sample("encounter/reasons");
 
-  return { boss, zako, num, mode, exp, prise, reason };
+  return { boss, zako, num, mode, exp, prise, clue, reason };
 };

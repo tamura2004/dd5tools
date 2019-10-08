@@ -5,7 +5,8 @@
     v-card-text
       .title {{ encounter.zako | name }} * {{ encounter.num }}
       .title {{ encounter.reason | name }}
-      .title 難易度：{{ encounter.mode.kanji }} / {{ encounter.exp }} exp
+      .title 難易度：{{ encounter.mode && encounter.mode.kanji }} / {{ encounter.exp }} exp
+      .title 手掛かり：{{ encounter.clue }}
       .title 報酬：{{ encounter.prise | name }}
 </template>
 

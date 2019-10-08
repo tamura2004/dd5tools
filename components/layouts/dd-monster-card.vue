@@ -1,5 +1,5 @@
 <template lang="pug">
-v-card
+v-card(v-if="monster")
   .title.pl-2.grey.darken-4.white--text(v-if="title") {{ monster | name }}
   v-row(no-gutters)
     // サイズと種類、属性
