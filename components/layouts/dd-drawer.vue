@@ -17,6 +17,7 @@ export default {
       { icon: "mdi-death-star-variant", to: "/adventures", name: "アドベンチャー" },
       { icon: "mdi-image-filter-hdr", to: "/environments/random", name: "冒険の舞台" },
       { icon: "mdi-cat", to: "/encounters/random", name: "エンカウンター" },
+      { icon: "mdi-cat", to: "/encounters", name: "エンカウンター一覧" },
       // { icon: "mdi-bacteria", to: "/menu/monster", name: "モンスターマニュアル" },
       // { icon: "mdi-sword-cross", to: "/weapons", name: "武器" },
       // { icon: "mdi-shield-half-full", to: "/", name: "防具" },
