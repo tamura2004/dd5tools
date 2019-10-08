@@ -1,6 +1,8 @@
 <template lang="pug">
 v-card(v-if="monster")
-  .title.pl-2.grey.darken-4.white--text(v-if="title") {{ monster | name }}
+  .title.pl-2.grey.darken-4.white--text(v-if="title!==undefined")
+    span(v-if="num") {{ num }} × &nbsp;
+    | {{ monster | name }}
   v-row(no-gutters)
     // サイズと種類、属性
     v-col(cols="9")
@@ -75,6 +77,6 @@ v-card(v-if="monster")
 
 <script>
 export default {
-  props: ["monster", "title"]
+  props: ["monster", "title", "num"]
 };
 </script>

@@ -1,8 +1,8 @@
 <template lang="pug">
 div
-  dd-session-memo
-  dd-menu-button(@click="save" color="primary") 決定
+  dd-adventure-memo(:adventure="$adventure.data")
   dd-menu-button(@click="roll" color="success") 振り直す
+  dd-menu-button(@click="save" color="primary") 決定
   dd-boss-button(:boss="$adventure.monster")
 </template>
 

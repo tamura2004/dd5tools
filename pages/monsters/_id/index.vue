@@ -1,10 +1,10 @@
 <template lang="pug">
-  dd-monster-card(:monster="$monster")
+  dd-monster-card(:monster="$monster.data")
 </template>
 
 <script>
 export default {
-  asyncData({ params, app }) {
+  fetch({ params, app }) {
     const id = params.id;
     app.$monster.data = app.$read("monsters", id);
     app.$nav.data = {};

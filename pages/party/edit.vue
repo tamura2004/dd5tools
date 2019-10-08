@@ -11,8 +11,7 @@ v-layout.pa-4(justify-start align-center column)
     v-icon mdi-calculator
     dd-tenkey(label="人数" v-model="$party.num" ref="num")
 
-  dd-menu-button(@click="adventure" color="primary") アドベンチャー
-  dd-menu-button(@click="encounter" color="primary") 遭遇
+  dd-menu-button(@click="adventure" color="primary") 決定
 </template>
 
 <script>
@@ -24,7 +23,7 @@ export default {
   methods: {
     adventure() {
       this.save();
-      this.$router.push("/adventures");
+      this.$router.push("/adventures/random");
     },
     encounter() {
       this.save();

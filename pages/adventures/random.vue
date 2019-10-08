@@ -1,17 +1,18 @@
 <template lang="pug">
   v-layout.pa-4(justify-start align-center column)
-    .body-2.my-4
+    dd-headline.my-2
       | {{ $adventure.client | name }}の依頼により、
       | {{ $adventure.friend | name }}の助力を受けた冒険者一行。
-    .body-2.my-4
+    dd-headline.my-2
       | {{ $adventure.intro | name }}
       | {{ $adventure.monster | name }}、
       | {{ $adventure.villain | name }}を相手取り、
       | {{ $adventure.purpose | name }}！
-    .body-2.my-4
+    dd-headline.my-2
       | {{ $adventure.climax | name }}
-    dd-menu-button(@click="save" color="primary") 決定
     dd-menu-button(@click="roll" color="success") 振り直す
+    dd-menu-button(@click="save" color="primary") 決定
+    dd-boss-button(:boss="$adventure.monster")
 </template>
 
 <script>

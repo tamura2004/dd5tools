@@ -1,16 +1,16 @@
 <template lang="pug">
   div
-    dd-environment-memo(:environment="$environment.data")
-    .title.mt-4 どっちと戦う？
+    dd-environment-card(:environment="$environment.data")
+    dd-body どっちと戦う？
     dd-encounter-card(@click="save($event)" :encounter="up")
-    .title または
+    dd-body または
     dd-encounter-card(@click="save($event)" :encounter="down")
-    dd-menu-button(@click="roll" color="success") ロール
+    dd-menu-button(@click="roll" color="success") 振り直し
 </template>
 
 <script>
 export default {
-  async fetch({ store, app, redirect }) {
+  async fetch({ app }) {
     app.$nav.title = "遭遇";
   },
   middleware: ["party"],
