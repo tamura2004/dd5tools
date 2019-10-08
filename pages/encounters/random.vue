@@ -2,9 +2,9 @@
   div
     dd-environment-memo(:environment="$environment.data")
     .title.mt-4 どっちと戦う？
-    dd-encounter-card(ref="up")
+    dd-encounter-card(@click="save($event)" :encounter="up")
     .title または
-    dd-encounter-card(ref="down")
+    dd-encounter-card(@click="save($event)" :encounter="down")
     dd-menu-button(@click="roll" color="success") ロール
 </template>
 
@@ -14,10 +14,23 @@ export default {
     app.$nav.title = "遭遇";
   },
   middleware: ["party"],
+  data: () => ({
+    up: null,
+    down: null,
+  }),
+  created() {
+    this.roll();
+  },
   methods: {
     roll() {
-      this.$refs.up.roll();
-      this.$refs.down.roll();
+      this.up = this.$roll();
+      this.down = this.$roll();
+    },
+    save(encounter) {
+      this.$encounter.data = encounter;
+      this.$write("values", "encounter", encounter);
+      // this.$write("encounters", encounter);
+      this.$router.push("/encounters/monsters");
     },
   },
 };

@@ -24,6 +24,7 @@ module.exports = {
     "~/plugins/loaders/accessors",
     "~/plugins/loaders/components",
     "~/plugins/loaders/functions",
+    "~/plugins/loaders/collections",
     "~/plugins/filters",
   ],
   router: {
